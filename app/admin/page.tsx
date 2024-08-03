@@ -12,6 +12,15 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
+
+
+const stories = [
+  { id: 1, title: "Story One", image: "/images/award.png", snippet: "This is a short snippet of story one." },
+  { id: 2, title: "Story Two", image: "/images/counting.png", snippet: "This is a short snippet of story two." },
+  { id: 3, title: "Story Three", image: "/images/defence.png", snippet: "This is a short snippet of story three." },
+];
+
+
 const AdminPage: React.FC = () => {
   const links = [
     {
@@ -47,8 +56,8 @@ const AdminPage: React.FC = () => {
   return (
     <div
       className={cn(
-        "mx-auto flex size-full flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800 md:flex-row",
-        "h-[60vh]" 
+        "mx-auto flex size-full flex-1 flex-col overflow-hidden rounded-md dark:border-neutral-700 dark:bg-neutral-800 md:flex-row"
+         
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -119,22 +128,29 @@ const Dashboard = () => {
   return (
     <div className="flex flex-1">
       <div className="flex size-full flex-1 flex-col gap-2 border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-neutral-900 md:p-10">
-        <div className="flex gap-2">
-          {[...new Array(4)].map((i) => (
-            <div
-              key={"first-array" + i}
-              className="h-20 w-full animate-pulse  rounded-lg bg-gray-100 dark:bg-neutral-800"
-            ></div>
-          ))}
-        </div>
-        <div className="flex flex-1 gap-2">
-          {[...new Array(2)].map((i) => (
-            <div
-              key={"second-array" + i}
-              className="size-full animate-pulse rounded-lg  bg-gray-100 dark:bg-neutral-800"
-            ></div>
-          ))}
-        </div>
+      <div className="min-h-screen  p-6">
+      <h1 className="mb-6 text-center text-3xl font-bold">Story Dashboard</h1>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {stories.map(story => (
+          <motion.div
+            key={story.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="overflow-hidden rounded-lg bg-white shadow-lg"
+          >
+            <img src={story.image} height={150} width={150} alt={story.title} className="h-40 w-full object-cover" />
+            <div className="p-4">
+              <h2 className="mb-2 text-xl font-semibold">{story.title}</h2>
+              <p className="mb-4 text-gray-700">{story.snippet}</p>
+              <Link href={`/story/${story.id}`}>
+                <p className="text-blue-500 hover:underline">Read More</p>
+              </Link>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
       </div>
     </div>
   );
