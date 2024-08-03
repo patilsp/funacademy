@@ -106,7 +106,7 @@ export const Logo = () => {
         animate={{ opacity: 1 }}
         className="whitespace-pre font-medium text-black dark:text-white"
       >
-        Excellent Service
+        FunAcademy
       </motion.span>
     </Link>
   );

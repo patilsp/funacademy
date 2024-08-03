@@ -22,7 +22,7 @@ const AboutUs = () => {
               {/* Heading */}
               <h2 className="mb-8 text-3xl font-bold md:text-5xl">About Us</h2>
               <p className="text-sm sm:text-base">
-                At Excellent Service Services, we are committed to providing top-quality water filtration and purification solutions. With over a decade of experience, our team is dedicated to ensuring that every drop of water is pure, safe, and clean for you and your family.
+                At FunAcademy Services, we are committed to providing top-quality water filtration and purification solutions. With over a decade of experience, our team is dedicated to ensuring that every drop of water is pure, safe, and clean for you and your family.
               </p>
               <a
                 href="#"
@@ -41,7 +41,7 @@ const AboutUs = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <p className="text-sm">
-                    Excellent Service Services has been a game-changer for our household. The installation process was smooth, and the difference in water quality is remarkable.
+                    FunAcademy Services has been a game-changer for our household. The installation process was smooth, and the difference in water quality is remarkable.
                   </p>
                   <div className="flex items-center gap-2 sm:gap-x-4">
                     <div className="flex items-center gap-x-2">
@@ -88,7 +88,7 @@ const AboutUs = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <p className="text-sm">
-                    The water quality has improved significantly since using Excellent Service Services. Their customer support is also exceptional.
+                    The water quality has improved significantly since using FunAcademy Services. Their customer support is also exceptional.
                   </p>
                   <div className="flex items-center gap-2 sm:gap-x-4">
                     <div className="flex items-center gap-x-2">

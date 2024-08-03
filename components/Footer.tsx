@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             {/* <img src="#" className="mr-5 h-6 sm:h-9" alt="logo" /> */}
             <p className="mt-4 max-w-xs text-base text-gray-600 dark:text-gray-50">
-            Excellent services Chokhale college chowk, Mangalwar peth Kolhapur -416012            
+            FunAcademys Chokhale college chowk, Mangalwar peth Kolhapur -416012            
             </p>
             <div className="mt-8 flex space-x-6 text-gray-600">
               <a className="hover:text-bold rounded-full bg-white p-3 shadow hover:text-blue-700 hover:opacity-75" href="#" target="_blank" rel="noreferrer">
@@ -31,7 +31,7 @@ export function Footer() {
             
             </div>
             <p className="mt-8 text-base text-gray-800 dark:text-white">
-              © 2024 Excellent Service. All Rights Reserved
+              © 2024 FunAcademy. All Rights Reserved
             </p>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">

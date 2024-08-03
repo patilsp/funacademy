@@ -30,7 +30,7 @@ const MemoryGame = () => {
   };
 
   return (
-    <div className="memory-game">
+    <div className="memory-game  col-span-3 grid md:col-span-4">
       {cards.map((card, index) => (
         <div
           key={index}

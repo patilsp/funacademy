@@ -229,19 +229,64 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   margin-top: 20px;
 }
-
 .card {
   width: 100px;
   height: 100px;
+  border-radius: 10px;
   background-color: #ddd;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 40px;
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   user-select: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
+
+/* Base colors */
+.card.bg-blue {
+  background-color: #87cefa;
+}
+
+.card.bg-green {
+  background-color: #98fb98;
+}
+
+.card.bg-yellow {
+  background-color: #ffeb7a;
+}
+
+.card.bg-pink {
+  background-color: #ffb6c1;
+}
+
+/* Hover effects */
+.card:hover {
+  background-color: #f0f0f0; /* Light gray for hover background */
+  color: #333; /* Darker color for text */
+  transform: scale(1.05); /* Slightly enlarge the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for 3D effect */
+}
+
+/* Adjust text color based on background color */
+.card.bg-blue:hover {
+  color: #003366; /* Dark blue text */
+}
+
+.card.bg-green:hover {
+  color: #004d00; /* Dark green text */
+}
+
+.card.bg-yellow:hover {
+  color: #cc9900; /* Dark yellow text */
+}
+
+.card.bg-pink:hover {
+  color: #cc3366; /* Dark pink text */
+}
+
 
 .card.flipped {
   background-color: #fff;
@@ -253,9 +298,9 @@ body::-webkit-scrollbar-thumb {
   height: 300px;
   /* width: 500px; */
   /* margin: auto; */
-  left: -30% !important;
+  left: -5% !important;
   position: relative;
-  top: 30px;
+  top: -80px;
   right: 0;
   bottom: 0;
   perspective: 9999px;

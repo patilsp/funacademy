@@ -10,7 +10,7 @@ function Service() {
       <section className="relative bg-gray-200 py-8 pb-20">
         <div className="flex flex-wrap justify-center py-8 text-center">
           <div className="w-full px-12 md:w-6/12 md:px-4">
-            <h2 className="text-4xl font-semibold">Why Choose Excellent Service?</h2>
+            <h2 className="text-4xl font-semibold">Why Choose FunAcademy?</h2>
             <p className="my-4 text-lg leading-relaxed text-gray-600">
               Discover the top reasons why our water purifier services stand out from the rest.
             </p>
