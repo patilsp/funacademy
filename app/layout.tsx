@@ -41,9 +41,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable
           )}
         >
-          {/* <div className='main'>
+          <div className='main'>
               <div className='gradient' />
-            </div> */}
+            </div>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
               {/* <SiteHeader /> */}

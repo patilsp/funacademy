@@ -8,18 +8,42 @@ export default function Home() {
   return (
     <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('/images/home-banner.jpg')" }}>
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute"></div>
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center p-4 text-center text-white">
         {/* Welcome Text */}
-        <motion.h1
+        {/* <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
           className="mb-4 mt-20 text-4xl font-bold leading-tight md:text-5xl"
         >
           Welcome to <br /> FunAcademy
-        </motion.h1>
+        </motion.h1> */}
+
+
+        <div class="stage">
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+        </div>
 
         {/* Description */}
         <motion.p

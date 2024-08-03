@@ -17,20 +17,20 @@ export const docsConfig: DocsConfig = {
       href: "/dashboard",
     },
     {
-      title: "Users",
-      href: "/users",
+      title: "Courses",
+      href: "/course",
     },
     {
-      title: "Customers",
+      title: "Subjects",
       href: "/customers",
     },
     {
-      title: "Products",
+      title: "Classes",
       href: "/products",
     },
     {
-      title: "Complaints",
-      href: "/complaints",
+      title: "Letters",
+      href: "/letter",
     },
    
     

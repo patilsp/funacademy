@@ -25,6 +25,10 @@ export const siteConfig = {
       title: "Games",
       href: "/users",
     },
+    {
+      title: "Letters",
+      href: "/letter",
+    },
      {
       title: "Settings",
       href: "/forms",
