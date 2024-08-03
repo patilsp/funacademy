@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import StoryForm from "@/components/storyForm";
+import StoryForm from "@/components/StoryForm";
 import { useAuth, useUser } from "@clerk/nextjs";
 
 const CreateStory = () => {
