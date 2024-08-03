@@ -100,7 +100,7 @@ export default function Banner() {
                     </h4>
                     <div className="flex items-center justify-center">
                       <div className="flex flex-col md:flex-row">
-                        <div className="hidden items-start md:flex md:w-1/2">
+                        <div className="items-start">
                           <Image
                             src={bannerImage}
                             alt="Banner"
@@ -110,15 +110,7 @@ export default function Banner() {
                             className="rounded-md object-cover"
                           />
                         </div>
-                        <div className="md:w-1/2">
-                          <InquiryForm
-                            type="Create"
-                            inquiry={inquiry}
-                            setInquiry={setInquiry}
-                            submitting={submitting}
-                            handleSubmit={createInquiry}
-                          />
-                        </div>
+                        
                       </div>
                     </div>
                   </DialogContent>
