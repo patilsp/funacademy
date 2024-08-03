@@ -1,0 +1,98 @@
+[
+  {
+    "id": "CUST-123",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "status": "active",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-456",
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    "status": "inactive",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-789",
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "status": "active",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-123",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "status": "active",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-456",
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    "status": "inactive",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-789",
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "status": "active",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-123",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "status": "active",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-456",
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    "status": "inactive",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-789",
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "status": "active",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-123",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "status": "active",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-456",
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    "status": "inactive",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  },
+  {
+    "id": "CUST-789",
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "status": "active",
+      "phone": "123456789",
+    "address": "1600 Amphitheatre Parkway"
+  }
+]
