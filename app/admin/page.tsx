@@ -139,7 +139,7 @@ const Dashboard = () => {
             transition={{ duration: 0.5 }}
             className="overflow-hidden rounded-lg bg-white shadow-lg"
           >
-            <img src={story.image} height={150} width={150} alt={story.title} className="h-40 w-full object-cover" />
+            <Image src={story.image} height={150} width={150} alt={story.title} className="h-40 w-full object-cover" />
             <div className="p-4">
               <h2 className="mb-2 text-xl font-semibold">{story.title}</h2>
               <p className="mb-4 text-gray-700">{story.snippet}</p>

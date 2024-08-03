@@ -2,11 +2,11 @@ import Story from "@/models/story";
 import { connectToDB } from "@/utils/database";
 
 export const POST = async (request) => {
-    const { userId, title, description } = await request.json();
+    const {  title, description } = await request.json();
 
     try {
         await connectToDB();
-        const newStory = new Story({ userId, title, description });
+        const newStory = new Story({ title, description });
 
         await newStory.save();
         return new Response(JSON.stringify(newStory), { status: 201 })

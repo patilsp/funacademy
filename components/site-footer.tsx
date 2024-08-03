@@ -8,7 +8,7 @@ import { CommandMenu } from "@/components/command-menu";
 
 export function SiteFooter() {
   return (
-      <footer className="fixed bottom-0 z-50 w-full border-t border-gray-200 bg-white py-2 md:hidden dark:border-gray-600 dark:bg-slate-900 dark:text-white">
+      <footer className="fixed bottom-0 z-50 w-full border-t border-gray-200 bg-white py-2 dark:border-gray-600 dark:bg-slate-900 dark:text-white md:hidden">
         <div className="mx-auto grid h-full max-w-lg grid-cols-5">
          
           <a href="/" data-tooltip-target="tooltip-home" className="group inline-flex flex-col items-center justify-center p-2 hover:bg-gray-50 dark:hover:bg-gray-800">

@@ -84,9 +84,9 @@ export default function Guide() {
                             initial={{ opacity: 0, x: -50 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 1.2 }}
-                            className="flex gap-4 p-6 bg-white rounded-lg shadow-md dark:bg-funacademy-dark"
+                            className="flex gap-4 rounded-lg bg-white p-6 shadow-md"
                         >
-                            <div className="flex items-center justify-center w-12 h-12 bg-funacademy-quaternary rounded-full">
+                            <div className=" flex size-12 items-center justify-center rounded-full">
                                 <Bookmark className="text-funacademy-highlight" />
                             </div>
                             <div>

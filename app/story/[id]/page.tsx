@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
@@ -30,7 +31,7 @@ export default function StoryDetail({ params }) {
           transition={{ duration: 0.5 }}
           className="flex-1 p-4"
         >
-          <img src={story.image} alt={story.title} className="h-auto w-full max-w-md rounded-lg" />
+          <Image src={story.image} alt={story.title} className="h-auto w-full max-w-md rounded-lg" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 50 }}
