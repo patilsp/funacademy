@@ -42,7 +42,7 @@ const cardData = [
 export default function LinkCards() {
   return (
     <div className="w-full p-4">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-4">
         {cardData.map((card) => (
           <motion.div
             key={card.id}

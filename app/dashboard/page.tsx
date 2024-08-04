@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/registry/new-york/ui/button"
 import {
@@ -22,8 +23,7 @@ import { ComplaintsCompleted } from "@/app/dashboard/components/complaints-compl
 import { Search } from "@/app/dashboard/components/search"
 import TeamSwitcher from "@/app/dashboard/components/team-switcher"
 import LinkCards from "@/app/dashboard/components/LinkCards"
-import { useAuth, useUser } from "@clerk/nextjs"; 
-
+import { UserButton, useAuth, useUser, SignIn } from "@clerk/nextjs";
 
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { columns } from "./components/columns";
@@ -41,17 +41,23 @@ export default function DashboardPage() {
 
   return (
     <>
-      <div className="mb-10 p-4 dark:bg-black dark:text-white">
+      <div className="mb-10   dark:bg-black dark:text-white">
         <div className="flex flex-col md:flex-row">
           
-          <div className="flex-1 space-y-4 p-1 pt-6 md:p-8">
-
-
-          <div className="mb-2 border-b">
-            <div className="flex h-16 w-full items-center justify-center">
-            <div className="flex items-start ">
-                <span className="text_primary text-2xl font-bold">Welcome Back {userName}</span>
-            </div>
+          <div className="flex-1 space-y-4 p-1 md:p-8">
+          <div className="border-b">
+            <div className="flex h-16 w-full items-center justify-between gap-2 px-2">
+              <div className="flex items-start ">
+                  <span className="text_primary text-2xl font-bold">Welcome Back {userName}</span>
+              </div>
+              {userId == null ? (
+                  <Link href="/sign-in" className="mr-1 flex w-20 justify-center rounded bg-black p-1 font-medium text-white shadow   transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                      Sign In
+                  
+                  </Link>
+                ) : (
+                  <UserButton afterSignOutUrl="/sign-in" />
+                )}
             </div>
           </div>
             <div className="flex items-center justify-between space-y-2 md:flex-row md:space-y-0">
@@ -61,11 +67,12 @@ export default function DashboardPage() {
                 <Button>Download</Button>
               </div>
             </div>
-            <Tabs defaultValue="overview" className="space-y-6">
+            <Tabs defaultValue="overview" className="space-y-2">
               <TabsList className="flex flex-wrap justify-center bg-transparent p-2">
-                <TabsTrigger value="overview">Games</TabsTrigger>
                 <TabsTrigger value="analytics">Dashboard</TabsTrigger>
-                <TabsTrigger value="reports">Reports</TabsTrigger>
+                <TabsTrigger value="overview">Games</TabsTrigger>
+                
+                <TabsTrigger value="stories">Stories</TabsTrigger>
               </TabsList>
               <TabsContent value="overview" className="space-y-4">
                 <div className="flex gap-4">
@@ -73,7 +80,7 @@ export default function DashboardPage() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="analytics" className="space-y-4">
+              <TabsContent value="analytics" className="space-y-4 p-2">
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
                   <Card className="col-span-3 md:col-span-4">
                     <CardHeader>

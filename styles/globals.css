@@ -550,3 +550,32 @@ body::-webkit-scrollbar-thumb {
  button:hover .button-text {
   color: black;
  }
+
+ /* styles/globals.css */
+.animal {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.animal img {
+  width: 80px;
+  height: 80px;
+}
+
+.red { background-color: #ffdddd; }
+.blue { background-color: #ddffff; }
+
+.game-board {
+  text-align: center;
+}
+
+.animals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
