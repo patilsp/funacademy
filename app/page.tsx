@@ -6,24 +6,26 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 import { PulseBeams } from '@/components/PulseBeams';
+import loginImage from '../public/images/login-bg.jfif';
 
 export default function Home() {
   return (
-    <div className="relative z-10 flex h-screen items-center justify-center overflow-hidden bg-[#fec94d] text-center text-white">
-      {/* PulseBeams for larger screens */}
+      <div className="relative z-20 h-screen bg-cover bg-center" style={{ backgroundImage: "url('/images/login-bg.jpg')" }}>
+      {/* Overlay */}
+      <div className="absolute"></div>
       <div className="absolute inset-0 hidden md:block">
         <PulseBeams />
       </div>
 
       {/* Content for small screens */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:hidden md:p-8">
+      <div className="absolute inset-0 -mt-52 flex flex-col items-center justify-center text-center md:hidden">
         <h1 className="mb-20 text-4xl font-extrabold leading-tight md:text-6xl">
           Welcome to <br /><span className="text-[#ff5722]">Fun Academy</span>
         </h1>
       
-        <p className="text-semibold mx-auto mb-8 max-w-md text-4xl">
-          Become and <br />expert by learning <br /><span className="text-bold text-teal-700">once </span> a day  
-        </p>
+        <h4 className="text-bold mx-auto mb-8 max-w-md text-4xl">
+          Become an <br />expert by learning <br /><span className="text-bold text-[#ff5722]">once </span> a day  
+        </h4>
 
         <motion.div
           className="fixed bottom-0 flex items-center justify-center"
