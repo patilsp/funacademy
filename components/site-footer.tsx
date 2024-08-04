@@ -11,7 +11,7 @@ export function SiteFooter() {
 
   const user = useUser();
   if(user){
-    return
+    return null;
   }
   return (
       <footer className="fixed bottom-0 z-50 w-full border-t border-gray-200 bg-white py-2 dark:border-gray-600 dark:bg-black dark:text-white md:hidden">

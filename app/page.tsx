@@ -10,7 +10,7 @@ import loginImage from '../public/images/login-bg.jfif';
 
 export default function Home() {
   return (
-      <div className="relative z-20 h-screen bg-cover bg-center" style={{ backgroundImage: "url('/images/login-bg.jpg')" }}>
+      <div className="relative z-20 h-screen bg-cover bg-center" style={{ backgroundImage: "url('/images/home-banner.jpg')" }}>
       {/* Overlay */}
       <div className="absolute"></div>
       <div className="absolute inset-0 hidden md:block">
@@ -46,7 +46,7 @@ export default function Home() {
             <span class="circle" aria-hidden="true">
             <span class="icon arrow"></span>
             </span>
-            <Link href='/dashboard'>
+            <Link href='/sign-in'>
               <span class="button-text">Start Learning</span>
             </Link>            
           </button>

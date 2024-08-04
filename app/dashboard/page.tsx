@@ -50,7 +50,7 @@ export default function DashboardPage() {
               <div className="flex items-start ">
                   <span className="text_primary text-2xl font-bold">Welcome Back {userName}</span>
               </div>
-              {userId == null ? (
+              {!userId == null ? (
                   <Link href="/sign-in" className="mr-1 flex w-20 justify-center rounded bg-black p-1 font-medium text-white shadow   transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
                       Sign In
                   
