@@ -1,10 +1,14 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState } from "react";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./ui/navbar-menu";
 import { cn } from "@/lib/utils";
 import { UserButton, useAuth, useUser, SignIn } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation'
+
+import logoImage from '../public/images/logo.webp';
+
 
 export function NavbarDemo() {
   return (
@@ -28,12 +32,21 @@ function Navbar({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn("fixed inset-x-0 top-10 z-50 mx-auto hidden max-w-2xl md:block", className)}
+      className={cn("fixed inset-x-0 top-10 z-50 mx-auto hidden max-w-2xl justify-between gap-2 md:block", className)}
     >
 
+   
         
       <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Services">
+      <Image
+        src={logoImage}
+        className="mr-1 rounded-lg border border-white object-contain "
+        width={70}
+        height={70}
+        alt="user profile image"
+        
+      />
+        <MenuItem setActive={setActive} active={active} item="Home">
           <div className="flex flex-col space-y-4 text-sm">
           <HoveredLink href="/interface-design">Quiz</HoveredLink>
           <HoveredLink href="/interface-design">Games</HoveredLink>
@@ -77,6 +90,24 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/team">Class 3</HoveredLink>
             <HoveredLink href="/enterprise">Class 4</HoveredLink>
             <HoveredLink href="/enterprise">Class 5</HoveredLink>
+          </div>
+        </MenuItem>
+        <MenuItem setActive={setActive} active={active} item="Quiz">
+          <div className="flex flex-col space-y-4 p-1 px-2 text-sm">
+            <HoveredLink href="/hobby">Quiz 1</HoveredLink>
+            <HoveredLink href="/individual">Quiz 2</HoveredLink>
+            <HoveredLink href="/team">Quiz 3</HoveredLink>
+            <HoveredLink href="/enterprise">Quiz 4</HoveredLink>
+            <HoveredLink href="/enterprise">Quiz 5</HoveredLink>
+          </div>
+        </MenuItem>
+        <MenuItem setActive={setActive} active={active} item="Games">
+          <div className="flex flex-col space-y-4 p-1 px-2 text-sm">
+            <HoveredLink href="/hobby">Game 1</HoveredLink>
+            <HoveredLink href="/individual">Game 2</HoveredLink>
+            <HoveredLink href="/team">Game 3</HoveredLink>
+            <HoveredLink href="/enterprise">Game 4</HoveredLink>
+            <HoveredLink href="/enterprise">Game 5</HoveredLink>
           </div>
         </MenuItem>
 
