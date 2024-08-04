@@ -75,7 +75,7 @@ export default function CustomerPage() {
   };
 
   return (
-    <div className="h-full flex-1 flex-col space-y-8 p-4 dark:bg-slate-900 dark:text-white md:p-8">
+    <div className="h-full flex-1 flex-col space-y-8 p-4 dark:bg-black dark:text-white md:p-8">
       <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-xl font-bold md:text-2xl">Welcome back!</h2>

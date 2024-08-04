@@ -36,7 +36,7 @@ interface SettingsLayoutProps {
 export default function SettingsLayout({ children }: SettingsLayoutProps) {
   return (
     <>
-    <div className="block dark:bg-slate-900 dark:text-white md:hidden">
+    <div className="block dark:bg-black dark:text-white md:hidden">
 
       <div className="space-y-6 p-4 pb-20 md:block">
         <div className="space-y-0.5">

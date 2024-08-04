@@ -17,7 +17,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
       <form
         onSubmit={handleSubmit}
-        className='glassmorphism mt-10 flex w-full max-w-2xl flex-col gap-7 dark:bg-slate-900 dark:text-white'
+        className='glassmorphism mt-10 flex w-full max-w-2xl flex-col gap-7 dark:bg-black dark:text-white'
       >
         <Label>
           <span className='font-satoshi text-base font-semibold text-gray-700'>

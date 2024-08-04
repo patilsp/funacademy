@@ -33,7 +33,7 @@ export default function CustomerPage() {
 
   return (
 
-    <div className="p-4 dark:bg-slate-900 dark:text-white">
+    <div className="p-4 dark:bg-black dark:text-white">
     <div className="flex flex-col md:flex-row">
       
       <div className="flex-1 space-y-4 p-1 pt-6 md:p-8">

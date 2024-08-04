@@ -14,10 +14,8 @@ const CreateUser = () => {
   const [post, setPost] = useState({
     userId: "",
     username: "",
-    email: "",
-    phone: "",
     dateOfBirth: "",
-    role: "",
+    ageOption: "",
   });
 
   useEffect(() => {

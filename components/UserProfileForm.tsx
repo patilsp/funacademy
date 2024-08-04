@@ -37,7 +37,7 @@ const UserProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
         
       <form
         onSubmit={handleSubmit}
-        className='glassmorphism mt-10 flex w-full max-w-2xl flex-col gap-7 dark:bg-slate-900 dark:text-white md:w-1/2'
+        className='glassmorphism mt-10 flex w-full max-w-2xl flex-col gap-7 dark:bg-black dark:text-white md:w-1/2'
       >
         <div className="grid gap-2">
           <Label htmlFor="name">Name</Label>

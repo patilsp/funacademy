@@ -25,7 +25,7 @@ const ComplaintCard = ({ complaint, handleEdit, handleDelete, handleTagClick }) 
   };
 
   return (
-    <Card className="glassmorphism p_0 mx-auto mb-6 w-full max-w-md rounded p-0 shadow-md ring-1 ring-gray-900/5 transition-all duration-300 ease-in-out hover:shadow-lg dark:bg-slate-900">
+    <Card className="glassmorphism p_0 mx-auto mb-6 w-full max-w-md rounded p-0 shadow-md ring-1 ring-gray-900/5 transition-all duration-300 ease-in-out hover:shadow-lg dark:bg-black">
       <CardHeader className="flex flex-row items-center justify-between gap-2">
         <div className="flex items-center gap-3">
           

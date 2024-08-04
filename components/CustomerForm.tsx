@@ -79,7 +79,7 @@ const CustomerForm = ({ type, post, setPost, submitting, handleSubmit }) => {
       </h1>
       <form
         onSubmit={handleSubmit}
-        className='glassmorphism mt-5 flex w-full max-w-2xl flex-col gap-4 rounded-lg border border-gray-200 p-8 shadow-lg dark:bg-slate-900 dark:text-white md:w-3/4 lg:w-1/2'
+        className='glassmorphism mt-5 flex w-full max-w-2xl flex-col gap-4 rounded-lg border border-gray-200 p-8 shadow-lg dark:bg-black dark:text-white md:w-3/4 lg:w-1/2'
       >
         <div className="grid gap-2">
           <Label htmlFor="name">Name</Label>

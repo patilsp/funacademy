@@ -36,7 +36,7 @@ export default function Guide() {
                             initial={{ opacity: 0, x: -50 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.6 }}
-                            className="flex gap-4 rounded-lg bg-white p-6 shadow-md dark:bg-slate-900"
+                            className="flex gap-4 rounded-lg bg-white p-6 shadow-md dark:bg-black"
                         >
                             <div className="flex size-12 items-center justify-center rounded-full">
                                 <LogIn className="text-white" />

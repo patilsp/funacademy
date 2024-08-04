@@ -111,15 +111,15 @@
   max-width: 640px;
   background-image: radial-gradient(
       at 27% 37%,
-      hsla(215, 98%, 61%, 1) 0px,
+      rgb(204, 220, 241) 0px,
       transparent 0%
     ),
-    radial-gradient(at 97% 21%, rgb(43, 197, 55) 0px, transparent 50%),
-    radial-gradient(at 52% 99%, rgb(253, 10, 34) 0px, transparent 50%),
-    radial-gradient(at 10% 29%, rgb(91, 51, 202) 0px, transparent 50%),
+    radial-gradient(at 97% 21%, rgb(67, 194, 77) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, rgb(167, 160, 160) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, rgb(146, 129, 192) 0px, transparent 50%),
     radial-gradient(at 97% 96%, rgb(252, 214, 149) 0px, transparent 50%),
     radial-gradient(at 33% 50%, rgb(93, 128, 211) 0px, transparent 50%),
-    radial-gradient(at 79% 53%, rgb(241, 150, 176) 0px, transparent 50%);
+    radial-gradient(at 79% 53%, rgb(211, 143, 163) 0px, transparent 50%);
   position: absolute;
   content: "";
   width: 100%;
@@ -141,7 +141,13 @@
 .cl-internal-uyu30o {
   display: none !important;
 }
-
+.cl-internal-g6a67s:focus {
+  box-shadow: none !important;
+}
+.cl-internal-1vi7rps {
+  padding: 0.2px 0px !important;
+  width: 16rem !important;
+}
 
 body {
   --sb-track-color: #232E33;
@@ -173,6 +179,32 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+
+
+.cl-internal-1hhd4k {
+  display: flex !important;
+}
+.cl-internal-13zhnx0 {
+  color: darkorange !important;
+}
+
+.cl-internal-1fsg6zy
+{
+  background-color: #000;
+  border: none !important;
+  color: #fff !important;
+}
+
+.cl-internal-17ydaof {
+  margin-top: 35px !important;
+  background-color: transparent !important;
+  backdrop-filter: blur(100px) !important;
+  border: 1px solid #fff !important;
+}
+
+.cl-internal-11ewti4 {
+  margin-top: -8px !important;
+}
 .letter-cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -292,15 +324,13 @@ body::-webkit-scrollbar-thumb {
   background-color: #fff;
 }
 
-
-
 .stage {
-  height: 300px;
+  /* height: 300px; */
   /* width: 500px; */
   /* margin: auto; */
-  left: -5% !important;
+  left: -15% !important;
   position: relative;
-  top: -80px;
+  /* top: -80px; */
   right: 0;
   bottom: 0;
   perspective: 9999px;
@@ -312,9 +342,8 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
   position: absolute;
   transform-style: preserve-3d;
-  transform: rotateY(40deg) rotateX(33deg) translateZ(0);
-  /* Apply the blowing animation */
-  animation: blow 5s infinite ease-in-out;
+  /* transform: rotateY(40deg) rotateX(33deg) translateZ(0); */
+  /* Remove the animation */
 }
 
 .layer:after {
@@ -435,15 +464,89 @@ body::-webkit-scrollbar-thumb {
   text-shadow: none;
 }
 
-/* Add the blowing animation */
-@keyframes blow {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+
+/* From Uiverse.io by cssbuttons-io */ 
+.button-login {
+  padding: 2px;
+  border-radius: 50px;
+  height: 60px !important;
+  width: 280px !important;
+  margin-top: 4px;
 }
+ button.learn-more {
+  width: 12rem;
+  height: auto;
+ }
+ 
+ button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #fff;
+  border-radius: 1.625rem;
+ }
+ 
+ button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 22px;
+  bottom: 0;
+  margin: auto;
+  /* background: #fff; */
+  color: #000;
+ }
+ 
+ button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none; 
+  top: 2px;
+ }
+ 
+ button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #000;
+  border-right: 0.125rem solid #000;
+  transform: rotate(45deg);
+ }
+ 
+ button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 7px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+ }
+ 
+ button:hover .circle {
+  width: 100%;
+ }
+ 
+ button:hover .circle .icon.arrow {
+  background: #000;
+  color: #000;
+  transform: translate(1rem, 0);
+ }
+ 
+ button:hover .button-text {
+  color: black;
+ }

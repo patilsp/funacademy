@@ -17,7 +17,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-
 export function DatePickerDemo({ date, setDate }) {
   const handleDateChange = (selectedDate) => {
     setDate(selectedDate);
@@ -48,13 +47,12 @@ export function DatePickerDemo({ date, setDate }) {
 
 const UserForm = ({ type, post, setPost, submitting, handleSubmit }) => {
   const [date, setDate] = useState(post.dateOfBirth ? new Date(post.dateOfBirth) : undefined);
+  const [age, setAge] = useState(post.age || 1);
 
   const { isLoaded, userId, sessionId, getToken } = useAuth();
   const { isSignedIn, user } = useUser();
 
   const username = user?.fullName || "";
-  const phone = user?.phoneNumber || "";
-  const email = user?.emailAddress || "";
 
   useEffect(() => {
     if (isLoaded && isSignedIn && userId) {
@@ -62,11 +60,9 @@ const UserForm = ({ type, post, setPost, submitting, handleSubmit }) => {
         ...prevPost,
         userId,
         username: prevPost.username || username,
-        email: prevPost.email || email,
-        phone: prevPost.phone || phone,
       }));
     }
-  }, [isLoaded, isSignedIn, userId, username, email, phone, setPost]);
+  }, [isLoaded, isSignedIn, userId, username, setPost]);
 
   useEffect(() => {
     if (date) {
@@ -77,84 +73,66 @@ const UserForm = ({ type, post, setPost, submitting, handleSubmit }) => {
     }
   }, [date, setPost]);
 
-  const handleRoleChange = (value) => {
-    setPost({ ...post, role: value });
-  };
+  useEffect(() => {
+    if (age) {
+      setPost((prevPost) => ({
+        ...prevPost,
+        age,
+      }));
+    }
+  }, [age, setPost]);
 
-
-  
   return (
-    <section className="relative flex h-screen justify-center bg-cover bg-center" style={{ backgroundImage: 'url(/images/banner1.jpg)' }}>
-      <div className="absolute inset-0 opacity-50"></div>
-      <div className="w-full p-4 md:w-1/2">
-        <div className="mt-10 p-4">
+    <section className="relative flex h-screen justify-center bg-cover bg-center" style={{ backgroundImage: 'url(/images/back-school.jpg)' }}>
+      <div className="absolute"></div>
+      <div className="w-full max-w-3xl p-4">
+        <div className="mt-10 py-10 md:p-4">
           <motion.form
             onSubmit={handleSubmit}
-            className='glassmorphism mt-2 flex w-full flex-col gap-6 rounded-lg border bg-transparent p-8 text-slate-800 shadow dark:bg-slate-900 dark:text-white'
+            className='glassmorphism mt-2 flex w-full flex-col gap-6 rounded-lg border bg-gray-50 p-8 text-slate-800 shadow dark:bg-black dark:text-white'
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
             <h1 className='my-2 text-center text-2xl font-bold'>
-              Complete User Registration
+              Complete Student Registration
             </h1>
 
-            <div className="grid gap-2">
-              <Label htmlFor="username">User Full Name</Label>
-              <Input
-                id="username"
-                value={post.username}
-                onChange={(e) => setPost({ ...post, username: e.target.value })}
-                placeholder='Enter username'  
-                className='input border-white'
-              />
-            </div>
 
-            <div className="flex flex-col gap-4 md:flex-row md:gap-10">
-              <div className="grid w-full gap-2">
-                <Label htmlFor="email">Email ID</Label>
+            <div className="block w-full gap-4 space-y-4 md:flex">
+              <div className="w-full gap-2 py-2">
+                <Label htmlFor="username">Student Name</Label>
                 <Input
-                  id="email"
-                  value={post.email}
-                  onChange={(e) => setPost({ ...post, email: e.target.value })}
-                  placeholder='Enter email'
-                 className='input border-white'
-                />
-              </div>
-
-              <div className="grid w-full gap-2">
-                <Label htmlFor="phone">Phone Number</Label>
-                <Input
-                  id="phone"
-                  type='tel'
-                  pattern='[0-9]*'
-                  value={post.phone}
-                  onChange={(e) => setPost({ ...post, phone: e.target.value })}
-                  placeholder='Enter phone number'
+                  id="username"
+                  value={post.username}
+                  onChange={(e) => setPost({ ...post, username: e.target.value })}
+                  placeholder='Enter username'  
                   className='input border-white'
                 />
               </div>
-            </div>
 
-            <div className="flex flex-col gap-4 md:flex-row md:gap-10">
-              <div className="grid w-full gap-2">
+              <div className="w-full gap-2 py-1">
                 <Label htmlFor="dateOfBirth">Date Of Birth</Label>
                 <DatePickerDemo date={date} setDate={setDate} />
               </div>
+            </div>
 
-              <div className="grid w-full gap-2">
-                <Label htmlFor="role">Role</Label>
-                <Select defaultValue={post.role || "User"} onValueChange={handleRoleChange}>
-                  <SelectTrigger className="line-clamp-1 w-full truncate border-white">
-                    <SelectValue placeholder="Select Role" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Admin">Admin</SelectItem>
-                    <SelectItem value="Engineer">Engineer</SelectItem>
-                    <SelectItem value="Customer">Customer</SelectItem>
-                    <SelectItem value="User">User</SelectItem>
-                  </SelectContent>
-                </Select>
+            <div className="grid gap-2">
+              <Label htmlFor="age">Age</Label>
+              <div className="flex flex-wrap gap-2">
+                {[1, 2, 3, 4, 5, 6, 7].map((ageOption) => (
+                  <label key={ageOption} className="flex items-center">
+                    <input
+                      type="radio"
+                      name="age"
+                      value={ageOption}
+                      checked={age === ageOption}
+                      onChange={() => setAge(ageOption)}
+                      className="mr-2"
+                    />
+                    {ageOption}
+                  </label>
+                ))}
               </div>
             </div>
 
@@ -162,7 +140,7 @@ const UserForm = ({ type, post, setPost, submitting, handleSubmit }) => {
               <Button
                 type='submit'
                 disabled={submitting}
-                className='w-full max-w-60 rounded px-5 py-1.5 text-sm text-white'
+                className='w-full max-w-60'
               >
                 <Users className="mr-2 size-4" /> {submitting ? `${type}ing...` : type}
               </Button>

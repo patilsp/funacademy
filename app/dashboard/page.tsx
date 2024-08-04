@@ -30,19 +30,8 @@ import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
 import { useRouter } from "next/navigation";
 
-const statusTypes = [
-  { value: 'all', label: 'Total Complaints' },
-  { value: 'Warranty', label: 'Warranty' },
-  { value: 'Out Of Warranty', label: 'Out of Warranty' },
-  { value: 'completed', label: 'Completed' },
-];
 
 export default function DashboardPage() {
-  const [allComplaints, setAllComplaints] = useState([]);
-  const [filteredComplaints, setFilteredComplaints] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [statusCounts, setStatusCounts] = useState({});
-  const [selectedStatus, setSelectedStatus] = useState('all');
   const router = useRouter();
   const { isLoaded, userId, isSignedIn, user } = useUser();
 
@@ -52,7 +41,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <div className="p-4 dark:bg-slate-900 dark:text-white">
+      <div className="mb-10 p-4 dark:bg-black dark:text-white">
         <div className="flex flex-col md:flex-row">
           
           <div className="flex-1 space-y-4 p-1 pt-6 md:p-8">

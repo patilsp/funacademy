@@ -4,11 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, Twitter, Github, Dribbble, Home, Users, Edit, Search, Settings } from 'lucide-react';
 import { CommandMenu } from "@/components/command-menu";
+import { useAuth, useUser } from "@clerk/nextjs"; 
 
 
 export function SiteFooter() {
+
+  const user = useUser();
+  if(user){
+    return
+  }
   return (
-      <footer className="fixed bottom-0 z-50 w-full border-t border-gray-200 bg-white py-2 dark:border-gray-600 dark:bg-slate-900 dark:text-white md:hidden">
+      <footer className="fixed bottom-0 z-50 w-full border-t border-gray-200 bg-white py-2 dark:border-gray-600 dark:bg-black dark:text-white md:hidden">
         <div className="mx-auto grid h-full max-w-lg grid-cols-5">
          
           <a href="/" data-tooltip-target="tooltip-home" className="group inline-flex flex-col items-center justify-center p-2 hover:bg-gray-50 dark:hover:bg-gray-800">

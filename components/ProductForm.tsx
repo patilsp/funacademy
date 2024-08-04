@@ -25,7 +25,7 @@ const ProductForm = ({ type, product, setProduct, submitting, handleSubmit }) =>
         </div>
 
         {/* Form Section */}
-        <div className="glassmorphism w-full rounded-lg border shadow-lg dark:bg-slate-900 dark:text-white lg:w-1/2">
+        <div className="glassmorphism w-full rounded-lg border shadow-lg dark:bg-black dark:text-white lg:w-1/2">
           <div className="p-4">
             <h1 className='head_text text-center'>
               <span className='green_gradient text-xl font-bold'>{type} Product</span>

@@ -5,12 +5,11 @@ export const POST = async (request) => {
   try {
     await connectToDB();
 
-    const { userId, username, email, phone, dateOfBirth, role } = await request.json();
+    const { userId, username, dateOfBirth, age } = await request.json();
 
-    console.log('Received Data:', { userId, username, email, phone, dateOfBirth, role });
 
     // Validate payload
-    if (!userId || !username || !email || !phone || !dateOfBirth || !role) {
+    if (!userId || !username || !dateOfBirth || !age) {
       console.log('Validation Error: Missing required fields');
       return new Response(JSON.stringify({ message: "Missing required fields" }), { status: 400 });
     }
@@ -19,10 +18,8 @@ export const POST = async (request) => {
     const newUser = new User({
       userId,
       username,
-      email,
-      phone,
-      dateOfBirth: new Date(dateOfBirth), // Ensure date is in correct format
-      role
+      dateOfBirth: new Date(dateOfBirth),
+      age
     });
 
     await newUser.save();

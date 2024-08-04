@@ -80,7 +80,7 @@ const ComplaintForm = ({ type, complaint, setComplaint, submitting, handleSubmit
     <div className="container flex flex-col items-center justify-center gap-6 p-1 lg:flex-row lg:p-8">
       
       {/* Form Section */}
-      <div className="glassmorphism w-full rounded-lg border bg-white shadow-lg dark:bg-slate-900 dark:text-white lg:w-1/2">
+      <div className="glassmorphism w-full rounded-lg border bg-white shadow-lg dark:bg-black dark:text-white lg:w-1/2">
         <div className="py-1">
           <h1 className='head_text text-center'>
             <span className='green_gradient text-2xl font-bold'>{type} Complaint</span>

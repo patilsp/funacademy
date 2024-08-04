@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site"
 
 export function Footer() {
   return (     
-    <footer className="dark:bg-slate-900 dark:text-white md:px-8 md:py-0">
+    <footer className="dark:bg-black dark:text-white md:px-8 md:py-0">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>

@@ -52,7 +52,7 @@ export default function Pricing() {
 
                 {/* Pricing Card 2 */}
                 <div className="w-full md:col-span-1">
-                    <div className="grid w-full items-start rounded-lg border bg-[#4548b9] p-10 shadow hover:border-white dark:bg-slate-900">
+                    <div className="grid w-full items-start rounded-lg border bg-[#4548b9] p-10 shadow hover:border-white dark:bg-black">
                         <div className="grid gap-6">
                             <h3 className="text-xl font-bold text-white sm:text-2xl">
                                 $149 <span className="text-sm text-gray-200">/Year</span>
