@@ -5,14 +5,13 @@ import Link from 'next/link';
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 
-import { Button } from "@/registry/new-york/ui/button";
-import { Input } from "@/registry/new-york/ui/input";
-import { Label } from "@/registry/new-york/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/new-york/ui/select";
-import { Textarea } from "@/registry/new-york/ui/textarea";
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/new-york/ui/popover";
-import { Calendar } from "@/registry/new-york/ui/calendar";
-import { useAuth, useUser } from '@clerk/nextjs';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 
 export function DatePickerDemo({ date, setDate }) {
   const handleDateChange = (selectedDate) => {
@@ -44,14 +43,7 @@ export function DatePickerDemo({ date, setDate }) {
 
 const CustomerForm = ({ type, post, setPost, submitting, handleSubmit }) => {
   const [date, setDate] = useState(post.dateofbirth ? new Date(post.dateofbirth) : undefined);
-  const { isLoaded, userId } = useAuth();
-  const { isSignedIn } = useUser();
 
-  useEffect(() => {
-    if (isLoaded && isSignedIn && userId) {
-      setPost((prevPost) => ({ ...prevPost, userId }));
-    }
-  }, [isLoaded, isSignedIn, setPost, userId]);
 
   useEffect(() => {
     if (post.dateofbirth) {

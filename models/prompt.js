@@ -5,9 +5,6 @@ const PromptSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  userId: {
-    type: String,
-  },
   prompt: {
     type: String,
     required: [true, 'Prompt is required.'],
@@ -15,6 +12,9 @@ const PromptSchema = new Schema({
   tag: {
     type: String,
     required: [true, 'Tag is required.'],
+  },
+  imagePath: {
+    type: String,
   }
 });
 

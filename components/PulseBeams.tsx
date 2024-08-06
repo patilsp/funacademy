@@ -132,7 +132,7 @@ export const SVGs = () => {
       viewBox="0 0 858 434"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="flex flex-shrink-0"
+      className="flex shrink-0"
     >
       <path
         d="M269 220.5H16.5C10.9772 220.5 6.5 224.977 6.5 230.5V398.5"

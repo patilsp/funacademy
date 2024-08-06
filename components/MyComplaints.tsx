@@ -1,15 +1,16 @@
 "use client";
 
-import { useSession } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ComplaintCard from "@/components/ComplaintCard";
+import { useSession } from "next-auth/react";
+
 
 const MyComplaints = () => {
   const router = useRouter();
+  const [myComplaints, setMyComplaints] = useState([]);
   const { data: session } = useSession();
 
-  const [myComplaints, setMyComplaints] = useState([]);
 
   useEffect(() => {
     const fetchComplaints = async () => {

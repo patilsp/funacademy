@@ -1,21 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useUser } from "@clerk/nextjs";
 import CustomerCard from "@/components/CustomerCard";
 
 const HomePage = () => {
-  const { user } = useUser();
   const [customers, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await fetch(`/api/customer`); // Corrected URL for fetching all customers
+        const response = await fetch(`/api/customer`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log("Fetched customers:", data); // Debugging
+        // console.log("Fetched customers:", data);
         setPosts(data);
       } catch (error) {
         console.error("Failed to fetch customers:", error);
@@ -55,7 +53,7 @@ const HomePage = () => {
             key={customer._id}
             customer={customer}
             handleEdit={() => console.log("Edit customer:", customer)}
-            handleDelete={() => handleDelete(customer)} // Ensure handleDelete is used here
+            handleDelete={() => handleDelete(customer)} 
           />
         ))}
       </div>

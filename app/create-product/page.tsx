@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import ProductForm from "@/components/ProductForm";
-import { useAuth, useUser } from "@clerk/nextjs";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,21 +13,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/registry/new-york/ui/form";
-import { Input } from "@/registry/new-york/ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select";
-import { Textarea } from "@/registry/new-york/ui/textarea";
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 const CreateProduct = () => {
   const router = useRouter();
-  const { isLoaded, userId, getToken } = useAuth();
-  const { isSignedIn, user } = useUser();
 
   const [submitting, setIsSubmitting] = useState(false);
   const [product, setProduct] = useState({

@@ -1,20 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Form from "@/components/Form";
-import { useAuth, useUser } from "@clerk/nextjs"
-
+import PromptForm from "@/components/PromptForm";
 
 const CreatePrompt = () => {
-  
   const router = useRouter();
-  const { isLoaded, userId, getToken } = useAuth();
-  const { isSignedIn, user } = useUser();
+  const { data: session } = useSession();
 
   const [submitting, setIsSubmitting] = useState(false);
-  const [post, setPost] = useState({ prompt: "", tag: "" });
+  const [post, setPost] = useState({ prompt: "", tag: "", imagePath: "" });
 
   const createPrompt = async (e) => {
     e.preventDefault();
@@ -25,8 +22,9 @@ const CreatePrompt = () => {
         method: "POST",
         body: JSON.stringify({
           prompt: post.prompt,
-          userId:userId,
+          userId: session?.user.id,
           tag: post.tag,
+          imagePath: post.imagePath,
         }),
       });
 
@@ -35,7 +33,6 @@ const CreatePrompt = () => {
         router.push("/posts");
       }
     } catch (error) {
-      // console.log(error);
       toast.error(error);
     } finally {
       setIsSubmitting(false);
@@ -43,7 +40,7 @@ const CreatePrompt = () => {
   };
 
   return (
-    <Form
+    <PromptForm
       type='Create'
       post={post}
       setPost={setPost}

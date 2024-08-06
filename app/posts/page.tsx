@@ -3,7 +3,7 @@ import Feed from "@/components/Feed";
 
 function Posts() {
   return (
-    <div>
+    <div className="relative mt-20">
         <Feed />
     </div>
   )

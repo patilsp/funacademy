@@ -4,18 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import StoryForm from "@/components/StoryForm";
-import { useAuth, useUser } from "@clerk/nextjs";
 
 const CreateStory = () => {
   const router = useRouter();
-  const { isLoaded, userId, getToken } = useAuth();
-  const { isSignedIn, user } = useUser();
 
   const [submitting, setIsSubmitting] = useState(false);
   const [story, setStory] = useState({
     title: "",
     description: "",
-    userId: "",
   });
 
   const createStory = async (e) => {
@@ -30,7 +26,6 @@ const CreateStory = () => {
           Authorization: `Bearer ${await getToken()}`,
         },
         body: JSON.stringify({
-          userId: story.userId,
           title: story.title,
           description: story.description,
         }),

@@ -3,17 +3,14 @@
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { useAuth, useUser } from '@clerk/nextjs';
-import { Button } from "@/registry/new-york/ui/button";
-import { Input } from "@/registry/new-york/ui/input";
-import { Label } from "@/registry/new-york/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/new-york/ui/select";
-import { Textarea } from "@/registry/new-york/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 const InquiryForm = ({ type, inquiry, setInquiry, submitting, handleSubmit }) => {
   const router = useRouter();
-  const { isLoaded, userId } = useAuth();
-  const { isSignedIn } = useUser();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();

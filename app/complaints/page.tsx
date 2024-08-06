@@ -6,14 +6,15 @@ import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@clerk/nextjs";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
+} from "@/components/ui/card";
+import { useSession } from "next-auth/react";
+
 
 const statusTypes = [
   { value: 'all', label: 'Total Complaints' },
@@ -30,7 +31,7 @@ export default function CustomerPage() {
   const [statusCounts, setStatusCounts] = useState({});
   const [selectedStatus, setSelectedStatus] = useState('all');
   const router = useRouter();
-  const { isLoaded, userId } = useAuth();
+  const { data: session } = useSession();
 
   const fetchComplaints = async () => {
     setLoading(true);

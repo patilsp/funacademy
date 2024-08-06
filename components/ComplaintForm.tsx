@@ -5,15 +5,14 @@ import toast from "react-hot-toast";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { useAuth, useUser } from "@clerk/nextjs";
 import { format } from "date-fns";
-import { Button } from "@/registry/new-york/ui/button";
-import { Input } from "@/registry/new-york/ui/input";
-import { Label } from "@/registry/new-york/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/new-york/ui/select";
-import { Textarea } from "@/registry/new-york/ui/textarea";
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/new-york/ui/popover";
-import { Calendar } from "@/registry/new-york/ui/calendar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { motion } from 'framer-motion';
 
 export function DatePickerDemo({ date, setDate }) {
@@ -40,15 +39,9 @@ export function DatePickerDemo({ date, setDate }) {
 
 const ComplaintForm = ({ type, complaint, setComplaint, submitting, handleSubmit }) => {
   const router = useRouter();
-  const { isLoaded, userId } = useAuth();
-  const { isSignedIn } = useUser();
+
   const [date, setDate] = useState(complaint.visitDate ? new Date(complaint.visitDate) : new Date());
 
-  useEffect(() => {
-    if (isLoaded && isSignedIn && userId) {
-      setComplaint((prevComplaint) => ({ ...prevComplaint, userId }));
-    }
-  }, [isLoaded, isSignedIn, setComplaint, userId]);
 
   useEffect(() => {
     if (date) {

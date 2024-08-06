@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Row } from "@tanstack/react-table";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,7 +16,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuRadioItem,
   DropdownMenuRadioGroup,
-} from "@/registry/new-york/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import { names } from "../data/data";
 import { customersSchema } from "../data/schema";
 import toast from 'react-hot-toast';

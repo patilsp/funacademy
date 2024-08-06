@@ -16,7 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/new-york/ui/dialog";
+} from "@/components/ui/dialog";
 
 import bannerImage from '../public/images/banner.webp';
 import zerobImage from '../public/icons/zerob.webp';

@@ -5,17 +5,18 @@ import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
-import { NavbarDemo } from "@/components/NavbarDemo"
 import { SiteFooter } from "@/components/site-footer"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from 'react-hot-toast';
+import  SessionProvider from  '@/components/Provider'
+import LoginModal from "@/components/LoginModal";
+import UserModal from "@/components/UserModal";
 
 
 export const metadata: Metadata = {
   title: {
-    default: 'FunAcadeny',
+    default: 'FunAcademy',
     template: `%s - ${siteConfig.name}`,
   },
   description: 'Welcome to FunAcademy – the ultimate educational app designed to make learning a joyous adventure for children aged 1 to 7. At FunAcademy, we combine engaging stories, interactive games, and animated content to spark curiosity and foster a love for learning. Our platform offers a rich variety of educational materials that cater to young minds, helping them develop essential skills while having fun. With FunAcademy, learning becomes an exciting journey of discovery and play!',
@@ -34,7 +35,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-    <ClerkProvider>
+    <SessionProvider>
       <html lang="en">
       <body
           className={cn(
@@ -42,14 +43,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable
           )}
         >
-          <div className='main'>
+          <div className='main dark:bg-black dark:text-white'>
               <div className='gradient' />
             </div>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
-              {/* <SiteHeader /> */}
-              <NavbarDemo />
-                <main className="flex-1">{children}</main>
+              <SiteHeader />
+              <LoginModal />
+              {/* <UserModal /> */}
+                <main className="flex-1 dark:bg-black dark:text-white">{children}</main>
               <SiteFooter />
             </div>
             <TailwindIndicator />
@@ -57,7 +59,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </ThemeProvider>
         </body>
       </html>
-      </ClerkProvider>
+      </SessionProvider>
     </>
   )
 }

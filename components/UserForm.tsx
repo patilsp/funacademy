@@ -4,18 +4,19 @@ import React, { useState, useEffect } from 'react';
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { motion } from 'framer-motion';
-import { Button } from "@/registry/new-york/ui/button";
-import { Input } from "@/registry/new-york/ui/input";
-import { Label } from "@/registry/new-york/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/new-york/ui/select";
-import { Textarea } from "@/registry/new-york/ui/textarea";
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/new-york/ui/popover";
-import { Calendar } from "@/registry/new-york/ui/calendar";
-import { useAuth, useUser } from '@clerk/nextjs';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { LoaderCircle, Users } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useSession } from "next-auth/react";
+
 
 export function DatePickerDemo({ date, setDate }) {
   const handleDateChange = (selectedDate) => {
@@ -46,23 +47,12 @@ export function DatePickerDemo({ date, setDate }) {
 }
 
 const UserForm = ({ type, post, setPost, submitting, handleSubmit }) => {
+  const { data: session } = useSession();
+
   const [date, setDate] = useState(post.dateOfBirth ? new Date(post.dateOfBirth) : undefined);
   const [age, setAge] = useState(post.age || 1);
+  
 
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const { isSignedIn, user } = useUser();
-
-  const username = user?.fullName || "";
-
-  useEffect(() => {
-    if (isLoaded && isSignedIn && userId) {
-      setPost((prevPost) => ({
-        ...prevPost,
-        userId,
-        username: prevPost.username || username,
-      }));
-    }
-  }, [isLoaded, isSignedIn, userId, username, setPost]);
 
   useEffect(() => {
     if (date) {
@@ -83,13 +73,13 @@ const UserForm = ({ type, post, setPost, submitting, handleSubmit }) => {
   }, [age, setPost]);
 
   return (
-    <section className="relative flex h-screen justify-center bg-cover bg-center" style={{ backgroundImage: 'url(/images/back-school.jpg)' }}>
+    <section className="relative flex h-screen justify-center">
       <div className="absolute"></div>
       <div className="w-full max-w-3xl p-4">
         <div className="mt-10 py-10 md:p-4">
           <motion.form
             onSubmit={handleSubmit}
-            className='glassmorphism mt-2 flex w-full flex-col gap-6 rounded-lg border bg-gray-50 p-8 text-slate-800 shadow dark:bg-black dark:text-white'
+            className='mt-2 flex w-full flex-col gap-6 rounded-lg border bg-white p-8 text-slate-800 shadow dark:bg-black dark:text-white'
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -99,8 +89,8 @@ const UserForm = ({ type, post, setPost, submitting, handleSubmit }) => {
             </h1>
 
 
-            <div className="block w-full gap-4 space-y-4 md:flex">
-              <div className="w-full gap-2 py-2">
+            <div className="block w-full gap-4 space-y-4">
+              <div className="w-full gap-2">
                 <Label htmlFor="username">Student Name</Label>
                 <Input
                   id="username"
@@ -111,7 +101,7 @@ const UserForm = ({ type, post, setPost, submitting, handleSubmit }) => {
                 />
               </div>
 
-              <div className="w-full gap-2 py-1">
+              <div className="w-full gap-2">
                 <Label htmlFor="dateOfBirth">Date Of Birth</Label>
                 <DatePickerDemo date={date} setDate={setDate} />
               </div>

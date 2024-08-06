@@ -5,15 +5,10 @@ import Link from "next/link";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
-import { useAuth, useUser } from "@clerk/nextjs"; 
 
 export default function CustomerPage() {  
   const [allCustomers, setAllCustomers] = useState([]);
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const { isSignedIn, user } = useUser();
 
-  const userName = user?.fullName || "Admin";
-  const userProfileImage = user?.profileImageUrl || "/images/avatars/02.png";
 
   const fetchCustomers = async () => {
     const response = await fetch("/api/customer");
@@ -39,7 +34,7 @@ export default function CustomerPage() {
       <div className="flex-1 space-y-4 p-1 pt-6 md:p-8">
       <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h2 className="text-xl font-bold md:text-2xl">Welcome back, {userName}!</h2>
+          <h2 className="text-xl font-bold md:text-2xl">Welcome back!</h2>
           <p className="text-sm text-muted-foreground md:text-base">
             Here&apos;s a list of your customers for this month!
           </p>

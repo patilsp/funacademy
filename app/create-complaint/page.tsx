@@ -4,19 +4,12 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import ComplaintForm from "@/components/ComplaintForm";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useSession } from "next-auth/react";
 
 
 const CreateComplaint = () => {
   const router = useRouter();
-  const { isLoaded, userId } = useAuth();
-  const { isSignedIn } = useUser();
-
-  useEffect(() => {
-    if (isLoaded && isSignedIn && userId) {
-      setComplaint((prevComplaint) => ({ ...prevComplaint, userId }));
-    }
-  }, [isLoaded, isSignedIn, userId]);
+  const { data: session } = useSession();
 
   const [submitting, setIsSubmitting] = useState(false);
   const [complaint, setComplaint] = useState({

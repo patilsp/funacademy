@@ -29,3 +29,165 @@ export const Icons = {
     </svg>
   ),
 }
+
+
+const GoogleIcon = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 48 48"
+      fill="none"
+      className={className}
+    >
+      <path
+        d="M23.498 12.273c1.31-1.207 2.527-2.58 3.463-4.059 1.458-2.207 2.472-4.621 2.884-7.141h-9.294c-.923 0-1.841.214-2.651.603-.792.381-1.527.927-2.191 1.598-1.371 1.362-2.656 2.72-3.736 4.201-1.066 1.469-2.042 2.995-2.64 4.656-.314.74-.482 1.522-.482 2.315 0 1.486.572 2.813 1.572 3.823.93.938 2.174 1.611 3.464 2.009.572.13 1.155.226 1.742.284-.093.48-.171.967-.236 1.457-.059.482-.089.961-.089 1.44v1.837h6.964v-2.452c0-2.059-.281-4.084-.78-6.048-.264-.825-.628-1.641-1.094-2.415-1.09-1.722-2.556-3.263-4.305-4.536z"
+        fill="#4285F4"
+      />
+      <path
+        d="M19.373 9.435c-.533 1.688-1.379 3.306-2.568 4.764-1.186 1.457-2.649 2.739-4.296 3.834-.955.653-2.031 1.22-3.21 1.645-1.348.447-2.738.688-4.154.688-2.761 0-5.586-.868-8.018-2.498-1.059-.636-2.074-1.338-2.939-2.14-.626-.66-1.162-1.352-1.616-2.12-1.118-1.698-1.767-3.621-1.767-5.715 0-1.64.497-3.267 1.283-4.717.579-.978 1.339-1.916 2.181-2.717.603-.566 1.271-1.109 1.978-1.582.99-.651 2.056-1.236 3.142-1.714 2.506-1.357 5.202-2.264 8.092-2.264 1.053 0 2.093.11 3.109.315 1.514.21 3.043.528 4.501.897.991.287 1.957.698 2.876 1.18.786.445 1.485.91 2.197 1.418.68.488 1.287.971 1.863 1.506.677.538 1.248 1.12 1.738 1.77.468.625.916 1.293 1.357 1.964z"
+        fill="#34A853"
+      />
+      <path
+        d="M19.373 9.435c-.533 1.688-1.379 3.306-2.568 4.764-1.186 1.457-2.649 2.739-4.296 3.834-.955.653-2.031 1.22-3.21 1.645-1.348.447-2.738.688-4.154.688-2.761 0-5.586-.868-8.018-2.498-1.059-.636-2.074-1.338-2.939-2.14-.626-.66-1.162-1.352-1.616-2.12-1.118-1.698-1.767-3.621-1.767-5.715 0-1.64.497-3.267 1.283-4.717.579-.978 1.339-1.916 2.181-2.717.603-.566 1.271-1.109 1.978-1.582.99-.651 2.056-1.236 3.142-1.714 2.506-1.357 5.202-2.264 8.092-2.264 1.053 0 2.093.11 3.109.315 1.514.21 3.043.528 4.501.897.991.287 1.957.698 2.876 1.18.786.445 1.485.91 2.197 1.418.68.488 1.287.971 1.863 1.506.677.538 1.248 1.12 1.738 1.77.468.625.916 1.293 1.357 1.964z"
+        fill="#FFCC00"
+      />
+    </svg>
+  );
+};
+
+export default GoogleIcon;
+
+
+const PlaneIcon = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z" />
+    </svg>
+  );
+};
+
+const VacationIcon = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M17.553 16.75a7.5 7.5 0 0 0 -10.606 0" />
+      <path d="M18 3.804a6 6 0 0 0 -8.196 2.196l10.392 6a6 6 0 0 0 -2.196 -8.196z" />
+      <path d="M16.732 10c1.658 -2.87 2.225 -5.644 1.268 -6.196c-.957 -.552 -3.075 1.326 -4.732 4.196" />
+      <path d="M15 9l-3 5.196" />
+      <path d="M3 19.25a2.4 2.4 0 0 1 1 -.25a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 1 .25" />
+    </svg>
+  );
+};
+
+const ElevatorIcon = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M5 4m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z" />
+      <path d="M10 10l2 -2l2 2" />
+      <path d="M10 14l2 2l2 -2" />
+    </svg>
+  );
+};
+
+const FoodIcon = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M20 20c0 -3.952 -.966 -16 -4.038 -16s-3.962 9.087 -3.962 14.756c0 -5.669 -.896 -14.756 -3.962 -14.756c-3.065 0 -4.038 12.048 -4.038 16" />
+    </svg>
+  );
+};
+
+const MicIcon = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M15 12.9a5 5 0 1 0 -3.902 -3.9" />
+      <path d="M15 12.9l-3.902 -3.899l-7.513 8.584a2 2 0 1 0 2.827 2.83l8.588 -7.515z" />
+    </svg>
+  );
+};
+
+const ParachuteIcon = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M22 12a10 10 0 1 0 -20 0" />
+      <path d="M22 12c0 -1.66 -1.46 -3 -3.25 -3c-1.8 0 -3.25 1.34 -3.25 3c0 -1.66 -1.57 -3 -3.5 -3s-3.5 1.34 -3.5 3c0 -1.66 -1.46 -3 -3.25 -3c-1.8 0 -3.25 1.34 -3.25 3" />
+      <path d="M2 12l10 10l-3.5 -10" />
+      <path d="M15.5 12l-3.5 10l10 -10" />
+    </svg>
+  );
+};
+
+

@@ -1,21 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useAuth, useUser } from "@clerk/nextjs"; 
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/registry/new-york/ui/card";
-import { Button } from "@/registry/new-york/ui/button";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
 
 const ComplaintCard = ({ complaint, handleEdit, handleDelete, handleTagClick }) => {
   const pathName = usePathname();
   const router = useRouter();
-
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const { isSignedIn, user } = useUser();
-
+  
   const [copied, setCopied] = useState("");
 
   const handleCopy = () => {

@@ -1,13 +1,23 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./ui/navbar-menu";
 import { cn } from "@/lib/utils";
-import { UserButton, useAuth, useUser, SignIn } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation'
 
-import logoImage from '../public/images/logo.webp';
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 
 export function NavbarDemo() {
@@ -21,37 +31,18 @@ export function NavbarDemo() {
 function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
 
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const { isSignedIn, user } = useUser();
-  const router = useRouter()
-
-
-  // if (!user) {
-  //   return;
-  // }
-
   return (
     <div
-      className={cn("fixed inset-x-0 top-10 z-50 mx-auto hidden max-w-2xl justify-between gap-2 md:block", className)}
+      className={cn("fixed inset-x-0 top-10 z-50 mx-auto hidden max-w-xl justify-between md:block", className)}
     >
-
-   
-        
       <Menu setActive={setActive}>
-      <Image
-        src={logoImage}
-        className="mr-1 rounded-lg border border-white object-contain "
-        width={70}
-        height={70}
-        alt="user profile image"
-        
-      />
         <MenuItem setActive={setActive} active={active} item="Home">
           <div className="flex flex-col space-y-4 text-sm">
-          <HoveredLink href="/interface-design">Quiz</HoveredLink>
-          <HoveredLink href="/interface-design">Games</HoveredLink>
-
+          <HoveredLink href="/">Dashboard</HoveredLink>
+          <HoveredLink href="/games">Games</HoveredLink>
+          <HoveredLink href="/Mentors">Mentors</HoveredLink>
             <HoveredLink href="/web-dev">Courses</HoveredLink>
+            <HoveredLink href="/Events">Events</HoveredLink>
             <HoveredLink href="/seo">Assessments</HoveredLink>
           </div>
         </MenuItem>
@@ -83,7 +74,7 @@ function Navbar({ className }: { className?: string }) {
             />
           </div>
         </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Classes">
+        <MenuItem setActive={setActive} active={active} item="Classroom">
           <div className="flex flex-col space-y-4 p-1 px-2 text-sm">
             <HoveredLink href="/hobby">Class 1</HoveredLink>
             <HoveredLink href="/individual">Class 2</HoveredLink>
@@ -109,19 +100,12 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/enterprise">Game 4</HoveredLink>
             <HoveredLink href="/enterprise">Game 5</HoveredLink>
           </div>
-        </MenuItem>
-
-        {userId == null ? (
-            <Link href="/sign-in" className="relative">
-                Sign In
-             
-            </Link>
-          ) : (
-            <UserButton afterSignOutUrl="/sign-in" />
-          )}
-
-
+        </MenuItem>      
+        
       </Menu>
     </div>
   );
 }
+
+
+

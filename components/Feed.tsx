@@ -1,19 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Input } from "@/registry/new-york/ui/input";
-import PromptCard from "@/components/PromptCard";
-import { motion } from "framer-motion"
+import { useState, useEffect, useRef } from "react";
+import PromptCard from "./PromptCard";
+import { motion } from "framer-motion";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
-    <div className='prompt_layout mt-12'>
+    <div className='prompt_layout'>
       {data.map((post) => (
-        <PromptCard
+        <motion.div
           key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-        />
+          className="p-1"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ ease: "easeOut" }}
+        >
+          <PromptCard
+            post={post}
+            handleTagClick={handleTagClick}
+          />
+        </motion.div>
       ))}
     </div>
   );
@@ -21,25 +27,60 @@ const PromptCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Search states
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
-  const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
-    const data = await response.json();
+  // Ref for tracking scroll position
+  const scrollRef = useRef(null);
 
-    setAllPosts(data);
+  const fetchPosts = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/prompt");
+      const data = await response.json();
+      console.log("Fetched data:", data); // Log fetched data to check for duplicates
+
+      // Add only new posts that are not already in allPosts
+      setAllPosts((prevPosts) => [
+        ...prevPosts.filter((post) => !data.some((newPost) => newPost._id === post._id)),
+        ...data
+      ]);
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    }
+    setIsLoading(false);
+  };
+
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+
+    if (scrollTop + clientHeight >= scrollHeight - 10 && !isLoading) {
+      fetchPosts();
+    }
   };
 
   useEffect(() => {
     fetchPosts();
   }, []);
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (scrollRef.current) {
+        scrollRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
   const filterPrompts = (searchtext) => {
-    const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
+    const regex = new RegExp(searchtext, "i");
     return allPosts.filter(
       (item) =>
         regex.test(item.creator.username) ||
@@ -52,7 +93,7 @@ const Feed = () => {
     clearTimeout(searchTimeout);
     setSearchText(e.target.value);
 
-    // debounce method
+    // Debounce method
     setSearchTimeout(
       setTimeout(() => {
         const searchResult = filterPrompts(e.target.value);
@@ -69,30 +110,30 @@ const Feed = () => {
   };
 
   return (
-    
-      <section className='feed'>
-        <form className='flex-center relative w-full'>
-          <Input
+    <section className='feed p-4' ref={scrollRef}>        
+        <form className='flex w-full items-center justify-between gap-2'>
+        <h1 className="text-bold text-xl"> Feeds </h1>
+          <input
             type='text'
             placeholder='Search for a tag or a username'
             value={searchText}
             onChange={handleSearchChange}
             required
-            className='search_input peer '
+            className='search_input peer'
           />
         </form>
+      {/* All Prompts */}
+      {searchText ? (
+        <PromptCardList
+          data={searchedResults}
+          handleTagClick={handleTagClick}
+        />
+      ) : (
+        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+      )}
 
-        {/* All Prompts */}
-        {searchText ? (
-          <PromptCardList
-            data={searchedResults}
-            handleTagClick={handleTagClick}
-          />
-        ) : (
-          <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
-        )}
-      </section>
-   
+      {isLoading && <p>Loading...</p>}
+    </section>
   );
 };
 

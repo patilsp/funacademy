@@ -1,18 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useAuth } from "@clerk/nextjs";
 import ComplaintCard from "@/components/ComplaintCard";
-import { Input } from "@/registry/new-york/ui/input";
+import { Input } from "@/components/ui/input";
+import { useSession } from "next-auth/react";
+
 
 const ComplaintFeed = () => {
-  const { user, userId } = useAuth();
   const [allComplaints, setAllComplaints] = useState([]);
   const [filteredComplaints, setFilteredComplaints] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
+  const { data: session } = useSession();
 
+  const userId = session?.user.id;
+  
   // Fetch complaints from the server
   const fetchComplaints = async () => {
     try {

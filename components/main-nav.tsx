@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/icons";
-import { Badge } from "@/registry/new-york/ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 import {
   NavigationMenu,

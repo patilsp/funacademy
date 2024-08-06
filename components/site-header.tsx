@@ -9,53 +9,38 @@ import { Icons } from "@/components/icons";
 import { MainNav } from "@/components/main-nav";
 import { MobileNav } from "@/components/mobile-nav";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Button } from "@/registry/new-york/ui/button";
-import { UserButton, useAuth, useUser, SignIn } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation'
+import { NavbarDemo } from "@/components/NavbarDemo"
+import UserAccountNav from '@/components/UserAccountNav';
+import logoImage from '../public/images/logo.webp';
+
 
 export function SiteHeader() {
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const { isSignedIn, user } = useUser();
-  const router = useRouter()
-
-
-  // if (!user) {
-  //   return;
-  // }
 
   return (
     <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full shadow backdrop-blur dark:bg-black dark:text-white">
-      <div className="flex h-14">
+      <div className="flex h-14 px-2">
         <Link href="/" className="flex items-center">
           <Image
-            src="/images/water.svg"
-            className="mt-6 object-contain"
-            width={60}
-            height={60} 
-            alt="Logo image"
+            src={logoImage}
+            className="object-contain "
+            width={100}
+            height={100}
+            alt="logo image"            
           />
         </Link>
         
-        <MainNav />
-        
-        {/* <MobileNav /> */}
-        
-        <div className="flex flex-1 items-center justify-end  md:justify-end">
-        <CommandMenu />
-          <ModeToggle />
-     
-            {/* <Button className="font-sm mr-1 hidden h-8 py-1 md:flex" type="button" onClick={() => router.push('/dashboard')}>
-              Dashboard
-            </Button> */}
+        <NavbarDemo />
 
-          {userId == null ? (
-            <Link href="/sign-in" className="mr-1 flex w-20 justify-center rounded bg-black p-1 font-medium text-white shadow   transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
-                Sign In
-             
-            </Link>
-          ) : (
-            <UserButton afterSignOutUrl="/sign-in" />
-          )}
+        
+        <div className="flex items-center justify-end gap-2">
+          <div className="hidden md:block">
+            <CommandMenu />
+          </div>
+        <ModeToggle />
+        <UserAccountNav />
+            
         </div>
       </div>
     </header>

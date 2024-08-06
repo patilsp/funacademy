@@ -1,31 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import UserForm from '@/components/UserForm';
-import { useAuth, useUser } from '@clerk/nextjs';
 
 const CreateUser = () => {
   const router = useRouter();
-  const { isLoaded, userId } = useAuth();
-  const { isSignedIn } = useUser();
   const [submitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({
-    userId: "",
     username: "",
     dateOfBirth: "",
-    ageOption: "",
+    age: 1,
   });
 
-  useEffect(() => {
-    if (isLoaded && isSignedIn && userId) {
-      setPost(prevPost => ({ ...prevPost, userId }));
-    }
-  }, [isLoaded, isSignedIn, userId]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (data) => {
     setIsSubmitting(true);
 
     try {
@@ -34,7 +23,7 @@ const CreateUser = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(post),
+        body: JSON.stringify(data),
       });
 
       const responseData = await response.json();

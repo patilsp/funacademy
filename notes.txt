@@ -134,37 +134,37 @@ export function AnimatedModalDemo() {
             </div>
             <div className="py-10 flex flex-wrap gap-x-4 gap-y-6 items-start justify-start max-w-sm mx-auto">
               <div className="flex  items-center justify-center">
-                <PlaneIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
+                <PlaneIcon className="mr-1 text-neutral-700 dark:text-neutral-300 size-4" />
                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                   5 connecting flights
                 </span>
               </div>
               <div className="flex items-center justify-center">
-                <ElevatorIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
+                <ElevatorIcon className="mr-1 text-neutral-700 dark:text-neutral-300 size-4" />
                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                   12 hotels
                 </span>
               </div>
               <div className="flex items-center justify-center">
-                <VacationIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
+                <VacationIcon className="mr-1 text-neutral-700 dark:text-neutral-300 size-4" />
                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                   69 visiting spots
                 </span>
               </div>
               <div className="flex  items-center justify-center">
-                <FoodIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
+                <FoodIcon className="mr-1 text-neutral-700 dark:text-neutral-300 size-4" />
                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                   Good food everyday
                 </span>
               </div>
               <div className="flex items-center justify-center">
-                <MicIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
+                <MicIcon className="mr-1 text-neutral-700 dark:text-neutral-300 size-4" />
                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                   Open Mic
                 </span>
               </div>
               <div className="flex items-center justify-center">
-                <ParachuteIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
+                <ParachuteIcon className="mr-1 text-neutral-700 dark:text-neutral-300 size-4" />
                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                   Paragliding
                 </span>

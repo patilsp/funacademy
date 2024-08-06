@@ -1,5 +1,5 @@
-import { Separator } from "@/registry/new-york/ui/separator"
-import { ProfileForm } from "@/app/forms/ProfileForm"
+import { Separator } from "@/components/ui/separator"
+import { ProfileForm } from "@/app/forms/profile-form"
 
 export default function SettingsProfilePage() {
   return (

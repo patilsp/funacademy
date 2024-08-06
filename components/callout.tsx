@@ -2,7 +2,7 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@/registry/new-york/ui/alert"
+} from "@/components/ui/alert"
 
 interface CalloutProps {
   icon?: string

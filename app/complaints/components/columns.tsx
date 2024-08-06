@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Checkbox } from "@/registry/new-york/ui/checkbox";
-import { Badge } from "@/registry/new-york/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Badge } from "@/components/ui/badge";
 import { Complaint } from "../data/schema";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";

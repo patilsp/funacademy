@@ -2,16 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { useUser } from "@clerk/nextjs";
 import { usePathname, useRouter } from "next/navigation";
-import { Card, CardContent, CardTitle, CardDescription, CardFooter } from "@/registry/new-york/ui/card";
-import { Button } from "@/registry/new-york/ui/button";
+import { Card, CardContent, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const CustomerCard = ({ customer, handleEdit, handleDelete }) => {
-  const { user } = useUser();
   const pathName = usePathname();
-  const router = useRouter();
-
+ 
   const [copied, setCopied] = useState("");
 
   const handleProfileClick = () => {

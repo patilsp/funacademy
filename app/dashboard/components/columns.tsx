@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Badge } from "@/registry/new-york/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { Complaint } from "../data/schema";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";

@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import CustomerForm from "@/components/CustomerForm";
-import { useAuth, useUser } from "@clerk/nextjs"
-import { Button } from "@/registry/new-york/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -14,39 +13,29 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/registry/new-york/ui/form"
-import { Input } from "@/registry/new-york/ui/input"
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select"
-import { Textarea } from "@/registry/new-york/ui/textarea"
-
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
 
 const CreateCustomer = () => {
   
   const router = useRouter();
-  const { isLoaded, userId, getToken } = useAuth();
-  const { isSignedIn, user } = useUser();
-
-  useEffect(() => {
-    if (isLoaded && isSignedIn && userId) {
-      setPost((prevPost) => ({ ...prevPost, userId }));
-    }
-  }, [isLoaded, isSignedIn, userId]);0
-
+ 
 
   const [submitting, setIsSubmitting] = useState(false);
-  const [post, setPost] = useState({ userId:"", name: "", email: "", address:"", phone: "", status:"", dateofbirth:"", area:"", pincode:"" });
+  const [post, setPost] = useState({ name: "", email: "", address:"", phone: "", status:"", dateofbirth:"", area:"", pincode:"" });
 
   const createCustomer = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // console.log('Post data:', post);
 
     try {
       const response = await fetch("/api/customer/new", {
