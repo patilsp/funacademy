@@ -110,7 +110,7 @@ const Feed = () => {
   };
 
   return (
-    <section className='feed p-4' ref={scrollRef}>        
+    <section className='feed mb-20 p-4' ref={scrollRef}>        
         <form className='flex w-full items-center justify-between gap-2'>
         <h1 className="text-bold text-xl"> Feeds </h1>
           <input

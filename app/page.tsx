@@ -9,7 +9,7 @@ import { PulseBeams } from '@/components/PulseBeams';
 
 export default function Home() {
   return (
-      <div className="relative z-20 h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/images/login-bg.jpg')" }}>
+      <div className="relative z-20 h-screen bg-white dark:bg-black  dark:text-white">
       {/* Overlay */}
       <div className="absolute"></div>
       <div className="absolute inset-0 hidden md:block">
@@ -22,12 +22,22 @@ export default function Home() {
           Welcome to <br /><span className="text-[#ff5722]">Fun Academy</span>
         </h1>
       
-        <h4 className="text-bold mx-auto mb-8 max-w-md text-4xl">
+        {/* <h4 className="text-bold mx-auto mb-8 max-w-md text-4xl">
           Become an <br />expert by learning <br /><span className="text-bold text-[#ff5722]">once </span> a day  
-        </h4>
+        </h4> */}
+
+        <Link href="/">
+          <Image
+            src="/images/welcome.jpg"
+            className="size-full object-contain "
+            width={350}
+            height={350}
+            alt="logo image"            
+          />
+        </Link>
 
         <motion.div
-          className="fixed bottom-10 flex items-center justify-center"
+          className="fixed bottom-14 flex items-center justify-center"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}

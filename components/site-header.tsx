@@ -35,12 +35,11 @@ export function SiteHeader() {
 
         
         <div className="flex items-center justify-end gap-2">
-          <div className="hidden md:block">
+          <div className="mt-1 hidden md:block">
             <CommandMenu />
           </div>
-        <ModeToggle />
-        <UserAccountNav />
-            
+          <ModeToggle />
+          <UserAccountNav />            
         </div>
       </div>
     </header>
