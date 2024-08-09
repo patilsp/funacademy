@@ -52,12 +52,12 @@ export function CommandMenu({ ...props }: DialogProps) {
       <button
         variant="outline"
         className={cn(
-          "group inline-flex flex-col items-center justify-center p-2 hover:bg-gray-50 dark:hover:bg-gray-800"
+          "group inline-flex flex-col items-center justify-center hover:bg-transparent dark:hover:bg-gray-800"
         )}
         onClick={() => setOpen(true)}
         {...props}
       >
-        <Search className="mb-1 size-6 rounded-full text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500" />
+        <Search className="mb-1 size-6 rounded-full text-gray-500 hover:bg-transparent group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500" />
       </button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Type a command or search..." />

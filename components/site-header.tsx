@@ -20,8 +20,11 @@ export function SiteHeader() {
 
   return (
     <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full shadow backdrop-blur dark:bg-black dark:text-white">
-      <div className="flex h-14 px-2">
-        <Link href="/" className="flex items-center">
+      <div className="flex h-14 items-center px-2">
+        <div className="ml-4 mt-1 block md:hidden">
+          <MobileNav />
+        </div>
+        <Link href="/" className="hidden md:block">
           <Image
             src={logoImage}
             className="object-contain "
@@ -29,7 +32,8 @@ export function SiteHeader() {
             height={100}
             alt="logo image"            
           />
-        </Link>
+          
+        </Link>        
         
         <NavbarDemo />
 

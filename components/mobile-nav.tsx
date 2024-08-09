@@ -22,39 +22,26 @@ export function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
 
-  const userName = user?.fullName || "User Name";
-  const userProfileImage = user?.profileImageUrl || "/avatars/02.png";
-  const userMobile = user?.phone || "";
-
+  
   return (
     <Sheet classNme="bg-gray-200" open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className="mr-4 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+          className="mr-4 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
         >
           <ViewVerticalIcon className="-ml-4 size-5" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-full bg-white">
+      <SheetContent side="left">
         <MobileLink
           href="/"
           className="flex items-start p-4"
           onOpenChange={setOpen}
         >
-          {/* <Image
-            src={userProfileImage}
-            className="mr-1 size-8 rounded-lg border border-white object-contain "
-            width={70}
-            height={70}
-            alt="user profile image"
-           
-          /> */}
-          <div className="grid gap-1">
-            <span className="text_primary ml-3 text-2xl font-bold">{userName}</span>
-            <span className="ml-3 text-sm font-bold text-gray-600">{userMobile}</span>
-          </div>
+  
+         
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-12rem)] flex-1 pb-10 pl-6">
           <div className="flex flex-col space-y-4">

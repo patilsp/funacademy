@@ -49,11 +49,11 @@ const UserAccountNav = () => {
                     className='rounded-full'
                     alt='profile'
                   />
-                  <div className='flex flex-col space-y-1'>
-                    <h1 className='font-bold'>{session.user.name}</h1>
-                    <p className='font-medium'>{session.user.email}</p>
+                  <div className='flex flex-col'>
+                    <h1 className='text-base font-bold'>{session.user.name}</h1>
+                    <p className='text-sm font-medium'>{session.user.email}</p>
                   </div>
-                </div>
+                </div>  
               </div>
             </div>
             <DropdownMenuSeparator />
@@ -64,14 +64,14 @@ const UserAccountNav = () => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="p-2" asChild>
-              <Link href='/r/create'>
-                Create Community
+              <Link href='/refer'>
+                Refer your friend
                 <DropdownMenuShortcut>⌘C</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="p-2" asChild>
-              <Link href='/settings'>
-                Change Username
+              <Link href='/complaints'>
+                Report an issue
                 <DropdownMenuShortcut>⌘U</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
