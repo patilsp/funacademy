@@ -54,11 +54,11 @@ const LoginModal = () => {
           
           <DialogHeader className="items-enter mb-4 flex justify-center text-center">
           <Image
-              src={logoImage}
+              src="/images/login.svg"
               alt="Banner"
               layout="intrinsic"
-              width={150}
-              height={150}
+              width={200}
+              height={200}
               className="rounded-md object-cover"
             />
             
@@ -70,7 +70,7 @@ const LoginModal = () => {
             transition={{ duration: 0.5 }}
           >
            
-             <DialogTitle className="mb-4 text-center">Create your free account</DialogTitle>
+             <DialogTitle className="mb-4 text-center">Continue with Google</DialogTitle>
              {/* <DialogDescription>
               Please Sign in with Google.
             </DialogDescription> */}
@@ -78,29 +78,29 @@ const LoginModal = () => {
 
          
 
-          <div className="flex w-full justify-center">
+          <div className="flex w-52 justify-center">
             {/* <Button
               onClick={() => signIn()}
               className="w-full"
             >
               <GoogleIcon className="h-6 "/>Sign In with Google
             </Button> */}
-            <Button onClick={() => signIn()} className="w-full border bg-white text-slate-900 hover:text-white">
-                <GoogleIcon className="h-6 "/>Continue with Google
+          <Button onClick={() => signIn()} className="w-full border ">
+                Sign In with Google
             </Button>
           </div>
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
+            {/* <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
                 Or continue with
               </span>
-            </div>
+            </div> */}
           </div>
 
-          <form onSubmit={onSubmit} className="mx-auto w-full max-w-md">
+          {/* <form onSubmit={onSubmit} className="mx-auto w-full max-w-md">
             <div className="grid gap-4">
               <div className="grid gap-1">
                 <Label className="sr-only" htmlFor="email">
@@ -123,7 +123,7 @@ const LoginModal = () => {
                 Sign In with Email
               </Button>
             </div>
-          </form>
+          </form> */}
 
 
         </div>

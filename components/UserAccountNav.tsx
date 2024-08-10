@@ -104,7 +104,7 @@ const UserAccountNav = () => {
               className='h-8 w-full cursor-pointer bg-black text-center font-bold text-white dark:bg-white dark:text-slate-700'
               onClick={() => {
                 signOut({
-                  callbackUrl: `${window.location.origin}/sign-in`,
+                  callbackUrl: `${window.location.origin}/`,
                 });
               }}
             >

@@ -21,7 +21,7 @@ export function SiteHeader() {
   return (
     <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full shadow backdrop-blur dark:bg-black dark:text-white">
       <div className="flex h-14 items-center px-2">
-        <div className="ml-4 mt-1 block md:hidden">
+        <div className="mt-1 block md:hidden">
           <MobileNav />
         </div>
         <Link href="/" className="hidden md:block">

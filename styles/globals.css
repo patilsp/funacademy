@@ -583,3 +583,4 @@ body::-webkit-scrollbar-thumb {
     @apply flex-1 break-inside-avoid rounded-lg shadow bg-white/20 bg-clip-padding dark:bg-slate-800 dark:text-white p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
   }
   
+  

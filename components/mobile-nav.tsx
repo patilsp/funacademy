@@ -30,7 +30,14 @@ export function MobileNav() {
           variant="ghost"
           className="mr-4 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
         >
-          <ViewVerticalIcon className="-ml-4 size-5" />
+           <Image
+              src="/images/menu.png"
+              alt="menu"
+              layout="intrinsic"
+              width={45}
+              height={45}
+              className="rounded-md object-cover"
+            />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>

@@ -30,14 +30,14 @@ export default function Home() {
           <Image
             src="/images/welcome.jpg"
             className="size-full object-contain "
-            width={350}
-            height={350}
+            width={400}
+            height={400}
             alt="logo image"            
           />
         </Link>
 
         <motion.div
-          className="fixed bottom-14 flex items-center justify-center"
+          className="fixed bottom-1 flex items-center justify-center"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
