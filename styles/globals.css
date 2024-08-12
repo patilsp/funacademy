@@ -96,7 +96,7 @@
   pointer-events: none;
 }
 
-.main:before {
+/* .main:before {
   background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
   position: absolute;
   content: "";
@@ -104,26 +104,25 @@
   width: 100%;
   height: 100%;
   top: 0;
-}
+} */
 
-.main:after {
+/* .main:after {
   content: "";
-  background-image: url("/images/grid.svg");
+  background-image: url("/images/grid1.svg");
   z-index: 1;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
-  opacity: 0.1;
+  opacity: 0.5;
   filter: invert(1);
-}
+} */
 
 .gradient {
   height: fit-content;
   z-index: 3;
   width: 100%;
   max-width: 640px;
-  background-size: 100% 100vh;
   background-image: radial-gradient(
       at 27% 37%,
       rgb(204, 220, 241) 0px,

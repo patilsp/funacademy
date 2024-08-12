@@ -52,7 +52,7 @@ export default function Dashboard() {
               </div>
               </div>
             </div> */}
-            <Tabs defaultValue="overview" className="space-y-4 ">
+            <Tabs defaultValue="activities" className="space-y-4 ">
               <TabsList className="flex flex-wrap justify-center bg-transparent p-2">
                 <TabsTrigger value="overview">Dashboard</TabsTrigger>
                 <TabsTrigger value="activities">Activities</TabsTrigger>
@@ -186,11 +186,11 @@ export default function Dashboard() {
               </div>
             </TabsContent>
             <TabsContent value="activities" className="space-y-4 p-2">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <Link href="/letter">
             <Card className="relative h-40 col-span-1 overflow-hidden bg-purple-200 cursor-pointer">
               <Image
-                src="/images/award.png"
+                src="/images/A.svg"
                 alt="Top Scores"
                 layout="fill"
                 objectFit="cover"
@@ -199,6 +199,22 @@ export default function Dashboard() {
               <CardContent className="relative min-h-screen rounded-md bg-purple-500 bg-opacity-70 p-4 text-white">
                 <CardTitle className="text-xl font-bold">English</CardTitle>
                 <p>See how you rank among your peers in various quizzes.</p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/math-quiz">
+            <Card className="relative col-span-1 h-40 overflow-hidden bg-blue-200 cursor-pointer">
+              <Image
+                src="/images/award.png"
+                alt="Daily Quiz"
+                layout="fill"
+                objectFit="cover"
+                className="absolute inset-0"
+              />
+              <CardContent className="relative min-h-screen bg-orange-500 bg-opacity-70 p-4 text-white">
+                <CardTitle className="text-xl font-bold">Math Quiz</CardTitle>
+                <p>Complete todays quiz to earn badges and rewards!</p>
               </CardContent>
             </Card>
           </Link>

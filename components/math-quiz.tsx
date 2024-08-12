@@ -62,13 +62,13 @@ export default function Games({ levelId }: GamesProps) {
 
   
   return (
-    <div className="flex flex-col items-center justify-center space-y-6 p-4">
+    <div className="mb-16 flex flex-col items-center justify-center space-y-6 p-4">
 
       <div className="flex w-full items-center justify-between gap-2">
-        <Link href="/math-quiz"> <ArrowLeft className="size-8 rounded-full  bg-white p-2"/> </Link>
+        <Link href="/math-quiz" className="rounded-full  bg-white"> <ArrowLeft className="size-8 p-2"/> </Link>
         <h1 className="text-xl font-bold text-blue-700">Math Quiz - Level {levelId}</h1>
 
-        <Link href="#"> <Bookmark className="size-8 rounded-full  bg-white p-2"/> </Link>
+        <Link href="#" className="rounded-full  bg-white"> <Bookmark className="size-8 p-2"/> </Link>
  
       </div>
 
@@ -79,7 +79,7 @@ export default function Games({ levelId }: GamesProps) {
         className="w-full max-w-lg p-0 md:p-6">
         {!showResults ? (
           <div className="flex flex-col items-center space-y-4">
-            <h2 className="mb-4 text-2xl font-semibold text-black">{questions[currentQuestion]?.question}</h2>
+            <h2 className="my-4 space-x-1 text-2xl font-semibold text-black">{questions[currentQuestion]?.question}</h2>
             <div className="grid grid-cols-2 items-center gap-6">
               {questions[currentQuestion]?.options.map((option, index) => (
                 <button
@@ -102,22 +102,26 @@ export default function Games({ levelId }: GamesProps) {
             <p className="mb-4 text-center text-lg text-gray-700">Youve successfully completed the level. Keep up the great work!</p>
             <p className="mb-1 text-2xl font-semibold text-gray-700">You got {score} out of {questions.length} correct.</p>
 
+           
+
+
+
+            <div className="flex w-full flex-col items-center justify-center rounded-lg bg-[#ff5722] p-2 text-center shadow">
             <Image
                 src="/images/congrats.svg"
                 className="object-contain "
-                width={100}
-                height={100}
+                width={150}
+                height={150}
                 alt="image"            
               />
 
-
-
-            <div className="w-full rounded-lg bg-orange-300 p-2 text-center shadow">
               
            
             <h1 className="mb-4 text-xl font-bold">Final Results!</h1>
+
+            
             <div className="relative mb-4 flex w-full items-center justify-center">             
-              <div className="flex size-40 items-center justify-center rounded-full bg-yellow-300 text-4xl font-bold text-gray-800">
+              <div className="flex size-28 items-center justify-center rounded-full bg-yellow-500 text-4xl font-bold text-gray-800">
                 {percentage}%
               </div>
             </div>
@@ -154,12 +158,12 @@ export default function Games({ levelId }: GamesProps) {
               </SheetContent>
             </Sheet>
 
-            <button
+            <Button
               onClick={() => { setCurrentQuestion(0); setScore(0); setAnswers([]); setShowResults(false); }}
-              className="mt-4 rounded-lg border border-green-300 bg-green-500 p-3 text-white shadow-md transition-transform hover:scale-105 hover:bg-green-600"
+              className="mt-2 w-full rounded-lg border shadow-md transition-transform hover:scale-105 hover:bg-green-600"
             >
               Try Again
-            </button>
+            </Button>
           </motion.div>
         )}
       </motion.div>

@@ -11,7 +11,7 @@ export default function NotFound() {
 
        <div className='flex w-full justify-center'>
           <Image
-            src='/images/error.svg'
+            src='/images/website-maintenance.svg'
             width={400}
             height={400}
             alt='error loading'

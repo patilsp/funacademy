@@ -6,7 +6,7 @@ export default function MathQuiz() {
   const images = Array.from({ length: 10 }, (_, i) => `/images/quiz/${i + 1}.svg`);
 
   return (
-    <div className="my-2 flex min-h-screen flex-col p-4 md:p-6">
+    <div className="mb-16 mt-2 flex min-h-screen flex-col p-4 md:p-6">
       <h1 className="mb-8 text-center text-4xl font-bold text-orange-500">Math Quiz</h1>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
         {levels.map((level, index) => (

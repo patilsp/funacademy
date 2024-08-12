@@ -18,8 +18,8 @@ export default function Home() {
 
       {/* Content for small screens */}
       <div className="relative inset-0 flex flex-col items-center justify-center text-center md:hidden">
-        <h1 className="mb-20 mt-4 text-4xl font-extrabold leading-tight md:text-6xl">
-          Welcome to <br /><span className="text-[#ff5722]">Fun Academy</span>
+        <h1 className="mb-20 mt-4 text-base font-extrabold leading-tight md:text-6xl">
+          Welcome to <br /><span className="text-4xl text-[#ff5722]">Fun Academy</span>
         </h1>
       
         <h4 className="text-bold mx-auto mb-8 max-w-md text-4xl">
