@@ -15,7 +15,7 @@ export default function MathQuiz() {
               <div className="flex h-48 w-full items-center justify-center overflow-hidden rounded-t-lg">
                 <Image
                   src={images[index]}
-                  className="size-full object-cover"
+                  className="size-full object-cover p-4"
                   width={175}
                   height={175}
                   alt={`Level ${level} image`}

@@ -54,6 +54,9 @@ export default function Games({ levelId }: GamesProps) {
     return 'bg-blue-500 text-white';
   };
 
+  const percentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
+
+  
   return (
     <div className="flex flex-col items-center justify-center space-y-6 p-4">
       <h1 className="mb-4 text-4xl font-bold text-blue-900">Math Quiz - Level {levelId}</h1>
@@ -61,7 +64,7 @@ export default function Games({ levelId }: GamesProps) {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-lg p-6">
+        className="w-full max-w-lg p-0 md:p-6">
         {!showResults ? (
           <div className="flex flex-col items-center space-y-4">
             <h2 className="mb-4 text-2xl font-semibold text-black">{questions[currentQuestion]?.question}</h2>
@@ -84,21 +87,13 @@ export default function Games({ levelId }: GamesProps) {
             transition={{ duration: 0.5 }}
             className="flex flex-col items-center space-y-4 rounded-md bg-white px-4 py-10 shadow-md"
           >
-            <p className="mb-4 text-lg text-gray-700">Youve successfully completed the level. Keep up the great work!</p>
+            <p className="mb-4 text-center text-lg text-gray-700">Youve successfully completed the level. Keep up the great work!</p>
             <p className="mb-1 text-2xl font-semibold text-gray-700">You got {score} out of {questions.length} correct.</p>
             <div className="w-full rounded-lg bg-indigo-300 p-2 text-center shadow">
-            <h2 className="mb-4 text-xl font-bold text-orange-400">Congratulations!</h2>
-            <div className="relative mb-4 flex w-full items-center justify-center">
-              {/* <img 
-                src="/images/quiz/1.svg" 
-                alt="Celebration" 
-                height={300}
-                width={300}
-                className="absolute right-0 top-0 -z-10 w-1/2 rounded-lg shadow-lg md:block"
-              /> */}
-              
+            <h2 className="mb-4 text-xl font-bold text-orange-400">Final Results!</h2>
+            <div className="relative mb-4 flex w-full items-center justify-center">             
               <div className="flex size-40 items-center justify-center rounded-full bg-yellow-300 text-4xl font-bold text-gray-800">
-                {score}
+                {percentage}%
               </div>
             </div>
             </div>
