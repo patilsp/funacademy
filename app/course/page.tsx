@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const courses = [
-  { id: 1, title: 'Healthy Habits', link: '/healthy-habits', image: '/images/award.png' },
+  { id: 1, title: 'Healthy Habits', link: '/healthy-habits', image: '/images/quiz/1.svg' },
   { id: 2, title: 'Basic Geography', link: '/geography', image: '/images/award.png' },
   { id: 3, title: 'Emotional Intelligence', link: '/emotional-intelligence', image: '/images/award.png' },
   { id: 4, title: 'Problem Solving', link: '/problem-solving', image: '/images/award.png' },

@@ -52,7 +52,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <LoginModal />
               {/* <UserModal /> */}
                 <main className="flex-1 dark:bg-black dark:text-white">{children}</main>
-              {/* <SiteFooter /> */}
+              <SiteFooter />
             </div>
             <TailwindIndicator />
             <Toaster />

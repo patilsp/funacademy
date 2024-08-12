@@ -7,9 +7,10 @@ import Link from 'next/link';
 
 import { PulseBeams } from '@/components/PulseBeams';
 
-export default function Home() {
+function welcome() {
   return (
-      <div className="relative z-20 h-screen">
+    <div>
+        <div className="relative z-20 h-screen bg-white dark:bg-black  dark:text-white">
       {/* Overlay */}
       <div className="absolute"></div>
       <div className="absolute inset-0 hidden md:block">
@@ -17,8 +18,8 @@ export default function Home() {
       </div>
 
       {/* Content for small screens */}
-      <div className="relative inset-0 flex flex-col items-center justify-center text-center md:hidden">
-        <h1 className="mb-20 mt-4 text-4xl font-extrabold leading-tight md:text-6xl">
+      <div className="absolute inset-0 -mt-52 flex flex-col items-center justify-center text-center md:hidden">
+        <h1 className="mb-20 text-4xl font-extrabold leading-tight md:text-6xl">
           Welcome to <br /><span className="text-[#ff5722]">Fun Academy</span>
         </h1>
       
@@ -37,7 +38,7 @@ export default function Home() {
         </Link>
 
         <motion.div
-          className="relative mt-10 flex items-center justify-center"
+          className="fixed bottom-1 flex items-center justify-center"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -55,5 +56,8 @@ export default function Home() {
         </motion.div>
       </div>
     </div>
-  );
+    </div>
+  )
 }
+
+export default welcome

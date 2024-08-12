@@ -37,7 +37,7 @@ export default function Dashboard() {
           
           <div className="flex-1 space-y-4 p-4 md:p-8">
            
-            <div className="flex items-center justify-between space-y-2 md:flex-row md:space-y-0">
+            {/* <div className="flex items-center justify-between space-y-2 md:flex-row md:space-y-0">
               <h2 className="text-xl font-bold tracking-tight text-green-400 md:text-3xl">
                 Dashboard
               </h2>
@@ -51,11 +51,10 @@ export default function Dashboard() {
                 />
               </div>
               </div>
-            </div>
+            </div> */}
             <Tabs defaultValue="overview" className="space-y-4 ">
               <TabsList className="flex flex-wrap justify-center bg-transparent p-2">
                 <TabsTrigger value="overview">Dashboard</TabsTrigger>
-                {/* <TabsTrigger value="category">Category</TabsTrigger> */}
                 <TabsTrigger value="activities">Activities</TabsTrigger>
                 <TabsTrigger value="achievements">Achievements</TabsTrigger>
               </TabsList>

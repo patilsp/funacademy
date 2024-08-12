@@ -1,4 +1,6 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -7,6 +9,8 @@ import { levelQuestions } from '@/constants/questions';
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+
+import { ArrowLeft, Bookmark } from 'lucide-react';
 
 interface GamesProps {
   levelId: string;
@@ -59,7 +63,15 @@ export default function Games({ levelId }: GamesProps) {
   
   return (
     <div className="flex flex-col items-center justify-center space-y-6 p-4">
-      <h1 className="mb-4 text-4xl font-bold text-blue-900">Math Quiz - Level {levelId}</h1>
+
+      <div className="flex w-full items-center justify-between gap-2">
+        <Link href="/math-quiz"> <ArrowLeft className="size-8 rounded-full  bg-white p-2"/> </Link>
+        <h1 className="text-xl font-bold text-blue-700">Math Quiz - Level {levelId}</h1>
+
+        <Link href="#"> <Bookmark className="size-8 rounded-full  bg-white p-2"/> </Link>
+ 
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -89,8 +101,21 @@ export default function Games({ levelId }: GamesProps) {
           >
             <p className="mb-4 text-center text-lg text-gray-700">Youve successfully completed the level. Keep up the great work!</p>
             <p className="mb-1 text-2xl font-semibold text-gray-700">You got {score} out of {questions.length} correct.</p>
-            <div className="w-full rounded-lg bg-indigo-300 p-2 text-center shadow">
-            <h2 className="mb-4 text-xl font-bold text-orange-400">Final Results!</h2>
+
+            <Image
+                src="/images/congrats.svg"
+                className="object-contain "
+                width={100}
+                height={100}
+                alt="image"            
+              />
+
+
+
+            <div className="w-full rounded-lg bg-orange-300 p-2 text-center shadow">
+              
+           
+            <h1 className="mb-4 text-xl font-bold">Final Results!</h1>
             <div className="relative mb-4 flex w-full items-center justify-center">             
               <div className="flex size-40 items-center justify-center rounded-full bg-yellow-300 text-4xl font-bold text-gray-800">
                 {percentage}%
@@ -102,7 +127,7 @@ export default function Games({ levelId }: GamesProps) {
                 
                 <div className="text-center">
                   <SheetTrigger asChild>
-                    <Button variant="outline">Results</Button>
+                    <Button variant="outline">Check Correct Answer</Button>
                   </SheetTrigger>
                 </div>
               </div>

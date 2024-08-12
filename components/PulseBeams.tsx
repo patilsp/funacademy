@@ -78,7 +78,7 @@ const grad5 = {
 };
 export const PulseBeams = () => {
   return (
-    <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('/images/home-banner2.jpg')" }}>
+    <div className="relative h-screen bg-cover bg-center bg-no-repeat zoom-in-95" style={{ backgroundImage: "url('/images/home-banner.jpg')" }}>
       {/* Overlay */}
       <div className="absolute"></div>
     <div className="relative flex h-[40rem] items-center justify-center overflow-hidden antialiased">
