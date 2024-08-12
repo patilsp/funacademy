@@ -32,7 +32,10 @@ export const docsConfig: DocsConfig = {
       title: "Letters",
       href: "/letter",
     },
-   
+    {
+      title: "Math Quiz",
+      href: "/math-quiz",
+    },
     
   ],
   sidebarNav: [

@@ -25,7 +25,7 @@ const questions = [
   }
 ];
 
-export default function KidsQuiz() {
+export default function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
   const [score, setScore] = useState(0);

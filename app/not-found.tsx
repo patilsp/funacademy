@@ -5,17 +5,17 @@ export default function NotFound() {
   return (
     <div className="flex flex-col justify-center py-4">
        
-      <h1 className="mx-auto text-center text-xl font-semibold text-red-400">Not Found</h1>     
+      <h1 className="mx-auto text-center text-xl font-semibold text-red-400">Page Is Not Found</h1>     
       <p className="mx-auto my-4 max-w-3xl text-center text-lg text-slate-600 dark:text-slate-400"> Could not find requested resource </p>
 
 
        <div className='flex w-full justify-center'>
           <Image
-            src='/images/error.png'
+            src='/images/error.svg'
             width={400}
-            height={460}
+            height={400}
             alt='error loading'
-            className='object-contain'
+            className='m-2 object-contain p-4'
           />
         </div>
         <div className='w-100 mt-4 flex justify-center'>
