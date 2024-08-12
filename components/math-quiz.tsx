@@ -1,7 +1,10 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
+import toast from 'react-hot-toast';
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, XCircle } from 'lucide-react';
@@ -14,9 +17,16 @@ import { ArrowLeft, Bookmark } from 'lucide-react';
 
 interface GamesProps {
   levelId: string;
+  userId?: string;
 }
 
-export default function Games({ levelId }: GamesProps) {
+export default function MathQuiz({ levelId, userId }: GamesProps) {
+  const router = useRouter();
+  const { data: session } = useSession();
+  
+  // Use session userId if available, otherwise fall back to prop
+  const currentUserId = session?.user.id || userId;
+
   const questions = levelQuestions[levelId] || [];
   
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -33,6 +43,7 @@ export default function Games({ levelId }: GamesProps) {
           setCurrentQuestion(currentQuestion + 1);
         } else {
           setShowResults(true);
+          saveResult();
         }
       }, 1000);
 
@@ -60,16 +71,39 @@ export default function Games({ levelId }: GamesProps) {
 
   const percentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
 
-  
+  const saveResult = async () => {
+    if (!currentUserId) {
+      toast.error('User ID is missing');
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/users/${currentUserId}/math-quiz`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: currentUserId, levelId, score: percentage }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save result');
+      }
+
+      toast.success('Result saved successfully!');
+    } catch (error) {
+      // console.error('Error saving result:', error);
+      toast.error('Failed to save result');
+    }
+  };
+
   return (
     <div className="mb-16 flex flex-col items-center justify-center space-y-6 p-4">
 
       <div className="flex w-full items-center justify-between gap-2">
-        <Link href="/math-quiz" className="rounded-full  bg-white"> <ArrowLeft className="size-8 p-2"/> </Link>
+        <Link href="/math-quiz" className="rounded-full bg-white"> <ArrowLeft className="size-8 p-2"/> </Link>
         <h1 className="text-xl font-bold text-blue-700">Math Quiz - Level {levelId}</h1>
-
-        <Link href="#" className="rounded-full  bg-white"> <Bookmark className="size-8 p-2"/> </Link>
- 
+        <Link href="#" className="rounded-full bg-white"> <Bookmark className="size-8 p-2"/> </Link>
       </div>
 
       <motion.div
@@ -99,43 +133,32 @@ export default function Games({ levelId }: GamesProps) {
             transition={{ duration: 0.5 }}
             className="flex flex-col items-center space-y-4 rounded-md bg-white px-4 py-10 shadow-md"
           >
-            <p className="mb-4 text-center text-lg text-gray-700">Youve successfully completed the level. Keep up the great work!</p>
+            <p className="mb-4 text-center text-lg text-gray-700">You’ve successfully completed the level. Keep up the great work!</p>
             <p className="mb-1 text-2xl font-semibold text-gray-700">You got {score} out of {questions.length} correct.</p>
-
-           
-
-
-
             <div className="flex w-full flex-col items-center justify-center rounded-lg bg-[#ff5722] p-2 text-center shadow">
-            <Image
+              <Image
                 src="/images/congrats.svg"
-                className="object-contain "
+                className="object-contain"
                 width={150}
                 height={150}
-                alt="image"            
+                alt="Congratulations"
               />
-
-              
-           
-            <h1 className="mb-4 text-xl font-bold">Final Results!</h1>
-
-            
-            <div className="relative mb-4 flex w-full items-center justify-center">             
-              <div className="flex size-28 items-center justify-center rounded-full bg-yellow-500 text-4xl font-bold text-gray-800">
-                {percentage}%
+              <h1 className="mb-4 text-xl font-bold">Final Results!</h1>
+              <div className="relative mb-4 flex w-full items-center justify-center">             
+                <div className="flex size-28 items-center justify-center rounded-full bg-yellow-500 text-4xl font-bold text-gray-800">
+                  {percentage}%
+                </div>
               </div>
             </div>
-            </div>
+
             <Sheet>
               <div className="mx-auto max-w-sm p-8">
-                
                 <div className="text-center">
                   <SheetTrigger asChild>
                     <Button variant="outline">Check Correct Answer</Button>
                   </SheetTrigger>
                 </div>
               </div>
-
               <SheetContent>
                 <SheetHeader>
                   <SheetTitle className="mb-4 text-2xl font-semibold text-green-700">Congratulations!</SheetTitle>

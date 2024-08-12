@@ -27,41 +27,21 @@ export const columns: ColumnDef<Complaint>[] = [
     enableSorting: false,
     enableHiding: false,
   },
-  {
-    accessorKey: "id",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Job Sheet ID" />
-    ),
-    cell: ({ row }) => {
-      const id = row.getValue("id");
-      const formattedId = Number.isInteger(id) ? `JS-${id}` : `JS-${parseInt(id, 12)}`;
-      return <div className="">{formattedId}</div>;
-    },
-    enableSorting: true,
-    enableHiding: false,
-  },
+
   {
     accessorKey: "name",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Customer Name" />
+      <DataTableColumnHeader column={column} title="User Name" />
     ),
     cell: ({ row }) => <div className="">{row.getValue("name")}</div>,
     enableSorting: true,
     enableHiding: false,
   },
-  {
-    accessorKey: "mobile",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Mobile Number" />
-    ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("mobile")}</div>,
-    enableSorting: true,
-    enableHiding: false,
-  },
+
   {
     accessorKey: "complaintType",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Complaint Type" />
+      <DataTableColumnHeader column={column} title="Type of Issue" />
     ),
     cell: ({ row }) => <div className="">{row.getValue("complaintType")}</div>,
     enableSorting: true,

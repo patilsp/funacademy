@@ -76,8 +76,8 @@ const UserAccountNav = () => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="p-2" asChild>
-              <Link href='/Help'>
-                Command Menu
+              <Link href='/leaderboard'>
+                Leader Board
                 <DropdownMenuShortcut className="flex gap-1 rounded-sm border">Ctrl K</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
@@ -88,8 +88,8 @@ const UserAccountNav = () => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="p-2" asChild>
-              <Link href='/'>
-                Theme
+              <Link href='/contact-us'>
+                Contact Us
                 <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>

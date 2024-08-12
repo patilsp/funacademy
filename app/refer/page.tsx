@@ -68,42 +68,8 @@ const Refer = () => {
         </div>
       </motion.div>
 
-      {/* Laptop Winners Section */}
-      <motion.div
-        className="w-full max-w-4xl bg-white p-6 mt-4 rounded-lg shadow-xl"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2 className="text-2xl font-bold mb-4">Laptop Winners</h2>
-        <div className="space-y-2">
-          {winners.map((winner, index) => (
-            <div key={index} className="flex justify-between items-center p-2 border-b border-gray-300">
-              <span className="text-lg font-semibold">{winner.name}</span>
-              <span className="text-lg">{winner.referrals} referrals</span>
-            </div>
-          ))}
-        </div>
-      </motion.div>
 
-      {/* Monthly Hall of Fame Section */}
-      <motion.div
-        className="w-full max-w-4xl bg-white p-6 mt-4 rounded-lg shadow-xl"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2 className="text-2xl font-bold mb-4">Monthly Hall of Fame</h2>
-        <div className="space-y-2 mb-6">
-          {monthlyWinners.map((winner, index) => (
-            <div key={index} className="flex justify-between items-center p-2 border-b border-gray-300">
-              <span className="text-lg font-semibold">{winner.name}</span>
-              <span className="text-lg">{winner.amount}</span>
-            </div>
-          ))}
-        </div>
-        <button className="bg-blue-700 text-white px-4 py-2 rounded shadow-md hover:bg-blue-800 transition duration-300">View More</button>
-      </motion.div>
+     
 
       {/* Subscription Section */}
       <motion.div

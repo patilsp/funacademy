@@ -123,8 +123,8 @@ const ContactUs = () => {
           transition={{ duration: 0.6 }}
         >
           <Image
-            src="/images/image1.png"
-            alt="Water Purifier"
+            src="/images/banner.png"
+            alt="contact us image"
             layout="responsive"
             width={500}
             height={400}
