@@ -70,7 +70,7 @@ const UserAccountNav = () => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="p-2" asChild>
-              <Link href='/complaints'>
+              <Link href='/create-complaint'>
                 Report an issue
                 <DropdownMenuShortcut>⌘U</DropdownMenuShortcut>
               </Link>

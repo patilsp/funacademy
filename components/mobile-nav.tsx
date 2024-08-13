@@ -33,7 +33,6 @@ export function MobileNav() {
            <Image
               src="/images/menu.png"
               alt="menu"
-              layout="intrinsic"
               width={45}
               height={45}
               className="rounded-md object-cover"

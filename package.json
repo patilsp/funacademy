@@ -47,6 +47,7 @@
     "date-fns": "^2.30.0",
     "faker": "^5.5.3",
     "framer-motion": "^10.18.0",
+    "howler": "^2.2.4",
     "jotai": "^2.3.1",
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.105.0-alpha.4",

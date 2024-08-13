@@ -54,7 +54,7 @@ const LoginModal = () => {
           
           <DialogHeader className="items-enter mb-4 flex justify-center text-center">
           <Image
-              src="/images/login.svg"
+              src="/images/login1.svg"
               alt="Banner"
               layout="intrinsic"
               width={200}

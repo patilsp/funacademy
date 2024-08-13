@@ -18,7 +18,7 @@ export default function Home() {
 
       {/* Content for small screens */}
       <div className="relative inset-0 flex flex-col items-center justify-center text-center md:hidden">
-        <h1 className="mb-20 mt-4 text-base font-extrabold leading-tight md:text-6xl">
+        <h1 className="mb-20 pt-10 text-base font-extrabold leading-tight md:text-6xl">
           Welcome to <br /><span className="text-4xl text-[#ff5722]">Fun Academy</span>
         </h1>
       
@@ -28,7 +28,7 @@ export default function Home() {
 
         <Link href="/">
           <Image
-            src="/images/banner.svg"
+            src="/images/welcome1.jpg"
             className="size-full object-contain "
             width={400}
             height={400}
@@ -47,7 +47,7 @@ export default function Home() {
             <span class="circle" aria-hidden="true">
             <span class="icon arrow"></span>
             </span>
-            <Link href='/dashboard'>
+            <Link href='/category'>
               <span class="button-text">Start Learning</span>
             </Link>            
           </button>

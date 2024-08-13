@@ -7,13 +7,11 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, XCircle } from 'lucide-react';
+import { ArrowLeft, Bookmark, CheckCircle, XCircle } from 'lucide-react';
 import { levelQuestions } from '@/constants/questions';
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-
-import { ArrowLeft, Bookmark } from 'lucide-react';
 
 interface GamesProps {
   levelId: string;
@@ -92,7 +90,6 @@ export default function MathQuiz({ levelId, userId }: GamesProps) {
 
       toast.success('Result saved successfully!');
     } catch (error) {
-      // console.error('Error saving result:', error);
       toast.error('Failed to save result');
     }
   };

@@ -14,11 +14,6 @@ const CreateComplaint = () => {
   const [submitting, setIsSubmitting] = useState(false);
   const [complaint, setComplaint] = useState({
     userId: "",
-    productType: "",
-    complaintType: "",
-    mobile: "",
-    address: "",
-    visitDate: "",
     status: "",
     name: "",
     assignUser:"Admin",
@@ -38,10 +33,10 @@ const CreateComplaint = () => {
       });
 
       if (response.ok) {
-        toast.success("Complaint has been created! 🔥");
+        toast.success("Issue has been created! 🔥");
         router.push("/complains");
       } else {
-        throw new Error("Failed to create complaint");
+        throw new Error("Failed to create Issue");
       }
     } catch (error) {
       toast.error(error.message);

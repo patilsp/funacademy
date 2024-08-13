@@ -1,9 +1,40 @@
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from 'react';
 
 export default function MathQuiz() {
+  const { data: session, status } = useSession();
+  const [userResults, setUserResults] = useState([]);
   const levels = Array.from({ length: 10 }, (_, i) => i + 1);
   const images = Array.from({ length: 10 }, (_, i) => `/images/quiz/${i + 1}.svg`);
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.id) {
+      const fetchUserResults = async () => {
+        try {
+          const response = await fetch(`/api/users/${session.user.id}/results`);
+          if (!response.ok) {
+            throw new Error('Failed to fetch user results');
+          }
+          const data = await response.json();
+          setUserResults(data);
+        } catch (error) {
+          console.error('Error fetching user results:', error);
+        }
+      };
+
+      fetchUserResults();
+    }
+  }, [session, status]);
+
+  // Create a map of levelId to score for easy lookup
+  const resultsMap = userResults.reduce((map, result) => {
+    map[result.levelId] = result.score;
+    return map;
+  }, {});
 
   return (
     <div className="mb-16 mt-2 flex min-h-screen flex-col p-4 md:p-6">
@@ -16,14 +47,18 @@ export default function MathQuiz() {
                 <Image
                   src={images[index]}
                   className="size-full object-cover"
-                  width={175}
-                  height={175}
+                  width={150}
+                  height={150}
                   alt={`Level ${level} image`}
                 />
               </div>
               <div className="p-4 text-center">
                 <h2 className="text-xl font-semibold text-blue-700">Level {level}</h2>
-                <p className="mt-2 text-gray-600">Lets start</p>
+                {resultsMap[level] !== undefined ? (
+                  <p className="mt-2 text-gray-600">Completed with {resultsMap[level]} marks</p>
+                ) : (
+                  <p className="mt-2 text-gray-600">Lets Start</p>
+                )}
               </div>
             </div>
           </Link>
