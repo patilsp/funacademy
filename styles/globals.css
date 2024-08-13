@@ -256,16 +256,9 @@ body::-webkit-scrollbar-thumb {
 @keyframes jello { /* Add jello keyframes */ }
 
 
-.memory-game {
-  display: grid;
-  grid-template-columns: repeat(4, 100px);
-  gap: 10px;
-  justify-content: center;
-  margin-top: 20px;
-}
-.card {
-  width: 100px;
-  height: 100px;
+.card1 {
+  width: 80px;
+  height: 80px;
   border-radius: 10px;
   background-color: #ddd;
   display: flex;

@@ -7,21 +7,21 @@ import { ArrowLeft } from 'lucide-react';
 
 // Update the categories array to include 'link' instead of 'id'
 const categories = [
-    { link: "/category/english", title: "English", image: "/images/categories/bookabc.png" },
-    { link: "/category/colors", title: "Colors", image: "/images/categories/art.png" },
-    { link: "/category/shapes", title: "Shapes", image: "/images/categories/shapes.png" },
-    { link: "/category/animals", title: "Animals", image: "/images/categories/tale.png" },
-    { link: "/category/nature", title: "Nature", image: "/images/categories/nature.png" },
-    { link: "/category/simple-science", title: "Simple Science", image: "/images/categories/science.png" },
-    { link: "/category/letters", title: "Letters", image: "/images/categories/abc.png" },
-    { link: "/category/numbers", title: "Numbers", image: "/images/categories/numbers.png" },
-    { link: "/category/colors", title: "Colors", image: "/images/categories/colors.png" },
-    { link: "/category/shapes", title: "Shapes", image: "/images/categories/shapes.png" },
-    { link: "/category/drawing", title: "Drawing", image: "/images/categories/draw.png" },
-    { link: "/category/puzzle", title: "Puzzles", image: "/images/categories/puzzle.png" },
-    { link: "/category/Games", title: "Simple Games", image: "/images/categories/game.png" },
-    { link: "/category/math-quiz", title: "Quiz", image: "/images/categories/quiz.png" },
-    { link: "/category/learning-videos", title: "Learning Videos", image: "/images/categories/book.png" }
+    { link: "/english", title: "English", image: "/images/categories/bookabc.png" },
+    { link: "/colors", title: "Colors", image: "/images/categories/art.png" },
+    { link: "/shapes", title: "Shapes", image: "/images/categories/shapes.png" },
+    { link: "/animals", title: "Animals", image: "/images/categories/tale.png" },
+    { link: "/nature", title: "Nature", image: "/images/categories/nature.png" },
+    { link: "/simple-science", title: "Simple Science", image: "/images/categories/science.png" },
+    { link: "/letter", title: "Letters", image: "/images/categories/abc.png" },
+    { link: "/numbers", title: "Numbers", image: "/images/categories/numbers.png" },
+    { link: "/colors", title: "Colors", image: "/images/categories/colors.png" },
+    { link: "/shapes", title: "Shapes", image: "/images/categories/shapes.png" },
+    { link: "/drawing", title: "Drawing", image: "/images/categories/draw.png" },
+    { link: "/puzzle", title: "Puzzles", image: "/images/categories/puzzle.png" },
+    { link: "/Games", title: "Simple Games", image: "/images/categories/game.png" },
+    { link: "/math-quiz", title: "Quiz", image: "/images/categories/quiz.png" },
+    { link: "/learning-videos", title: "Learning Videos", image: "/images/categories/book.png" }
   ];
 
 export default function CategoryPage() {
@@ -43,7 +43,7 @@ export default function CategoryPage() {
           <input
             type="text"
             placeholder="Search categories..."
-            className="w-full rounded border border-gray-300 px-4 py-2"
+            className="w-full rounded-lg border border-gray-300 px-4 py-2"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

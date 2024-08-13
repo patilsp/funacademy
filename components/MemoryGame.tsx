@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 
+// Function to generate shuffled cards
 const generateCards = () => {
-  const values = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+  const values = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   const cards = [...values, ...values].sort(() => Math.random() - 0.5);
   return cards;
 };
@@ -30,11 +31,11 @@ const MemoryGame = () => {
   };
 
   return (
-    <div className="memory-game  col-span-3 grid md:col-span-4">
+    <div className="mb-12 grid grid-cols-3 gap-8 p-2 md:grid-cols-6 md:p-4 lg:grid-cols-8">
       {cards.map((card, index) => (
         <div
           key={index}
-          className={`card ${flippedIndices.includes(index) || matchedPairs.includes(card) ? 'flipped' : ''}`}
+          className={`aspect-w-1 aspect-h-1 size-24 relative flex items-center justify-center rounded-lg text-3xl font-bold text-black transition-transform duration-300 ${flippedIndices.includes(index) || matchedPairs.includes(card) ? 'bg-green-400' : 'bg-gray-200'} ${flippedIndices.includes(index) || matchedPairs.includes(card) ? 'scale-105 transform' : ''}`}
           onClick={() => handleCardClick(index)}
         >
           {flippedIndices.includes(index) || matchedPairs.includes(card) ? card : '?'}

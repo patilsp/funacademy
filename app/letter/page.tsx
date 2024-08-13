@@ -2,6 +2,9 @@ import React from 'react';
 import Link from "next/link"
 import MemoryGames from '@/components/MemoryGame';
 import LetterCards from '@/components/LetterCards';
+import AlphabetCarousel from '@/components/AlphabetCarousel';
+
+
 import {
   Tabs,
   TabsContent,
@@ -18,31 +21,32 @@ function Page() {
   >
     <div className="absolute"></div> 
 
-    <Tabs defaultValue="overview" className="space-y-2">
+    <Tabs defaultValue="Letter" className="space-y-2">
           <TabsList className="flex flex-wrap justify-center bg-transparent p-2">
-            <TabsTrigger value="overview">Letter</TabsTrigger>
-            <TabsTrigger value="analytics">Guess The Letter</TabsTrigger>
+            <TabsTrigger value="Letter">Letter</TabsTrigger>
+            <TabsTrigger value="Guess">Guess The Letter</TabsTrigger>
+            <TabsTrigger value="flip">Flip Letter</TabsTrigger>
           </TabsList>
-          <TabsContent value="overview" className="space-y-4">
+          <TabsContent value="Letter" className="space-y-4">
             <div className="flex justify-center gap-4">
               <LetterCards />
             </div>
           </TabsContent>
-
-          <TabsContent value="analytics" className="space-y-4">
-            <div className="">
-           
-                <div className="container relative z-10 mx-auto p-4 md:py-6 lg:p-8">                
-                 
-                    <h1 className="text-center text-3xl font-bold text-green-500">
+          <TabsContent value="Guess" className="space-y-4">            
+                <div className="container relative z-10 mx-auto p-4 md:py-6 lg:p-8">
+                    <h1 className="text-center text-3xl font-bold text-black">
                       Guess the Letter
-                    </h1>
-                 
+                    </h1>                 
                   <MemoryGames />
-                </div>
-             
-              
-            </div>
+                </div>             
+          </TabsContent>
+          <TabsContent value="flip" className="space-y-4">            
+                <div className="container relative z-10 mx-auto p-4 md:py-6 lg:p-8">
+                    <h1 className="text-center text-3xl font-bold text-black">
+                      Letter Game
+                    </h1>                 
+                  <AlphabetCarousel />
+                </div>             
           </TabsContent>
         </Tabs>
 
