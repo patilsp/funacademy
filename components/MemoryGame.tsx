@@ -31,11 +31,11 @@ const MemoryGame = () => {
   };
 
   return (
-    <div className="mb-12 grid grid-cols-3 gap-8 p-2 md:grid-cols-6 md:p-4 lg:grid-cols-8">
+    <div className="mb-12 grid grid-cols-3 gap-8 p-2 md:grid-cols-6 md:p-4">
       {cards.map((card, index) => (
         <div
           key={index}
-          className={`aspect-w-1 aspect-h-1 size-24 relative flex items-center justify-center rounded-lg text-3xl font-bold text-black transition-transform duration-300 ${flippedIndices.includes(index) || matchedPairs.includes(card) ? 'bg-green-400' : 'bg-gray-200'} ${flippedIndices.includes(index) || matchedPairs.includes(card) ? 'scale-105 transform' : ''}`}
+          className={`aspect-w-1 aspect-h-1 cursor-pointer size-24 md:size-40 relative flex items-center justify-center rounded-lg text-3xl md:text-6xl font-bold text-black transition-transform duration-300 ${flippedIndices.includes(index) || matchedPairs.includes(card) ? 'bg-green-400' : 'bg-gray-200'} ${flippedIndices.includes(index) || matchedPairs.includes(card) ? 'scale-105 transform' : ''}`}
           onClick={() => handleCardClick(index)}
         >
           {flippedIndices.includes(index) || matchedPairs.includes(card) ? card : '?'}

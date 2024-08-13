@@ -84,33 +84,33 @@ export const PulseBeams = () => {
     <div className="relative flex h-[40rem] items-center justify-center overflow-hidden antialiased">
 
 
-        <div class="stage">
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
-          <div class="layer"></div>
+        <div className="stage">
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
+          <div className="layer"></div>
         </div>
 
       <button className="group relative z-40 inline-block h-[70px] w-[300px] cursor-pointer rounded-full bg-slate-800 p-px text-xs font-semibold leading-6 text-white no-underline  shadow shadow-zinc-900">
         
         <div className="relative z-10 flex h-[70px] w-[300px] items-center justify-center  space-x-2 rounded-full bg-zinc-950 px-4 py-0.5 text-center ring-1 ring-white/10 ">
-          <Link href='/dashboard' className="inline-block bg-gradient-to-r from-neutral-300 via-neutral-600 to-neutral-300 bg-clip-text text-base text-transparent md:text-2xl">
+          <Link href='/category' className="inline-block bg-gradient-to-r from-neutral-300 via-neutral-600 to-neutral-300 bg-clip-text text-base text-transparent md:text-2xl">
             Start Learning
           </Link>
         </div>

@@ -52,9 +52,9 @@ const AlphabetCarousel = () => {
   const { letter, image, name, sound } = letters[currentIndex];
 
   return (
-    <div className="flex flex-col items-center rounded-lg border bg-white p-4">
+    <div className="flex flex-col items-center p-4">
       <motion.div
-        className="my-10 flex w-full max-w-xl flex-col items-center"
+        className="my-10 flex max-w-xl flex-col items-center md:max-w-48"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -63,11 +63,11 @@ const AlphabetCarousel = () => {
             <div className="mb-4 flex size-32 items-center justify-center rounded-lg border bg-lime-400 p-2 shadow hover:shadow-lg">
                 <h1 className="text-[40px] font-bold">{letter}</h1>            
             </div>
-            <h2 className="text-2xl font-semibold text-orange-500">{name}</h2>
+            <h2 className="text-2xl font-semibold text-blue-500">{name}</h2>
       </motion.div>
       <div className="mt-4 flex">
-        <button onClick={handlePrevious} className="rounded-lg bg-blue-500 px-4 py-2 text-white">Previous</button>
-        <button onClick={handleNext} className="ml-4 rounded-lg bg-blue-500 px-4 py-2 text-white">Next</button>
+        <button onClick={handlePrevious} className="rounded bg-violet-500 px-4 py-2 text-white">Previous</button>
+        <button onClick={handleNext} className="ml-4 rounded bg-violet-500 px-4 py-2 text-white">Next</button>
       </div>
     </div>
   );

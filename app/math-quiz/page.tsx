@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
+import { ArrowLeft } from 'lucide-react';
+
 
 export default function MathQuiz() {
   const { data: session, status } = useSession();
@@ -38,17 +40,23 @@ export default function MathQuiz() {
 
   return (
     <div className="mb-16 mt-2 flex min-h-screen flex-col p-4 md:p-6">
-      <h1 className="mb-8 text-center text-4xl font-bold text-orange-500">Math Quiz</h1>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
+        <div className="mb-5 flex w-full items-center justify-between gap-2">
+          <Link href="/category" className="flex gap-2"> 
+            <ArrowLeft className="size-8 rounded-full border bg-slate-100 p-2 hover:shadow"/> 
+            <h1 className="text-xl font-bold text-orange-500">Math Quiz</h1>
+          </Link>
+        </div>
+
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-6 md:gap-6 lg:grid-cols-6">
         {levels.map((level, index) => (
           <Link key={level} href={`/math-quiz/level/${level}`}>
             <div className="relative flex flex-col items-center justify-center rounded-lg bg-white shadow transition-transform hover:scale-105 hover:shadow-xl dark:bg-slate-900 dark:text-white">
-              <div className="flex h-48 w-full items-center justify-center overflow-hidden rounded-t-lg">
+              <div className="flex w-full items-center justify-center overflow-hidden rounded-t-lg">
                 <Image
                   src={images[index]}
-                  className="size-full object-cover"
-                  width={150}
-                  height={150}
+                  className="object-cover"
+                  width={70}
+                  height={70}
                   alt={`Level ${level} image`}
                 />
               </div>

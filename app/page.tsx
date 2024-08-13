@@ -43,12 +43,12 @@ export default function Home() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <div className="group relative z-40 mb-4 inline-block h-[70px] w-[290px] cursor-pointer rounded-full bg-slate-800 p-px text-xs font-semibold leading-6 text-white no-underline  shadow">
-          <button class="learn-more button-login">
-            <span class="circle" aria-hidden="true">
-            <span class="icon arrow"></span>
+          <button className="learn-more button-login">
+            <span className="circle" aria-hidden="true">
+            <span className="icon arrow"></span>
             </span>
             <Link href='/category'>
-              <span class="button-text">Start Learning</span>
+              <span className="button-text">Start Learning</span>
             </Link>            
           </button>
           </div>

@@ -32,7 +32,7 @@ export default function CategoryPage() {
   );
 
   return (
-    <div className="mb-10 min-h-screen p-2 md:p-4">
+    <div className="my-10 min-h-screen p-2 md:p-4">
       <div className="flex w-full items-center justify-between gap-2">
         <Link href="/" className="flex gap-2"> 
           <ArrowLeft className="size-8 rounded-full border bg-slate-100 p-2 hover:shadow"/> 
