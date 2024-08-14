@@ -45,7 +45,7 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/seo">Assessments</HoveredLink>
           </div>
         </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Products">
+        <MenuItem setActive={setActive} active={active} item="Homework">
           <div className="  grid grid-cols-2 gap-10 p-4 text-sm">
             <ProductItem
               title="Algochurn"

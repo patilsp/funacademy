@@ -36,7 +36,7 @@ export default function CategoryPage() {
       <div className="flex w-full items-center justify-between gap-2">
         <Link href="/" className="flex gap-2"> 
           <ArrowLeft className="size-8 rounded-full border bg-slate-100 p-2 hover:shadow"/> 
-          <h1 className="text-xl font-bold text-orange-500">Categories</h1>
+          <h1 className="mt-1 text-xl font-bold text-orange-500">Categories</h1>
         </Link>
         
         <div className="flex items-end">
