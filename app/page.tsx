@@ -42,15 +42,27 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <div className="group relative z-40 mb-4 inline-block h-[70px] w-[290px] cursor-pointer rounded-full bg-slate-800 p-px text-xs font-semibold leading-6 text-white no-underline  shadow">
-          <button className="learn-more button-login">
+          <div className=" cursor-pointer rounded-full bg-slate-800 p-px text-xs font-semibold leading-6  no-underline  shadow">
+          {/* <button className="learn-more button-login">
             <span className="circle" aria-hidden="true">
             <span className="icon arrow"></span>
             </span>
             <Link href='/category'>
               <span className="button-text">Start Learning</span>
             </Link>            
-          </button>
+          </button> */}
+
+
+            <button className="learn-more">
+              <span className="circle" aria-hidden="true">
+              <span className="icon arrow"></span>
+              </span>
+              <Link href='/category'>
+                <span className="button-text">Learn More</span>
+              </Link>  
+              
+            </button>
+
           </div>
         </motion.div>
       </div>

@@ -30,14 +30,27 @@ export function MobileNav() {
           variant="ghost"
           className="mr-4 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-white dark:p-1"
         >
-           <Image
+           {/* <Image
               src="/images/menu.png"
               alt="menu"
               width={45}
               height={45}
               className="rounded-md object-cover"
             />
-          <span className="sr-only">Toggle Menu</span>
+          <span className="sr-only">Toggle Menu</span> */}
+
+        <label className="flex flex-col gap-2 w-8">
+          <div
+            className="rounded-2xl h-[3px] w-1/2 bg-black duration-500 peer-checked:rotate-[225deg] origin-right peer-checked:-translate-x-[12px] peer-checked:-translate-y-[1px]"
+          ></div>
+          <div
+            className="rounded-2xl h-[3px] w-full bg-black duration-500 peer-checked:-rotate-45"
+          ></div>
+          <div
+            className="rounded-2xl h-[3px] w-1/2 bg-black duration-500 place-self-end peer-checked:rotate-[225deg] origin-left peer-checked:translate-x-[12px] peer-checked:translate-y-[1px]"
+          ></div>
+        </label>
+
         </Button>
       </SheetTrigger>
       <SheetContent side="left">

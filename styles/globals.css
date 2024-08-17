@@ -798,3 +798,491 @@ body::-webkit-scrollbar-thumb {
 .button-3d:active .button-base {
   border-radius: 10px 10px 8px 8px / 8px;
 }
+
+
+
+
+/* From Uiverse.io by Saad3092003 */ 
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  box-shadow: 0 0 5px 1px white;
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: rgba(255, 255, 255, 0.493);
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 100%;
+  box-shadow: 0 0 10px 2px white;
+}
+
+button:hover .button-text {
+  transform: translate(-1.7rem, 0);
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(8.7rem, 0);
+}
+
+button:active .circle .icon.arrow {
+  transform: translate(9.5rem, 0);
+  transition: all 0.3s;
+}
+
+button:active .circle {
+  transform: scale(0.9);
+  transition: all 0.3s;
+  box-shadow: 0 0 5px 0.5px white;
+}
+
+button:hover .button-text {
+  color: #fff;
+}
+
+button:active .button-text {
+  color: rgba(255, 255, 255, 0.459);
+}
+
+
+
+
+
+.dashboard {
+  width: calc(100% - 100px);
+  height: auto;
+  padding: 20px;
+
+
+  display: grid;
+  grid-template-columns: 32% 32% 31%;
+  grid-template-rows: max-content 70px 268.67px auto;
+  grid-auto-rows: auto;
+  gap: 25px;
+}
+
+.profile {
+  background-color: #ffc300;
+  border-radius: 30px;
+  padding: 20px;
+  height: fit-content;
+  border:4px solid black;
+  text-align: center;
+  box-shadow: 4px 4px 0px 0.5px black;
+  grid-column: 1/span 2;
+}
+
+.schedule-table {
+  grid-row: 2/span 2;
+  border:4px solid black;
+  box-shadow: 4px 4px 0px 0.5px black;
+  background-color: #ff74a2;
+  border-radius: 30px;
+  padding: 30px;
+  height: fit-content;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.schedule-table table {
+  width: 100%;
+  text-align: justify;
+}
+
+.schedule-table table td,
+.schedule-table table tr,
+.schedule-table table {
+  padding: 15px 0px;
+
+  margin: 0px;
+  border-collapse: collapse;
+  text-align: center;
+
+  border: 2px solid #ffffff55;
+}
+
+.schedule-table table tr:nth-child(even) {
+  background-color: #ffffff55;
+}
+
+.day {
+  width: 50px;
+  background-color: #ffffff7e;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.schedule-table table {
+  border-radius: 7px;
+  overflow: hidden;
+
+}
+
+.schedule-table h2 {
+  padding-bottom: 2px;
+}
+
+.exercise-table {
+  grid-row: 2/span 2;
+  background-color: #ffc300;
+  border-radius: 30px;
+  padding: 20px;
+  height: 100%;
+  text-align: center;
+border:4px solid black;
+  font-size: 1.1rem;
+
+  box-shadow: 4px 4px 0px 0.5px black;
+
+}
+
+.exercise-table li {
+  padding: 10px;
+  align-items: center;
+  display: flex;
+}
+
+.exercise-table li i {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #ffffff49;
+  margin-right: 10px;
+
+}
+
+.exercise-table li span:last-child {
+  margin-left: auto;
+}
+
+.calories {
+  display: grid;
+  grid-template-columns: repeat(3, calc(31%));
+  gap: 10px;
+  width: 100%;
+  grid-row: 1/span 2;
+
+}
+
+.calories h2 {
+  grid-column: 1/span 3;
+  background-color: #06d6a0;
+  border-radius: 20px;
+  border:4px solid black;
+  padding: 20px;
+  width: 100%;
+  height: fit-content;
+  text-align: center;
+
+  font-size: 1.1rem;
+  margin-bottom: 0px;
+
+  box-shadow: 4px 4px 0px 0.5px black;
+}
+
+
+.calories>div>p {
+  text-align: center;
+
+  padding: 10px;
+  color: white;
+
+
+}
+
+.calories>div>strong {
+
+  background-color: #00bbf9;
+  border-radius: 20px;
+  border:2px solid black;
+  padding: 20px;
+
+  box-shadow: 4px 4px 0px 0.5px black;
+  width: 100%;
+  height: fit-content;
+  text-align: center;
+
+  height: fit-content;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.activity-feed {
+  grid-column: 3/span 1;
+  grid-row: 3/span 2;
+  background-color: #f94144;
+  border:4px solid black;
+  border-radius: 20px;
+  padding: 20px;
+
+  height: 100%;
+  text-align: center;
+
+  font-size: 1.1rem;
+
+  box-shadow: 4px 4px 0px 0.5px black;
+}
+
+.activity-feed h2 {
+  padding-bottom: 20px;
+}
+
+.activity-feed ul li {
+  list-style-type: none;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 73px calc(100% - 50px);
+  grid-template-rows: auto auto;
+}
+
+.activity-feed ul li i {
+  grid-row: 1/span 2;
+  border-radius: 5px;
+  align-items: center;
+  height: 100%;
+  margin: auto;
+  font-size: 2rem;
+  margin-right: 20px;
+  background-color: #ffffff7a;
+  color: black;
+  width: 60px;
+  display: grid;
+  place-items: center;
+
+
+}
+
+.activity-feed ul li p {
+  width: 100%;
+  height: auto;
+  text-align: left;
+  padding: 5px;
+}
+
+.activity-feed ul li span {
+  font-weight: bold;
+  text-align: left;
+  font-size: 1.1rem;
+
+  padding: 5px;
+}
+
+
+.personal-bests {
+  background-color: #7ae582;
+  border-radius: 20px;
+  padding: 20px;
+  border:4px solid black;
+  height: 100%;
+  text-align: center;
+
+
+  box-shadow: 4px 4px 0px 0.5px black;
+  font-size: 1.1rem;
+}
+
+.challenges {
+  background-color: #d7ad7a;
+
+  border-radius: 20px;
+  padding: 20px;
+border:4px solid black;
+  height: 100%;
+  text-align: center;
+
+
+  box-shadow: 4px 4px 0px 0.5px black;
+  font-size: 1.1rem;
+
+}
+
+.challenges ul,
+.personal-bests ul {
+  display: flex;
+
+  gap: 5px;
+}
+
+.personal-bests ul li {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.personal-bests ul li i {
+  font-size: 1.5rem;
+  padding: 20px;
+  border-radius: 50%;
+}
+
+.personal-bests ul li p {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.challenges ul li {
+  list-style-type: none;
+  width: 33%;
+  background-color: #ffffff55;
+  padding: 15px 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+@media (max-width:1132px) {
+  .dashboard {
+    width: 100%;
+  }
+}
+
+@media (max-width:1080px) {
+  .dashboard {
+    grid-template-columns: repeat(6, calc(16.67% - 21px));
+    width: 100%;
+    margin: 0px;
+  }
+
+  .personal-bests ul,
+  .challenges ul {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .personal-bests ul li {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .profile {
+    grid-column: 1/span 6;
+  }
+
+  .calories {
+    grid-column: 3/span 2;
+    grid-row: 4/span 1;
+  }
+
+  .personal-bests {
+    grid-column: 1/span 1;
+    grid-row: 4/span 2;
+  }
+
+  .schedule-table {
+    grid-column: 1/span 3;
+  }
+
+  .exercise-table {
+    grid-column: 4/span 3;
+  }
+
+  .activity-feed {
+    grid-column: 1/span 2;
+    grid-row: 4/span 2;
+  }
+
+  .challenges {
+    grid-column: 5/7;
+    grid-row: 4/6;
+  }
+
+  .challenges ul li {
+    width: 100%;
+  }
+
+  .personal-bests {
+    grid-column: 3/5;
+    grid-row: 5/6;
+  }
+}
+
+@media (max-width:950px) {
+  .activity-feed ul li {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .activity-feed ul li i {
+    width: 100%;
+    padding: 20px 0px;
+  }
+}
+
+@media (max-width:746px) {
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+}
