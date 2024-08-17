@@ -602,3 +602,199 @@ body::-webkit-scrollbar-thumb {
   box-shadow: 3px 10px 17px 1px rgba(227, 230, 236, .74);
   border: none;
 } 
+
+
+/* KidsCalendar.css */
+
+/* General Calendar Styling */
+.react-calendar {
+  border: none;
+  width: 700px !important;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.react-calendar__month-view__weekdays {
+  font-size: 20px !important;
+}
+
+/* Calendar Tile Styling */
+.react-calendar__tile {
+  height: 75px !important;
+  width: auto;
+  /* padding: 20px 15px !important; */
+  font-size: 14px !important;
+  margin: 5px !important;
+  background: none;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #ffb3ba;
+  border-color: #ffdfba;
+  transform: scale(1.1);
+}
+
+.react-calendar__tile--active {
+  background-color: #ffdfba;
+  border-color: #ffb3ba;
+  color: #fff;
+  font-weight: bold;
+}
+
+.react-calendar__tile--now {
+  background-color: #bae1ff;
+  border-color: #baffc9;
+  color: #4b0082;
+}
+
+/* Navigation Button Styling */
+.react-calendar__navigation__label {
+  font-size: 1.5rem;
+  color: #4b0082;
+  font-weight: bold;
+}
+
+.react-calendar__navigation button {
+  color: #4b0082;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #ffdfba;
+  border-radius: 50%;
+}
+
+/* Weekday and Week Number Styling */
+.react-calendar__month-view__weekdays {
+  font-size: 1.2rem;
+  color: #4b0082;
+}
+
+.react-calendar__month-view__weekNumbers {
+  font-size: 1.2rem;
+  color: #4b0082;
+}
+
+/* Highlighting the Current Day */
+.react-calendar__tile--now {
+  background-color: #bae1ff;
+  color: #4b0082;
+  border-radius: 50%;
+}
+
+/* Making Calendar Fully Rounded */
+.react-calendar__month-view__days__day {
+  border-radius: 50%;
+}
+
+/* Media Queries for Small Screens */
+@media (max-width: 640px) {
+  .react-calendar {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 1rem;
+  }
+
+  .react-calendar__navigation__label {
+    font-size: 1.2rem;
+  }
+
+  .react-calendar__tile {
+    height: 3rem;
+  }
+
+  .react-calendar__tile--now {
+    font-weight: bold;
+  }
+}
+
+
+/* From Uiverse.io by Z4drus */ 
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.button-3d {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  border-width: 0;
+  padding: 0 8px;
+  min-width: 4em;
+  min-height: 4em;
+  box-sizing: border-box;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.button-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding: 8px 16px;
+  transform: translateY(0);
+  color: #fff;
+  background-image: linear-gradient(145deg, #6a11cb, #2575fc);
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  transition: transform 0.3s, border-radius 0.3s, background 10s;
+}
+
+.button-3d:active .button-top {
+  border-radius: 10px 10px 8px 8px / 8px;
+  transform: translateY(2px);
+  background-image: linear-gradient(145deg, #2575fc, #6a11cb);
+}
+
+.button-bottom {
+  position: absolute;
+  z-index: 1;
+  bottom: 4px;
+  left: 4px;
+  border-radius: 20px;
+  padding-top: 6px;
+  width: calc(100% - 8px);
+  height: calc(100% - 10px);
+  background-image: linear-gradient(145deg, #2575fc, #6a11cb);
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+  transition: border-radius 0.2s, padding-top 0.2s;
+}
+
+.button-base {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  left: 0;
+  border-radius: 20px;
+  width: 100%;
+  height: calc(100% - 4px);
+  background-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 2px 2px rgba(0, 0, 0, 0.25);
+  transition: border-radius 0.2s, padding-top 0.2s;
+}
+
+.button-3d:active .button-bottom {
+  border-radius: 10px 10px 8px 8px / 8px;
+  padding-top: 0;
+}
+
+.button-3d:active .button-base {
+  border-radius: 10px 10px 8px 8px / 8px;
+}

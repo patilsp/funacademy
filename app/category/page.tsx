@@ -15,13 +15,13 @@ const categories = [
     { link: "/simple-science", title: "Simple Science", image: "/images/categories/science.png" },
     { link: "/letter", title: "Letters", image: "/images/categories/abc.png" },
     { link: "/numbers", title: "Numbers", image: "/images/categories/numbers.png" },
-    { link: "/colors", title: "Colors", image: "/images/categories/colors.png" },
     { link: "/shapes", title: "Shapes", image: "/images/categories/shapes.png" },
     { link: "/drawing", title: "Drawing", image: "/images/categories/draw.png" },
     { link: "/puzzle", title: "Puzzles", image: "/images/categories/puzzle.png" },
     { link: "/Games", title: "Simple Games", image: "/images/categories/game.png" },
     { link: "/math-quiz", title: "Quiz", image: "/images/categories/quiz.png" },
-    { link: "/learning-videos", title: "Learning Videos", image: "/images/categories/book.png" }
+    { link: "/learning-videos", title: "Learning Videos", image: "/images/categories/book.png" },
+    { link: "/stories", title: "Stories", image: "/images/categories/tale.png" },
   ];
 
 export default function CategoryPage() {

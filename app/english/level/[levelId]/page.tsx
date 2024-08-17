@@ -19,7 +19,7 @@ const LevelPage = () => {
       <div>
         {/* Render words, games, or stories */}
         {content.items.map((item, index) => (
-          <div key={index} className="mb-4 p-4 border rounded-lg">
+          <div key={index} className="mb-4 rounded-lg border p-4">
             {item}
           </div>
         ))}

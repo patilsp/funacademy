@@ -41,7 +41,8 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/Events">Events</HoveredLink>
             <HoveredLink href="/games">Games</HoveredLink>
             <HoveredLink href="/course">Courses</HoveredLink>
-            <HoveredLink href="/Mentors">Mentors</HoveredLink>
+            <HoveredLink href="/mentor">Mentors</HoveredLink>
+            <HoveredLink href="/calender">Calender</HoveredLink>
             <HoveredLink href="/seo">Assessments</HoveredLink>
           </div>
         </MenuItem>
