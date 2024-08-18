@@ -43,7 +43,7 @@ const Quiz = () => {
       } else {
         setIsQuizCompleted(true);
       }
-    }, 2000); // Move to the next question after 2 seconds
+    }, 2000);
   };
 
   const totalQuestions = quiz.questions.length;
