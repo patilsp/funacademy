@@ -50,9 +50,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
               <LoginModal />
-              {/* <UserModal /> */}
                 <main className="flex-1 dark:bg-black dark:text-white">{children}</main>
-              <SiteFooter />
+              {/* <SiteFooter /> */}
             </div>
             <TailwindIndicator />
             <Toaster />

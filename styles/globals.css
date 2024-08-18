@@ -616,17 +616,17 @@ body::-webkit-scrollbar-thumb {
   font-family: 'Comic Sans MS', cursive, sans-serif;
 }
 
-.react-calendar__month-view__weekdays {
+/* .react-calendar__month-view__weekdays {
   font-size: 20px !important;
-}
+} */
 
 /* Calendar Tile Styling */
 .react-calendar__tile {
-  height: 75px !important;
+  height: 70px !important;
   width: auto;
   /* padding: 20px 15px !important; */
   font-size: 14px !important;
-  margin: 5px !important;
+  /* margin: 5px !important; */
   background: none;
   border: 2px solid transparent;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -1285,4 +1285,12 @@ border:4px solid black;
     display: flex;
     flex-direction: column;
   }
+}
+
+
+.gradient-bg {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #fe8a73 0%, #7c5efa 100%);
+  background-size: cover; /* Optional */
 }

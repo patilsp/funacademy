@@ -17,25 +17,27 @@ export const docsConfig: DocsConfig = {
       href: "/dashboard",
     },
     {
-      title: "Courses",
-      href: "/course",
+      title: "Leader Board",
+      href: "/leaderboard",
     },
     {
-      title: "Subjects",
-      href: "/customers",
+      title: "Quiz",
+      href: "/math-quiz",
     },
     {
-      title: "Classes",
-      href: "/products",
+      title: "Category",
+      href: "/category",
     },
     {
       title: "Letters",
       href: "/letter",
     },
-    {
-      title: "Math Quiz",
-      href: "/math-quiz",
+   
+     {
+      title: "Settings",
+      href: "/forms",
     },
+   
     
   ],
   sidebarNav: [
