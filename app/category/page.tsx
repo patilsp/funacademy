@@ -36,12 +36,8 @@ export default function CategoryPage() {
   return (
     <div className="bg-green-200 min-h-screen p-2 md:p-4">
       <div className="flex flex-col w-full items-center justify-between gap-2">
-        {/* <Link href="/" className="flex gap-2"> 
-          <ArrowLeft className="size-8 rounded-full border bg-slate-100 dark:bg-slate-800 p-2 hover:shadow"/> 
-          <h1 className="mt-1 text-xl font-bold text-orange-500">Categories</h1>
-        </Link> */}
-
-            <div className="">
+       
+            <div className="p-0">
             {session?.user ? (
               <div className="flex justify-start gap-2">
                 <h3 className="mt-2 text-xl font-semibold">Hello, </h3>
@@ -60,7 +56,7 @@ export default function CategoryPage() {
             </div>
 
             <div className="flex justify-center">              
-              <h1 className="mt-2 text-2xl font-bold">Let's be smart together!</h1>
+              <h1 className="mt-2 text-2xl font-bold">Lets be smart together</h1>
             </div>
             <div className="mt-2">
                 <Image
