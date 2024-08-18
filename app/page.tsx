@@ -27,12 +27,12 @@ export default function Home() {
           Become an <br />expert by learning <br /><span className="text-bold text-[#ff5722]">once </span> a day  
         </h4>
 
-        <Link href="/">
+        <Link href="/" className="mt-20">
           <Image
-            src="/images/chatting-app.png"
+            src="/images/bg-register.png"
             className="size-full object-contain "
-            width={400}
-            height={400}
+            width={500}
+            height={700}
             alt="logo image"            
           />
         </Link>
