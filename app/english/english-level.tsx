@@ -1,16 +1,17 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { useRouter } from "next/navigation";
 
 const levels = Array.from({ length: 10 }, (_, index) => index + 1);
 
 export const EnglishLevels = () => {
-//   const router = useRouter();
+  const router = useRouter();
 
-//   const handleLevelClick = (levelId: number) => {
-//     router.push(`/english/level/${levelId}`);
-//   };
+  const handleLevelClick = (levelId: number) => {
+    router.push(`/english/level/${levelId}/quiz`);
+  };
 
   return (
     <div className="space-y-4">
@@ -19,9 +20,16 @@ export const EnglishLevels = () => {
         {levels.map(levelId => (
           <div
             key={levelId}
-            className="flex cursor-pointer items-center justify-center rounded-lg border p-4 hover:bg-gray-100"
+            className="flex cursor-pointer flex-col items-center justify-center bg-white rounded-lg p-4 hover:bg-gray-100"
             onClick={() => handleLevelClick(levelId)}
           >
+            <Image
+              src={`/images/quiz/${levelId}.svg`}
+              alt={`Level ${levelId} Image`}
+              width={120}
+              height={120}
+              className="mb-2"
+            />
             <p className="text-lg font-medium">Level {levelId}</p>
           </div>
         ))}

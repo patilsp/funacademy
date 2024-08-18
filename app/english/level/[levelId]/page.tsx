@@ -1,40 +1,39 @@
 "use client";
 
-import { useRouter } from 'next/router';
 import React from 'react';
+import Image from 'next/image';
+import { useRouter } from "next/navigation";
 
-const LevelPage = () => {
+const levels = Array.from({ length: 10 }, (_, index) => index + 1);
+
+export const EnglishLevels = () => {
   const router = useRouter();
-  const { levelId } = router.query; // Get the level ID from the query parameters
 
-  // Fetch or define content based on the level ID
-  const content = getContentForLevel(Number(levelId));
+  const handleLevelClick = (levelId: number) => {
+    router.push(`/english/level/${levelId}/quiz`);
+  };
 
   return (
-    <div className="space-y-6 p-4">
-      <h2 className="text-2xl font-bold tracking-tight">Level {levelId}</h2>
-      <p className="text-muted-foreground">
-        {content.description}
-      </p>
-      <div>
-        {/* Render words, games, or stories */}
-        {content.items.map((item, index) => (
-          <div key={index} className="mb-4 rounded-lg border p-4">
-            {item}
+    <div className="space-y-4">
+      <h3 className="text-xl font-semibold">Select a Level</h3>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+        {levels.map(levelId => (
+          <div
+            key={levelId}
+            className="flex cursor-pointer flex-col items-center justify-center rounded-lg border p-4 hover:bg-gray-100"
+            onClick={() => handleLevelClick(levelId)}
+          >
+            <Image
+              src={`/images/quiz/${levelId}.svg`}
+              alt={`Level ${levelId} Image`}
+              width={100}
+              height={100}
+              className="mb-2"
+            />
+            <p className="text-lg font-medium">Level {levelId}</p>
           </div>
         ))}
       </div>
     </div>
   );
 };
-
-// Example function to get content based on level ID
-const getContentForLevel = (levelId: number) => {
-  // Replace with your actual content fetching logic
-  return {
-    description: `Content for Level ${levelId}`,
-    items: [`Item ${levelId} - 1`, `Item ${levelId} - 2`],
-  };
-};
-
-export default LevelPage;
