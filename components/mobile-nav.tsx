@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { UserIcon, HomeIcon, TrophyIcon, BadgeIcon } from "lucide-react";
+import { UserIcon, HomeIcon, TrophyIcon, Award } from "lucide-react";
 
 export function MobileNav() {
   const { data: session } = useSession();
@@ -69,7 +69,7 @@ export function MobileNav() {
                   ) : item.href === "/leaderboard" ? (
                     <TrophyIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
                   ) : item.href === "/badges" ? (
-                    <BadgeIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
+                    <Award className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
                   ) : (
                     <UserIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
                   )}
