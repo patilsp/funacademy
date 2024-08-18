@@ -14,7 +14,7 @@ export const EnglishLevels = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 ">
       <h3 className="text-xl font-semibold">Select a Level</h3>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {levels.map(levelId => (
