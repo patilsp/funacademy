@@ -35,7 +35,7 @@ export default function CategoryPage() {
     <div className="my-10 min-h-screen p-2 md:p-4">
       <div className="flex w-full items-center justify-between gap-2">
         <Link href="/" className="flex gap-2"> 
-          <ArrowLeft className="size-8 rounded-full border bg-slate-100 p-2 hover:shadow"/> 
+          <ArrowLeft className="size-8 rounded-full border bg-slate-100 dark:bg-slate-800 p-2 hover:shadow"/> 
           <h1 className="mt-1 text-xl font-bold text-orange-500">Categories</h1>
         </Link>
         
@@ -53,7 +53,7 @@ export default function CategoryPage() {
       <div className="my-10 grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-6">
         {filteredCategories.map(category => (
           <Link key={category.title} href={category.link}>
-            <div className="relative flex flex-col items-center justify-center rounded-lg border bg-white p-2 shadow transition-transform hover:scale-105 hover:shadow-md">
+            <div className="relative flex flex-col items-center justify-center rounded-lg bg-white dark:bg-slate-950 p-2 shadow-lg transition-transform hover:scale-105 hover:shadow-md">
               <Image
                 src={category.image}
                 alt={category.title}
@@ -61,7 +61,7 @@ export default function CategoryPage() {
                 height={70}
                 className="object-cover"
               />
-              <h2 className="mt-4 text-lg font-semibold text-blue-700">{category.title}</h2>
+              <h2 className="mt-4 text-lg font-semibold text-blue-700 dark:text-white">{category.title}</h2>
             </div>
           </Link>
         ))}
