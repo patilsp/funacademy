@@ -33,19 +33,21 @@ export function MobileNav() {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="flex flex-col p-0">
-        <div className="h-48 bg-gradient-to-tr from-pink-400 to-yellow-400 p-0.5">
-          <div className="size-full flex items-center justify-center">
+        <div className="bg-[#ffc854] p-0.5">
+          <div className="size-full p-4 flex items-center justify-start">
             {session?.user ? (
-              <div className="text-center">
+              <div className="flex justify-start gap-2">
                 <img
-                  className="w-24 h-24 rounded-full object-cover mx-auto"
+                  className="w-16 h-16 p-1 border-white border-2 rounded-full object-cover mx-auto"
                   src={session.user.image || "/default-avatar.png"}
                   alt={session.user.name || "User"}
                 />
-                <h2 className="text-xl font-bold text-white mt-2">
-                  {session.user.name || "Fun Kid"}
-                </h2>
-                <p className="text-white">{session.user.email}</p>
+                <div className="flex flex-col ">
+                  <h2 className="text-xl font-bold text-white mt-2">
+                    {session.user.name || "Fun Kid"}
+                  </h2>
+                  <p className="text-white">{session.user.email}</p>
+                </div>
               </div>
             ) : (
               <p className="text-white">Not logged in</p>
@@ -60,18 +62,20 @@ export function MobileNav() {
                   key={item.href}
                   href={item.href}
                   onOpenChange={setOpen}
-                  className="flex items-center rounded-md p-3 text-lg font-semibold  hover:bg-purple-700 hover:text-white"
+                  className="flex items-center rounded-lg p-3 text-lg mr-4 font-bold bg-gray-50 shadow-lg hover:bg-purple-700 hover:text-white"
                 >
                   {item.href === "/" ? (
-                    <HomeIcon className="mr-2" />
+                    <HomeIcon className="mr-2 bg-green-400 p-1 text-white rounded-full shadow" />
                   ) : item.href === "/leaderboard" ? (
-                    <TrophyIcon className="mr-2" />
+                    <TrophyIcon className="mr-2 bg-green-400 p-1 text-white rounded-full shadow" />
                   ) : item.href === "/badges" ? (
-                    <BadgeIcon className="mr-2" />
+                    <BadgeIcon className="mr-2 bg-green-400 p-1 text-white rounded-full shadow" />
                   ) : (
-                    <UserIcon className="mr-2" />
+                    <UserIcon className="mr-2 bg-green-400 p-1 text-white rounded-full shadow" />
                   )}
                   {item.title}
+
+                  
                 </MobileLink>
               ) : null
             )}
