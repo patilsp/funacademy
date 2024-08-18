@@ -46,11 +46,11 @@ export function MobileNav() {
                   <h2 className="text-xl font-bold text-white mt-2">
                     {session.user.name || "Fun Kid"}
                   </h2>
-                  <p className="text-white">{session.user.email}</p>
+                  <p className="text-white">Class 1</p>
                 </div>
               </div>
             ) : (
-              <p className="text-white">Not logged in</p>
+              <h1 className="text-white text-2xl">Fun Academy</h1>
             )}
           </div>
         </div>
@@ -62,16 +62,16 @@ export function MobileNav() {
                   key={item.href}
                   href={item.href}
                   onOpenChange={setOpen}
-                  className="flex items-center rounded-lg p-3 text-lg mr-4 font-bold bg-gray-50 shadow-lg hover:bg-purple-700 hover:text-white"
+                  className="flex items-center rounded-lg p-3 text-lg mr-4 font-bold bg-white shadow-lg hover:bg-purple-700 hover:text-white"
                 >
                   {item.href === "/" ? (
-                    <HomeIcon className="mr-2 bg-green-400 p-1 text-white rounded-full shadow" />
+                    <HomeIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
                   ) : item.href === "/leaderboard" ? (
-                    <TrophyIcon className="mr-2 bg-green-400 p-1 text-white rounded-full shadow" />
+                    <TrophyIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
                   ) : item.href === "/badges" ? (
-                    <BadgeIcon className="mr-2 bg-green-400 p-1 text-white rounded-full shadow" />
+                    <BadgeIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
                   ) : (
-                    <UserIcon className="mr-2 bg-green-400 p-1 text-white rounded-full shadow" />
+                    <UserIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
                   )}
                   {item.title}
 

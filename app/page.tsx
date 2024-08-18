@@ -6,6 +6,9 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 import { PulseBeams } from '@/components/PulseBeams';
+import { SparklesPreview } from '@/components/sparkles-preview';
+
+
 
 export default function Home() {
   return (
@@ -19,15 +22,14 @@ export default function Home() {
       {/* Content for small screens */}
       <div className="relative inset-0 flex flex-col items-center justify-center bg-[#ffc854] text-center md:hidden">
         <h1 className="mb-20 pt-10 text-base font-extrabold leading-tight md:text-6xl">
-          Welcome to <br /><span className="text-4xl text-green-500">Fun Academy</span>
+           
         </h1>
-        
+       
       
-        <h4 className="text-bold ax-w-md mx-auto mb-10 text-4xl">
-          Become an <br />expert by learning <br /><span className="text-bold text-[#ff5722]">once </span> a day  
-        </h4>
-
-        <Link href="/" className="mt-20">
+      
+        <SparklesPreview />
+        <Link href="/" className="pt-6">
+        
           <Image
             src="/images/bg-register.png"
             className="size-full object-contain "
@@ -38,7 +40,7 @@ export default function Home() {
         </Link>
 
         <motion.div
-          className="relative mb-4 mt-10 flex items-center justify-center"
+          className="relative mb-4 mt-24 flex items-center justify-center"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
