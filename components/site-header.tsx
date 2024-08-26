@@ -26,10 +26,10 @@ export function SiteHeader() {
         </div>
         <Link href="/" className="hidden md:block">
           <Image
-            src={logoImage}
-            className="object-contain "
-            width={100}
-            height={100}
+            src="/images/logo.jpg"
+            className="rounded-full bg-transparent object-contain"
+            width={50}
+            height={50}
             alt="logo image"            
           />
           

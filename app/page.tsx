@@ -21,13 +21,15 @@ export default function Home() {
 
       {/* Content for small screens */}
       <div className="relative inset-0 flex flex-col items-center justify-center bg-[#ffc854] text-center md:hidden">
-        <h1 className="mb-20 pt-10 text-base font-extrabold leading-tight md:text-6xl">
-           
-        </h1>
+      <h1 className="mt-5 text-center text-3xl font-bold text-white md:text-7xl lg:text-9xl">
+        Fun Academy
+      </h1>
        
+        <h1 className=" text-bold mx-auto my-10 max-w-md text-4xl">
+          Become an <br />expert by learning <br /><span className="text-bold text-[#ff5722]">once </span> a day  
+        </h1>
       
-      
-        <SparklesPreview />
+        {/* <SparklesPreview /> */}
         <Link href="/" className="pt-6">
         
           <Image

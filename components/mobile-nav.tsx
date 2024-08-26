@@ -25,36 +25,36 @@ export function MobileNav() {
           variant="ghost"
           className="mr-4 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
         >
-          <label className="flex flex-col gap-2 w-8">
-            <div className="rounded-2xl h-[3px] w-1/2 bg-black duration-500"></div>
-            <div className="rounded-2xl h-[3px] w-full bg-black duration-500"></div>
-            <div className="rounded-2xl h-[3px] w-1/2 bg-black duration-500 place-self-end"></div>
+          <label className="flex w-8 flex-col gap-2">
+            <div className="h-[3px] w-1/2 rounded-2xl bg-black duration-500"></div>
+            <div className="h-[3px] w-full rounded-2xl bg-black duration-500"></div>
+            <div className="h-[3px] w-1/2 place-self-end rounded-2xl bg-black duration-500"></div>
           </label>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="flex flex-col p-0">
         <div className="bg-[#ffc854] p-0.5">
-          <div className="size-full p-4 flex items-center justify-start">
+          <div className="flex size-full items-center justify-start p-4">
             {session?.user ? (
               <div className="flex justify-start gap-2">
                 <img
-                  className="w-16 h-16 p-1 border-white border-2 rounded-full object-cover mx-auto"
-                  src={session.user.image || "/default-avatar.png"}
+                  className="mx-auto size-16 rounded-full border-2 border-white object-cover p-1"
+                  src={session.user.image || "/images/avatars/02.png"}  
                   alt={session.user.name || "User"}
                 />
                 <div className="flex flex-col ">
-                  <h2 className="text-xl font-bold text-white mt-2">
+                  <h2 className="mt-2 text-xl font-bold text-white">
                     {session.user.name || "Fun Kid"}
                   </h2>
                   <p className="text-white">Class 1</p>
                 </div>
               </div>
             ) : (
-              <h1 className="text-white text-2xl">Fun Academy</h1>
+              <h1 className="text-2xl text-white">Fun Academy</h1>
             )}
           </div>
         </div>
-        <ScrollArea className="flex-1 my-4 h-[calc(100vh-12rem)] pl-6">
+        <ScrollArea className="my-4 h-[calc(100vh-12rem)] flex-1 pl-6">
           <div className="flex flex-col space-y-4">
             {docsConfig.mainNav?.map((item) =>
               item.href ? (
@@ -62,16 +62,16 @@ export function MobileNav() {
                   key={item.href}
                   href={item.href}
                   onOpenChange={setOpen}
-                  className="flex items-center rounded-lg p-3 text-lg mr-4 font-bold bg-white shadow-lg hover:bg-purple-700 hover:text-white"
+                  className="mr-4 flex items-center rounded-lg bg-white p-3 text-lg font-bold shadow-lg hover:bg-purple-700 hover:text-white"
                 >
                   {item.href === "/" ? (
-                    <HomeIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
+                    <HomeIcon className="mr-2 size-8 rounded-full bg-orange-400 p-2 text-white shadow" />
                   ) : item.href === "/leaderboard" ? (
-                    <TrophyIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
+                    <TrophyIcon className="mr-2 size-8 rounded-full bg-orange-400 p-2 text-white shadow" />
                   ) : item.href === "/badges" ? (
-                    <Award className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
+                    <Award className="mr-2 size-8 rounded-full bg-orange-400 p-2 text-white shadow" />
                   ) : (
-                    <UserIcon className="mr-2 size-8 bg-orange-400 p-2 text-white rounded-full shadow" />
+                    <UserIcon className="mr-2 size-8 rounded-full bg-orange-400 p-2 text-white shadow" />
                   )}
                   {item.title}
 
@@ -82,7 +82,7 @@ export function MobileNav() {
           </div>
         </ScrollArea>
         {/* Fixed Footer with Logout Button */}
-        <div className="p-4 bg-indigo-400 rounded sticky bottom-0">
+        <div className="sticky bottom-0 rounded bg-indigo-400 p-4">
           {session && (
             <Button
               variant="ghost"
@@ -93,13 +93,6 @@ export function MobileNav() {
             </Button>
           )}
 
-                {/* <Image
-                    src="/images/student.png"
-                    className="size-7 shrink-0 rounded-full"
-                    width={50}
-                    height={50}
-                    alt="Avatar"
-                  /> */}
         </div>
       </SheetContent>
     </Sheet>
