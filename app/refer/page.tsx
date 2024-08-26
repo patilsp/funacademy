@@ -40,8 +40,8 @@ const Refer = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="mb-2 text-xl font-extrabold">Refer Friends, Win Exciting Rewards</h1>
-        <p className="mb-4 text-lg">For every successful referral you can win exciting rewards!</p>
+        <h1 className="mb-2 text-2xl font-extrabold text-primary">Refer Friends, Win Exciting Rewards</h1>
+        <p className="mb-4 text-sm">For every successful referral you can win exciting rewards!</p>
         <div className="flex w-full justify-center gap-2">
         <Image
             src="/images/108.svg"
@@ -59,7 +59,7 @@ const Refer = () => {
        
         <div className="mt-4 flex justify-center space-x-4">
           <button className="rounded bg-green-500 px-6 py-2 text-white shadow-md transition duration-300 hover:bg-green-600">Copy</button>
-          <button className="rounded bg-yellow-500 px-6 py-2 text-white shadow-md transition duration-300 hover:bg-yellow-600">Share</button>
+          <button className="rounded bg-primary px-6 py-2 text-white shadow-md transition duration-300 ">Share</button>
         </div>
         
         {/* <button className="rounded bg-blue-700 px-4 py-2 text-white shadow-md transition duration-300 hover:bg-blue-800">Invite Friends</button> */}

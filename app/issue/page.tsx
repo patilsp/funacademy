@@ -7,7 +7,7 @@ import ComplaintForm from "@/components/ComplaintForm";
 import { useSession } from "next-auth/react";
 
 
-const CreateComplaint = () => {
+const Issue = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -34,7 +34,7 @@ const CreateComplaint = () => {
 
       if (response.ok) {
         toast.success("Issue has been created! 🔥");
-        router.push("/complains");
+        router.push("/");
       } else {
         throw new Error("Failed to create Issue");
       }
@@ -56,4 +56,4 @@ const CreateComplaint = () => {
   );
 };
 
-export default CreateComplaint;
+export default Issue;

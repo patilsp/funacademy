@@ -8,7 +8,6 @@ import { CommandMenu } from "@/components/command-menu";
 import { Icons } from "@/components/icons";
 import { MainNav } from "@/components/main-nav";
 import { MobileNav } from "@/components/mobile-nav";
-import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation'
 import { NavbarDemo } from "@/components/NavbarDemo"
@@ -39,10 +38,16 @@ export function SiteHeader() {
 
         
         <div className="flex items-center justify-end gap-2">
-          <div className="mt-2 hidden md:block">
-            <CommandMenu />
-          </div>
-          {/* <ModeToggle /> */}
+          <Link href="/subscribe" className="hidden md:block">
+            <button class="pro-button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 24">
+                <path d="m18 0 8 12 10-8-4 20H4L0 4l10 8 8-12z"></path>
+              </svg>
+              Subscribe
+            </button>
+          </Link>
+
+          <CommandMenu className="mt-2"/>
           <UserAccountNav />            
         </div>
       </div>

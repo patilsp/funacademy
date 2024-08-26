@@ -174,7 +174,7 @@ export default function Dashboard() {
 
             
             <Tabs defaultValue="overview" className="space-y-4">
-              <TabsList className="w-full flex flex-wrap justify-center m-auto items-center max-w-xl bg-gray-100">
+              <TabsList className="m-auto flex w-full max-w-xl flex-wrap items-center justify-center bg-gray-100">
                 <TabsTrigger value="overview">Dashboard</TabsTrigger>
                 <TabsTrigger value="activities">Activities</TabsTrigger>
                 <TabsTrigger value="achievements">Achievements</TabsTrigger>

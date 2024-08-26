@@ -12,7 +12,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/mode-toggle";
+
 
 const UserAccountNav = () => {
   const { data: session } = useSession();
@@ -32,13 +34,13 @@ const UserAccountNav = () => {
           <DropdownMenuTrigger className="p-1">
             <Image
               src={session.user.image || "/avatars/02.png"}
-              width={40}
-              height={40}
+              width={60}
+              height={60}
               className='rounded-full'
               alt='profile'
             />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className='h-[365px] w-[265px]' align='end'>
+          <DropdownMenuContent className='h-[340px] w-[275px]' align='end'>
             <div className='flex items-center justify-start gap-2 p-1'>
               <div className='flex flex-col leading-none'>
                 <div className='flex items-center gap-1'>
@@ -66,39 +68,33 @@ const UserAccountNav = () => {
             <DropdownMenuItem className="p-2" asChild>
               <Link href='/refer'>
                 Refer your friend
-                <DropdownMenuShortcut>⌘C</DropdownMenuShortcut>
+                <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="p-2" asChild>
-              <Link href='/create-complaint'>
+              <Link href='/issue'>
                 Report an issue
-                <DropdownMenuShortcut>⌘U</DropdownMenuShortcut>
+                <DropdownMenuShortcut>⌘I</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="p-2" asChild>
-              <Link href='/leaderboard'>
-                Leader Board
-                <DropdownMenuShortcut className="flex gap-1 rounded-sm border">Ctrl K</DropdownMenuShortcut>
-              </Link>
-            </DropdownMenuItem>
+      
             <DropdownMenuItem className="p-2" asChild>
               <Link href='/FAQ'>
                 FAQ
                 <DropdownMenuShortcut>⌘F</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="p-2" asChild>
-              <Link href='/contact-us'>
-                Contact Us
-                <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
-              </Link>
-            </DropdownMenuItem>
+         
             <DropdownMenuItem className="p-2" asChild>
               <Link href='/forms'>
                 Profile Settings
-                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
+            <DropdownMenuItem className="p-2" asChild>
+              <ModeToggle />
+            </DropdownMenuItem>
+
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className='h-8 w-full cursor-pointer bg-black text-center font-bold text-white dark:bg-white dark:text-slate-700'

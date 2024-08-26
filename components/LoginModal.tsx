@@ -45,8 +45,8 @@ const LoginModal = () => {
   if (status === "authenticated") return null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
-      <DialogContent className="border-0">
+    <Dialog className="w-full max-w-full rounded-none border-0 p-0" open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
+      <DialogContent className="w-full max-w-full rounded-none border-0 p-0">
         <div className="relative h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
           <Link
             href="/examples/authentication"
@@ -106,9 +106,9 @@ const LoginModal = () => {
                   className="rounded-md object-cover"
                 />
                 </motion.div>
-                <Button onClick={() => signIn()} className="mt-10 w-full rounded border-2 border-purple-600 text-white">
+                <button onClick={() => signIn()} className="btn-primary mt-10 h-12 w-full rounded   text-white">
                     Sign In with Google
-                  </Button>
+                  </button>
                 <div className="relative my-6">
                   <div className="absolute inset-0 flex items-center">
                     <span className="w-full border-t border-dashed border-purple-600" />
