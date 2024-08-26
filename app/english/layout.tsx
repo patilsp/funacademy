@@ -40,7 +40,7 @@ interface EnglishLayoutProps {
 export default function EnglishLayout({ children }: EnglishLayoutProps) {
   return (
     <>
-      <div className="space-y-6 p-2 md:p-4 pb-16 sm:mb-20 md:mb-1 md:block">        
+      <div className="space-y-6 p-2 pb-16 sm:mb-20 md:mb-1 md:block md:p-4">        
         <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
           {/* <aside className="-mx-4 lg:w-1/5">
             <SidebarNav items={sidebarNavItems} />
