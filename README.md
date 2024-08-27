@@ -3,7 +3,7 @@
 
 
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+Welcome to FunAcademy – the ultimate educational app designed to make learning a joyous adventure for children aged 1 to 7. At FunAcademy, we combine engaging stories, interactive games, and animated content to spark curiosity and foster a love for learning. Our platform offers a rich variety of educational materials that cater to young minds, helping them develop essential skills while having fun. With FunAcademy, learning becomes an exciting journey of discovery and play!
 
 ## Usage
 
