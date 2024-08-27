@@ -1440,3 +1440,67 @@ button:active .button-text {
 }
 
 
+
+
+#legend {
+  padding:10px;
+}
+#legend div {
+  display:inline-block;
+  padding:5px;
+  margin:2px;
+ 
+}
+#kingdom {
+  display:grid;
+  grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
+  grid-gap: 1.5px;
+   
+}
+#kingdom div {
+  display:grid;
+  place-items: center;
+  border-radius: 5px;
+  margin: 5px;
+}
+div.description {
+  padding-left:2px;
+  padding-right:2px;
+  padding-bottom:2px;
+}
+.icon {
+  font-size : clamp(1rem, 3rem, 10vw);
+}
+.mammal {
+  background-color:#b8094e;
+}
+.fish {
+  background-color:#5952e7;
+}
+.reptile {
+  background-color:#f68b1f;
+}
+.amphibian {
+  background-color:#b68c17;
+}
+.dinosaur {
+  background-color:#f56025;
+}
+.bird {
+  background-color:#f3144a;
+}
+.crustacean {
+  background-color:#1e87c9;
+}
+.mollusk {
+  background-color:#22698e;
+}
+.insect {
+  background-color:#62b641;
+}
+.arachnid {
+  background-color:#4d8a56;
+}
+.protozoa {
+  background-color:purple;
+}

@@ -106,7 +106,7 @@ const LoginModal = () => {
                   className="rounded-md object-cover"
                 />
                 </motion.div>
-                <button onClick={() => signIn()} className="btn-primary mt-10 h-12 w-full rounded   text-white">
+                <button onClick={() => signIn()} className="btn-primary mt-10 w-full rounded text-xl font-bold">
                     Sign In with Google
                   </button>
                 <div className="relative my-6">

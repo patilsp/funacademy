@@ -79,7 +79,7 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      <div className="my-10 grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-6 lg:grid-cols-6">
+      <div className="my-10 grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
         {filteredCategories.map(category => (
           <Link key={category.title} href={category.link}>
             <div className="relative flex flex-row items-center justify-start rounded-xl bg-white p-2 shadow-lg transition-transform hover:scale-105 hover:shadow-md dark:bg-slate-950">

@@ -50,13 +50,13 @@ const Quiz = () => {
   const percentage = Math.round((correctAnswers / totalQuestions) * 100);
 
   return (
-    <div className="space-y-2 p-2 md:p-6 w-full max-h-screen max-w-xl text-center m-auto">
-      <div className="flex justify-between gap-2 items-center">
+    <div className="m-auto max-h-screen w-full max-w-xl space-y-2 p-2 text-center md:p-6">
+      <div className="flex items-center justify-between gap-2">
         <Link href="/english" className="flex gap-2">
-          <ArrowLeft className="size-8 rounded-full border bg-slate-100 dark:bg-slate-800 p-2 hover:shadow"/>
+          <ArrowLeft className="size-8 rounded-full border bg-slate-100 p-2 hover:shadow dark:bg-slate-800"/>
         </Link>
         <h1 className="text-xl font-bold text-orange-500">Quiz - <span className="text-black">Level {levelId}</span></h1>
-        <h2 className="text-base font-bold text-green-400 bg-slate-100 px-4 rounded-lg tracking-tight">{quiz.difficulty}</h2>
+        <h2 className="rounded-lg bg-slate-100 px-5 text-base font-bold tracking-tight text-green-400">{quiz.difficulty}</h2>
       </div>
 
       {!isQuizCompleted ? (

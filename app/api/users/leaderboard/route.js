@@ -13,7 +13,7 @@ export const GET = async () => {
 
     return NextResponse.json(results, { status: 200 });
   } catch (error) {
-    console.error('Error fetching leaderboard:', error);
-    return NextResponse.json({ message: 'Failed to fetch leaderboard', error: error.message }, { status: 500 });
+    console.error('Error fetching leader board:', error);
+    return NextResponse.json({ message: 'Failed to fetch leader board', error: error.message }, { status: 500 });
   }
 };

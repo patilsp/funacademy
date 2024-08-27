@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,6 +14,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
+import { ArrowLeft, BookCheck, CircleX } from 'lucide-react';
+
 
 // Import all the number learning components
 import NumberGrid from "@/app/numbers/components/number-grid";
@@ -20,21 +23,32 @@ import NumberMatchingGame from "@/app/numbers/components/number-matching-game";
 import NumberSequencePuzzle from "@/app/numbers/components/number-sequence-puzzle";
 import AudioRecognitionQuiz from "@/app/numbers/components/audio-recognition-quiz";
 import NumberWritingPractice from "@/app/numbers/components/number-writing-practice";
-import TimedNumberQuiz from "@/app/numbers/components/timed-number-quiz";
+import NumberQuiz from "@/app/numbers/components/number-quiz";
 
 const Numbers = () => {
   return (
     <div className="space-y-6 p-2 pb-16 sm:mb-20 md:mb-1 md:block md:p-4">
       <div className="flex flex-col justify-center space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
+        
+      
         <Tabs defaultValue="numbers" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 px-1">
-            <TabsTrigger value="numbers">Numbers</TabsTrigger>
-            <TabsTrigger value="matching">Matching </TabsTrigger>
-            <TabsTrigger value="sequence">Sequence</TabsTrigger>
-            <TabsTrigger value="audio">Audio Quiz</TabsTrigger>
-            {/* <TabsTrigger value="writing">Writing Practice</TabsTrigger> */}
-            <TabsTrigger value="timed">Timed Quiz</TabsTrigger>
-          </TabsList>
+        <div className="flex items-center justify-between gap-2">
+            <Link href="/category" className="flex gap-2">
+              <ArrowLeft className="size-8 rounded-full border bg-slate-100 p-2 hover:shadow dark:bg-slate-800"/>
+            </Link>
+
+            <TabsList className="flex w-full justify-center gap-2 space-x-2 px-1">
+              <TabsTrigger value="numbers">Learn Numbers</TabsTrigger>
+              {/* <TabsTrigger value="matching">Matching </TabsTrigger>
+              <TabsTrigger value="sequence">Sequence</TabsTrigger>
+              <TabsTrigger value="audio">Audio Quiz</TabsTrigger> */}
+              {/* <TabsTrigger value="writing">Writing Practice</TabsTrigger> */}
+              <TabsTrigger value="timed">Number Quiz</TabsTrigger>
+            </TabsList>
+
+              {/* <BookCheck className="size-8 rounded-full border bg-red-200 p-2 hover:shadow dark:bg-slate-800"/> */}
+            </div>
+
 
           {/* Tab Content for Numbers */}
           <TabsContent value="numbers" className="w-full">
@@ -121,7 +135,7 @@ const Numbers = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
-                <TimedNumberQuiz />
+                <NumberQuiz />
               </CardContent>
             </Card>
           </TabsContent>
