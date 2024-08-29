@@ -43,7 +43,7 @@ export default function MathQuiz() {
         <div className="mb-5 flex w-full items-center justify-between gap-2">
           <Link href="/category" className="flex gap-2"> 
             <ArrowLeft className="size-8 rounded-full border bg-slate-100 p-2 hover:shadow"/> 
-            <h1 className="text-xl font-bold text-orange-500">Math Quiz</h1>
+            <h1 className="text-xl font-bold text-orange-500">🧑‍🎓 Math Quiz 📚</h1>
           </Link>
         </div>
 
