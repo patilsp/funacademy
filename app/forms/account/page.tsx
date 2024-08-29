@@ -1,5 +1,3 @@
-import { Separator } from "@/components/ui/separator"
-import { AccountForm } from "@/app/forms/account/account-form"
 
 export default function SettingsAccountPage() {
   return (
@@ -11,8 +9,6 @@ export default function SettingsAccountPage() {
           timezone.
         </p>
       </div>
-      <Separator />
-      <AccountForm />
     </div>
   )
 }
