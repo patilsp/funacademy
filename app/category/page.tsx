@@ -23,6 +23,7 @@ const categories = [
     { link: "/math-quiz", title: "Quiz", image: "/images/categories/quiz.png" },
     { link: "/learning-videos", title: "Learning Videos", image: "/images/categories/book.png" },
     { link: "/stories", title: "Stories", image: "/images/categories/tale.png" },
+    { link: "/mathematics", title: "Mathematics", image: "/images/categories/numbers.png" },
   ];
 
 export default function CategoryPage() {

@@ -35,46 +35,38 @@ const Skeleton = () => (
 );
 const items = [
   {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
+    title: "Ms. Emily",
+    description: "Expert in early childhood education, focusing on interactive and engaging learning techniques for young children.",
     header: <Skeleton />,
-    icon: <ArrowUpRight className="size-4 text-neutral-500" />,
   },
   {
-    title: "The Digital Revolution",
-    description: "Dive into the transformative power of technology.",
+    title: "Mr. John",
+    description: "Mathematics guru who makes learning numbers fun with innovative teaching methods and practical examples.",
     header: <Skeleton />,
-    icon: <ArrowUpRight className="size-4 text-neutral-500" />,
   },
   {
-    title: "The Art of Design",
-    description: "Discover the beauty of thoughtful and functional design.",
+    title: "Dr. Sara",
+    description: "Science enthusiast who brings experiments and scientific concepts to life, making science exciting and understandable.",
     header: <Skeleton />,
-    icon: <ArrowUpRight className="size-4 text-neutral-500" />,
   },
   {
-    title: "The Power of Communication",
-    description:
-      "Understand the impact of effective communication in our lives.",
+    title: "Ms. Nina",
+    description: "Language arts expert who excels in creative writing and storytelling, helping children develop their language skills.",
     header: <Skeleton />,
-    icon: <ArrowUpRight className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "The Pursuit of Knowledge",
-    description: "Join the quest for understanding and enlightenment.",
+    title: "Mr. Alex",
+    description: "Art mentor who inspires creativity through various artistic mediums, encouraging self-expression and artistic skills.",
     header: <Skeleton />,
-    icon: <ArrowUpRight className="size-4 text-neutral-500" />,
   },
   {
-    title: "The Joy of Creation",
-    description: "Experience the thrill of bringing ideas to life.",
+    title: "Ms. Lily",
+    description: "History specialist who engages students with fascinating stories of the past, making history relatable and intriguing.",
     header: <Skeleton />,
-    icon: <ArrowUpRight className="size-4 text-neutral-500" />,
   },
   {
-    title: "The Spirit of Adventure",
-    description: "Embark on exciting journeys and thrilling discoveries.",
+    title: "Mr. Tom",
+    description: "Technology tutor who introduces kids to coding and digital skills through fun and interactive projects and activities.",
     header: <Skeleton />,
-    icon: <ArrowUpRight className="size-4 text-neutral-500" />,
   },
 ];

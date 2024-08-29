@@ -13,13 +13,12 @@ import { SparklesPreview } from '@/components/sparkles-preview';
 export default function Home() {
   return (
       <div className="relative z-20 h-screen bg-[#ffc854]">
-      {/* Overlay */}
+      
       <div className="absolute"></div>
       <div className="absolute inset-0 hidden md:block">
         <PulseBeams />
       </div>
 
-      {/* Content for small screens */}
       <div className="relative inset-0 flex flex-col items-center justify-center bg-[#ffc854] text-center md:hidden">
       <h1 className="mt-5 text-center text-3xl font-bold text-white md:text-7xl lg:text-9xl">
         Fun Academy
@@ -29,8 +28,7 @@ export default function Home() {
           Become an <br />expert by learning <br /><span className="text-bold text-[#ff5722]">once </span> a day  
         </h1>
       
-        {/* <SparklesPreview /> */}
-        <Link href="/" className="pt-6">
+        <Link href="/" className="my-10 pt-6">
         
           <Image
             src="/images/bg-register.png"
@@ -56,17 +54,6 @@ export default function Home() {
               <span className="button-text">Start Learning</span>
             </Link>            
           </button>
-
-
-            {/* <button className="learn-more">
-              <span className="circle" aria-hidden="true">
-              <span className="icon arrow"></span>
-              </span>
-              <Link href='/category'>
-                <span className="button-text">Start Learning</span>
-              </Link>  
-              
-            </button> */}
 
           </div>
         </motion.div>

@@ -652,14 +652,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 
-.pro-button {
+.btn-subscribe{
   width: fit-content;
   display: flex;
-  padding: 0.8em 1.1em;
+  padding: 0.5em 1.1em;
   gap: 0.4rem;
   border: none;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 5px;
   cursor: pointer;
   text-shadow: 2px 2px 3px rgb(136 0 136 / 50%);
   background: linear-gradient(
@@ -681,20 +681,20 @@ body::-webkit-scrollbar-thumb {
   color: #fff;
 }
 
-.pro-button:hover {
+.btn-subscribe:hover {
   background-size: 320%;
   background-position: right center;
 }
 
-.pro-button:hover svg {
+/* .btn-subscribe:hover svg {
   fill: #fff;
-}
+} */
 
-.pro-button svg {
+/* .btn-subscribe svg {
   width: 23px;
   fill: #f09f33;
   transition: 0.3s ease;
-}
+} */
 
 
 
@@ -1504,3 +1504,20 @@ div.description {
 .protozoa {
   background-color:purple;
 }
+
+
+
+
+
+svg {
+    height:150px;
+    width:150px;
+}
+  .box {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:100%;
+    text-align:center;
+  }

@@ -1,9 +1,9 @@
-import React from 'react'
+import Pricing from "@/components/Pricing";
 
 function subscribe() {
   return (
     <div>
-      <h1>Unlock the full learning experience </h1>
+      <Pricing />
     </div>
   )
 }

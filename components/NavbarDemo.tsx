@@ -42,38 +42,38 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/games">Games</HoveredLink>
             <HoveredLink href="/course">Courses</HoveredLink>
             <HoveredLink href="/mentor">Mentors</HoveredLink>
-            <HoveredLink href="/calender">Calender</HoveredLink>
-            <HoveredLink href="/seo">Assessments</HoveredLink>
+            <HoveredLink href="/sports">Sports</HoveredLink>
           </div>
         </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Homework">
-          <div className="  grid grid-cols-2 gap-10 p-4 text-sm">
+        <MenuItem setActive={setActive} active={active} item="Subjects">
+          <div className="grid grid-cols-2 gap-10 p-2 text-sm">
             <ProductItem
-              title="Algochurn"
-              href="https://algochurn.com"
-              src="https://assets.aceternity.com/demos/algochurn.webp"
-              description="Prepare for tech interviews like never before."
+              title="Mathematics"
+              href="/mathematics"
+              src="/images/subjects/math.png"
+              description="Learn addition, subtraction, multiplication, and division with interactive exercises."
             />
             <ProductItem
-              title="Tailwind Master Kit"
-              href="https://tailwindmasterkit.com"
-              src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-              description="Production ready Tailwind css components for your next project"
+              title="Science"
+              href="/science"
+              src="/images/subjects/books.png"
+              description="From biology to physics, engage in experiments and learn about the universe around you."
             />
             <ProductItem
-              title="Moonbeam"
-              href="https://gomoonbeam.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-              description="Never write from scratch again. Go from idea to blog in minutes."
+              title="English"
+              href="/english"
+              src="/images/subjects/english.png"
+              description="Enjoy stories, poems, and creative writing exercises designed for young learners."
             />
             <ProductItem
-              title="Rogue"
-              href="https://userogue.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
-              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+              title="History"
+              href="/history"
+              src="/images/subjects/history.png"
+              description="important historical events, and notable figures through engaging lessons."
             />
           </div>
         </MenuItem>
+
         <MenuItem setActive={setActive} active={active} item="Classroom">
           <div className="flex flex-col space-y-4 p-1 px-2 text-sm">
             <HoveredLink href="/hobby">Class 1</HoveredLink>
@@ -85,7 +85,7 @@ function Navbar({ className }: { className?: string }) {
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="Quiz">
           <div className="flex flex-col space-y-4 p-1 px-2 text-sm">
-            <HoveredLink href="/math-quiz">Math Quiz</HoveredLink>
+            <HoveredLink href="/math-quiz"> Quiz 1</HoveredLink>
             <HoveredLink href="/individual">Quiz 2</HoveredLink>
             <HoveredLink href="/team">Quiz 3</HoveredLink>
             <HoveredLink href="/enterprise">Quiz 4</HoveredLink>
