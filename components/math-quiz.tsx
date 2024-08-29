@@ -98,9 +98,9 @@ export default function MathQuiz({ levelId, userId }: GamesProps) {
     <div className="mb-16 flex flex-col items-center justify-center space-y-6 p-4">
 
       <div className="flex w-full items-center justify-between gap-2">
-        <Link href="/math-quiz" className="rounded-full bg-white"> <ArrowLeft className="size-8 p-2"/> </Link>
+        <Link href="/math-quiz" className="rounded-full bg-gray-100"> <ArrowLeft className="size-8 p-2"/> </Link>
         <h1 className="text-xl font-bold text-blue-700">Math Quiz - Level {levelId}</h1>
-        <Link href="#" className="rounded-full bg-white"> <Bookmark className="size-8 p-2"/> </Link>
+        <Link href="#" className="rounded-full bg-gray-100"> <Bookmark className="size-8 p-2"/> </Link>
       </div>
 
       <motion.div
@@ -110,13 +110,13 @@ export default function MathQuiz({ levelId, userId }: GamesProps) {
         className="w-full max-w-lg p-0 md:p-6">
         {!showResults ? (
           <div className="flex flex-col items-center space-y-4">
-            <h2 className="my-4 space-x-1 text-2xl font-semibold text-black">{questions[currentQuestion]?.question}</h2>
-            <div className="grid grid-cols-2 items-center gap-6">
+            <h2 className="my-10 space-x-2 text-4xl font-semibold text-black">{questions[currentQuestion]?.question}</h2>
+            <div className="grid grid-cols-1 items-center gap-6">
               {questions[currentQuestion]?.options.map((option, index) => (
                 <button
                   key={index}
                   onClick={() => handleOptionClick(option)}
-                  className={`w-28 rounded-lg border p-4 text-xl shadow-md transition-transform hover:scale-105 ${getOptionClass(option)}`}
+                  className={`w-60 rounded-lg border p-1 text-xl shadow-md transition-transform hover:scale-105 ${getOptionClass(option)}`}
                 >
                   {option}
                 </button>
