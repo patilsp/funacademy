@@ -5,7 +5,7 @@ export default function EnglishPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Learn English</h2>
+        <h2 className="text-2xl font-bold tracking-tight">English Quiz</h2>
         <p className="text-muted-foreground">
           Explore fun ways to learn letters, words, and sentences!
         </p>

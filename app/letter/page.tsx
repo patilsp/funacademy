@@ -3,6 +3,7 @@ import Link from "next/link";
 import MemoryGames from '@/components/MemoryGame';
 import LetterCards from '@/components/LetterCards';
 import AlphabetCarousel from '@/components/AlphabetCarousel';
+import { ArrowLeft, Bookmark, CheckCircle, XCircle } from 'lucide-react';
 
 import {
   Tabs,
@@ -14,21 +15,20 @@ import {
 function Page() {
   return (
     <div className="relative min-h-screen p-0 md:p-4">
-      <Tabs defaultValue="Letter" className="space-y-2">
+
+      
+      <Tabs defaultValue="Letter" className="w-full p-1">
         <TabsList
           className="scrollbar-hide mb-4 flex flex-wrap justify-center overflow-auto bg-transparent"
         >
-          <TabsTrigger
+
+      <div className="flex w-full items-center justify-between gap-2">
+        <Link href="/category" className="rounded-full bg-gray-100"> <ArrowLeft className="size-8 p-2"/> </Link>
+        <TabsTrigger
             value="Letter"
             className="text-sm font-semibold md:px-4"
           >
             Letter
-          </TabsTrigger>
-          <TabsTrigger
-            value="Guess"
-            className="text-sm font-semibold md:px-4"
-          >
-            Guess The Letter
           </TabsTrigger>
           <TabsTrigger
             value="flip"
@@ -36,6 +36,18 @@ function Page() {
           >
             Worlds
           </TabsTrigger>
+          <TabsTrigger
+            value="Guess"
+            className="text-sm font-semibold md:px-4"
+          >
+            Guess The Letter
+          </TabsTrigger>
+       
+        {/* <Link href="#" className="rounded-full bg-gray-100"> <Bookmark className="size-8 p-2"/> </Link> */}
+      </div>
+
+
+    
         </TabsList>
 
         <TabsContent value="Letter" className="space-y-4">

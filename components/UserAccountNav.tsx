@@ -31,7 +31,7 @@ const UserAccountNav = () => {
     <>
       {session?.user ? (
         <DropdownMenu className="p-1">
-          <DropdownMenuTrigger className="p-1">
+          <DropdownMenuTrigger>
             <Image
               src={session.user.image || "/avatars/02.png"}
               width={60}
@@ -119,7 +119,7 @@ const UserAccountNav = () => {
                 type='button'
                 key={provider.name}
                 onClick={() => signIn(provider.id)}
-                className='black_btn'
+                className='btn btn-primary'
               >
                 Sign In
               </Button>

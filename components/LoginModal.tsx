@@ -98,11 +98,11 @@ const LoginModal = () => {
                   transition={{ duration: 0.5 }}
                 >
                 <Image
-                  src="/images/login.svg"
+                  src="/images/coming-soon.png"
                   alt="Kids Learning"
                   layout="intrinsic"
-                  width={200}
-                  height={200}
+                  width={300}
+                  height={500}
                   className="rounded-md object-cover"
                 />
                 </motion.div>

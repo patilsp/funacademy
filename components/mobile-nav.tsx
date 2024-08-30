@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { UserIcon, HomeIcon, TrophyIcon, Award } from "lucide-react";
+import { UserIcon, HomeIcon, TrophyIcon, Award , AlignJustify } from "lucide-react";
 
 export function MobileNav() {
   const { data: session } = useSession();
@@ -21,15 +21,11 @@ export function MobileNav() {
   return (
     <Sheet className="bg-gray-200" open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button
+      <Button
           variant="ghost"
-          className="mr-4 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="mr-4 px-0 text-base hover:bg-transparent focus-visible:bg-transparent"
         >
-          <label className="flex w-8 flex-col gap-2">
-            <div className="h-[3px] w-1/2 rounded-2xl bg-black duration-500"></div>
-            <div className="h-[3px] w-full rounded-2xl bg-black duration-500"></div>
-            <div className="h-[3px] w-1/2 place-self-end rounded-2xl bg-black duration-500"></div>
-          </label>
+          <AlignJustify className="size-7 rounded border bg-transparent p-1 shadow hover:bg-gray-200" />
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="flex flex-col p-0">
@@ -54,7 +50,7 @@ export function MobileNav() {
             )}
           </div>
         </div>
-        <ScrollArea className="my-4 h-[calc(100vh-12rem)] flex-1 pl-6">
+        <ScrollArea className="my-4 h-[calc(100vh-12rem)] flex-1 pl-1">
           <div className="flex flex-col space-y-4">
             {docsConfig.mainNav?.map((item) =>
               item.href ? (
@@ -62,7 +58,7 @@ export function MobileNav() {
                   key={item.href}
                   href={item.href}
                   onOpenChange={setOpen}
-                  className="mr-4 flex items-center rounded-lg bg-white p-3 text-lg font-bold shadow-lg hover:bg-purple-700 hover:text-white"
+                  className="mr-4 flex items-center rounded p-2 text-lg font-bold hover:bg-purple-700 hover:text-white"
                 >
                   {item.href === "/" ? (
                     <HomeIcon className="mr-2 size-8 rounded-full bg-orange-400 p-2 text-white shadow" />

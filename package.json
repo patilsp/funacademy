@@ -78,7 +78,8 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.167.1",
     "twilio": "^5.2.2",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",

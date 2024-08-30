@@ -76,7 +76,7 @@ function Games() {
   return (
     <div className="container mx-auto p-4">
       <div className="mb-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <h1 className="mb-6 flex items-center text-3xl font-bold">       
+        <h1 className="text1 flex items-center text-3xl font-bold">       
           Play Games
         </h1>
         <div className="flex justify-between gap-2"> 
@@ -96,7 +96,7 @@ function Games() {
               id="category-select"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full rounded-md border p-2"
+              className="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
             >
               {categories.map(category => (
                 <option key={category} value={category}>{category}</option>
@@ -116,14 +116,14 @@ function Games() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="mb-4">{game.description}</p>
+              <p className="my-5 mb-4 text-sm md:text-base">{game.description}</p>
               <div className="flex items-center justify-between">
                 <div>
                   <Badge variant="outline" className="mr-2">Age: {game.ageRange}</Badge>
                   <Badge variant="outline">{game.difficulty}</Badge>
                 </div>
                 <Button size="sm">
-                  <Star className="mr-2 size-4" />
+                  <Star className="mr-2 size-4 hover:fill-primary" />
                   Play Now
                 </Button>
               </div>
@@ -133,7 +133,7 @@ function Games() {
       </div>
 
       {filteredGames.length === 0 && (
-        <p className="text-center text-muted-foreground mt-8">No games found. Try a different search term or category.</p>
+        <p className="mt-8 text-center text-muted-foreground">No games found. Try a different search term or category.</p>
       )}
     </div>
   )

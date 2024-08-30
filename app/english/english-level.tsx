@@ -20,7 +20,7 @@ export const EnglishLevels = () => {
         {levels.map(levelId => (
           <div
             key={levelId}
-            className="flex cursor-pointer flex-col items-center justify-center rounded-lg bg-white p-4 hover:bg-gray-100"
+            className="flex cursor-pointer flex-col items-center justify-center rounded-lg bg-white border p-4 hover:bg-gray-100"
             onClick={() => handleLevelClick(levelId)}
           >
             <Image
