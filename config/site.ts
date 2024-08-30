@@ -29,6 +29,14 @@ export const siteConfig = {
       title: "Letters",
       href: "/letter",
     },
+    {
+      title: "Sports",
+      href: "/sports",
+    },
+    {
+      title: "Contact Us",
+      href: "/contact-us",
+    },
      {
       title: "Settings",
       href: "/forms",

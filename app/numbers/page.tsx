@@ -19,10 +19,7 @@ import { ArrowLeft, BookCheck, CircleX } from 'lucide-react';
 
 // Import all the number learning components
 import NumberGrid from "@/app/numbers/components/number-grid";
-import NumberMatchingGame from "@/app/numbers/components/number-matching-game";
-import NumberSequencePuzzle from "@/app/numbers/components/number-sequence-puzzle";
-import AudioRecognitionQuiz from "@/app/numbers/components/audio-recognition-quiz";
-import NumberWritingPractice from "@/app/numbers/components/number-writing-practice";
+import NumberTable from "@/app/numbers/components/number-table";
 import NumberQuiz from "@/app/numbers/components/number-quiz";
 
 const Numbers = () => {
@@ -37,13 +34,10 @@ const Numbers = () => {
               <ArrowLeft className="size-8 rounded-full border bg-slate-100 p-2 hover:shadow dark:bg-slate-800"/>
             </Link>
 
-            <TabsList className="flex w-full justify-center gap-2 space-x-2 px-1">
-              <TabsTrigger value="numbers">Learn Numbers</TabsTrigger>
-              {/* <TabsTrigger value="matching">Matching </TabsTrigger>
-              <TabsTrigger value="sequence">Sequence</TabsTrigger>
-              <TabsTrigger value="audio">Audio Quiz</TabsTrigger> */}
-              {/* <TabsTrigger value="writing">Writing Practice</TabsTrigger> */}
-              <TabsTrigger value="timed">Number Quiz</TabsTrigger>
+            <TabsList className="flex w-full justify-center gap-2 px-1">
+              <TabsTrigger value="numbers">Numbers</TabsTrigger>
+              <TabsTrigger value="numbers-table">Numbers Table </TabsTrigger>
+              <TabsTrigger value="number-quiz">Number Quiz</TabsTrigger>
             </TabsList>
 
               {/* <BookCheck className="size-8 rounded-full border bg-red-200 p-2 hover:shadow dark:bg-slate-800"/> */}
@@ -54,7 +48,7 @@ const Numbers = () => {
           <TabsContent value="numbers" className="w-full">
             <Card className="w-full">
               <CardHeader className="text-center">
-                <CardTitle>Numbers</CardTitle>
+                <CardTitle className="text-xl">Learn Numbers</CardTitle>
                 <CardDescription>
                   Explore and learn numbers by clicking on them.
                 </CardDescription>
@@ -66,70 +60,26 @@ const Numbers = () => {
           </TabsContent>
 
           {/* Tab Content for Matching Game */}
-          <TabsContent value="matching" className="w-full">
+          <TabsContent value="numbers-table" className="w-full">
             <Card className="w-full">
               <CardHeader className="text-center">
-                <CardTitle>Number Matching Game</CardTitle>
+                <CardTitle className="text-xl">Number Table</CardTitle>
                 <CardDescription>
-                  Match numbers with their corresponding images.
+                  Multiplication Table (1 to 10)
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
-                <NumberMatchingGame />
+                <NumberTable />
               </CardContent>
             </Card>
           </TabsContent>
 
-          {/* Tab Content for Sequence Puzzle */}
-          <TabsContent value="sequence" className="w-full">
-            <Card className="w-full">
-              <CardHeader className="text-center">
-                <CardTitle>Number Sequence Puzzle</CardTitle>
-                <CardDescription>
-                  Fill in the missing numbers in the sequence.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <NumberSequencePuzzle />
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Tab Content for Audio Quiz */}
-          <TabsContent value="audio" className="w-full">
-            <Card className="w-full">
-              <CardHeader className="text-center">
-                <CardTitle>Audio Recognition Quiz</CardTitle>
-                <CardDescription>
-                  Recognize numbers based on audio cues.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <AudioRecognitionQuiz />
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Tab Content for Writing Practice */}
-          <TabsContent value="writing" className="w-full">
-            <Card className="w-full">
-              <CardHeader className="text-center">
-                <CardTitle>Number Writing Practice</CardTitle>
-                <CardDescription>
-                  Practice writing numbers.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <NumberWritingPractice />
-              </CardContent>
-            </Card>
-          </TabsContent>
-
+         
           {/* Tab Content for Timed Quiz */}
-          <TabsContent value="timed" className="w-full">
+          <TabsContent value="number-quiz" className="w-full">
             <Card className="w-full">
               <CardHeader className="text-center">
-                <CardTitle>Timed Number Quiz</CardTitle>
+                <CardTitle className="text-xl">Number Quiz</CardTitle>
                 <CardDescription>
                   Select the correct number under time pressure.
                 </CardDescription>

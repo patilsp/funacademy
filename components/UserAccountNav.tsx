@@ -34,8 +34,8 @@ const UserAccountNav = () => {
           <DropdownMenuTrigger>
             <Image
               src={session.user.image || "/avatars/02.png"}
-              width={60}
-              height={60}
+              width={65}
+              height={65}
               className='rounded-full'
               alt='profile'
             />

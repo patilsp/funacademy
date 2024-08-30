@@ -19,7 +19,7 @@ const categories = [
   { link: "/iq", title: "IQ", image: "/images/categories/science.png" }, 
   { link: "/drawing", title: "Drawing", image: "/images/categories/draw.png" },
   { link: "/puzzle", title: "Puzzles", image: "/images/categories/puzzle.png" },
-  { link: "/Games", title: "Games", image: "/images/categories/game.png" },
+  { link: "/games", title: "Games", image: "/images/categories/game.png" },
   { link: "/math-quiz", title: "Quiz", image: "/images/categories/quiz.png" },
   { link: "/learning-videos", title: "Learning Videos", image: "/images/categories/book.png" },
   { link: "/stories", title: "Stories", image: "/images/categories/tale.png" },

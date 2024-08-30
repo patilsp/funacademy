@@ -179,7 +179,9 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-
+.form-checkbox{
+  display: flex;
+}
 
 .cl-internal-1hhd4k {
   display: flex !important;

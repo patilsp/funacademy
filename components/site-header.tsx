@@ -124,7 +124,7 @@ export function SiteHeader() {
             </DropdownMenuContent>
         </DropdownMenu>
     
-          <UserAccountNav />            
+          <UserAccountNav/>            
         </div>
       </div>
     </header>
