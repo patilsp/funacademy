@@ -16,7 +16,7 @@ const NumberGrid = () => {
         {numbers.map((number) => (
           <motion.div
             key={number}
-            className="flex size-20 cursor-pointer items-center justify-center rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white shadow-lg"
+            className="flex size-20 cursor-pointer items-center justify-center rounded-lg border bg-gray-50 text-xl text-black shadow-lg hover:bg-gray-200"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3, delay: number * 0.02 }}
