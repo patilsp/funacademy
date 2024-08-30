@@ -32,6 +32,14 @@ export const docsConfig: DocsConfig = {
       title: "Letters",
       href: "/letter",
     },
+    {
+      title: "Sports",
+      href: "/sports",
+    },
+    {
+      title: "Contact Us",
+      href: "/contact-us",
+    },
    
      {
       title: "Settings",
