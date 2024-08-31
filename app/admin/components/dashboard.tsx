@@ -124,7 +124,7 @@ export default function Dashboard() {
               <AvatarFallback>{session?.user?.name?.[0] || "U"}</AvatarFallback>
             </Avatar>
             <h3 className="font-bold">{session?.user?.name || "Guest User"}</h3>
-            <p className="text-sm text-gray-500">@{session?.user?.name?.toLowerCase().replace(' ', '_') || "guest"}</p>
+            <p className="text-sm text-gray-500">@{session?.user?.name || "guest"}</p>
             <div className="flex space-x-2 mt-2">
               <Badge variant="secondary" className="bg-orange-200 pt-1">Trophy</Badge>
               <Badge variant="secondary" className="bg-indigo-200 pt-1">Medal</Badge>
