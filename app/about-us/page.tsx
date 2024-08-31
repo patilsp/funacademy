@@ -2,155 +2,114 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { motion } from 'framer-motion'
 
 const AboutUs = () => {
   return (
-    <div>
+    
       <section>
-        {/* Container */}
-        <div className="mx-auto w-full max-w-7xl px-5 py-12 md:px-10 md:py-16 lg:py-20">
-          {/* Component */}
-          <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
-            {/* Content */}
-            <motion.div
-              className="flex flex-col gap-8 lg:w-3/5"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* Heading */}
-              <h2 className="mb-8 text-3xl font-bold md:text-5xl">About Us</h2>
-              <p className="text-sm sm:text-base">
-                At FunAcademy Services, we are committed to providing top-quality water filtration and purification solutions. With over a decade of experience, our team is dedicated to ensuring that every drop of water is pure, safe, and clean for you and your family.
-              </p>
-              <a
-                href="#"
-                className="w-36 rounded-md bg-blue-600 px-6 py-3 text-center font-semibold text-white"
-              >
-                Learn More
-              </a>
-              {/* Divider */}
-              <div className="my-8 h-px w-full bg-blue-600"></div>
-              {/* Testimonials */}
-              <div className="grid gap-8 md:grid-cols-2 md:gap-4">
-                <motion.div
-                  className="flex flex-col gap-4 rounded-md border border-solid bg-gray-100 p-6 md:p-4"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <p className="text-sm">
-                    FunAcademy Services has been a game-changer for our household. The installation process was smooth, and the difference in water quality is remarkable.
-                  </p>
-                  <div className="flex items-center gap-2 sm:gap-x-4">
-                    <div className="flex items-center gap-x-2">
-                      <Image
-                        src="/images/image1.png"
-                        alt="Customer"
-                        height={50}
-                        width={50}
-                        className="size-12 rounded-full object-cover"
-                      />
-                      <p className="text-sm font-semibold sm:text-base">
-                        John Doe
-                      </p>
-                    </div>
-                    {/* Divider */}
-                    <div className="h-5 w-px bg-gray-300"></div>
-                    <div className="flex items-center gap-x-2">
-                      <p className="text-sm font-semibold sm:text-base">5.0</p>
-                      <div className="flex text-yellow-500">
-                        {[...Array(5)].map((_, index) => (
-                          <svg
-                            key={index}
-                            className="size-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="100%"
-                            height="100%"
-                            preserveAspectRatio="xMidYMid meet"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72l3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41l-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18l-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"
-                            ></path>
-                          </svg>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-                <motion.div
-                  className="flex flex-col gap-4 rounded-md border border-solid bg-gray-100 p-6 md:p-4"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <p className="text-sm">
-                    The water quality has improved significantly since using FunAcademy Services. Their customer support is also exceptional.
-                  </p>
-                  <div className="flex items-center gap-2 sm:gap-x-4">
-                    <div className="flex items-center gap-x-2">
-                      <Image
-                        src="/images/image1.png"
-                        alt="Customer"
-                        width={50}
-                        height={50}
-                        className="size-12 rounded-full object-cover"
-                      />
-                      <p className="text-sm font-semibold sm:text-base">
-                        Jane Smith
-                      </p>
-                    </div>
-                    {/* Divider */}
-                    <div className="h-5 w-px bg-gray-300"></div>
-                    <div className="flex items-center gap-x-2">
-                      <p className="text-sm font-semibold sm:text-base">5.0</p>
-                      <div className="flex text-yellow-500">
-                        {[...Array(5)].map((_, index) => (
-                          <svg
-                            key={index}
-                            className="size-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="100%"
-                            height="100%"
-                            preserveAspectRatio="xMidYMid meet"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72l3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41l-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18l-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z"
-                            ></path>
-                          </svg>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-            {/* Image */}
-            <motion.div
-              className="w-full rounded-md bg-blue-100 max-[991px]:h-[475px] lg:w-2/5"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
+         <div className="bg-gradient-to-b from-blue-100 to-green-100">
+      <div className="container mx-auto px-4 py-8">
+        <section className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-600 mb-4">Welcome to Fun Academy!</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">Where learning meets adventure in the digital world!</p>
+        </section>
 
-                
-              <Image
-                src="/images/man.png"
-                alt="Customer"
-                height={450}
-                width={450}
-                className="mt-10 rounded-full object-cover"
-            />
-            </motion.div>
+
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-center text-green-600 mb-8">Our Mission</h2>
+          <Card className="bg-yellow-100 border-green-300">
+            <CardContent className="p-6">
+              <p className="text-lg text-center">
+                The ultimate educational app designed to make learning a joyous adventure for children aged 1 to 7. At FunAcademy, we combine engaging stories, interactive games, and animated content to spark curiosity and foster a love for learning. Our platform offers a rich variety of educational materials that cater to young minds, helping them develop essential skills while having fun. With FunAcademy, learning becomes an exciting journey of discovery and play!
+
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+{/* 
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-center text-green-600 mb-8">Our Mission</h2>
+          <Card className="bg-yellow-100 border-yellow-300">
+            <CardContent className="p-6">
+              <p className="text-lg text-center">
+                At Fun Academy, we believe that learning should be an exciting journey. Our mission is to create a safe, 
+                engaging, and interactive online environment where children can explore, learn, and grow while having fun!
+              </p>
+            </CardContent>
+          </Card>
+        </section> */}
+
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-center text-purple-600 mb-8">What Makes Us Special</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Interactive Lessons", description: "Engaging content that makes learning fun and memorable", icon: "🎮" },
+              { title: "Safe Environment", description: "A secure platform designed with child safety in mind", icon: "🛡️" },
+              { title: "Progress Tracking", description: "Easy-to-use tools for parents to monitor their child's growth", icon: "📊" },
+            ].map((feature, index) => (
+              <Card key={index} className="bg-white hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
+        </section>
+
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-center text-red-600 mb-8">Meet Our Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { name: "Santosh Patil", role: "Founder & CEO" },
+              { name: "Sarah Lee", role: "Head of Education" },
+              { name: "Mike Brown", role: "Lead Developer" },
+              { name: "Emily Chen", role: "Creative Director" },
+            ].map((member, index) => (
+              <Card key={index} className="bg-white hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6 text-center">
+                  <Image
+                    src={`/images/student.png?height=100&width=100`}
+                    alt={member.name}
+                    width={100}
+                    height={100}
+                    className="rounded-full mx-auto mb-4"
+                  />
+                  <h3 className="text-lg font-semibold">{member.name}</h3>
+                  <p className="text-gray-600">{member.role}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section className="text-center">
+          <Card className="bg-blue-600 text-white">
+            <CardContent className="p-8">
+              <h2 className="text-3xl font-bold mb-4">Ready to Start Learning?</h2>
+              <p className="text-xl mb-6">Join Fun Academy today and embark on an exciting educational adventure!</p>
+              <Button size="lg" variant="secondary">
+                Get Started
+              </Button>
+            </CardContent>
+          </Card>
+        </section>
+      </div>
+
+      <footer className="bg-gray-100 mt-16">
+        <div className="mx-auto px-4 py-8 text-center text-gray-600">
+          <p>&copy; 2023 Fun Academy. All rights reserved.</p>
         </div>
-      </section>
+      </footer>
     </div>
+      
+      </section>
+  
   )
 }
 

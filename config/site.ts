@@ -11,7 +11,7 @@ export const siteConfig = {
     },
     {
       title: "Dashboard",
-      href: "/dashboard",
+      href: "/admin/dashboard",
     },
     {
       title: "Lessons",

@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const components = [
-  { title: "Dashboard", href: "/dashboard", description: "Overview of key metrics and statistics." },
+  { title: "Dashboard", href: "/admin/dashboard", description: "Overview of key metrics and statistics." },
   { title: "Products", href: "/products", description: "Manage and view all water purifier products." },
   { title: "Customers", href: "/customers", description: "View and manage customer details." },
   { title: "Complaints", href: "/complaints", description: "Track and manage customer complaints." },

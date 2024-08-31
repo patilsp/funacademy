@@ -14,17 +14,17 @@ import {
 import { Badge } from "@/components/ui/badge"
 
 const courses = [
-  { id: 1, title: "Fun with Numbers", category: "Math", level: "Beginner", duration: "4 weeks", image: "/placeholder.svg?height=200&width=300&text=Fun+with+Numbers" },
-  { id: 2, title: "Storytelling Adventures", category: "Language Arts", level: "Intermediate", duration: "6 weeks", image: "/placeholder.svg?height=200&width=300&text=Storytelling+Adventures" },
-  { id: 3, title: "Little Scientists", category: "Science", level: "Beginner", duration: "5 weeks", image: "/placeholder.svg?height=200&width=300&text=Little+Scientists" },
-  { id: 4, title: "World Explorer", category: "Social Studies", level: "Intermediate", duration: "8 weeks", image: "/placeholder.svg?height=200&width=300&text=World+Explorer" },
-  { id: 5, title: "Coding for Kids", category: "Technology", level: "Beginner", duration: "6 weeks", image: "/placeholder.svg?height=200&width=300&text=Coding+for+Kids" },
-  { id: 6, title: "Art & Imagination", category: "Art", level: "All Levels", duration: "4 weeks", image: "/placeholder.svg?height=200&width=300&text=Art+%26+Imagination" },
-  { id: 7, title: "Music & Movement", category: "Music", level: "Beginner", duration: "5 weeks", image: "/placeholder.svg?height=200&width=300&text=Music+%26+Movement" },
-  { id: 8, title: "Nature Explorers", category: "Science", level: "Intermediate", duration: "6 weeks", image: "/placeholder.svg?height=200&width=300&text=Nature+Explorers" },
+  { id: 1, title: "Fun with Numbers", category: "Math", level: "Beginner", duration: "4 weeks", image: "/images/quiz/1.svg?height=200&width=300&text=Fun+with+Numbers" },
+  { id: 2, title: "Storytelling Adventures", category: "Arts", level: "Intermediate", duration: "6 weeks", image: "/images/quiz/2.svg?height=200&width=300&text=Storytelling+Adventures" },
+  { id: 3, title: "Little Scientists", category: "Science", level: "Beginner", duration: "5 weeks", image: "/images/quiz/3.svg?height=200&width=300&text=Little+Scientists" },
+  { id: 4, title: "World Explorer", category: "Social", level: "Intermediate", duration: "8 weeks", image: "/images/quiz/4.svg?height=200&width=300&text=World+Explorer" },
+  { id: 5, title: "Coding for Kids", category: "Technology", level: "Beginner", duration: "6 weeks", image: "/images/quiz/5.svg?height=200&width=300&text=Coding+for+Kids" },
+  { id: 6, title: "Art & Imagination", category: "Art", level: "All Levels", duration: "4 weeks", image: "/images/quiz/6.svg?height=200&width=300&text=Art+%26+Imagination" },
+  { id: 7, title: "Music & Movement", category: "Music", level: "Beginner", duration: "5 weeks", image: "/images/quiz/7.svg?height=200&width=300&text=Music+%26+Movement" },
+  { id: 8, title: "Nature Explorers", category: "Science", level: "Intermediate", duration: "6 weeks", image: "/images/quiz/8.svg?height=200&width=300&text=Nature+Explorers" },
 ]
 
-const categories = ["All", "Math", "Language Arts", "Science", "Social Studies", "Technology", "Art", "Music"]
+const categories = ["All", "Math", "Arts", "Science", "Social", "Technology", "Art", "Music"]
 
 export default function CoursePage() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -37,7 +37,8 @@ export default function CoursePage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Explore Courses for Kids</h1>
+        <div className="flex justify-between gap-2">
+      <h1 className="text-3xl font-bold mb-8">Explore Courses</h1>
       
       <div className="flex flex-col sm:flex-row gap-4 mb-8">
         <Input
@@ -47,8 +48,8 @@ export default function CoursePage() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="sm:w-64"
         />
-        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-          <SelectTrigger className="sm:w-48">
+        <Select className="border" value={selectedCategory} onValueChange={setSelectedCategory}>
+          <SelectTrigger className="sm:w-48 border">
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
@@ -59,6 +60,7 @@ export default function CoursePage() {
             ))}
           </SelectContent>
         </Select>
+      </div>
       </div>
 
       {filteredCourses.length === 0 ? (
@@ -71,8 +73,10 @@ export default function CoursePage() {
                 <img src={course.image} alt={course.title} className="w-full h-48 object-cover rounded-t-lg" />
               </CardHeader>
               <CardContent className="flex-grow p-4">
-                <CardTitle className="text-xl mb-2">{course.title}</CardTitle>
-                <Badge className="mb-2">{course.category}</Badge>
+                <div className="flex justify-between gap-2">
+                    <CardTitle className="text-sm mb-2">{course.title}</CardTitle>
+                    <Badge className="mb-2 bg-green-400 text-white">{course.category}</Badge>
+                </div>
                 <p className="text-sm text-gray-500 mb-2">Level: {course.level}</p>
                 <p className="text-sm text-gray-500">Duration: {course.duration}</p>
               </CardContent>

@@ -120,16 +120,16 @@ export const MobileSidebar = ({
     <>
       <div
         className={cn(
-          "flex h-10 w-full flex-row items-center justify-between  bg-neutral-100 p-4 dark:bg-neutral-800 md:hidden"
+          "flex w-full flex-row items-center justify-between  bg-neutral-100 dark:bg-neutral-800 md:hidden"
         )}
         {...props}
       >
-        <div className="z-50 flex w-full justify-end">
+        {/* <div className="z-50 flex size-8 justify-end">
           <Home
             className="text-neutral-800 dark:text-neutral-200"
             onClick={() => setOpen(!open)}
           />
-        </div>
+        </div> */}
         <AnimatePresence>
           {open && (
             <motion.div

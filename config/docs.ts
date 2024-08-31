@@ -14,7 +14,7 @@ export const docsConfig: DocsConfig = {
     },
     {
       title: "Dashboard",
-      href: "/dashboard",
+      href: "/admin/dashboard",
     },
     {
       title: "Leader Board",
@@ -40,7 +40,10 @@ export const docsConfig: DocsConfig = {
       title: "Contact Us",
       href: "/contact-us",
     },
-   
+    {
+      title: "About Us",
+      href: "/about-us",
+    },
      {
       title: "Settings",
       href: "/forms",
