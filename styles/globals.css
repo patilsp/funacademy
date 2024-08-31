@@ -556,7 +556,7 @@ body::-webkit-scrollbar-thumb {
 
 
  .btn-primary {
-  padding: 1em 2em;
+  /* padding: 1em 2em; */
   border-radius: 1em;
   border: 5px solid #ffc107;
   box-shadow: 0px 0px 0 rgb(227,165,0), 1px 1px 0 rgb(198,136,0), 2px 2px 0 rgb(170,108,0), 3px 3px 0 rgb(142,80,0), 4px 4px 3px rgba(0,0,0,0.63), 4px 4px 1px rgba(0,0,0,0.5), 0px 0px 3px rgba(0,0,0,.2);
@@ -569,6 +569,12 @@ body::-webkit-scrollbar-thumb {
   text-shadow: 0px 0px 0 rgb(227,165,0), 1px 1px 0 rgb(198,136,0), 2px 2px 0 rgb(170,108,0), 3px 3px 0 rgb(142,80,0), 4px 4px 3px rgba(0,0,0,0.63), 4px 4px 1px rgba(0,0,0,0.5), 0px 0px 3px rgba(0,0,0,.2);
 }
 
+.btn-primary:hover {
+  -webkit-box-shadow: 1px 1px 13px #20232e, -1px -1px 13px #545b78;
+  box-shadow: 1px 1px 13px #20232e, -1px -1px 13px #545b78;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
 
 
 
@@ -655,7 +661,7 @@ body::-webkit-scrollbar-thumb {
 
 
 .btn-subscribe{
-  width: fit-content;
+  width: 100px;
   display: flex;
   padding: 0.5em 1.1em;
   gap: 0.4rem;

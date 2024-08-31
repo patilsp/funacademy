@@ -49,7 +49,7 @@ export default function Home() {
             <span className="circle" aria-hidden="true">
             <span className="icon arrow"></span>
             </span>
-            <Link href='/category'>
+            <Link href='/recommendation'>
               <span className="button-text">Start Learning</span>
             </Link>            
           </button>

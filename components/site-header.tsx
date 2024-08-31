@@ -65,7 +65,7 @@ export function SiteHeader() {
 
           <Link href="/subscribe" className="hidden md:block">
             <button className="btn-subscribe">            
-              Subscribe
+              Go Premium
             </button>
           </Link>
 
