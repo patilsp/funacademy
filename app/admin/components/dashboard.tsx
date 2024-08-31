@@ -21,14 +21,14 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen p-4 lg:p-8">
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <main className="lg:col-span-3 space-y-8">
-          <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+        <main className="space-y-8 lg:col-span-3">
+          <header className="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
             <div>
               <h2 className="text-2xl font-bold">Welcome back, {session?.user?.name || 'Guest'}👋</h2>
-              <p className="text-gray-500">Don't forget your homework</p>
+              <p className="text-gray-500">Dont forget your homework</p>
             </div>
-            <div className="flex items-center space-x-4 w-full lg:w-auto">
+            <div className="flex w-full items-center space-x-4 lg:w-auto">
               <Input type="search" placeholder="Search class..." className="w-full lg:w-64" />
               {/* <Button variant="ghost" size="icon">
                 <Bell className="h-5 w-5" />
@@ -40,10 +40,10 @@ export default function Dashboard() {
           </header>
 
           <Card className="bg-[#7C5CFC] text-white">
-            <CardContent className="p-6 flex flex-col lg:flex-row items-center justify-between gap-4">
+            <CardContent className="flex flex-col items-center justify-between gap-4 p-6 lg:flex-row">
               <div>
-                <h3 className="text-sm font-semibold mb-2">Quotes of the day</h3>
-                <p className="text-2xl font-bold mb-2">Anytime you ride against the best in the world, it becomes a learning process.</p>
+                <h3 className="mb-2 text-sm font-semibold">Quotes of the day</h3>
+                <p className="mb-2 text-2xl font-bold">Anytime you ride against the best in the world, it becomes a learning process.</p>
                 <p className="text-sm">-Bonnie Blair</p>
                 <Button size="sm" variant="secondary" className="mt-4">Start learning</Button>
               </div>
@@ -52,8 +52,8 @@ export default function Dashboard() {
           </Card>
 
           <section>
-            <h3 className="text-xl font-bold mb-4">Your Courses</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h3 className="mb-4 text-xl font-bold">Your Courses</h3>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
                 { title: "Basic English", instructor: "Mr. John Keating", progress: 70, level: "Intermediate" },
                 { title: "Basic Maths", instructor: "Ms. Erin Gruwell", progress: 25, level: "Beginner" },
@@ -61,11 +61,11 @@ export default function Dashboard() {
               ].map((course, index) => (
                 <Card key={index}>
                   <CardContent className="p-4">
-                    <img src={`/images/welcome3.jpg?height=150&width=300&text=Course+${index + 1}`} alt={course.title} className="w-full h-36 object-cover mb-4 rounded" />
-                    <h4 className="font-bold mb-2">{course.title}</h4>
-                    <p className="text-sm text-gray-500 mb-2">{course.instructor}</p>
+                    <Image src={`/images/welcome3.jpg?height=150&width=300&text=Course+${index + 1}`} alt={course.title} className="mb-4 h-36 w-full rounded object-cover" />
+                    <h4 className="mb-2 font-bold">{course.title}</h4>
+                    <p className="mb-2 text-sm text-gray-500">{course.instructor}</p>
                     <Progress value={course.progress} className="mb-2" />
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <span className="text-sm">{course.progress}/10</span>
                       <Badge variant="secondary">{course.level}</Badge>
                     </div>
@@ -76,9 +76,9 @@ export default function Dashboard() {
           </section>
 
           <section>
-            <h3 className="text-xl font-bold mb-4">Leader Board</h3>
+            <h3 className="mb-4 text-xl font-bold">Leader Board</h3>
             <Card>
-              <CardContent className="p-5 overflow-x-auto">
+              <CardContent className="overflow-x-auto p-5">
                 <table className="w-full">
                   <thead>
                     <tr className="text-left text-gray-500">
@@ -115,17 +115,17 @@ export default function Dashboard() {
           </section>
         </main>
 
-        <aside className="lg:col-span-1 space-y-8">
-        <section className="bg-white p-2 rounded-lg shadow border">
+        <aside className="space-y-8 lg:col-span-1">
+        <section className="rounded-lg border bg-white p-2 shadow">
           <div className="flex flex-col items-center">
            
-            <Avatar className="w-20 h-20 mb-2">
-              <AvatarImage src={session?.user?.image || "/placeholder.svg?height=80&width=80"} alt={session?.user?.name || "User"} />
+            <Avatar className="mb-2 size-20">
+              <AvatarImage src={session?.user?.image || "/images/student.png.svg?height=80&width=80"} alt={session?.user?.name || "User"} />
               <AvatarFallback>{session?.user?.name?.[0] || "U"}</AvatarFallback>
             </Avatar>
             <h3 className="font-bold">{session?.user?.name || "Guest User"}</h3>
             <p className="text-sm text-gray-500">@{session?.user?.name || "guest"}</p>
-            <div className="flex space-x-2 mt-2">
+            <div className="mt-2 flex space-x-2">
               <Badge variant="secondary" className="bg-orange-200 pt-1">Trophy</Badge>
               <Badge variant="secondary" className="bg-indigo-200 pt-1">Medal</Badge>
               <Badge variant="secondary" className="bg-green-200 pt-1">Friends</Badge>
@@ -161,8 +161,8 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          <section className="bg-white p-2 md:p-4 rounded-lg shadow border">
-            <h3 className="font-bold mb-4">Today's schedule</h3>
+          <section className="rounded-lg border bg-white p-2 shadow md:p-4">
+            <h3 className="mb-4 font-bold">Todays schedule</h3>
             <div className="space-y-4">
               {[
                 { icon: "👨‍🏫", title: "Learn to read Sanskrit letters", time: "09:00 - 10:00 With mr.surya" },
@@ -170,7 +170,7 @@ export default function Dashboard() {
                 { icon: "🎮", title: "Learn e-sports strategy", time: "14:30 - 15:30 With mr.philip" },
               ].map((event, index) => (
                 <div key={index} className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-lg">
+                  <div className="flex size-8 items-center justify-center rounded-full bg-gray-200 text-lg">
                     {event.icon}
                   </div>
                   <div>
@@ -182,13 +182,13 @@ export default function Dashboard() {
             </div>
           </section>
 
-          <section className="bg-white p-2 md:p-4 rounded-lg shadow border">
-            <h3 className="font-bold mb-4">Hours Spent</h3>
-            <div className="flex justify-between items-end h-40">
+          <section className="rounded-lg border bg-white p-2 shadow md:p-4">
+            <h3 className="mb-4 font-bold">Hours Spent</h3>
+            <div className="flex h-40 items-end justify-between">
               {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
                 <div key={index} className="flex flex-col items-center">
                   <div className="w-6 bg-blue-500" style={{ height: `${Math.random() * 100}%` }}></div>
-                  <span className="text-xs mt-2">{day}</span>
+                  <span className="mt-2 text-xs">{day}</span>
                 </div>
               ))}
             </div>

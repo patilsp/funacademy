@@ -455,7 +455,7 @@ export default function Dashboard() {
           </Link>
 
           <Link href="/math-quiz">
-            <Card className="relative col-span-1 h-40 overflow-hidden bg-blue-200 cursor-pointer">
+            <Card className="relative col-span-1 h-40 cursor-pointer overflow-hidden bg-blue-200">
               <Image
                 src="/images/award.png"
                 alt="Daily Quiz"

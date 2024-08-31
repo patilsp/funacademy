@@ -54,9 +54,9 @@ export default function ContactUs() {
     <div className="min-h-screen bg-gradient-to-b from-purple-100 to-blue-100">
 
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl md:text-5xl font-bold text-center text-purple-600 mb-8">Contact Us</h1>
+        <h1 className="mb-8 text-center text-4xl font-bold text-purple-600 md:text-5xl">Contact Us</h1>
         
-        <Card className="max-w-2xl mx-auto">
+        <Card className="mx-auto max-w-2xl">
           <CardContent className="p-6">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
@@ -95,7 +95,7 @@ export default function ContactUs() {
         </Card>
 
         <div className="mt-12 text-center">
-          <h2 className="text-2xl font-bold text-blue-600 mb-4">Other Ways to Reach Us</h2>
+          <h2 className="mb-4 text-2xl font-bold text-blue-600">Other Ways to Reach Us</h2>
           <p className="text-lg text-gray-600">
             Email: info@funacademy.com<br />
             Phone: (123) 456-7890<br />
@@ -104,7 +104,7 @@ export default function ContactUs() {
         </div>
       </div>
 
-      <footer className="bg-gray-100 mt-16">
+      <footer className="mt-16 bg-gray-100">
         <div className="mx-auto px-4 py-8 text-center text-gray-600">
           <p>&copy; 2023 Fun Academy. All rights reserved.</p>
         </div>

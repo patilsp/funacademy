@@ -9,7 +9,7 @@ export function ModeToggle() {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div className="flex w-full items-center justify-between mt-1 p-1">
+    <div className="mt-1 flex w-full items-center justify-between p-1">
       <span className="text-sm font-medium">Change Theme</span>
       <div className="flex items-center gap-2">
         <Button

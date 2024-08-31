@@ -75,7 +75,7 @@ export default function Recommendation() {
       {!isComplete ? (
         <>
           {/* Top Bar */}
-          <div className="flex justify-between items-center mb-4">
+          <div className="mb-4 flex items-center justify-between">
             <p className="text-sm font-semibold">Study Personalization</p>
             <span className="text-sm">{`Question ${currentQuestion + 1} of ${questions.length}`}</span>
           </div>
@@ -100,15 +100,15 @@ export default function Recommendation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="grid grid-cols-1 gap-3 mb-8"
+            className="mb-8 grid grid-cols-1 gap-3"
           >
             {questions[currentQuestion].options.map((option, index) => {
               const isSelected = selectedOptions[currentQuestion] === index
               return (
                 <motion.label
                   key={index}
-                  className={`flex items-center justify-between p-4 border-2 rounded-lg cursor-pointer transition-all duration-300 ${
-                    isSelected ? 'border-orange-400 bg-orange-50 dark:bg-gray-700 dark:text-white dark:border-white' : 'border-white bg-white dark:bg-slate-950 shadow-lg'
+                  className={`flex cursor-pointer items-center justify-between rounded-lg border-2 p-4 transition-all duration-300 ${
+                    isSelected ? 'border-orange-400 bg-orange-50 dark:border-white dark:bg-gray-700 dark:text-white' : 'border-white bg-white shadow-lg dark:bg-slate-950'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   onClick={() => handleOptionChange(index)}
@@ -122,7 +122,6 @@ export default function Recommendation() {
                     }`}
                     readOnly
                   />
-                  <div className="checkmark"></div>
                 </motion.label>
               )
             })}
@@ -132,7 +131,7 @@ export default function Recommendation() {
           <button
             onClick={handleContinue}
             disabled={selectedOptions[currentQuestion] === null}
-            className="btn-primary mt-6 w-full py-3 cursor-pointer  text-black text-xl font-bold rounded-xl shadow-lg dark:text-white"
+            className="btn-primary mt-6 w-full cursor-pointer rounded-xl  py-3 text-xl font-bold text-black shadow-lg dark:text-white"
           >
             Continue
           </button>
@@ -148,9 +147,9 @@ export default function Recommendation() {
             src="/images/abc.jpg" 
             height={500}
             width={800}
-            alt="Welcome" className="mx-auto mb-6 object-contain  rounded-lg" 
+            alt="Welcome" className="mx-auto mb-6 rounded-lg  object-contain" 
           />
-          <h2 className="text-2xl font-bold mb-4">Welcome to Fun Academy!</h2>
+          <h2 className="mb-4 text-2xl font-bold">Welcome to Fun Academy!</h2>
           <button className="btn btn-warning">           
             <Link href='/category'>
               <span className="button-text text-black">Start Learning</span>
