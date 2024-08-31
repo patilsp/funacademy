@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import { motion } from 'framer-motion'
 
+
 const questions = [
   {
     question: "How old are you?",
@@ -16,7 +17,38 @@ const questions = [
     question: "What are you interested in learning?",
     options: ["Math", "Science", "Art", "Sports"]
   },
-  // Add other questions as needed...
+  {
+    question: "Do you like to read books?",
+    options: ["Yes, a lot", "Sometimes", "Not really", "Not at all"]
+  },
+  {
+    question: "Which type of activities do you prefer?",
+    options: ["Outdoor", "Indoor", "Creative", "Technological"]
+  },
+  {
+    question: "How do you prefer to study?",
+    options: ["With videos", "With games", "With books", "With friends"]
+  },
+  {
+    question: "What is your favorite hobby?",
+    options: ["Drawing", "Coding", "Playing sports", "Reading"]
+  },
+  {
+    question: "How much time do you spend learning each day?",
+    options: ["Less than 1 hour", "1-2 hours", "2-3 hours", "More than 3 hours"]
+  },
+  {
+    question: "Which of these skills would you like to improve?",
+    options: ["Math", "Problem-solving", "Creativity", "Leadership"]
+  },
+  {
+    question: "Do you like learning with others or by yourself?",
+    options: ["With others", "By myself", "A bit of both", "Not sure"]
+  },
+  {
+    question: "Which of these activities sounds like fun to you?",
+    options: ["Building projects", "Solving puzzles", "Writing stories", "Playing games"]
+  },
 ]
 
 export default function Recommendation() {

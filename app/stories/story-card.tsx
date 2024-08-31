@@ -206,112 +206,281 @@ export const CloseIcon = () => {
 
 const cards = [
   {
-    description: "Lana Del Rey",
-    title: "Summertime Sadness",
-    src: "https://assets.aceternity.com/demos/lana-del-rey.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Lana Del Rey, an iconic American singer-songwriter, is celebrated for
-          her melancholic and cinematic music style. Born Elizabeth Woolridge
-          Grant in New York City, she has captivated audiences worldwide with
-          her haunting voice and introspective lyrics. <br /> <br /> Her songs
-          often explore themes of tragic romance, glamour, and melancholia,
-          drawing inspiration from both contemporary and vintage pop culture.
-          With a career that has seen numerous critically acclaimed albums, Lana
-          Del Rey has established herself as a unique and influential figure in
-          the music industry, earning a dedicated fan base and numerous
-          accolades.
-        </p>
-      );
-    },
-  },
-  {
-    description: "Babbu Maan",
-    title: "Mitran Di Chhatri",
-    src: "https://assets.aceternity.com/demos/babbu-maan.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Babu Maan, a legendary Punjabi singer, is renowned for his soulful
-          voice and profound lyrics that resonate deeply with his audience. Born
-          in the village of Khant Maanpur in Punjab, India, he has become a
-          cultural icon in the Punjabi music industry. <br /> <br /> His songs
-          often reflect the struggles and triumphs of everyday life, capturing
-          the essence of Punjabi culture and traditions. With a career spanning
-          over two decades, Babu Maan has released numerous hit albums and
-          singles that have garnered him a massive fan following both in India
-          and abroad.
-        </p>
-      );
-    },
-  },
-
-  {
-    description: "Metallica",
-    title: "For Whom The Bell Tolls",
-    src: "https://assets.aceternity.com/demos/metallica.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Metallica, an iconic American heavy metal band, is renowned for their
-          powerful sound and intense performances that resonate deeply with
-          their audience. Formed in Los Angeles, California, they have become a
-          cultural icon in the heavy metal music industry. <br /> <br /> Their
-          songs often reflect themes of aggression, social issues, and personal
-          struggles, capturing the essence of the heavy metal genre. With a
-          career spanning over four decades, Metallica has released numerous hit
-          albums and singles that have garnered them a massive fan following
-          both in the United States and abroad.
-        </p>
-      );
-    },
-  },
-  {
-    description: "Led Zeppelin",
-    title: "Stairway To Heaven",
-    src: "https://assets.aceternity.com/demos/led-zeppelin.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Led Zeppelin, a legendary British rock band, is renowned for their
-          innovative sound and profound impact on the music industry. Formed in
-          London in 1968, they have become a cultural icon in the rock music
-          world. <br /> <br /> Their songs often reflect a blend of blues, hard
-          rock, and folk music, capturing the essence of the 1970s rock era.
-          With a career spanning over a decade, Led Zeppelin has released
-          numerous hit albums and singles that have garnered them a massive fan
-          following both in the United Kingdom and abroad.
-        </p>
-      );
-    },
-  },
-  {
-    description: "Mustafa Zahid",
-    title: "Toh Phir Aao",
+    description: "The Banyan Tree",
+    title: "The Heart of the Village",
     src: "https://assets.aceternity.com/demos/toh-phir-aao.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/banyan-tree-story",
     content: () => {
       return (
         <p>
-          &quot;Aawarapan&quot;, a Bollywood movie starring Emraan Hashmi, is
-          renowned for its intense storyline and powerful performances. Directed
-          by Mohit Suri, the film has become a significant work in the Indian
-          film industry. <br /> <br /> The movie explores themes of love,
-          redemption, and sacrifice, capturing the essence of human emotions and
-          relationships. With a gripping narrative and memorable music,
-          &quot;Aawarapan&quot; has garnered a massive fan following both in
-          India and abroad, solidifying Emraan Hashmi&apos;s status as a
-          versatile actor.
+          In many Indian villages, the banyan tree stands tall and proud in the center, providing shade and a place for villagers to gather. <br /> <br /> Under its wide canopy, children play, elders discuss important matters, and festivals are celebrated. The banyan tree is more than just a tree; it is a symbol of unity and community, bringing together people from all walks of life.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Well",
+    title: "Water, the Gift of Life",
+    src: "https://assets.aceternity.com/demos/toh-phir-aao.jpeg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-well-story",
+    content: () => {
+      return (
+        <p>
+          The village well is a lifeline for the villagers, providing fresh water for drinking, cooking, and bathing. <br /> <br /> Every morning, women and children gather at the well, filling their pots and chatting about their day. The well is not just a source of water but a place of social interaction, where news is shared, and bonds are strengthened.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Fair",
+    title: "A Day of Joy and Celebration",
+    src: "https://example.com/images/village-fair.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-fair-story",
+    content: () => {
+      return (
+        <p>
+          Once a year, the village fair brings excitement and joy to everyone. Stalls selling sweets, toys, and clothes line the village square. <br /> <br /> Children enjoy rides on the merry-go-round, while elders listen to folk music and watch traditional dances. The fair is a time of celebration, where everyone comes together to enjoy the vibrant atmosphere.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Bullock Cart",
+    title: "The Traditional Mode of Transport",
+    src: "https://example.com/images/bullock-cart.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/bullock-cart-story",
+    content: () => {
+      return (
+        <p>
+          In the village, the bullock cart is a common sight, used for transporting goods and people. <br /> <br /> The gentle clinking of the bells around the bullocks' necks and the creaking of the wooden wheels create a soothing rhythm as the cart moves slowly along the dusty roads. The bullock cart is a symbol of the simple and hardworking life in the village.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village School",
+    title: "Learning Under the Mango Tree",
+    src: "https://example.com/images/village-school.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-school-story",
+    content: () => {
+      return (
+        <p>
+          The village school is a small building, often with just one or two classrooms. Sometimes, classes are held under the shade of a big mango tree. <br /> <br /> Children from the village gather here to learn basic reading, writing, and arithmetic. The school is not just a place for education but also a space where children dream of a brighter future.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Harvest Festival",
+    title: "Pongal: A Celebration of Abundance",
+    src: "https://example.com/images/pongal.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/pongal-story",
+    content: () => {
+      return (
+        <p>
+          Pongal is a harvest festival celebrated with great enthusiasm in Indian villages. Farmers thank the sun, the earth, and the cattle for a bountiful harvest. <br /> <br /> Families prepare sweet rice, decorate their homes with rangoli, and enjoy traditional games. Pongal is a time to give thanks for nature’s blessings and to celebrate the hard work of the farmers.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Market",
+    title: "A Hub of Activity",
+    src: "https://example.com/images/village-market.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-market-story",
+    content: () => {
+      return (
+        <p>
+          The village market is held once a week and is the busiest place in the village. Farmers bring fresh vegetables, fruits, and grains to sell. <br /> <br /> People from neighboring villages also come to buy and sell goods. The market is filled with the sounds of bargaining, laughter, and the clinking of coins, making it a lively and vibrant place.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Festival of Lights",
+    title: "Diwali in the Village",
+    src: "https://example.com/images/diwali.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/diwali-story",
+    content: () => {
+      return (
+        <p>
+          Diwali, the festival of lights, is celebrated with great joy in the village. Homes are decorated with oil lamps and colorful rangolis, and sweets are shared with neighbors. <br /> <br /> The night sky is lit up with fireworks, and the sound of laughter fills the air. Diwali is a time to celebrate the victory of light over darkness and to strengthen bonds within the community.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Elder",
+    title: "Wisdom and Respect",
+    src: "https://example.com/images/village-elder.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-elder-story",
+    content: () => {
+      return (
+        <p>
+          The village elder is a respected figure who has lived in the village all his life. He is known for his wisdom and fair judgment. <br /> <br /> Villagers come to him for advice and to resolve disputes. His stories of the past, often told to children under the banyan tree, teach valuable lessons about life, respect, and community.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Monsoon Season",
+    title: "Rain, a Blessing for the Fields",
+    src: "https://example.com/images/monsoon.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/monsoon-story",
+    content: () => {
+      return (
+        <p>
+          The monsoon season is eagerly awaited in the village, as it brings much-needed rain for the crops. <br /> <br /> Children play in the puddles, and farmers rejoice as their fields turn green with new life. The monsoon is a reminder of the close connection between the village and nature, where every drop of rain is considered a blessing.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Potter",
+    title: "Shaping Clay, Shaping Lives",
+    src: "https://example.com/images/village-potter.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-potter-story",
+    content: () => {
+      return (
+        <p>
+          The village potter is an artist who shapes clay into beautiful pots, lamps, and toys. <br /> <br /> With skillful hands, the potter creates items that are used daily in the village, from storing water to cooking food. The potter’s wheel spins continuously, symbolizing the cycle of life in the village, where every creation has a purpose.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Rice Fields",
+    title: "Green Fields, Golden Harvest",
+    src: "https://example.com/images/rice-fields.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/rice-fields-story",
+    content: () => {
+      return (
+        <p>
+          The rice fields are the heart of many Indian villages, where farmers work hard to grow the staple food of the country. <br /> <br /> During the planting season, the fields are lush and green, and as the rice ripens, they turn golden. The sight of villagers working together in the fields is a symbol of cooperation and dedication.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Temple",
+    title: "A Place of Faith and Worship",
+    src: "https://example.com/images/village-temple.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-temple-story",
+    content: () => {
+      return (
+        <p>
+          The village temple is a sacred place where villagers gather to pray and seek blessings. <br /> <br /> Every morning, the sound of bells and chants fills the air as people offer flowers and incense to the deities. The temple is not just a place of worship, but also a center of cultural activities and festivals, bringing the community together.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Blacksmith",
+    title: "Forging Tools, Forging the Future",
+    src: "https://example.com/images/village-blacksmith.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-blacksmith-story",
+    content: () => {
+      return (
+        <p>
+          The village blacksmith is a skilled craftsman who shapes metal into tools, knives, and farming equipment. <br /> <br /> The sound of hammering on the anvil can be heard throughout the day, as the blacksmith works tirelessly to create essential items for the villagers. His work is crucial for the village's agricultural activities, making him a respected figure in the community.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Postman",
+    title: "Bringing Letters, Bringing Smiles",
+    src: "https://example.com/images/village-postman.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-postman-story",
+    content: () => {
+      return (
+        <p>
+          The village postman is a familiar face who brings news from afar, delivering letters and parcels to every home. <br /> <br /> Riding his bicycle along the dusty paths, the postman carries not just mail, but also the hopes and dreams of the villagers. His arrival is eagerly awaited, especially by those who have family members living in distant cities.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Carpenter",
+    title: "Building Homes, Building Dreams",
+    src: "https://example.com/images/village-carpenter.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-carpenter-story",
+    content: () => {
+      return (
+        <p>
+          The village carpenter is a master of woodcraft, creating everything from furniture to doors and windows. <br /> <br /> Using simple tools, he transforms raw wood into beautiful and functional pieces that are used in every home. The carpenter’s work is a blend of skill and creativity, contributing to the comfort and beauty of village life.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Festival",
+    title: "Celebrating Culture and Traditions",
+    src: "https://example.com/images/village-festival.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-festival-story",
+    content: () => {
+      return (
+        <p>
+          Festivals in the village are a time of joy and celebration, where age-old traditions come alive. <br /> <br /> Whether it’s Holi, Diwali, or Baisakhi, the entire village comes together to celebrate with music, dance, and feasting. These festivals are a reflection of the rich cultural heritage of the village, passed down through generations.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Granary",
+    title: "Storing the Harvest",
+    src: "https://example.com/images/village-granary.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-granary-story",
+    content: () => {
+      return (
+        <p>
+          The village granary is where the harvested grains are stored, ensuring that there is food for everyone throughout the year. <br /> <br /> After the harvest, villagers gather to fill the granary with rice, wheat, and other crops. The granary is a symbol of abundance and security, representing the fruits of the villagers’ hard work and the importance of careful planning for the future.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Weaver",
+    title: "Spinning Threads, Weaving Stories",
+    src: "https://example.com/images/village-weaver.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-weaver-story",
+    content: () => {
+      return (
+        <p>
+          The village weaver is an artist who creates beautiful fabrics using a handloom. <br /> <br /> Each piece of cloth tells a story, woven with threads of different colors and patterns. The weaver’s work is highly valued, as it provides clothing for the villagers and plays an important role in preserving traditional craftsmanship.
+        </p>
+      );
+    },
+  },
+  {
+    description: "The Village Folk Dance",
+    title: "Dancing to the Rhythm of Life",
+    src: "https://example.com/images/village-folk-dance.jpg",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com/village-folk-dance-story",
+    content: () => {
+      return (
+        <p>
+          Folk dances in the village are a vibrant expression of culture and community spirit. <br /> <br /> During festivals and special occasions, men and women come together to perform traditional dances, accompanied by folk songs and drums. These dances are more than just entertainment; they are a way of connecting with the roots and celebrating the village’s heritage.
         </p>
       );
     },
