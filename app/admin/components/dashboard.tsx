@@ -138,8 +138,8 @@ export default function Dashboard() {
             <CardHeader className="flex flex-row items-center justify-between p-4">
               <CardTitle className="text-sm font-medium">{format(today, 'MMMM yyyy')}</CardTitle>
               <div className="flex space-x-2">
-                <Button variant="ghost" size="icon"><ChevronLeft className="h-4 w-4" /></Button>
-                <Button variant="ghost" size="icon"><ChevronRight className="h-4 w-4" /></Button>
+                <Button variant="ghost" size="icon"><ChevronLeft className="size-4" /></Button>
+                <Button variant="ghost" size="icon"><ChevronRight className="size-4" /></Button>
               </div>
             </CardHeader>
             <CardContent className="p-4">

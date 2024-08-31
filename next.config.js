@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true,
+    // appDir: true,
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
@@ -17,9 +17,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuild: true,
-  },
+  // eslint: {
+  //   ignoreDuringBuild: true,
+  // },
 }
 
 module.exports = nextConfig

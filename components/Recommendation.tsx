@@ -117,7 +117,7 @@ export default function Recommendation() {
                   <motion.input
                     type="checkbox"
                     checked={isSelected}
-                    className={`form-checkbox h-6 w-6 ${
+                    className={`form-checkbox size-6 ${
                       isSelected ? 'text-orange-400' : 'text-gray-500'
                     }`}
                     readOnly

@@ -33,7 +33,7 @@ export function MobileNav() {
           <div className="flex size-full items-center justify-start p-4">
             {session?.user ? (
               <div className="flex justify-start gap-2">
-                <img
+                <Image
                   className="mx-auto size-16 rounded-full border-2 border-white object-cover p-1"
                   src={session.user.image || "/images/avatars/02.png"}  
                   alt={session.user.name || "User"}
