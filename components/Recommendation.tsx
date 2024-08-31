@@ -1,11 +1,14 @@
-"use client"
+"use client";
 
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useState } from 'react'
-import { Progress } from "@/components/ui/progress"
-import { Button } from "@/components/ui/button"
-import { motion } from 'framer-motion'
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import toast from "react-hot-toast";
 
 
 const questions = [
@@ -49,26 +52,62 @@ const questions = [
     question: "Which of these activities sounds like fun to you?",
     options: ["Building projects", "Solving puzzles", "Writing stories", "Playing games"]
   },
-]
+];
+
 
 export default function Recommendation() {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [selectedOptions, setSelectedOptions] = useState(Array(questions.length).fill(null))
-  const [isComplete, setIsComplete] = useState(false)
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedOptions, setSelectedOptions] = useState(Array(questions.length).fill(null));
+  const [isComplete, setIsComplete] = useState(false);
+  const router = useRouter();
+
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [router, status]);
+  
 
   const handleOptionChange = (index) => {
-    const newSelectedOptions = [...selectedOptions]
-    newSelectedOptions[currentQuestion] = index
-    setSelectedOptions(newSelectedOptions)
-  }
+    const newSelectedOptions = [...selectedOptions];
+    newSelectedOptions[currentQuestion] = index;
+    setSelectedOptions(newSelectedOptions);
+  };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
+      setCurrentQuestion(currentQuestion + 1);
     } else {
-      setIsComplete(true)
+      setIsComplete(true);
+      await saveResponses();
     }
-  }
+  };
+
+  const saveResponses = async () => {
+    try {
+      const response = await fetch("/api/questions/response", {
+        method: "POST",
+        body: JSON.stringify({
+          userId: session.user.id,
+          questions,
+          selectedOptions,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast.success("Responses saved successfully!");
+      } else {
+        throw new Error("Failed to save responses");
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="flex flex-col justify-between">
@@ -103,7 +142,7 @@ export default function Recommendation() {
             className="mb-8 grid grid-cols-1 gap-3"
           >
             {questions[currentQuestion].options.map((option, index) => {
-              const isSelected = selectedOptions[currentQuestion] === index
+              const isSelected = selectedOptions[currentQuestion] === index;
               return (
                 <motion.label
                   key={index}
@@ -117,13 +156,13 @@ export default function Recommendation() {
                   <motion.input
                     type="checkbox"
                     checked={isSelected}
-                    className={`form-checkbox  size-6 ${
+                    className={`form-checkbox size-6 ${
                       isSelected ? 'text-orange-400' : 'text-gray-500'
                     }`}
                     readOnly
                   />
                 </motion.label>
-              )
+              );
             })}
           </motion.div>
 
@@ -143,21 +182,25 @@ export default function Recommendation() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <Image 
-            src="/images/abc.jpg" 
+          <Image
+            src="/images/abc.jpg"
             height={500}
             width={800}
-            alt="Welcome" className="mx-auto mb-6 rounded-lg  object-contain" 
+            alt="Welcome"
+            className="mx-auto mb-6 rounded-lg  object-contain"
           />
-          <h2 className="mb-4 text-2xl font-bold">Welcome to Fun Academy!</h2>
-          <button className="btn btn-warning">           
+          <h2 className="mb-4 text-2xl font-bold">Awesome! Good Job!</h2>
+          <p className="mb-4 font-semibold">
+            Your answers will help us create a personalized plan just for you.
+          </p>
+
+          <button className="btn btn-warning">
             <Link href='/category'>
               <span className="button-text text-black">Start Learning</span>
-            </Link>            
+            </Link>
           </button>
-
         </motion.div>
       )}
     </div>
-  )
+  );
 }

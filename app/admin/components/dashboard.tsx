@@ -61,7 +61,7 @@ export default function Dashboard() {
               ].map((course, index) => (
                 <Card key={index}>
                   <CardContent className="p-4">
-                    <Image src={`/images/welcome3.jpg?height=150&width=300&text=Course+${index + 1}`} alt={course.title} className="mb-4 h-36 w-full rounded object-cover" />
+                    <Image src={`/images/welcome3.jpg?height=150&width=300&text=Course+${index + 1}`} width={300} height={150} alt={course.title} className="mb-4 h-36 w-full rounded object-cover" />
                     <h4 className="mb-2 font-bold">{course.title}</h4>
                     <p className="mb-2 text-sm text-gray-500">{course.instructor}</p>
                     <Progress value={course.progress} className="mb-2" />

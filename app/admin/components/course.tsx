@@ -71,7 +71,7 @@ export default function CoursePage() {
           {filteredCourses.map((course) => (
             <Card key={course.id} className="flex flex-col">
               <CardHeader className="p-0">
-                <Image src={course.image} alt={course.title} height={190} width={190} className="h-48 w-full rounded-t-lg object-cover" />
+                <img src={course.image} alt={course.title} height={190} width={190} className="h-48 w-full rounded-t-lg object-cover" />
               </CardHeader>
               <CardContent className="grow p-4">
                 <div className="flex justify-between gap-2">

@@ -15,7 +15,9 @@ export default function ContactUs() {
   const [message, setMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
+
+    
     e.preventDefault()
     setIsSubmitting(true)
 
@@ -29,22 +31,13 @@ export default function ContactUs() {
       })
 
       if (response.ok) {
-        toast({
-          title: "Success!",
-          description: "Your message has been sent. We'll get back to you soon!",
-        })
-        setName('')
-        setEmail('')
-        setMessage('')
+        toast.success("Thanks for contacting us! we will reach you soon! 🔥");
+        router.push("/");
       } else {
-        throw new Error('Failed to send message')
+        throw new Error('Failed to send message')        
       }
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "There was a problem sending your message. Please try again.",
-        variant: "destructive",
-      })
+      toast.error(error);
     } finally {
       setIsSubmitting(false)
     }

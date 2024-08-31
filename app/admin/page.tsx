@@ -18,7 +18,7 @@ const AdminPage: React.FC = () => {
   const links = [
     {
       label: "Dashboard",
-      href: "/admin/dashboard",
+      href: "/admin",
       icon: (
         <Home className="size-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
