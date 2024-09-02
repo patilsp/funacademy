@@ -44,6 +44,7 @@
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
+    "@uploadthing/react": "^6.7.2",
     "@use-gesture/react": "^10.3.1",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
@@ -60,6 +61,7 @@
     "multer": "^1.4.5-lts.1",
     "next": "^14.2.5",
     "next-auth": "^4.24.7",
+    "next-cors": "^1.0.0",
     "next-intl": "^2.20.0",
     "next-themes": "^0.2.1",
     "radix-ui": "^1.0.1",
@@ -79,6 +81,7 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.167.1",
     "twilio": "^5.2.2",
+    "uploadthing": "^6.13.2",
     "zod": "^3.23.8",
     "zustand": "^4.5.5"
   },

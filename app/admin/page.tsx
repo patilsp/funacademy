@@ -8,6 +8,8 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Dashboard from '/app/admin/components/dashboard';
 import Course from '/app/admin/components/course';
+import QuestionCreator from '@/components/QuestionCreator';
+import UserCompetition from '@/components/user-competition';
 
 
 
@@ -35,26 +37,26 @@ const AdminPage: React.FC = () => {
     },
 
     {
-      label: "Classroom",
-      href: "/admin/profile",
+      label: "Quiz",
+      href: "/admin/",
       icon: (
         <User className="size-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
-      content: <ProfileContent />, // Content for Profile
+      content: <QuestionCreator />,
     },
 
 
     {
-      label: "Group Chat",
-      href: "/admin/profile",
+      label: "Competition",
+      href: "/admin",
       icon: (
         <User className="size-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
-      content: <ProfileContent />, // Content for Profile
+      content: <UserCompetitionContent />, 
     },
     {
       label: "Mentor",
-      href: "/admin/profile",
+      href: "/admin",
       icon: (
         <User className="size-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
@@ -134,6 +136,19 @@ const CourseContent = () => (
     <Course />
   </div>
 );
+
+const QuizContent = () => (
+  <div className="min-h-screen">
+    <QuestionCreator />
+  </div>
+);
+
+const UserCompetitionContent = () => (
+  <div className="min-h-screen">
+    <UserCompetition />
+  </div>
+);
+
 
 const ProfileContent = () => (
   <div className="min-h-screen">

@@ -109,14 +109,16 @@ export default function MathQuiz({ levelId, userId }: GamesProps) {
         transition={{ duration: 0.5 }}
         className="w-full max-w-lg p-0 md:p-6">
         {!showResults ? (
-          <div className="flex flex-col items-center space-y-4">
-            <h2 className="my-10 space-x-2 text-4xl font-semibold text-black">{questions[currentQuestion]?.question}</h2>
-            <div className="grid grid-cols-1 items-center gap-6">
+          <div className="flex flex-col items-center space-y-2">
+            <div className="q_box my-10">
+              <h2 className="text-4xl font-bold text-white">{questions[currentQuestion]?.question}</h2>
+            </div>
+            <div className="mt-10 grid w-full grid-cols-2 items-center gap-6">
               {questions[currentQuestion]?.options.map((option, index) => (
                 <button
                   key={index}
                   onClick={() => handleOptionClick(option)}
-                  className={`w-60 rounded-lg border p-1 text-xl shadow-md transition-transform hover:scale-105 ${getOptionClass(option)}`}
+                  className={`h-12 rounded-lg border p-1 text-xl text-black shadow-md transition-transform hover:scale-105 ${getOptionClass(option)}`}
                 >
                   {option}
                 </button>

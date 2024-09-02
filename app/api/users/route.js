@@ -13,3 +13,4 @@ export const GET = async (request, { params }) => {
     return new Response('Failed to fetch users created by user', { status: 500 });
   }
 };
+
