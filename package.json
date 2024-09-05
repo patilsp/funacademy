@@ -102,7 +102,7 @@
     "tailwindcss": "^3.3.2",
     "typescript": "^4.9.5"
   },
-  "description": "![image](https://github.com/patilsp/excellent-service-application/assets/35653819/ebfd0cff-7384-4f5b-a9e2-43a4c2e9d943)",
+  "description": "![image](https://github.com/patilsp/funacademys/assets/35653819/ebfd0cff-7384-4f5b-a9e2-43a4c2e9d943)",
   "main": "next.config.js",
   "directories": {
     "lib": "lib"
@@ -111,10 +111,10 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patilsp/excellent-service-application.git"
+    "url": "git+https://github.com/patilsp/funacademys.git"
   },
   "bugs": {
-    "url": "https://github.com/patilsp/excellent-service-application/issues"
+    "url": "https://github.com/patilsp/funacademys/issues"
   },
-  "homepage": "https://github.com/patilsp/excellent-service-application#readme"
+  "homepage": "https://github.com/patilsp/funacademys#readme"
 }
