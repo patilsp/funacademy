@@ -47,7 +47,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
-              <LoginModal />
+              {/* <LoginModal /> */}
                 <main className="flex-1 dark:bg-black dark:text-white">{children}</main>
               {/* <SiteFooter /> */}
             </div>
