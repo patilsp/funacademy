@@ -119,7 +119,7 @@ const UserAccountNav = () => {
                 type='button'
                 key={provider.name}
                 onClick={() => signIn(provider.id)}
-                className='btn btn-primary'
+                className='h-7 w-full'
               >
                 Sign In
               </Button>

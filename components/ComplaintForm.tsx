@@ -14,24 +14,10 @@ const ComplaintForm = ({ type, complaint, setComplaint, submitting, handleSubmit
       <div className="container flex flex-col items-center justify-center gap-6 p-4 lg:flex-row lg:p-8">
         
           {/* Image Section */}
-          <motion.div 
-          className="block w-full lg:w-1/2"      
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Image
-            src="/images/chat.png"
-            alt="Kids Learning"
-            width={500}
-            height={500}
-            className="object-contain"
-          />
-        </motion.div>
 
         {/* Form Section */}
         <motion.div 
-          className="glassmorphism w-full rounded-lg border bg-white shadow-lg dark:bg-black dark:text-white lg:w-1/2"
+          className="w-full rounded-lg border bg-white p-2 shadow-lg dark:bg-black dark:text-white md:p-6 lg:w-1/2"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
@@ -40,17 +26,33 @@ const ComplaintForm = ({ type, complaint, setComplaint, submitting, handleSubmit
             <h1 className='head_text text-center'>
               <span className='text-2xl font-bold text-[#7c3aed]'>{type} Issue</span>
             </h1>
-            <p className='py-1 text-center text-sm text-slate-600 dark:text-gray-50'>
-              Let us know whats bothering you, and well help you fix it!
+            <p className='py-1 text-center text-base text-slate-600 dark:text-gray-50'>
+              Let us know whats bothering you, <br /> and well help you fix it!
             </p>
           </div>
+
+          <motion.div 
+            className="flex items-center justify-center"      
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+          <Image
+            src="/images/chat.png"
+            alt="Kids Learning"
+            width={300}
+            height={300}
+            className="object-contain"
+          />
+        </motion.div>
+
           <form
             onSubmit={handleSubmit}
             className='mt-2 flex w-full flex-col gap-5 p-4'
           >
             <div className="grid grid-cols-1 gap-4">
               <div className="grid w-full gap-2">
-                <Label htmlFor="address">Whats the issue?</Label>
+                <Label htmlFor="address" className="text-sm">Whats the issue?</Label>
                 <Textarea
                   value={complaint.name}
                   onChange={(e) => setComplaint({ ...complaint, name: e.target.value })}
@@ -69,7 +71,7 @@ const ComplaintForm = ({ type, complaint, setComplaint, submitting, handleSubmit
                 <Button
                   type='submit'
                   disabled={submitting}
-                  className='rounded bg-primary px-5 py-2 text-sm  hover:bg-violet-800'
+                  className='rounded bg-primary px-5 py-2 text-sm  hover:bg-slate-950'
                 >
                   {submitting ? `${type}ing...` : type}
                 </Button>

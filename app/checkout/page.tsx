@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 export default function Checkout() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#ffc854] p-4">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#f6f6f6] p-4  dark:bg-black">
       <div className="flex w-full max-w-5xl flex-col overflow-hidden rounded-lg bg-white shadow-lg md:flex-row">
         <div className="flex w-full flex-col justify-center bg-blue-900 p-8 text-white md:w-1/2">
         <div className="mb-4 flex items-center">
@@ -34,7 +34,7 @@ export default function Checkout() {
             </li>
           </ul>
         </div>
-        <div className="flex w-full flex-col p-8 md:w-1/2">
+        <div className="flex w-full flex-col p-8 dark:bg-slate-950 dark:text-white md:w-1/2">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-xl font-bold">Total Today</h2>
             <span className="text-2xl font-bold">₹1,999.00</span>

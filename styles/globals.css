@@ -78,6 +78,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  zoom: 95%;
+}
 
 .container {
   width: 100%;

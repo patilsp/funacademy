@@ -54,7 +54,7 @@ export default function Component() {
           <Input
             type="text"
             placeholder="I want to learn about..."
-            className="h-10 w-full rounded bg-white shadow-lg focus:outline-none dark:bg-gray-800 dark:text-white"
+            className="h-10 w-full rounded bg-white shadow focus:outline-none dark:bg-gray-800 dark:text-white"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
