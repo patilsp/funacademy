@@ -15,14 +15,14 @@ import {
 import { Badge } from "@/components/ui/badge"
 
 const courses = [
-  { id: 1, title: "Fun with Numbers", category: "Math", level: "Beginner", duration: "4 weeks", image: "/images/quiz/1.svg?height=200&width=300&text=Fun+with+Numbers" },
-  { id: 2, title: "Storytelling Adventures", category: "Arts", level: "Intermediate", duration: "6 weeks", image: "/images/quiz/2.svg?height=200&width=300&text=Storytelling+Adventures" },
-  { id: 3, title: "Little Scientists", category: "Science", level: "Beginner", duration: "5 weeks", image: "/images/quiz/3.svg?height=200&width=300&text=Little+Scientists" },
-  { id: 4, title: "World Explorer", category: "Social", level: "Intermediate", duration: "8 weeks", image: "/images/quiz/4.svg?height=200&width=300&text=World+Explorer" },
-  { id: 5, title: "Coding for Kids", category: "Technology", level: "Beginner", duration: "6 weeks", image: "/images/quiz/5.svg?height=200&width=300&text=Coding+for+Kids" },
-  { id: 6, title: "Art & Imagination", category: "Art", level: "All Levels", duration: "4 weeks", image: "/images/quiz/6.svg?height=200&width=300&text=Art+%26+Imagination" },
-  { id: 7, title: "Music & Movement", category: "Music", level: "Beginner", duration: "5 weeks", image: "/images/quiz/7.svg?height=200&width=300&text=Music+%26+Movement" },
-  { id: 8, title: "Nature Explorers", category: "Science", level: "Intermediate", duration: "6 weeks", image: "/images/quiz/8.svg?height=200&width=300&text=Nature+Explorers" },
+  { id: 1, title: "Fun with Numbers", category: "Math", level: "Beginner", duration: "4 weeks", image: "/images/svg/1.svg?height=100&width=150&text=Fun+with+Numbers" },
+  { id: 2, title: "Storytelling Adventures", category: "Arts", level: "Intermediate", duration: "6 weeks", image: "/images/svg/2.svg?height=100&width=150&text=Storytelling+Adventures" },
+  { id: 3, title: "Little Scientists", category: "Science", level: "Beginner", duration: "5 weeks", image: "/images/svg/3.svg?height=100&width=150&text=Little+Scientists" },
+  { id: 4, title: "World Explorer", category: "Social", level: "Intermediate", duration: "8 weeks", image: "/images/svg/4.svg?height=100&width=150&text=World+Explorer" },
+  { id: 5, title: "Coding for Kids", category: "Technology", level: "Beginner", duration: "6 weeks", image: "/images/svg/5.svg?height=100&width=150&text=Coding+for+Kids" },
+  { id: 6, title: "Art & Imagination", category: "Art", level: "All Levels", duration: "4 weeks", image: "/images/svg/6.svg?height=100&width=150&text=Art+%26+Imagination" },
+  { id: 7, title: "Music & Movement", category: "Music", level: "Beginner", duration: "5 weeks", image: "/images/svg/7.svg?height=100&width=150&text=Music+%26+Movement" },
+  { id: 8, title: "Nature Explorers", category: "Science", level: "Intermediate", duration: "6 weeks", image: "/images/svg/8.svg?height=100&width=150&text=Nature+Explorers" },
 ]
 
 const categories = ["All", "Math", "Arts", "Science", "Social", "Technology", "Art", "Music"]

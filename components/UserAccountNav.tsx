@@ -60,7 +60,7 @@ const UserAccountNav = () => {
             </div>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="p-2" asChild>
-              <Link href='/admin/dashboard'>
+              <Link href='/admin'>
                 Dashboard
                 <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
               </Link>

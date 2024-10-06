@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import toast from "react-hot-toast";
 import Link from "next/link"
+import Footer from "@/components/Footer"
 
 export default function ContactUs() {
   const [name, setName] = useState('')
@@ -92,15 +93,13 @@ export default function ContactUs() {
           <p className="text-lg text-gray-600">
             Email: info@funacademy.com<br />
             Phone: (123) 456-7890<br />
-            Address: 123 Learning Lane, Eduville, EV 12345
+            Address: 123 Learning Lane, Bangalore. India
           </p>
         </div>
       </div>
 
-      <footer className="mt-16 bg-gray-100">
-        <div className="mx-auto px-4 py-8 text-center text-gray-600">
-          <p>&copy; 2023 Fun Academy. All rights reserved.</p>
-        </div>
+      <footer className="mt-16">
+        <Footer />
       </footer>
     </div>
   )

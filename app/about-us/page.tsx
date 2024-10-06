@@ -21,7 +21,7 @@ const AboutUs = () => {
 
         <section className="mb-16">
           <h2 className="mb-8 text-center text-3xl font-bold text-green-600">Our Mission</h2>
-          <Card className="border-green-300 bg-yellow-100">
+          <Card className="m-auto max-w-4xl bg-yellow-100 hover:border-green-400">
             <CardContent className="p-6">
               <p className="text-center text-lg">
                 The ultimate educational app designed to make learning a joyous adventure for children aged 1 to 7. At FunAcademy, we combine engaging stories, interactive games, and animated content to spark curiosity and foster a love for learning. Our platform offers a rich variety of educational materials that cater to young minds, helping them develop essential skills while having fun. With FunAcademy, learning becomes an exciting journey of discovery and play!
