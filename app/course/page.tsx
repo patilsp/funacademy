@@ -39,7 +39,7 @@ export default function CoursePage() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-8 text-3xl font-bold">Explore Courses for Kids</h1>
       
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row">
+      <div className="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
         <Input
           type="search"
           placeholder="Search courses..."
@@ -47,8 +47,8 @@ export default function CoursePage() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="sm:w-64"
         />
-        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-          <SelectTrigger className="sm:w-48">
+        <Select className="border-2" value={selectedCategory} onValueChange={setSelectedCategory}>
+          <SelectTrigger className="border sm:w-48 ">
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
@@ -62,16 +62,16 @@ export default function CoursePage() {
       </div>
 
       {filteredCourses.length === 0 ? (
-        <p className="mt-8 text-center text-gray-500">No courses found. Try adjusting your search or category.</p>
+        <p className="mt-8 text-center text-base text-red-500">No courses found. Try adjusting your search or category.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredCourses.map((course) => (
-            <Card key={course.id} className="flex flex-col">
+            <Card key={course.id} className="flex flex-col hover:border-blue-400">
               <CardHeader className="p-0">
                 <img src={course.image} alt="title" className="h-48 w-full rounded-t-lg object-cover" />
               </CardHeader>
-              <CardContent className="grow p-4">
-                <CardTitle className="mb-2 text-xl">{course.title}</CardTitle>
+              <CardContent className="grow p-4 border-t">
+                <CardTitle className="mb-2 text-sm">{course.title}</CardTitle>
                 <Badge className="mb-2">{course.category}</Badge>
                 <p className="mb-2 text-sm text-gray-500">Level: {course.level}</p>
                 <p className="text-sm text-gray-500">Duration: {course.duration}</p>

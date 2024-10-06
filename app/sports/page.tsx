@@ -67,7 +67,7 @@ export default function SportsPage() {
   const [selectedSport, setSelectedSport] = useState(null)
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto max-w-xl p-4">
       <h1 className="mb-6 text-3xl font-bold">Sports</h1>
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-2 px-1">

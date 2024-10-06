@@ -111,7 +111,7 @@ function Games() {
           <Card key={game.id}>
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
-                {game.name}
+                <h1 className="text-base font-semibold">{game.name}</h1>
                 <Badge variant="secondary">{game.category}</Badge>
               </CardTitle>
             </CardHeader>
@@ -133,7 +133,7 @@ function Games() {
       </div>
 
       {filteredGames.length === 0 && (
-        <p className="mt-8 text-center text-muted-foreground">No games found. Try a different search term or category.</p>
+        <p className="mt-8 text-center text-base text-red-400">No games found. Try a different search term or category.</p>
       )}
     </div>
   )
