@@ -53,7 +53,7 @@ export default function AnimalPage() {
         {/* <div id="header"><h1>Emoji Animal Kingdom</h1></div> */}
        
           <div id="kingdom">
-            <div id='🐵' className='mammal' title='Monkey'><div className="icon">🐵</div><div className="description">Monkey</div></div>
+            {/* <div id='🐵' className='mammal' title='Monkey'><div className="icon">🐵</div><div className="description">Monkey</div></div> */}
             <div id='🐒' className='mammal' title='Monkey'><div className="icon">🐒</div><div className="description">Monkey</div></div>
             <div id='🦍' className='mammal' title='Gorilla'><div className="icon">🦍</div><div className="description">Gorilla</div></div>
             <div id='🦧️' className='mammal' title='Orangutan'><div className="icon">🦧️</div><div className="description">Orangutan</div></div>

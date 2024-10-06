@@ -101,10 +101,10 @@ const AdminPage: React.FC = () => {
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
-        <SidebarBody className="justify-between gap-10">
+        <SidebarBody className="justify-between gap-10 border-r h-screen">
           <div className="flex flex-1 flex-col overflow-x-hidden">
             {/* {open ? <Logo /> : <LogoIcon />} */}
-            <div className="mt-8 flex flex-col gap-2">
+            <div className="mt-1 flex flex-col gap-2">
               {links.map((link, idx) => (
                 <SidebarLink
                   key={idx}
@@ -117,7 +117,7 @@ const AdminPage: React.FC = () => {
         
         </SidebarBody>
       </Sidebar>
-      <div className="flex flex-1 flex-col p-4">
+      <div className="flex flex-1 flex-col">
         {links.find((link) => link.label === activeContent)?.content}
       </div>
     </div>
