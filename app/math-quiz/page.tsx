@@ -10,8 +10,8 @@ import { ArrowLeft } from 'lucide-react';
 export default function MathQuiz() {
   const { data: session, status } = useSession();
   const [userResults, setUserResults] = useState([]);
-  const levels = Array.from({ length: 10 }, (_, i) => i + 1);
-  const images = Array.from({ length: 10 }, (_, i) => `/images/quiz/${i + 1}.svg`);
+  const levels = Array.from({ length: 20 }, (_, i) => i + 1);
+  const images = Array.from({ length: 20 }, (_, i) => `/images/svg/${i + 1}.svg`);
 
   useEffect(() => {
     if (status === "authenticated" && session?.user?.id) {
@@ -50,13 +50,13 @@ export default function MathQuiz() {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-6 md:gap-6 lg:grid-cols-6">
         {levels.map((level, index) => (
           <Link key={level} href={`/math-quiz/level/${level}`}>
-            <div className="relative flex flex-col items-center justify-center rounded-lg bg-white shadow transition-transform hover:scale-105 hover:shadow-xl dark:bg-slate-900 dark:text-white">
+            <div className="relative flex flex-col items-center justify-center rounded-lg bg-white shadow-md border transition-transform hover:scale-105 hover:shadow-xl dark:bg-slate-900 dark:text-white">
               <div className="flex w-full items-center justify-center overflow-hidden rounded-t-lg">
                 <Image
                   src={images[index]}
                   className="object-cover"
-                  width={70}
-                  height={70}
+                  width={80}
+                  height={80}
                   alt={`Level ${level} image`}
                 />
               </div>

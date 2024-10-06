@@ -8,7 +8,7 @@ const Loading = () => {
         width={50}
         height={50}
         alt='loader'
-        className='object-contain'
+        className='object-contain text-[#F97316] fill-[#F97316]'
       />
     </div>
   );

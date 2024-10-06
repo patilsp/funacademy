@@ -24,7 +24,7 @@ export const EnglishLevels = () => {
             onClick={() => handleLevelClick(levelId)}
           >
             <Image
-              src={`/images/quiz/${levelId}.svg`}
+              src={`/images/svg/${levelId}.svg`}
               alt={`Level ${levelId} Image`}
               width={120}
               height={120}
