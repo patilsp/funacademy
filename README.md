@@ -1,4 +1,4 @@
-FunAcademy
+## FunAcademy
 
 ![image](https://github.com/user-attachments/assets/033d2ef9-bac2-4787-b5a1-bcca2b756a01)
 
