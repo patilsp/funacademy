@@ -10,7 +10,6 @@ Welcome to FunAcademy – the ultimate educational app designed to make learning
 
 ![image](https://github.com/user-attachments/assets/e52ab0d8-50fb-44dc-92ab-b00bff03458b)
 
-
 ## Features
   Next.js 14 App Directory: Powered by the latest version of Next.js, ensuring top-notch performance and features.
   Radix UI Primitives: Utilizes Radix UI for accessible and customizable components.
