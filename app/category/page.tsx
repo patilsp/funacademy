@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Input } from "@/components/ui/input"
 
+
+
 const categories = [
   
   { link: "/letter", title: "Letters", image: "/images/categories/abc.png" },
@@ -60,7 +62,7 @@ export default function Component() {
           />
         </motion.div>
         </div>
-      
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
