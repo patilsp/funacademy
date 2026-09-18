@@ -342,13 +342,13 @@ const ProgressBar = ({
   return (
     <header className="flex items-center gap-4">
       {correctAnswerCount === 0 ? (
-        <Link href="/learn" className="text-gray-400">
+        <Link href="/learn" className="text-ink-faint transition-colors hover:text-ink">
           <CloseSvg />
           <span className="sr-only">Exit lesson</span>
         </Link>
       ) : (
         <button
-          className="text-gray-400"
+          className="text-ink-faint transition-colors hover:text-ink"
           onClick={() => setQuitMessageShown(true)}
         >
           <CloseSvg />
@@ -356,7 +356,7 @@ const ProgressBar = ({
         </button>
       )}
       <div
-        className="h-4 grow rounded-full bg-gray-200"
+        className="fa-progress-track h-4 grow"
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={1}
@@ -364,14 +364,14 @@ const ProgressBar = ({
       >
         <div
           className={
-            "h-full rounded-full bg-green-500 transition-all duration-700 " +
+            "fa-progress-fill h-full " +
             (correctAnswerCount > 0 ? "px-2 pt-1 " : "")
           }
           style={{
             width: `${(correctAnswerCount / totalCorrectAnswersNeeded) * 100}%`,
           }}
         >
-          <div className="h-[5px] w-full rounded-full bg-green-400"></div>
+          <div className="h-[5px] w-full rounded-full bg-white/25"></div>
         </div>
       </div>
       {hearts !== null &&
@@ -408,28 +408,28 @@ const QuitMessage = ({
       <article
         className={
           quitMessageShown
-            ? "fixed bottom-0 left-0 right-0 z-40 flex flex-col gap-4 bg-white px-5 py-12 text-center transition-all duration-300 sm:flex-row"
-            : "fixed -bottom-96 left-0 right-0 z-40 flex flex-col bg-white px-5 py-12 text-center transition-all duration-300 sm:flex-row"
+            ? "fa-glass fixed bottom-0 left-0 right-0 z-40 flex flex-col gap-4 px-5 py-12 text-center shadow-lift transition-all duration-300 sm:flex-row"
+            : "fixed -bottom-96 left-0 right-0 z-40 flex flex-col bg-surface px-5 py-12 text-center transition-all duration-300 sm:flex-row"
         }
         aria-hidden={!quitMessageShown}
       >
         <div className="flex grow flex-col gap-4">
-          <h2 className="text-lg font-bold sm:text-2xl">
+          <h2 className="fa-h3 sm:text-2xl">
             Are you sure you want to quit?
           </h2>
-          <p className="text-gray-500 sm:text-lg">
+          <p className="fa-sub sm:text-lg">
             All progress for this lesson will be lost.
           </p>
         </div>
         <div className="flex grow flex-col items-center justify-center gap-4 sm:flex-row-reverse">
           <Link
-            className="flex w-full items-center justify-center rounded-2xl border-b-4 border-blue-500 bg-blue-400 py-3 font-bold uppercase text-white transition hover:brightness-105 sm:w-48"
+            className="fa-btn-danger w-full sm:w-48"
             href="/learn"
           >
             Quit
           </Link>
           <button
-            className="w-full rounded-2xl py-3 font-bold uppercase text-blue-400 transition hover:brightness-90 sm:w-48 sm:border-2 sm:border-b-4 sm:border-gray-300 sm:text-gray-400 sm:hover:bg-gray-100"
+            className="fa-btn-secondary w-full sm:w-48"
             onClick={() => setQuitMessageShown(false)}
           >
             Stay
@@ -459,17 +459,17 @@ const CheckAnswer = ({
 }) => {
   return (
     <>
-      <section className="border-gray-200 sm:border-t-2 sm:p-10">
+      <section className="border-line sm:border-t sm:p-10">
         <div className="mx-auto flex max-w-5xl sm:justify-between">
           <button
-            className="hidden rounded-2xl border-2 border-b-4 border-gray-200 bg-white p-3 font-bold uppercase text-gray-400 transition hover:border-gray-300 hover:bg-gray-200 sm:block sm:min-w-[150px] sm:max-w-fit"
+            className="fa-btn-secondary hidden sm:block sm:min-w-[150px] sm:max-w-fit"
             onClick={onSkip}
           >
             Skip
           </button>
           {!isAnswerSelected ? (
             <button
-              className="grow rounded-2xl bg-gray-200 p-3 font-bold uppercase text-gray-400 sm:min-w-[150px] sm:max-w-fit sm:grow-0"
+              className="fa-btn-md grow bg-panel text-ink-faint sm:min-w-[150px] sm:max-w-fit sm:grow-0"
               disabled
             >
               Check
@@ -477,7 +477,7 @@ const CheckAnswer = ({
           ) : (
             <button
               onClick={onCheckAnswer}
-              className="grow rounded-2xl border-b-4 border-green-600 bg-green-500 p-3 font-bold uppercase text-white sm:min-w-[150px] sm:max-w-fit sm:grow-0"
+              className="fa-btn-primary grow sm:min-w-[150px] sm:max-w-fit sm:grow-0"
             >
               Check
             </button>
@@ -489,8 +489,8 @@ const CheckAnswer = ({
         className={
           correctAnswerShown
             ? isAnswerCorrect
-              ? "fixed bottom-0 left-0 right-0 bg-lime-100 font-bold text-green-600 transition-all"
-              : "fixed bottom-0 left-0 right-0 bg-red-100 font-bold text-red-500 transition-all"
+              ? "bg-emerald-soft text-emerald-strong fixed bottom-0 left-0 right-0 font-bold shadow-lift transition-all"
+              : "bg-coral-soft text-coral-strong fixed bottom-0 left-0 right-0 font-bold shadow-lift transition-all"
             : "fixed -bottom-52 left-0 right-0"
         }
       >
@@ -498,19 +498,19 @@ const CheckAnswer = ({
           <>
             {isAnswerCorrect ? (
               <div className="mb-2 flex flex-col gap-5 sm:flex-row sm:items-center">
-                <div className="hidden rounded-full bg-white p-5 text-green-500 sm:block">
+                <div className="hidden rounded-full bg-surface p-5 text-emerald-strong sm:block">
                   <DoneSvg />
                 </div>
                 <div className="text-2xl">Good job!</div>
               </div>
             ) : (
               <div className="mb-2 flex flex-col gap-5 sm:flex-row sm:items-center">
-                <div className="hidden rounded-full bg-white p-5 text-red-500 sm:block">
+                <div className="hidden rounded-full bg-surface p-5 text-coral-strong sm:block">
                   <BigCloseSvg />
                 </div>
                 <div className="flex flex-col gap-2">
                   <div className="text-2xl">Correct solution:</div>{" "}
-                  <div className="text-sm font-normal bg-green-400 text-white rounded-lg p-1 text-center">{correctAnswer}</div>
+                  <div className="rounded-lg bg-surface p-1 text-center text-sm font-normal text-ink">{correctAnswer}</div>
 
                 </div>
               </div>
@@ -520,8 +520,8 @@ const CheckAnswer = ({
             onClick={onFinish}
             className={
               isAnswerCorrect
-                ? "w-full rounded-2xl border-b-4 border-green-600 bg-green-500 p-3 font-bold uppercase text-white transition hover:brightness-105 sm:min-w-[150px] sm:max-w-fit"
-                : "w-full rounded-2xl border-b-4 border-red-600 bg-red-500 p-3 font-bold uppercase text-white transition hover:brightness-105 sm:min-w-[150px] sm:max-w-fit"
+                ? "fa-btn-md w-full bg-emerald text-white shadow-btn hover:bg-emerald-strong sm:min-w-[150px] sm:max-w-fit"
+                : "fa-btn-md w-full bg-coral-strong text-white shadow-btn hover:bg-coral/90 sm:min-w-[150px] sm:max-w-fit"
             }
           >
             Continue
@@ -580,11 +580,11 @@ const ProblemSelect1Of3 = ({
           />
         </div>
         <section className="flex max-w-2xl grow flex-col gap-5 self-center sm:items-center sm:justify-center sm:gap-24 sm:px-5">
-          <h1 className="self-start text-2xl font-bold sm:text-3xl">
+          <h1 className="fa-h2 self-start">
             {question}
           </h1>
           <div
-            className="grid grid-cols-2 gap-2 sm:grid-cols-3"
+            className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4"
             role="radiogroup"
           >
             {answers.map((answer, i) => {
@@ -593,8 +593,8 @@ const ProblemSelect1Of3 = ({
                   key={i}
                   className={
                     i === selectedAnswer
-                      ? "cursor-pointer rounded-xl border-2 border-b-4 border-blue-300 bg-blue-100 p-4 text-blue-400"
-                      : "cursor-pointer rounded-xl border-2 border-b-4 border-gray-200 p-4 hover:bg-gray-100"
+                      ? "fa-card fa-press cursor-pointer border-brand bg-brand-soft p-4 text-brand shadow-glow"
+                      : "fa-card fa-press cursor-pointer p-4 text-ink hover:border-brand/40 hover:shadow-lift"
                   }
                   role="radio"
                   aria-checked={i === selectedAnswer}
@@ -602,7 +602,7 @@ const ProblemSelect1Of3 = ({
                   onClick={() => setSelectedAnswer(i)}
                 >
                   {answer.icon}
-                  <h2 className="text-center">{answer.name}</h2>
+                  <h2 className="text-center text-[15px] font-semibold">{answer.name}</h2>
                 </div>
               );
             })}
@@ -676,17 +676,17 @@ const ProblemWriteInEnglish = ({
           />
         </div>
         <section className="flex max-w-2xl grow flex-col gap-5 self-center sm:items-center sm:justify-center sm:gap-24">
-          <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
-            Write this in English
-          </h1>
+        <h1 className="fa-h2 mb-2">
+          Write this in English
+        </h1>
 
           <div className="w-full">
             <div className="flex items-center gap-2 px-2">
               <Image src={womanPng} alt="" width={92} height={115} />
-              <div className="relative ml-2 w-fit rounded-2xl border-2 border-gray-200 p-4">
+              <div className="fa-card relative ml-2 w-fit p-4">
                 {question}
                 <div
-                  className="absolute h-4 w-4 rotate-45 border-b-2 border-l-2 border-gray-200 bg-white"
+                  className="absolute h-4 w-4 rotate-45 border-b border-l border-line bg-surface"
                   style={{
                     top: "calc(50% - 8px)",
                     left: "-10px",
@@ -695,12 +695,12 @@ const ProblemWriteInEnglish = ({
               </div>
             </div>
 
-            <div className="flex min-h-[60px] flex-wrap gap-1 border-b-2 border-t-2 border-gray-200 py-1">
+            <div className="flex min-h-[60px] flex-wrap gap-1.5 border-b-2 border-t-2 border-dashed border-line-strong py-2">
               {selectedAnswers.map((i) => {
                 return (
                   <button
                     key={i}
-                    className="rounded-2xl border-2 border-b-4 border-gray-200 p-2 text-gray-700"
+                    className="fa-btn-sm border border-line-strong bg-surface text-ink shadow-card"
                     onClick={() => {
                       setSelectedAnswers((selectedAnswers) => {
                         return selectedAnswers.filter((x) => x !== i);
@@ -720,8 +720,8 @@ const ProblemWriteInEnglish = ({
                   key={i}
                   className={
                     selectedAnswers.includes(i)
-                      ? "rounded-2xl border-2 border-b-4 border-gray-200 bg-gray-200 p-2 text-gray-200"
-                      : "rounded-2xl border-2 border-b-4 border-gray-200 p-2 text-gray-700"
+                      ? "rounded-xl border border-line bg-panel p-2.5 text-ink-faint"
+                      : "fa-btn-sm rounded-xl border border-line-strong bg-surface text-ink shadow-card hover:border-brand/40"
                   }
                   disabled={selectedAnswers.includes(i)}
                   onClick={() =>
@@ -786,27 +786,31 @@ const LessonComplete = ({
     (x) => x.increaseLessonsCompleted,
   );
   return (
-    <div className="flex min-h-screen flex-col gap-5 px-4 py-5 sm:px-0 sm:py-0">
+    <div className="fa-bg-aurora flex min-h-screen flex-col gap-5 px-4 py-5 sm:px-0 sm:py-0">
       <div className="flex grow flex-col items-center justify-center gap-8 font-bold">
-        <h1 className="text-center text-3xl text-yellow-400">
+        <h1 className="fa-h1 text-center text-amber-strong">
           Lesson Complete!
         </h1>
-        <div className="flex flex-wrap justify-center gap-5">
-          <div className="min-w-[110px] rounded-xl border-2 border-yellow-400 bg-yellow-400">
-            <h2 className="py-1 text-center text-white">Total XP</h2>
-            <div className="flex justify-center rounded-xl bg-white py-4 text-yellow-400">
-              {correctAnswerCount}
-            </div>
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
+          <div className="fa-card min-w-[120px] overflow-hidden p-0 text-center">
+            <h2 className="bg-amber py-1.5 text-sm font-bold uppercase tracking-wide text-white">
+              Total XP
+            </h2>
+            <div className="fa-h2 py-4 text-amber-strong">{correctAnswerCount}</div>
           </div>
-          <div className="min-w-[110px] rounded-xl border-2 border-blue-400 bg-blue-400">
-            <h2 className="py-1 text-center text-white">Committed</h2>
-            <div className="flex justify-center rounded-xl bg-white py-4 text-blue-400">
+          <div className="fa-card min-w-[120px] overflow-hidden p-0 text-center">
+            <h2 className="bg-sky py-1.5 text-sm font-bold uppercase tracking-wide text-white">
+              Committed
+            </h2>
+            <div className="fa-h2 py-4 text-sky">
               {formatTime(endTime.current - startTime.current)}
             </div>
           </div>
-          <div className="min-w-[110px] rounded-xl border-2 border-green-400 bg-green-400">
-            <h2 className="py-1 text-center text-white">Amazing</h2>
-            <div className="flex justify-center rounded-xl bg-white py-4 text-green-400">
+          <div className="fa-card min-w-[120px] overflow-hidden p-0 text-center">
+            <h2 className="bg-emerald py-1.5 text-sm font-bold uppercase tracking-wide text-white">
+              Amazing
+            </h2>
+            <div className="fa-h2 py-4 text-emerald">
               {Math.round(
                 (correctAnswerCount /
                   (correctAnswerCount + incorrectAnswerCount)) *
@@ -817,18 +821,16 @@ const LessonComplete = ({
           </div>
         </div>
       </div>
-      <section className="border-gray-200 sm:border-t-2 sm:p-10">
+      <section className="border-line sm:border-t sm:p-10">
         <div className="mx-auto flex max-w-5xl sm:justify-between">
           <button
-            className="hidden rounded-2xl border-2 border-b-4 border-gray-200 bg-white p-3 font-bold uppercase text-gray-400 transition hover:border-gray-300 hover:bg-gray-200 sm:block sm:min-w-[150px] sm:max-w-fit"
+            className="fa-btn-secondary hidden sm:block sm:min-w-[150px] sm:max-w-fit"
             onClick={() => setReviewLessonShown(true)}
           >
             Review lesson
           </button>
           <Link
-            className={
-              "flex w-full items-center justify-center rounded-2xl border-b-4 border-green-600 bg-green-500 p-3 font-bold uppercase text-white transition hover:brightness-105 sm:min-w-[150px] sm:max-w-fit"
-            }
+            className="fa-btn-primary w-full sm:min-w-[150px] sm:max-w-fit"
             href="/learn"
             onClick={() => {
               increaseXp(correctAnswerCount);
@@ -883,16 +885,16 @@ const ReviewLesson = ({
         ].join(" ")}
         onClick={() => setReviewLessonShown(false)}
       ></div>
-      <div className="relative flex w-full max-w-4xl flex-col gap-5 rounded-2xl border-2 border-gray-200 bg-white p-8">
+      <div className="fa-card animate-scale-in relative flex w-full max-w-4xl flex-col gap-5 p-6 sm:p-8">
         <button
-          className="absolute -right-5 -top-5 rounded-full border-2 border-gray-200 bg-gray-100 p-1 text-gray-400 hover:brightness-90"
+          className="fa-press absolute -right-4 -top-4 rounded-full border border-line bg-surface p-1.5 text-ink-faint shadow-card hover:text-ink"
           onClick={() => setReviewLessonShown(false)}
         >
           <BigCloseSvg className="h-8 w-8" />
           <span className="sr-only">Close</span>
         </button>
-        <h2 className="text-center text-3xl">Check out your scorecard!</h2>
-        <p className="text-center text-xl text-gray-400">
+        <h2 className="fa-h2 text-center">Check out your scorecard!</h2>
+        <p className="fa-sub text-center">
           Click the tiles below to reveal the solutions
         </p>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -901,10 +903,10 @@ const ReviewLesson = ({
               <button
                 key={i}
                 className={[
-                  "relative flex flex-col items-stretch gap-3 rounded-xl p-5 text-left",
+                  "relative flex flex-col items-stretch gap-3 rounded-xl p-5 text-left transition-colors",
                   questionResult.yourResponse === questionResult.correctResponse
-                    ? "bg-yellow-100 text-yellow-600"
-                    : "bg-red-100 text-red-500",
+                    ? "bg-amber-soft text-amber-strong hover:bg-amber-soft/70"
+                    : "bg-coral-soft text-coral-strong hover:bg-coral-soft/70",
                 ].join(" ")}
                 onClick={() =>
                   setSelectedQuestionResult((selectedQuestionResult) =>
@@ -916,7 +918,7 @@ const ReviewLesson = ({
               >
                 <div className="flex justify-between gap-2">
                   <h3 className="font-bold">{questionResult.question}</h3>
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface shadow-card">
                     {questionResult.yourResponse ===
                     questionResult.correctResponse ? (
                       <DoneSvg className="h-5 w-5" />
@@ -927,21 +929,21 @@ const ReviewLesson = ({
                 </div>
                 <div>{questionResult.yourResponse}</div>
                 {selectedQuestionResult === questionResult && (
-                  <div className="absolute left-1 right-1 top-20 z-10 rounded-2xl border-2 border-gray-200 bg-white p-3 text-sm tracking-tighter">
+                  <div className="fa-card absolute left-1 right-1 top-20 z-10 p-3 text-sm tracking-tighter">
                     <div
-                      className="absolute -top-2 h-3 w-3 rotate-45 border-l-2 border-t-2 border-gray-200 bg-white"
+                      className="absolute -top-2 h-3 w-3 rotate-45 border-l border-t border-line bg-surface"
                       style={{ left: "calc(50% - 6px)" }}
                     ></div>
-                    <div className="font-bold uppercase text-gray-400">
+                    <div className="text-xs font-bold uppercase tracking-wide text-ink-faint">
                       Your response:
                     </div>
-                    <div className="mb-3 text-gray-700">
+                    <div className="mb-3 text-ink">
                       {questionResult.yourResponse}
                     </div>
-                    <div className="font-bold uppercase text-gray-400">
+                    <div className="text-xs font-bold uppercase tracking-wide text-ink-faint">
                       Correct response:
                     </div>
-                    <div className="text-gray-700">
+                    <div className="text-ink">
                       {questionResult.correctResponse}
                     </div>
                   </div>
@@ -966,24 +968,22 @@ const LessonFastForwardStart = ({
     <div className="flex min-h-screen flex-col px-5 py-8 text-center">
       <div className="flex grow flex-col items-center justify-center gap-5">
         <LessonFastForwardStartSvg />
-        <h1 className="text-lg font-bold">
-          Want to jump to Unit {unitNumber}?
-        </h1>
-        <p className="text-sm text-gray-400">
+        <h1 className="fa-h2">Want to jump to Unit {unitNumber}?</h1>
+        <p className="fa-sub">
           {`Pass the test to jump ahead. We won't make it easy for you though.`}
         </p>
       </div>
       <div className="flex flex-col gap-5"></div>
-      <section className="border-gray-200 sm:border-t-2 sm:p-10">
+      <section className="border-line sm:border-t sm:p-10">
         <div className="mx-auto flex max-w-5xl flex-col-reverse items-center gap-5 sm:flex-row sm:justify-between">
           <Link
             href="/learn"
-            className="font-bold uppercase text-blue-400 transition hover:brightness-110"
+            className="text-sm font-bold uppercase tracking-wide text-brand transition hover:text-brand-strong"
           >
             Maybe later
           </Link>
           <button
-            className="w-full rounded-2xl border-b-4 border-blue-500 bg-blue-400 p-3 font-bold uppercase text-white transition hover:brightness-110 sm:min-w-[150px] sm:max-w-fit"
+            className="fa-btn-primary w-full sm:min-w-[150px] sm:max-w-fit"
             onClick={() => setIsStartingLesson(false)}
           >
             {`Let's go`}
@@ -1009,23 +1009,23 @@ const LessonFastForwardEndFail = ({
     <div className="flex min-h-screen flex-col px-5 py-8 text-center">
       <div className="flex grow flex-col items-center justify-center gap-5">
         <LessonFastForwardEndFailSvg />
-        <h1 className="text-2xl font-bold">
+        <h1 className="fa-h2">
           {`You didn't unlock Unit ${unitNumber}`}
         </h1>
-        <p className="text-lg text-gray-500">
+        <p className="fa-sub text-lg">
           {`Don't worry! Practice makes perfect.`}
         </p>
       </div>
-      <section className="border-gray-200 sm:border-t-2 sm:p-10">
+      <section className="border-line sm:border-t sm:p-10">
         <div className="mx-auto flex max-w-5xl sm:justify-between">
           <button
-            className="hidden rounded-2xl border-2 border-b-4 border-gray-200 bg-white p-3 font-bold uppercase text-gray-400 transition hover:border-gray-300 hover:bg-gray-200 sm:block sm:min-w-[150px] sm:max-w-fit"
+            className="fa-btn-secondary hidden sm:block sm:min-w-[150px] sm:max-w-fit"
             onClick={() => setReviewLessonShown(true)}
           >
             Review lesson
           </button>
           <Link
-            className="flex w-full items-center justify-center rounded-2xl border-b-4 border-green-600 bg-green-500 p-3 font-bold uppercase text-white transition hover:brightness-105 sm:min-w-[150px] sm:max-w-fit"
+            className="fa-btn-primary w-full sm:min-w-[150px] sm:max-w-fit"
             href="/learn"
           >
             Continue
@@ -1057,21 +1057,21 @@ const LessonFastForwardEndPass = ({
     <div className="flex min-h-screen flex-col px-5 py-8 text-center">
       <div className="flex grow flex-col items-center justify-center gap-5">
         <LessonFastForwardEndPassSvg />
-        <h1 className="text-2xl font-bold">You unlocked Unit {unitNumber}!</h1>
-        <p className="text-lg text-gray-500">
+        <h1 className="fa-h2">You unlocked Unit {unitNumber}!</h1>
+        <p className="fa-sub text-lg">
           Way to go! You’re making great strides!
         </p>
       </div>
-      <section className="border-gray-200 sm:border-t-2 sm:p-10">
+      <section className="border-line sm:border-t sm:p-10">
         <div className="mx-auto flex max-w-5xl sm:justify-between">
           <button
-            className="hidden rounded-2xl border-2 border-b-4 border-gray-200 bg-white p-3 font-bold uppercase text-gray-400 transition hover:border-gray-300 hover:bg-gray-200 sm:block sm:min-w-[150px] sm:max-w-fit"
+            className="fa-btn-secondary hidden sm:block sm:min-w-[150px] sm:max-w-fit"
             onClick={() => setReviewLessonShown(true)}
           >
             Review lesson
           </button>
           <Link
-            className="flex w-full items-center justify-center rounded-2xl border-b-4 border-green-600 bg-green-500 p-3 font-bold uppercase text-white transition hover:brightness-105 sm:min-w-[150px] sm:max-w-fit"
+            className="fa-btn-primary w-full sm:min-w-[150px] sm:max-w-fit"
             href="/learn"
             onClick={() => jumpToUnit(unitNumber)}
           >

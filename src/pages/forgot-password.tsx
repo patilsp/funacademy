@@ -11,7 +11,7 @@ const MenuIconSvg = (props: ComponentProps<"svg">) => {
     <svg width="40" height="40" viewBox="0 0 40 40" {...props}>
       <title>Artboard</title>
       <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <g transform="translate(5 10)" fill="#FFF" fillRule="nonzero">
+        <g transform="translate(5 10)" className="fill-ink" fillRule="nonzero">
           <rect x="0" y="16" width="30" height="4" rx="2" />
           <rect x="0" y="8" width="30" height="4" rx="2" />
           <rect x="0" y="0" width="30" height="4" rx="2" />
@@ -26,24 +26,22 @@ const ForgotPassword: NextPage = () => {
     useState<LoginScreenState>("HIDDEN");
   const [mobileMenuShown, setMobileMenuShown] = useState(false);
   return (
-    <div className="flex min-h-screen flex-col items-center">
-      <header className="flex h-[70px] w-full justify-center bg-blue-400 font-bold text-white">
+    <div className="fa-bg-aurora fa-bg-dots flex min-h-screen flex-col items-center bg-canvas text-ink">
+      <header className="fa-glass sticky top-0 z-20 flex h-[70px] w-full justify-center border-b border-line font-bold">
         <div className="flex max-w-5xl grow items-center justify-between px-5">
-          <Link className="text-3xl" href="/">
-            funacademy
+          <Link className="text-[26px] tracking-tight" href="/">
+            <span className="text-brand">Fun</span>
+            <span className="text-ink">Academy</span>
           </Link>
           <div className="hidden items-center gap-5 md:flex">
             <LanguageDropDown />
             <button
-              className="rounded-2xl border-b-4 border-blue-300 bg-white px-4 py-2 uppercase text-blue-800 transition hover:brightness-110"
+              className="fa-btn-primary-sm"
               onClick={() => setLoginScreenState("LOGIN")}
             >
               Login
             </button>
-            <Link
-              href="/register"
-              className="rounded-2xl border-b-4 border-green-600 bg-green-500 px-4 py-2 uppercase text-white transition hover:brightness-110"
-            >
+            <Link href="/register" className="fa-btn-primary-sm">
               Get started
             </Link>
           </div>
@@ -55,20 +53,20 @@ const ForgotPassword: NextPage = () => {
           >
             <MenuIconSvg aria-hidden="true" />
             {mobileMenuShown && (
-              <div className="absolute right-0 top-full rounded-2xl border-2 border-gray-300 bg-white font-bold text-gray-700">
+              <div className="fa-card animate-scale-in absolute right-0 top-full z-30 p-1 font-bold">
                 <Link
-                  className="block min-w-max cursor-pointer rounded-t-2xl px-5 py-2 hover:bg-gray-100"
+                  className="block min-w-max cursor-pointer rounded-xl px-5 py-2.5 text-ink transition hover:bg-canvas"
                   href="/?login"
                 >
                   Sign in
                 </Link>
                 <Link
-                  className="block min-w-max cursor-pointer border-t-2 border-gray-300 px-5 py-2 hover:bg-gray-100"
+                  className="block min-w-max cursor-pointer rounded-xl px-5 py-2.5 text-brand transition hover:bg-brand-soft"
                   href="/register"
                 >
                   Get started
                 </Link>
-                <div className="min-w-max cursor-pointer rounded-b-2xl border-t-2 border-gray-300 px-5 py-2 hover:bg-gray-100">
+                <div className="fa-caption min-w-max cursor-pointer border-t border-line px-5 py-2.5">
                   Site language: English
                 </div>
               </div>
@@ -76,21 +74,19 @@ const ForgotPassword: NextPage = () => {
           </div>
         </div>
       </header>
-      <div className="flex w-full grow flex-col items-center gap-5 px-5 pt-5 sm:w-96 sm:pt-52">
-        <h1 className="text-center text-2xl font-bold text-gray-800">
-          Forgot password
-        </h1>
-        <p className="text-center text-gray-800">
+      <div className="flex w-full grow flex-col items-center gap-5 px-5 pt-8 sm:w-96 sm:pt-52">
+        <h1 className="fa-h2 text-center">Forgot password</h1>
+        <p className="fa-sub text-center">
           We will send you instructions on how to reset your password by email.
         </p>
-        <div className="flex w-full flex-col gap-2">
+        <div className="flex w-full flex-col gap-3">
           <input
-            className="w-full rounded-2xl border-2 border-gray-200 bg-gray-50 px-4 py-3"
+            className="fa-input"
             placeholder="Email"
+            type="email"
+            autoComplete="email"
           />
-          <button className="w-full rounded-2xl border-b-4 border-blue-500 bg-blue-400 py-3 font-bold uppercase text-white transition hover:brightness-110">
-            Submit
-          </button>
+          <button className="fa-btn-primary">Submit</button>
         </div>
       </div>
       <LoginScreen

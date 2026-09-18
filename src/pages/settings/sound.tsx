@@ -44,11 +44,11 @@ const Sound: NextPage = () => {
       <TopBar />
       <LeftBar selectedTab={null} />
       <BottomBar selectedTab={null} />
-      <div className="mx-auto flex flex-col gap-5 px-4 py-20 sm:py-10 md:pl-28 lg:pl-72">
+      <div className="fa-bg-aurora mx-auto flex min-h-screen flex-col gap-5 px-4 py-20 sm:py-10 md:pl-28 lg:pl-72">
         <div className="mx-auto flex w-full max-w-xl items-center justify-between lg:max-w-4xl">
-          <h1 className="text-lg font-bold text-gray-800 sm:text-2xl">Sound</h1>
+          <h1 className="fa-h2">Sound</h1>
           <button
-            className="rounded-2xl border-b-4 border-green-600 bg-green-500 px-5 py-3 font-bold uppercase text-white transition hover:brightness-110 disabled:border-b-0 disabled:bg-gray-200 disabled:text-gray-400 disabled:hover:brightness-100"
+            className="fa-btn-primary-sm disabled:bg-panel disabled:text-ink-faint disabled:shadow-none"
             onClick={() => {
               setSoundEffects(localSoundEffects);
               setSpeakingExercises(localSpeakingExercises);
@@ -64,25 +64,27 @@ const Sound: NextPage = () => {
           </button>
         </div>
         <div className="flex justify-center gap-12">
-          <div className="flex w-full max-w-xl flex-col gap-8">
+          <div className="fa-card flex w-full max-w-xl flex-col gap-6 p-6">
             {soundOptions.map(({ title, value, setValue }) => {
               return (
                 <div
                   key={title}
-                  className="flex justify-between sm:justify-center sm:gap-10 sm:pl-10"
+                  className="flex items-center justify-between sm:justify-center sm:gap-10 sm:pl-6"
                 >
-                  <div className="font-bold sm:w-1/2">{title}</div>
+                  <div className="text-sm font-bold uppercase tracking-wide text-ink-muted sm:w-1/2">
+                    {title}
+                  </div>
                   <label className="pr-5 sm:w-1/2 sm:pr-0">
                     <div
                       className={[
                         "relative h-6 w-12 cursor-pointer rounded-full transition-all duration-300",
-                        value ? "bg-blue-400" : "bg-gray-200",
+                        value ? "bg-brand" : "bg-line-strong",
                       ].join(" ")}
                     >
                       <div
                         className={[
-                          "absolute h-10 w-10 rounded-xl border-2 border-b-4 bg-white transition-all duration-300",
-                          value ? "border-blue-400" : "border-gray-200",
+                          "absolute h-10 w-10 rounded-xl border-2 bg-surface shadow-card transition-all duration-300",
+                          value ? "border-brand" : "border-line-strong",
                         ].join(" ")}
                         style={{
                           top: "calc(50% - 20px)",

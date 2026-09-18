@@ -146,13 +146,11 @@ const Coach: NextPage = () => {
       <TopBar />
       <LeftBar selectedTab={null} />
       <BottomBar selectedTab={null} />
-      <div className="mx-auto flex flex-col gap-5 px-4 py-20 sm:py-10 md:pl-28 lg:pl-72">
+      <div className="fa-bg-aurora mx-auto flex min-h-screen flex-col gap-5 px-4 py-20 sm:py-10 md:pl-28 lg:pl-72">
         <div className="mx-auto flex w-full max-w-xl items-center justify-between lg:max-w-4xl">
-          <h1 className="text-lg font-bold text-gray-800 sm:text-2xl">
-            Edit Daily Goal
-          </h1>
+          <h1 className="fa-h2">Edit Daily Goal</h1>
           <button
-            className="rounded-2xl border-b-4 border-green-600 bg-green-500 px-5 py-3 font-bold uppercase text-white transition hover:brightness-110 disabled:border-b-0 disabled:bg-gray-200 disabled:text-gray-400 disabled:hover:brightness-100"
+            className="fa-btn-primary-sm disabled:bg-panel disabled:text-ink-faint disabled:shadow-none"
             onClick={() => setGoalXp(localGoalXp)}
             disabled={localGoalXp === goalXp}
           >
@@ -161,22 +159,22 @@ const Coach: NextPage = () => {
         </div>
         <div className="flex justify-center gap-12">
           <div className="flex w-full max-w-xl flex-col gap-8">
-            <p className="text-gray-400">
+            <p className="fa-sub">
               Coach here! Selecting a daily goal will help you stay motivated
               while learning a language. You can change your goal at any time.
             </p>
             <div className="flex gap-5">
               <CoachSvg className="hidden h-52 w-52 sm:block" />
-              <div className="grow">
+              <div className="fa-card grow overflow-hidden p-0">
                 {goalXpOptions.map(({ title, xp }, i) => {
                   return (
                     <button
                       key={title}
                       className={[
-                        "flex w-full items-center justify-between border-2 p-4 first:rounded-t-2xl last:rounded-b-2xl last:border-b-2",
+                        "flex w-full items-center justify-between border-b p-4 text-[15px] transition-colors last:border-b-0",
                         xp === localGoalXp
-                          ? "border-b-2 border-blue-400 bg-blue-100 text-blue-500"
-                          : "border-t-0 border-gray-200 first:border-t-2 hover:bg-gray-100",
+                          ? "bg-brand-soft font-bold text-brand"
+                          : "hover:bg-canvas",
                         goalXpOptions[i + 1]?.xp === localGoalXp
                           ? "border-b-0"
                           : "",
@@ -184,7 +182,9 @@ const Coach: NextPage = () => {
                       onClick={() => setLocalGoalXp(xp)}
                     >
                       <div className="font-bold">{title}</div>
-                      <div>{xp} XP per day</div>
+                      <div className="fa-tabular text-ink-muted">
+                        {xp} XP per day
+                      </div>
                     </button>
                   );
                 })}

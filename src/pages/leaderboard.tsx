@@ -21,13 +21,13 @@ import Image from "next/image";
 
 const LeaderboardExplanationSection = () => {
   return (
-    <article className="relative hidden h-fit w-96 shrink-0 gap-5 rounded-2xl border-2 border-gray-200 p-6 xl:flex">
+    <article className="fa-card fa-bg-dots relative hidden h-fit w-96 shrink-0 gap-5 p-6 xl:flex">
       <div className="flex flex-col gap-5">
-        <h2 className="font-bold uppercase text-gray-400">
+        <h2 className="fa-caption font-bold uppercase tracking-wide text-ink-faint">
           What are leaderboards?
         </h2>
-        <p className="font-bold text-gray-700">Do lessons. Earn XP. Compete.</p>
-        <p className="text-gray-400">
+        <p className="font-bold text-ink">Do lessons. Earn XP. Compete.</p>
+        <p className="fa-caption">
           Earn XP through lessons, then compete with players in a weekly
           leaderboard
         </p>
@@ -82,8 +82,8 @@ const LeaderboardProfile = ({
   return (
     <div
       className={[
-        "flex items-center gap-5 rounded-2xl px-5 py-2 hover:bg-gray-100 md:mx-0",
-        isCurrentUser ? "bg-gray-200" : "",
+        "flex items-center gap-5 rounded-2xl px-5 py-2 transition-colors hover:bg-canvas md:mx-0",
+        isCurrentUser ? "bg-brand-soft" : "",
       ].join(" ")}
     >
       <div className="flex items-center gap-4">
@@ -94,14 +94,14 @@ const LeaderboardProfile = ({
         ) : place === 3 ? (
           <ThirdPlaceSvg />
         ) : (
-          <div className="flex h-10 w-10 items-center justify-center font-bold text-green-700">
+          <div className="fa-tabular flex h-10 w-10 items-center justify-center font-bold text-brand">
             {place}
           </div>
         )}
         <Image
           width={48}
           height={48}
-          className="h-12 w-12 rounded-full"
+          className="h-12 w-12 rounded-full border border-line object-cover"
           src={defaultPicture}
           alt=""
         />
@@ -109,7 +109,7 @@ const LeaderboardProfile = ({
       <div className="grow overflow-hidden overflow-ellipsis font-bold">
         {name}
       </div>
-      <div className="shrink-0 text-gray-500">{`${xp} XP`}</div>
+      <div className="fa-tabular shrink-0 text-ink-muted">{`${xp} XP`}</div>
     </div>
   );
 };
@@ -143,17 +143,15 @@ const Leaderboard: NextPage = () => {
           {!leaderboardIsUnlocked && (
             <>
               <LeaderboardBannerSvg />
-              <h1 className="text-center text-2xl font-bold text-gray-700">
-                Unlock Leaderboards!
-              </h1>
-              <p className="text-center text-lg text-gray-500">
+              <h1 className="fa-h1 text-center">Unlock Leaderboards!</h1>
+              <p className="fa-sub text-center text-lg">
                 Complete {lessonsRemainingToUnlockLeaderboard} more lesson
                 {lessonsRemainingToUnlockLeaderboard === 1 ? "" : "s"} to start
                 competing
               </p>
               <Link
                 href="/lesson?practice"
-                className="w-fit rounded-2xl border-2 border-b-4 border-gray-200 px-16 py-2 text-center font-bold uppercase text-blue-400 transition hover:bg-gray-50 hover:brightness-90"
+                className="fa-btn-secondary w-fit px-16"
               >
                 Start a lesson
               </Link>
@@ -163,7 +161,7 @@ const Leaderboard: NextPage = () => {
           )}
           {leaderboardIsUnlocked && (
             <>
-              <div className="sticky top-0 -mt-14 flex w-full flex-col items-center gap-5 bg-white pt-14">
+              <div className="fa-glass sticky top-0 -mt-14 flex w-full flex-col items-center gap-5 pt-14">
                 <div className="flex items-center gap-5">
                   <BronzeLeagueSvg className="h-fit w-20" />
                   <LockedLeagueSvg />
@@ -171,16 +169,16 @@ const Leaderboard: NextPage = () => {
                   <LockedLeagueSvg />
                   <LockedLeagueSvg />
                 </div>
-                <h1 className="text-2xl font-bold">{leaderboardLeague}</h1>
+                <h1 className="fa-h2">{leaderboardLeague}</h1>
                 <div className="flex w-full flex-col items-center gap-1 pb-5">
-                  <p className="text-lg text-gray-500">
+                  <p className="fa-sub text-lg">
                     Top 20 advance to the next league
                   </p>
-                  <time className="font-bold text-yellow-400">
+                  <time className="fa-tabular font-bold text-amber-strong">
                     {timeLeft()}
                   </time>
                 </div>
-                <div className="w-full border-b-2 border-gray-200"></div>
+                <div className="w-full border-b border-line"></div>
               </div>
               <div className="w-full">
                 {leaderboardUsers.map((user, i) => {

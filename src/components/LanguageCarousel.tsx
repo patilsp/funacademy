@@ -86,10 +86,10 @@ export const LanguageCarousel = () => {
   const languagesContainer = useRef<null | HTMLDivElement>(null);
   const lastLanguageIndex = 19;
   return (
-    <article className="absolute bottom-0 left-0 right-0 hidden h-20 items-center justify-center bg-[#0a4a82] text-white md:flex">
-      <div className="flex w-full max-w-5xl justify-between">
+    <article className="fa-glass absolute bottom-0 left-0 right-0 hidden h-20 items-center justify-center border-t border-line md:flex">
+      <div className="flex w-full max-w-5xl items-center justify-between gap-4">
         <button
-          className="opacity-50"
+          className="fa-press rounded-lg p-1 text-ink-faint hover:bg-canvas hover:text-ink"
           onClick={() =>
             scrollCarouselLeft({
               languagesContainer,
@@ -109,12 +109,12 @@ export const LanguageCarousel = () => {
             return (
               <Link
                 key={language.code}
-                className="flex items-center gap-2"
-                href={"/learn"}
+                className="fa-press flex items-center gap-2 text-ink-muted transition-colors hover:text-ink"
+                href="/learn"
                 onClick={() => setLanguage(language)}
               >
-                <Flag language={language} width={40} />
-                <span className="text-sm font-bold uppercase">
+                <Flag language={language} width={38} />
+                <span className="text-[13px] font-bold uppercase tracking-wide">
                   {language.name}
                 </span>
               </Link>
@@ -122,7 +122,7 @@ export const LanguageCarousel = () => {
           })}
         </div>
         <button
-          className="opacity-50"
+          className="fa-press rounded-lg p-1 text-ink-faint hover:bg-canvas hover:text-ink"
           onClick={() =>
             scrollCarouselRight({
               languagesContainer,
