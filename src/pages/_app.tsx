@@ -1,19 +1,27 @@
 import { type AppType } from "next/dist/shared/lib/utils";
 import Head from "next/head";
+import { useEffect } from "react";
 
+import { useBoundStore } from "~/hooks/useBoundStore";
 import "~/styles/globals.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  const initTheme = useBoundStore((s) => s.initTheme);
+
+  useEffect(() => {
+    initTheme();
+  }, [initTheme]);
+
   return (
     <>
       <Head>
         <title>Fun Academy</title>
         <meta
           name="description"
-          content="Fun Academy web app clone written with React"
+          content="Fun Academy — a joyful, premium learning experience for curious young minds."
         />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#0A0" />
+        <meta name="theme-color" content="#4F46E5" />
         <link rel="manifest" href="/app.webmanifest" />
       </Head>
       <Component {...pageProps} />

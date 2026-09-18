@@ -20,9 +20,9 @@ export const units: readonly Unit[] = [
   {
     unitNumber: 1,
     description: "Form basic sentences, greet people",
-    backgroundColor: "bg-[#58cc02]",
-    textColor: "text-[#58cc02]",
-    borderColor: "border-[#46a302]",
+    backgroundColor: "bg-brand",
+    textColor: "text-brand",
+    borderColor: "border-brand-strong",
     tiles: [
       {
         type: "star",
@@ -44,9 +44,9 @@ export const units: readonly Unit[] = [
   {
     unitNumber: 2,
     description: "Get around in a city",
-    backgroundColor: "bg-[#ce82ff]",
-    textColor: "text-[#ce82ff]",
-    borderColor: "border-[#a568cc]",
+    backgroundColor: "bg-violet",
+    textColor: "text-violet",
+    borderColor: "border-violet-strong",
     tiles: [
       { type: "fast-forward", description: "Get around in a city" },
       { type: "dumbbell", description: "Personalized practice" },
@@ -64,9 +64,9 @@ export const units: readonly Unit[] = [
   {
     unitNumber: 3,
     description: "Order food and drink",
-    backgroundColor: "bg-[#00cd9c]",
-    textColor: "text-[#00cd9c]",
-    borderColor: "border-[#00a47d]",
+    backgroundColor: "bg-sky",
+    textColor: "text-sky",
+    borderColor: "border-sky-strong",
     tiles: [
       { type: "fast-forward", description: "Order food and drink" },
       { type: "book", description: "The passport" },

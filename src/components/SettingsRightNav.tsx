@@ -25,15 +25,17 @@ export const SettingsRightNav = ({
 }) => {
   const settingsPages = useSettingsPages();
   return (
-    <div className="hidden h-fit w-80 flex-col gap-1 rounded-2xl border-2 border-gray-200 p-5 lg:flex">
+    <div className="fa-card hidden h-fit w-80 flex-col gap-1 p-3 lg:flex">
       {settingsPages.map(({ title, href }) => {
         return (
           <Link
             key={title}
             href={href}
             className={[
-              "rounded-2xl p-4 font-bold hover:bg-gray-300",
-              title === selectedTab ? "bg-gray-300" : "",
+              "rounded-xl p-4 text-sm font-bold transition-colors hover:bg-canvas",
+              title === selectedTab
+                ? "bg-brand-soft text-brand"
+                : "text-ink-muted",
             ].join(" ")}
           >
             {title}

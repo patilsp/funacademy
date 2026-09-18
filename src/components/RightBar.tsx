@@ -38,46 +38,46 @@ export const RightBar = () => {
 
   return (
     <>
-      <aside className="sticky top-0 hidden w-96 flex-col gap-6 self-start sm:flex">
+      <aside className="sticky top-0 hidden w-96 flex-col gap-5 self-start sm:flex">
         <article className="my-6 flex justify-between gap-4">
           <div
-            className="relative flex cursor-default items-center gap-2 rounded-xl p-3 font-bold uppercase text-gray-500 hover:bg-gray-100"
+            className="relative flex cursor-default items-center gap-2 rounded-xl p-3 font-bold text-ink-muted transition-colors hover:bg-canvas hover:text-ink"
             onMouseEnter={() => setLanguagesShown(true)}
             onMouseLeave={() => setLanguagesShown(false)}
             onClick={() => setLanguagesShown((x) => !x)}
             role="button"
             tabIndex={0}
           >
-            <Flag language={language} width={45} />
-            <div>{language.name}</div>
+            <Flag language={language} width={42} />
+            <div className="text-[15px]">{language.name}</div>
             <div
-              className="absolute top-full z-10 rounded-2xl border-2 border-gray-300 bg-white"
+              className="fa-card animate-scale-in absolute top-full z-10 p-2"
               style={{
                 left: "calc(50% - 150px)",
                 width: 300,
                 display: languagesShown ? "block" : "none",
               }}
             >
-              <h2 className="px-5 py-3 font-bold uppercase text-gray-400">
+              <h2 className="fa-caption px-3 py-2 font-bold uppercase tracking-wide text-ink-faint">
                 My courses
               </h2>
-              <button className="flex w-full items-center gap-3 border-t-2 border-gray-300 bg-blue-100 px-5 py-3 text-left font-bold">
-                <Flag language={language} width={45} />
-                <span className="text-blue-500">{language.name}</span>
+              <button className="flex w-full items-center gap-3 rounded-xl bg-brand-soft px-3 py-2.5 text-left font-bold">
+                <Flag language={language} width={42} />
+                <span className="text-brand">{language.name}</span>
               </button>
               <Link
-                className="flex w-full items-center gap-3 rounded-b-2xl border-t-2 border-gray-300 px-5 py-3 text-left font-bold hover:bg-gray-100"
+                className="flex w-full items-center gap-3 px-3 py-2.5 text-left font-bold text-ink-muted transition hover:bg-canvas hover:text-ink"
                 href="/register"
               >
-                <span className="flex items-center justify-center rounded-lg border-2 border-gray-400 px-2 text-lg font-bold text-gray-400">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-dashed border-line-strong text-lg font-bold text-ink-faint">
                   +
                 </span>
-                <span className="text-gray-600">Add new course</span>
+                <span>Add new course</span>
               </Link>
             </div>
           </div>
           <span
-            className="relative flex items-center gap-2 rounded-xl p-3 font-bold text-orange-500 hover:bg-gray-100"
+            className="relative flex items-center gap-2 rounded-xl p-3 font-bold tabular-nums text-amber transition-colors hover:bg-amber-soft"
             onMouseEnter={() => setStreakShown(true)}
             onMouseLeave={() => {
               setStreakShown(false);
@@ -94,26 +94,25 @@ export const RightBar = () => {
             <div className="pointer-events-none">
               {streak > 0 ? <FireSvg /> : <EmptyFireSvg />}
             </div>
-            <span className={streak > 0 ? "text-orange-500" : "text-gray-300"}>
+            <span className={streak > 0 ? "text-amber" : "text-ink-faint"}>
               {streak}
             </span>
             <div
-              className="absolute top-full z-10 flex flex-col gap-5 rounded-2xl border-2 border-gray-300 bg-white p-5 text-black"
+              className="fa-card animate-scale-in absolute top-full z-10 flex w-[400px] flex-col gap-4 p-5"
               style={{
                 left: "calc(50% - 200px)",
-                width: 400,
                 display: streakShown ? "flex" : "none",
               }}
             >
               <h2 className="text-center text-lg font-bold">Streak</h2>
-              <p className="text-center text-sm font-normal text-gray-400">
+              <p className="fa-caption text-center">
                 {`But your streak will reset tomorrow if you don't practice tomorrow. Watch out!`}
               </p>
               <Calendar now={now} setNow={setNow} />
             </div>
           </span>
           <span
-            className="relative flex items-center gap-2 rounded-xl p-3 font-bold text-red-500 hover:bg-gray-100"
+            className="relative flex items-center gap-2 rounded-xl p-3 font-bold tabular-nums text-coral transition-colors hover:bg-coral-soft"
             onMouseEnter={() => setGemsShown(true)}
             onMouseLeave={() => setGemsShown(false)}
             onClick={() => setGemsShown((x) => !x)}
@@ -121,24 +120,24 @@ export const RightBar = () => {
             tabIndex={0}
           >
             {lingots > 0 ? <GemSvg /> : <EmptyGemSvg />}
-            <span className={lingots > 0 ? "text-red-500" : "text-gray-300"}>
+            <span className={lingots > 0 ? "text-coral" : "text-ink-faint"}>
               {lingots}
             </span>
             <div
-              className="absolute top-full z-10 flex w-72 items-center gap-3 rounded-2xl border-2 border-gray-300 bg-white p-5"
+              className="fa-card animate-scale-in absolute top-full z-10 flex w-72 items-center gap-3 p-5"
               style={{
                 left: "calc(50% - 150px)",
                 display: gemsShown ? "flex" : "none",
               }}
             >
-              <LingotsTreasureChestSvg className="w-24" />
-              <div className="flex flex-col gap-3">
-                <h2 className="text-xl font-bold text-black">Lingots</h2>
-                <p className="text-sm font-normal text-gray-400">
+              <LingotsTreasureChestSvg className="w-24 shrink-0" />
+              <div className="flex flex-col gap-2">
+                <h2 className="text-lg font-bold">Lingots</h2>
+                <p className="fa-caption">
                   You have {lingots} {lingots === 1 ? "lingot" : "lingots"}.
                 </p>
                 <Link
-                  className="uppercase text-blue-400 transition hover:brightness-110"
+                  className="text-sm font-bold uppercase tracking-wide text-brand transition hover:text-brand-strong"
                   href="/shop"
                 >
                   Go to shop
@@ -176,11 +175,11 @@ const UnlockLeaderboardsSection = () => {
   const lessonsNeededToUnlockLeaderboards = 10 - lessonsCompleted;
 
   return (
-    <article className="flex flex-col gap-5 rounded-2xl border-2 border-gray-200 p-6 text-gray-700">
-      <h2 className="text-xl font-bold">Unlock Leaderboards!</h2>
+    <article className="fa-card flex flex-col gap-5 p-6">
+      <h2 className="fa-h3">Unlock Leaderboards!</h2>
       <div className="flex items-center gap-6">
         <LockedLeaderboardsSvg />
-        <p className="text-sm leading-6 text-gray-500">
+        <p className="fa-caption">
           Complete {lessonsNeededToUnlockLeaderboards} more lesson
           {lessonsNeededToUnlockLeaderboards === 1 ? "" : "s"} to start
           competing
@@ -195,22 +194,23 @@ const LeaderboardRankSection = () => {
   const rank = useLeaderboardRank();
   const leaderboardLeague = "Bronze League";
   return (
-    <article className="flex flex-col gap-5 rounded-2xl border-2 border-gray-200 p-6 text-gray-700">
+    <article className="fa-card flex flex-col gap-5 p-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold">{leaderboardLeague}</h2>
-        <Link href="/leaderboard" className="font-bold uppercase text-blue-400">
+        <h2 className="fa-h3">{leaderboardLeague}</h2>
+        <Link
+          href="/leaderboard"
+          className="text-sm font-bold uppercase tracking-wide text-brand transition hover:text-brand-strong"
+        >
           View league
         </Link>
       </div>
       <div className="flex gap-6">
         <BronzeLeagueSvg />
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-4">
           {rank !== null && (
-            <p className="text-lg font-bold text-gray-700">
-              {`You're ranked #${rank}`}
-            </p>
+            <p className="text-lg font-bold">{`You're ranked #${rank}`}</p>
           )}
-          <p className="text-sm leading-6 text-gray-500">
+          <p className="fa-caption">
             You earned {xpThisWeek} XP this week so far
           </p>
         </div>
@@ -223,24 +223,19 @@ const DailyQuestsSection = () => {
   const xpToday = useBoundStore((x) => x.xpToday());
   const goalXp = useBoundStore((x) => x.goalXp);
   return (
-    <article className="flex flex-col gap-5 rounded-2xl border-2 border-gray-200 p-6 font-bold text-gray-700">
-      <h2 className="text-xl">Daily Quests</h2>
+    <article className="fa-card flex flex-col gap-5 p-6">
+      <h2 className="fa-h3">Daily Quests</h2>
       <div className="flex items-center gap-4">
         <LightningProgressSvg />
         <div className="flex flex-col gap-2">
-          <h3>Earn {goalXp} XP</h3>
-          <div className="flex items-center">
-            <div className="relative h-5 w-52 rounded-l-full bg-gray-200">
+          <h3 className="text-[15px] font-semibold">Earn {goalXp} XP</h3>
+          <div className="flex items-center gap-1.5">
+            <div className="fa-progress-track relative h-5 w-52">
               <div
-                className={[
-                  "relative h-full rounded-l-full bg-yellow-400",
-                  xpToday === 0 ? "" : "px-2",
-                ].join(" ")}
+                className="fa-progress-fill fa-progress-fill-amber h-full rounded-full"
                 style={{ width: `${Math.min(1, xpToday / goalXp) * 100}%` }}
-              >
-                <div className="absolute left-2 right-0 top-1 h-2 rounded-l-full bg-yellow-300"></div>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center text-sm text-gray-400">
+              />
+              <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center text-xs font-semibold tabular-nums text-ink-muted">
                 {xpToday} / {goalXp}
               </div>
             </div>
@@ -342,7 +337,7 @@ const TreasureClosedSvg = (props: ComponentProps<"svg">) => {
           id="path-23"
         />
         <path
-          d="M2.74830565,5.45096283 C1.23045821,5.45096283 0,4.23072338 0,2.72548142 C0,1.22023946 1.23045821,0 2.74830565,0 C4.26615308,0 5.49661129,1.22023946 5.49661129,2.72548142 C5.49661129,4.23072338 4.26615308,5.45096283 2.74830565,5.45096283 Z"
+          d="M2.74830565,5.45096283 C1.23045821,5.45096283 0,4.23072338 0,2.72548142 C0,1.22023946 1.23045821,0 2.74830565,0 C4.26615308,0 5.49661129,1.22023946 5.49661129,2.72548142 C5.49661129,4.2307212 4.26615308,5.45096283 2.74830565,5.45096283 Z"
           id="path-25"
         />
         <path
@@ -350,7 +345,7 @@ const TreasureClosedSvg = (props: ComponentProps<"svg">) => {
           id="path-27"
         />
         <path
-          d="M2.74830565,5.45096283 C1.23046041,5.45096283 0,4.2307212 0,2.72548142 C0,1.22024164 1.23046041,0 2.74830565,0 C4.26615088,0 5.49661129,1.22024164 5.49661129,2.72548142 C5.49661129,4.2307212 4.26615088,5.45096283 2.74830565,5.45096283 Z"
+          d="M2.74830565,5.45096283 C1.23045821,5.45096283 0,4.2307212 0,2.72548142 C0,1.22024164 1.23045821,0 2.74830565,0 C4.26615308,0 5.49661129,1.22024164 5.49661129,2.72548142 C5.49661129,4.2307212 4.26615308,5.45096283 2.74830565,5.45096283 Z"
           id="path-29"
         />
         <path
@@ -358,7 +353,7 @@ const TreasureClosedSvg = (props: ComponentProps<"svg">) => {
           id="path-31"
         />
         <path
-          d="M2.74830565,5.45096283 C1.23046041,5.45096283 0,4.2307212 0,2.72548142 C0,1.22024164 1.23046041,0 2.74830565,0 C4.26615088,0 5.49661129,1.22024164 5.49661129,2.72548142 C5.49661129,4.2307212 4.26615088,5.45096283 2.74830565,5.45096283 Z"
+          d="M2.74830565,5.45096283 C1.23045821,5.45096283 0,4.23072338 0,2.72548142 C0,1.22023946 1.23045821,0 2.74830565,0 C4.26615308,0 5.49661129,1.22023946 5.49661129,2.72548142 C5.49661129,4.2307212 4.26615308,5.45096283 2.74830565,5.45096283 Z"
           id="path-33"
         />
       </defs>
@@ -587,29 +582,30 @@ const XpProgressSection = () => {
   const xpToday = useBoundStore((x) => x.xpToday());
   const goalXp = useBoundStore((x) => x.goalXp);
   return (
-    <article className="flex flex-col gap-5 rounded-2xl border-2 border-gray-200 p-6 font-bold text-gray-700">
+    <article className="fa-card flex flex-col gap-5 p-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl">XP Progress</h2>
-        <Link href="/settings/coach" className="uppercase text-blue-400">
+        <h2 className="fa-h3">XP Progress</h2>
+        <Link
+          href="/settings/coach"
+          className="text-sm font-bold uppercase tracking-wide text-brand transition hover:text-brand-strong"
+        >
           Edit goal
         </Link>
       </div>
       <div className="flex gap-5">
         <TreasureClosedSvg />
         <div className="flex grow flex-col justify-around">
-          <h3 className="font-normal text-gray-500">Daily goal</h3>
-          <div className="flex items-center gap-5">
-            <div className="relative h-4 w-full grow rounded-full bg-gray-200">
+          <h3 className="text-sm font-medium text-ink-muted">Daily goal</h3>
+          <div className="flex items-center gap-4">
+            <div className="fa-progress-track h-4 w-full grow">
               {xpToday > 0 && (
                 <div
-                  className="absolute left-0 top-0 h-4 rounded-full bg-yellow-400"
+                  className="fa-progress-fill fa-progress-fill-amber h-full"
                   style={{ width: `${Math.min(1, xpToday / goalXp) * 100}%` }}
-                >
-                  <div className="absolute left-2 right-2 top-1 h-[6px] rounded-full bg-yellow-300"></div>
-                </div>
+                />
               )}
             </div>
-            <div className="text-md shrink-0 font-normal text-gray-400">
+            <div className="fa-tabular shrink-0 text-sm font-medium text-ink-faint">
               {xpToday}/{goalXp} XP
             </div>
           </div>
@@ -625,16 +621,16 @@ const CreateAProfileSection = ({
   setLoginScreenState: React.Dispatch<React.SetStateAction<LoginScreenState>>;
 }) => {
   return (
-    <article className="flex flex-col gap-5 rounded-2xl border-2 border-gray-200 p-6 font-bold">
-      <h2 className="text-xl">Create a profile to save your progress!</h2>
+    <article className="fa-card flex flex-col gap-4 p-6">
+      <h2 className="fa-h3">Create a profile to save your progress!</h2>
       <button
-        className="rounded-2xl border-b-4 border-green-600 bg-green-500 py-3 uppercase text-white transition hover:border-green-500 hover:bg-green-400"
+        className="fa-btn-primary"
         onClick={() => setLoginScreenState("SIGNUP")}
       >
         Create a profile
       </button>
       <button
-        className="rounded-2xl border-b-4 border-blue-500 bg-blue-400 py-3 uppercase text-white transition hover:border-blue-400 hover:bg-blue-300"
+        className="fa-btn-secondary"
         onClick={() => setLoginScreenState("LOGIN")}
       >
         Sign in

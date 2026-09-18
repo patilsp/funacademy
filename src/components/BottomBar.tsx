@@ -23,7 +23,7 @@ export const useBottomBarItems = () => {
           height="32"
           viewBox="0 0 32 32"
           fill="none"
-          className="h-[50px] w-[50px]"
+          className="h-[46px] w-[46px]"
         >
           <path
             d="M24.5852 25.2658C24.2883 26.8243 22.9257 27.9519 21.3392 27.9519H10.6401C9.05354 27.9519 7.69094 26.8243 7.39408 25.2658L4.98096 12.5969L15.9001 4.52225L26.9988 12.5941L24.5852 25.2658Z"
@@ -56,7 +56,7 @@ export const useBottomBarItems = () => {
           height="46"
           viewBox="0 0 46 46"
           fill="none"
-          className="h-[50px] w-[50px]"
+          className="h-[46px] w-[46px]"
         >
           <path
             d="M40 36V17H6V36C6 38.2091 7.73969 40 9.88571 40H36.1143C38.2603 40 40 38.2091 40 36Z"
@@ -100,7 +100,7 @@ export const useBottomBarItems = () => {
           height="46"
           viewBox="0 0 46 46"
           fill="none"
-          className="h-[50px] w-[50px]"
+          className="h-[46px] w-[46px]"
         >
           <path
             fillRule="evenodd"
@@ -121,7 +121,7 @@ export const useBottomBarItems = () => {
             fill="#BF8034"
           />
           <path
-            d="M24.1826 20.502C24.1826 19.6735 24.8542 19.002 25.6826 19.002C26.511 19.002 27.1826 19.6735 27.1826 20.502V24.502C27.1826 25.3304 26.511 26.002 25.6826 26.002C24.8542 26.002 24.1826 25.3304 24.1826 24.502V20.502Z"
+            d="M24.1826 20.502C24.1826 19.6735 24.8542 19.002 25.6826 19.002C26.511 19.002 27.1826 19.6735 27.1826 20.502V24.502C27.1826 25.3304 20.511 26.002 25.6826 26.002C24.1826 26.002 24.1826 25.3304 24.1826 24.502V20.502Z"
             fill="#BF8034"
           />
           <path
@@ -142,7 +142,7 @@ export const useBottomBarItems = () => {
       name: "Leaderboards",
       href: "/leaderboard",
       icon: (
-        <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" className="h-[46px] w-[46px]">
           <path
             d="M7 9.5C7 7.84314 8.34315 6.5 10 6.5H36C37.6569 6.5 39 7.84315 39 9.5V23.5C39 32.3366 31.8366 39.5 23 39.5C14.1634 39.5 7 32.3366 7 23.5V9.5Z"
             fill="#FEC701"
@@ -163,9 +163,10 @@ export const useBottomBarItems = () => {
 export const BottomBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
   const bottomBarItems = useBottomBarItems();
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-20 border-t-2 border-[#e5e5e5] bg-white md:hidden">
-      <ul className="flex h-[88px]">
+    <nav className="fa-glass fixed bottom-0 left-0 right-0 z-20 border-t border-line md:hidden">
+      <ul className="flex h-[76px] max-w-md mx-auto">
         {bottomBarItems.map((item) => {
+          const active = item.name === selectedTab;
           return (
             <li
               key={item.href}
@@ -173,14 +174,23 @@ export const BottomBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
             >
               <Link
                 href={item.href}
-                className={
-                  item.name === selectedTab
-                    ? "rounded-xl border-2 border-[#84d8ff] bg-[#ddf4ff] px-2 py-1"
-                    : "px-2 py-1"
-                }
+                className={[
+                  "fa-press flex flex-col items-center justify-center gap-0.5 rounded-xl px-3 py-1.5 transition-colors duration-150",
+                  active
+                    ? "bg-brand-soft text-brand"
+                    : "text-ink-faint hover:text-ink",
+                ].join(" ")}
+                aria-current={active ? "page" : undefined}
               >
                 {item.icon}
-                <span className="sr-only">{item.name}</span>
+                <span
+                  className={[
+                    "sr-only text-[11px] font-semibold",
+                    active ? "not-sr-only" : "",
+                  ].join(" ")}
+                >
+                  {item.name}
+                </span>
               </Link>
             </li>
           );

@@ -25,13 +25,11 @@ const Account: NextPage = () => {
       <TopBar />
       <LeftBar selectedTab={null} />
       <BottomBar selectedTab={null} />
-      <div className="mx-auto flex flex-col gap-5 px-4 py-20 sm:py-10 md:pl-28 lg:pl-72">
+      <div className="fa-bg-aurora mx-auto flex min-h-screen flex-col gap-5 px-4 py-20 sm:py-10 md:pl-28 lg:pl-72">
         <div className="mx-auto flex w-full max-w-xl items-center justify-between lg:max-w-4xl">
-          <h1 className="text-lg font-bold text-gray-800 sm:text-2xl">
-            Account
-          </h1>
+          <h1 className="fa-h2">Account</h1>
           <button
-            className="rounded-2xl border-b-4 border-green-600 bg-green-500 px-5 py-3 font-bold uppercase text-white transition hover:brightness-110 disabled:border-b-0 disabled:bg-gray-200 disabled:text-gray-400 disabled:hover:brightness-100"
+            className="fa-btn-primary-sm disabled:bg-panel disabled:text-ink-faint disabled:shadow-none"
             onClick={() => {
               setName(localName);
               setUsername(localUsername);
@@ -42,16 +40,18 @@ const Account: NextPage = () => {
           </button>
         </div>
         <div className="flex justify-center gap-12">
-          <div className="flex w-full max-w-xl flex-col gap-8">
+          <div className="fa-card flex w-full max-w-xl flex-col gap-6 p-6">
             {accountOptions.map(({ title, value, setValue }) => {
               return (
                 <div
                   key={title}
-                  className="flex flex-col items-stretch justify-between gap-2 sm:flex-row sm:items-center sm:justify-center sm:gap-10 sm:pl-10"
+                  className="flex flex-col items-stretch justify-between gap-2 sm:flex-row sm:items-center sm:justify-center sm:gap-10 sm:pl-6"
                 >
-                  <div className="font-bold sm:w-1/6">{title}</div>
+                  <div className="text-sm font-bold uppercase tracking-wide text-ink-muted sm:w-1/6">
+                    {title}
+                  </div>
                   <input
-                    className="grow rounded-2xl border-2 border-gray-200 p-4 py-2"
+                    className="fa-input"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                   />

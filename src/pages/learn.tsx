@@ -193,9 +193,9 @@ const getTileColors = ({
   switch (status) {
     case "LOCKED":
       if (tileType === "fast-forward") return defaultColors;
-      return "border-[#b7b7b7] bg-[#e5e5e5]";
+      return "border-line-strong bg-panel";
     case "COMPLETE":
-      return "border-yellow-500 bg-yellow-400";
+      return "border-amber-strong bg-amber";
     case "ACTIVE":
       return defaultColors;
   }
@@ -234,9 +234,6 @@ const TileTooltip = ({
     return () => window.removeEventListener("click", containsTileTooltip, true);
   }, [selectedTile, tileTooltipRef, closeTooltip, index]);
 
-  const unit = units.find((unit) => unit.unitNumber === unitNumber);
-  const activeBackgroundColor = unit?.backgroundColor ?? "bg-green-500";
-  const activeTextColor = unit?.textColor ?? "text-green-500";
 
   return (
     <div
@@ -248,24 +245,24 @@ const TileTooltip = ({
     >
       <div
         className={[
-          "absolute z-30 flex w-[300px] flex-col gap-4 rounded-xl p-4 font-bold transition-all duration-300",
+          "fa-card animate-scale-in absolute z-30 flex w-[300px] flex-col gap-4 p-4 font-bold transition-all duration-200",
           status === "ACTIVE"
-            ? activeBackgroundColor
+            ? `!bg-brand shadow-lift border-brand-strong`
             : status === "LOCKED"
-              ? "border-2 border-gray-200 bg-gray-100"
-              : "bg-yellow-400",
+              ? "opacity-95"
+              : "!bg-amber-soft border-amber/40",
           index === selectedTile ? "top-4 scale-100" : "-top-14 scale-0",
         ].join(" ")}
         style={{ left: "calc(50% - 150px)" }}
       >
         <div
           className={[
-            "absolute left-[140px] top-[-8px] h-4 w-4 rotate-45",
+            "absolute top-[-8px] h-4 w-4 rotate-45 border-l border-t",
             status === "ACTIVE"
-              ? activeBackgroundColor
+              ? `!bg-brand border-brand-strong`
               : status === "LOCKED"
-                ? "border-l-2 border-t-2 border-gray-200 bg-gray-100"
-                : "bg-yellow-400",
+                ? "bg-surface border-line"
+                : "!bg-amber-soft border-amber/40",
           ].join(" ")}
           style={{
             left: getTileTooltipLeftOffset({ index, unitNumber, tilesLength }),
@@ -277,8 +274,8 @@ const TileTooltip = ({
             status === "ACTIVE"
               ? "text-white"
               : status === "LOCKED"
-                ? "text-gray-400"
-                : "text-yellow-600",
+                ? "text-ink-muted"
+                : "text-amber-strong",
           ].join(" ")}
         >
           {description}
@@ -286,16 +283,13 @@ const TileTooltip = ({
         {status === "ACTIVE" ? (
           <Link
             href="/lesson"
-            className={[
-              "flex w-full items-center justify-center rounded-xl border-b-4 border-gray-200 bg-white p-3 uppercase",
-              activeTextColor,
-            ].join(" ")}
+            className="flex w-full items-center justify-center rounded-xl bg-surface p-3 text-sm font-bold uppercase tracking-wide text-brand shadow-card transition hover:bg-canvas hover:text-brand-strong"
           >
             Start +10 XP
           </Link>
         ) : status === "LOCKED" ? (
           <button
-            className="w-full rounded-xl bg-gray-200 p-3 uppercase text-gray-400"
+            className="w-full rounded-xl bg-panel p-3 text-sm font-bold uppercase tracking-wide text-ink-faint"
             disabled
           >
             Locked
@@ -303,7 +297,7 @@ const TileTooltip = ({
         ) : (
           <Link
             href="/lesson"
-            className="flex w-full items-center justify-center rounded-xl border-b-4 border-yellow-200 bg-white p-3 uppercase text-yellow-400"
+            className="flex w-full items-center justify-center rounded-xl bg-surface p-3 text-sm font-bold uppercase tracking-wide text-amber-strong shadow-card transition hover:bg-canvas"
           >
             Practice +5 XP
           </Link>
@@ -435,7 +429,7 @@ const UnitSection = ({ unit }: { unit: Unit }): JSX.Element => {
                         aria-label={status === "ACTIVE" ? "Collect reward" : ""}
                       >
                         {status === "ACTIVE" && (
-                          <HoverLabel text="Open" textColor="text-yellow-400" />
+                          <HoverLabel text="Open" textColor="text-amber-strong" />
                         )}
                         <TileIcon tileType={tile.type} status={status} />
                       </div>
@@ -474,26 +468,6 @@ const UnitSection = ({ unit }: { unit: Unit }): JSX.Element => {
   );
 };
 
-const getTopBarColors = (
-  scrollY: number,
-): {
-  backgroundColor: `bg-${string}`;
-  borderColor: `border-${string}`;
-} => {
-  const defaultColors = {
-    backgroundColor: "bg-[#58cc02]",
-    borderColor: "border-[#46a302]",
-  } as const;
-
-  if (scrollY < 680) {
-    return defaultColors;
-  } else if (scrollY < 1830) {
-    return units[1] ?? defaultColors;
-  } else {
-    return units[2] ?? defaultColors;
-  }
-};
-
 const Learn: NextPage = () => {
   const { loginScreenState, setLoginScreenState } = useLoginScreen();
 
@@ -505,17 +479,12 @@ const Learn: NextPage = () => {
     return () => document.removeEventListener("scroll", updateScrollY);
   }, [scrollY]);
 
-  const topBarColors = getTopBarColors(scrollY);
-
   return (
     <>
-      <TopBar
-        backgroundColor={topBarColors.backgroundColor}
-        borderColor={topBarColors.borderColor}
-      />
+      <TopBar />
       <LeftBar selectedTab="Learn" />
 
-      <div className="flex justify-center gap-3 pt-14 sm:p-6 sm:pt-10 md:ml-24 lg:ml-64 lg:gap-12">
+      <div className="fa-bg-aurora flex min-h-screen justify-center gap-3 pt-16 sm:p-6 sm:pt-10 md:ml-24 lg:ml-64 lg:gap-12">
         <div className="flex max-w-2xl grow flex-col">
           {units.map((unit) => (
             <UnitSection unit={unit} key={unit.unitNumber} />
@@ -523,14 +492,14 @@ const Learn: NextPage = () => {
           <div className="sticky bottom-28 left-0 right-0 flex items-end justify-between">
             <Link
               href="/lesson?practice"
-              className="absolute left-4 flex h-16 w-16 items-center justify-center rounded-full border-2 border-b-4 border-gray-200 bg-white transition hover:bg-gray-50 hover:brightness-90 md:left-0"
+              className="fa-card fa-press absolute left-4 flex h-16 w-16 items-center justify-center rounded-full hover:shadow-lift md:left-0"
             >
               <span className="sr-only">Practice exercise</span>
               <PracticeExerciseSvg className="h-8 w-8" />
             </Link>
             {scrollY > 100 && (
               <button
-                className="absolute right-4 flex h-14 w-14 items-center justify-center self-end rounded-2xl border-2 border-b-4 border-gray-200 bg-white transition hover:bg-gray-50 hover:brightness-90 md:right-0"
+                className="fa-card fa-press absolute right-4 flex h-14 w-14 items-center justify-center self-end rounded-2xl hover:shadow-lift md:right-0"
                 onClick={() => scrollTo(0, 0)}
               >
                 <span className="sr-only">Jump to top</span>
@@ -597,7 +566,7 @@ const HoverLabel = ({
 
   return (
     <div
-      className={`absolute z-10 w-max animate-bounce rounded-lg border-2 border-gray-200 bg-white px-3 py-2 font-bold uppercase ${textColor}`}
+      className={`absolute z-10 w-max animate-rise rounded-xl border border-line bg-surface px-3 py-2 text-xs font-bold uppercase tracking-wide shadow-card ${textColor}`}
       style={{
         top: "-25%",
         left: `calc(50% - ${width / 2}px)`,
@@ -606,8 +575,8 @@ const HoverLabel = ({
     >
       {text}
       <div
-        className="absolute h-3 w-3 rotate-45 border-b-2 border-r-2 border-gray-200 bg-white"
-        style={{ left: "calc(50% - 8px)", bottom: "-8px" }}
+        className="absolute h-3 w-3 rotate-45 border-b border-r border-line bg-surface"
+        style={{ left: "calc(50% - 8px)", bottom: "-7px" }}
       ></div>
     </div>
   );
@@ -627,19 +596,19 @@ const UnitHeader = ({
   const language = useBoundStore((x) => x.language);
   return (
     <article
-      className={["max-w-2xl text-white sm:rounded-xl", backgroundColor].join(
+      className={["max-w-2xl text-white shadow-card sm:rounded-2xl", backgroundColor].join(
         " ",
       )}
     >
-      <header className="flex items-center justify-between gap-4 p-4">
+      <header className="flex items-center justify-between gap-4 p-4 sm:p-5">
         <div className="flex flex-col gap-1">
           <h2 className="text-2xl font-bold">Unit {unitNumber}</h2>
-          <p className="text-lg">{description}</p>
+          <p className="text-[15px] text-white/90">{description}</p>
         </div>
         <Link
           href={`https://funacademy.com/guidebook/${language.code}/${unitNumber}`}
           className={[
-            "flex items-center gap-3 rounded-2xl border-2 border-b-4 p-3 transition hover:text-gray-100",
+            "flex items-center gap-3 rounded-xl border p-2.5 text-sm font-bold transition hover:bg-white/10 sm:p-3",
             borderColor,
           ].join(" ")}
         >
