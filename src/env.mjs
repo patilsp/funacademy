@@ -3,28 +3,35 @@ import { createEnv } from "@t3-oss/env-nextjs";
 
 export const env = createEnv({
   /**
-   * Specify your server-side environment variables schema here. This way you can ensure the app
-   * isn't built with invalid env vars.
+   * Server-side environment variables schema.
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
+    DATABASE_URL: z.string().url().optional(),
+    AUTH_SECRET: z.string().min(16).optional(),
+    GOOGLE_CLIENT_ID: z.string().min(1).optional(),
+    GOOGLE_CLIENT_SECRET: z.string().min(1).optional(),
+    GOOGLE_REDIRECT_URI: z.string().url().optional(),
   },
 
   /**
-   * Specify your client-side environment variables schema here. This way you can ensure the app
-   * isn't built with invalid env vars. To expose them to the client, prefix them with
-   * `NEXT_PUBLIC_`.
+   * Client-side variables (NEXT_PUBLIC_ prefix).
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
   },
 
   /**
-   * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.
-   * middlewares) or client-side so we need to destruct manually.
+   * Destruct `process.env` manually for edge/client compatibility.
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    DATABASE_URL: process.env.DATABASE_URL,
+    AUTH_SECRET: process.env.AUTH_SECRET,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    GOOGLE_REDIRECT_URI: process.env.GOOGLE_REDIRECT_URI,
   },
+  skipValidation:
+    !!process.env.SKIP_ENV_VALIDATION || process.env.NODE_ENV === "test",
 });

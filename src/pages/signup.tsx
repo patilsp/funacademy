@@ -3,31 +3,65 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useBoundStore } from "~/hooks/useBoundStore";
-import { GoogleSignInButton } from "~/components/GoogleSignInButton";
+import { GoogleLogoSvg } from "~/components/LoginScreen";
+import { googleAuthUrl } from "~/lib/google";
 
 const Signup: NextPage = () => {
   const router = useRouter();
-  const logIn = useBoundStore((x) => x.logIn);
-  const setName = useBoundStore((x) => x.setName);
-  const setUsername = useBoundStore((x) => x.setUsername);
-  const setEmail = useBoundStore((x) => x.setEmail);
-  const theme = useBoundStore((x) => x.theme);
+  const setSessionUser = useBoundStore((x) => x.setSessionUser);
 
   const [name, setNameState] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmailState] = useState("");
   const [password, setPassword] = useState("");
+  const [grade, setGrade] = useState<number | "">("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
 
-  const handleLegacySignup = () => {
-    const displayEmail = email.trim() || "new.learner@example.com";
-    const displayName = name.trim() || displayEmail.split("@")[0] || "learner";
+  const returnTo =
+    typeof router.query.returnTo === "string" && router.query.returnTo.startsWith("/")
+      ? router.query.returnTo
+      : "/learn";
+
+  const handleSignup = async (event: React.FormEvent) => {
+    event.preventDefault();
     setLoading(true);
-    setEmail(displayEmail);
-    setName(displayName);
-    setUsername(displayName.replace(/\s+/g, "-").toLowerCase());
-    logIn();
-    setTimeout(() => void router.push("/learn"), 400);
+    setError(null);
+    setFieldErrors({});
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          username,
+          email,
+          password,
+          ...(grade !== "" ? { grade: Number(grade) } : {}),
+        }),
+      });
+      const data = await response.json().catch(() => null);
+      if (!response.ok) {
+        setError(data?.error ?? "Sign up failed. Please try again.");
+        if (data?.details?.fieldErrors) {
+          setFieldErrors(data.details.fieldErrors as Record<string, string[]>);
+        }
+        return;
+      }
+      setSessionUser(data.user);
+      void router.push(returnTo);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const googleHref = googleAuthUrl(returnTo);
+
+  const fieldError = (field: string): string | null =>
+    fieldErrors[field]?.[0] ?? null;
 
   return (
     <main className="fa-bg-aurora fa-bg-dots flex min-h-screen flex-col items-center justify-center bg-canvas px-4 py-10 text-ink">
@@ -46,15 +80,15 @@ const Signup: NextPage = () => {
           Start learning in less than a minute.
         </p>
 
-        <div className="mt-8 flex flex-col gap-3">
-          <GoogleSignInButton mode="signup" />
-          <div className="my-1 flex items-center gap-3">
-            <div className="h-px grow bg-line" />
-            <span className="text-xs font-bold uppercase tracking-wide text-ink-faint">
-              or
-            </span>
-            <div className="h-px grow bg-line" />
-          </div>
+        <form className="mt-8 flex flex-col gap-3" onSubmit={handleSignup}>
+          {error && (
+            <div
+              role="alert"
+              className="rounded-xl bg-coral-soft px-4 py-3 text-sm font-semibold text-coral-strong"
+            >
+              {error}
+            </div>
+          )}
           <label className="flex flex-col gap-1.5">
             <span className="text-sm font-bold text-ink-muted">Name</span>
             <input
@@ -64,7 +98,29 @@ const Signup: NextPage = () => {
               placeholder="Alex Johnson"
               value={name}
               onChange={(e) => setNameState(e.target.value)}
+              required
             />
+            {fieldError("name") && (
+              <span className="text-xs font-semibold text-coral-strong">{fieldError("name")}</span>
+            )}
+          </label>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-sm font-bold text-ink-muted">Username</span>
+            <input
+              className="fa-input"
+              type="text"
+              autoComplete="username"
+              placeholder="alex-johnson"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              minLength={3}
+              pattern="[a-zA-Z0-9-]+"
+              title="Letters, numbers and dashes only"
+            />
+            {fieldError("username") && (
+              <span className="text-xs font-semibold text-coral-strong">{fieldError("username")}</span>
+            )}
           </label>
           <label className="flex flex-col gap-1.5">
             <span className="text-sm font-bold text-ink-muted">Email</span>
@@ -75,7 +131,11 @@ const Signup: NextPage = () => {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmailState(e.target.value)}
+              required
             />
+            {fieldError("email") && (
+              <span className="text-xs font-semibold text-coral-strong">{fieldError("email")}</span>
+            )}
           </label>
           <label className="flex flex-col gap-1.5">
             <span className="text-sm font-bold text-ink-muted">Password</span>
@@ -83,19 +143,58 @@ const Signup: NextPage = () => {
               className="fa-input"
               type="password"
               autoComplete="new-password"
-              placeholder="••••••••"
+              placeholder="At least 8 characters"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={8}
             />
+            {fieldError("password") && (
+              <span className="text-xs font-semibold text-coral-strong">{fieldError("password")}</span>
+            )}
           </label>
-          <button
-            className="fa-btn-primary"
-            onClick={handleLegacySignup}
-            disabled={loading}
-          >
+          <label className="flex flex-col gap-1.5">
+            <span className="text-sm font-bold text-ink-muted">Class (optional)</span>
+            <select
+              className="fa-input"
+              value={grade}
+              onChange={(e) => setGrade(e.target.value === "" ? "" : Number(e.target.value))}
+            >
+              <option value="">Choose your class…</option>
+              {[1, 2, 3, 4, 5, 6, 7].map((g) => (
+                <option key={g} value={g}>{`Class ${g}`}</option>
+              ))}
+            </select>
+            {fieldError("grade") && (
+              <span className="text-xs font-semibold text-coral-strong">{fieldError("grade")}</span>
+            )}
+          </label>
+          <button className="fa-btn-primary" type="submit" disabled={loading}>
             {loading ? "Creating account…" : "Create account"}
           </button>
+        </form>
+
+        <div className="my-4 flex items-center gap-3">
+          <div className="h-px grow bg-line" />
+          <span className="text-xs font-bold uppercase tracking-wide text-ink-faint">or</span>
+          <div className="h-px grow bg-line" />
         </div>
+
+        {googleHref ? (
+          <a className="fa-btn-secondary w-full" href={googleHref} rel="noopener">
+            <GoogleLogoSvg className="h-5 w-5" />
+            Sign up with Google
+          </a>
+        ) : (
+          <button
+            className="fa-btn-secondary w-full"
+            type="button"
+            onClick={() => setError("Google sign-up is not configured yet.")}
+          >
+            <GoogleLogoSvg className="h-5 w-5" />
+            Sign up with Google
+          </button>
+        )}
 
         <p className="fa-caption mt-8 text-center">
           Already have an account?{" "}
@@ -113,9 +212,6 @@ const Signup: NextPage = () => {
           ← Back to home
         </Link>
       </p>
-      <span className="sr-only" data-theme={theme}>
-        Theme: {theme}
-      </span>
     </main>
   );
 };

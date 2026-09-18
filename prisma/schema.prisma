@@ -1,0 +1,228 @@
+// FunAcademy database schema — Foundation + Content model
+// PostgreSQL (Neon). Client generated with `prisma generate`.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Users & auth ────────────────────────────────────────────────────────────
+
+model User {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  name       String
+  username   String   @unique
+  pictureUrl String?
+  role       Role     @default(STUDENT)
+  // class the student is currently enrolled in (Class 1-7)
+  classId    Int?
+  class      Class?   @relation("StudentClass", fields: [classId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  credential     UserCredential?
+  googleIdentity GoogleIdentity?
+  sessions       Session[]
+  progress       StudentProgress[]
+  attempts       QuizAttempt[]
+  activity       ActivityLog[]
+
+  @@index([classId])
+}
+
+model UserCredential {
+  userId         String    @id
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  passwordHash   String
+  failedAttempts Int       @default(0)
+  lockedUntil    DateTime?
+}
+
+model GoogleIdentity {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  googleSub  String   @unique
+  email      String
+  pictureUrl String?
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+// ─── Learning content: Class → Subject → Unit → Lesson → Question ───────────
+
+model Class {
+  id          Int     @id @default(autoincrement())
+  grade       Int     @unique // 1-7
+  name        String
+  description String?
+
+  subjects Subject[]
+  students User[]    @relation("StudentClass")
+}
+
+model Subject {
+  id          Int     @id @default(autoincrement())
+  classId     Int
+  class       Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
+  code        String // e.g. "math", "sci", "en"
+  name        String
+  description String?
+  order       Int     @default(0)
+
+  units Unit[]
+
+  @@unique([classId, code])
+  @@index([classId, order])
+}
+
+model Unit {
+  id          Int     @id @default(autoincrement())
+  subjectId   Int
+  subject     Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  order       Int     @default(0)
+  title       String
+  description String?
+
+  lessons Lesson[]
+
+  @@unique([subjectId, order])
+  @@index([subjectId, order])
+}
+
+model Lesson {
+  id       Int        @id @default(autoincrement())
+  unitId   Int
+  unit     Unit       @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  order    Int        @default(0)
+  title    String
+  type     LessonType @default(LESSON)
+  xpReward Int        @default(10)
+
+  questions Question[]
+  progress  StudentProgress[]
+  attempts  QuizAttempt[]
+
+  @@unique([unitId, order])
+  @@index([unitId, order])
+}
+
+model Question {
+  id       Int          @id @default(autoincrement())
+  lessonId Int
+  lesson   Lesson       @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  order    Int          @default(0)
+  type     QuestionType @default(MULTIPLE_CHOICE)
+  prompt   String
+  // optional image key for icon-based questions
+  imageKey String?
+
+  options QuestionOption[]
+
+  @@unique([lessonId, order])
+  @@index([lessonId, order])
+}
+
+model QuestionOption {
+  id         Int      @id @default(autoincrement())
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  order      Int      @default(0)
+  text       String
+  imageKey   String?
+  isCorrect  Boolean  @default(false)
+
+  @@unique([questionId, order])
+}
+
+enum Role {
+  STUDENT
+  PARENT
+  TEACHER
+  ADMIN
+}
+
+enum LessonType {
+  LESSON
+  PRACTICE
+  TEST
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  WORD_TILES
+}
+
+// ─── Progress & attempts ─────────────────────────────────────────────────────
+
+model StudentProgress {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId       Int
+  lesson         Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  completedAt    DateTime @default(now())
+  timesCompleted Int      @default(1)
+  bestAccuracy   Int? // 0-100
+
+  @@unique([userId, lessonId])
+  @@index([userId, completedAt])
+}
+
+model QuizAttempt {
+  id             String              @id @default(cuid())
+  userId         String
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId       Int
+  lesson         Lesson              @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  startedAt      DateTime            @default(now())
+  completedAt    DateTime?
+  score          Int? // number of correct answers
+  totalQuestions Int?
+  accuracy       Int? // 0-100
+  answers        QuizAttemptAnswer[]
+
+  @@index([userId, lessonId])
+  @@index([userId, completedAt])
+}
+
+model QuizAttemptAnswer {
+  id         Int         @id @default(autoincrement())
+  attemptId  String
+  attempt    QuizAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  order      Int
+  questionId Int
+  isCorrect  Boolean
+  response   Json?
+
+  @@unique([attemptId, order])
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      DateTime @db.Date
+  xpEarned  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, date])
+}
