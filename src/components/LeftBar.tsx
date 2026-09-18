@@ -127,12 +127,12 @@ export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
                   Help
                 </Link>
                 {!loggedIn && (
-                  <button
+                  <Link
                     className="rounded-xl px-4 py-2.5 text-left text-sm font-semibold text-brand transition hover:bg-brand-soft"
-                    onClick={() => setLoginScreenState("LOGIN")}
+                    href="/login"
                   >
                     Sign in
-                  </button>
+                  </Link>
                 )}
                 {loggedIn && (
                   <button

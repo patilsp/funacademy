@@ -42,12 +42,12 @@ const Home: NextPage = () => {
             >
               Get started
             </Link>
-            <button
+            <Link
+              href="/login"
               className="fa-btn-secondary w-full sm:w-auto sm:min-w-[200px]"
-              onClick={() => setLoginScreenState("LOGIN")}
             >
               I already have an account
-            </button>
+            </Link>
           </div>
         </div>
       </div>
