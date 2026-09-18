@@ -547,7 +547,12 @@ const ProblemSelect1Of3 = ({
   onSkip,
   hearts,
 }: {
-  problem: typeof lessonProblem1;
+  problem: {
+    type: "SELECT_1_OF_3";
+    question: string;
+    answers: readonly { icon: React.JSX.Element; name: string }[];
+    correctAnswer: number;
+  };
   correctAnswerCount: number;
   totalCorrectAnswersNeeded: number;
   selectedAnswer: number | null;
@@ -606,7 +611,7 @@ const ProblemSelect1Of3 = ({
       </div>
 
       <CheckAnswer
-        correctAnswer={answers[correctAnswer].name}
+        correctAnswer={answers[correctAnswer]?.name ?? ""}
         correctAnswerShown={correctAnswerShown}
         isAnswerCorrect={isAnswerCorrect}
         isAnswerSelected={selectedAnswer !== null}
@@ -638,7 +643,12 @@ const ProblemWriteInEnglish = ({
   onSkip,
   hearts,
 }: {
-  problem: typeof lessonProblem2;
+  problem: {
+    type: "WRITE_IN_ENGLISH";
+    question: string;
+    answerTiles: readonly string[];
+    correctAnswer: readonly number[];
+  };
   correctAnswerCount: number;
   totalCorrectAnswersNeeded: number;
   selectedAnswers: number[];
