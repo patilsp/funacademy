@@ -7,10 +7,18 @@ import "~/styles/globals.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const initTheme = useBoundStore((s) => s.initTheme);
+  const sessionStatus = useBoundStore((s) => s.sessionStatus);
+  const initSession = useBoundStore((s) => s.initSession);
 
   useEffect(() => {
     initTheme();
   }, [initTheme]);
+
+  useEffect(() => {
+    if (sessionStatus === "idle") {
+      void initSession();
+    }
+  }, [sessionStatus, initSession]);
 
   return (
     <>

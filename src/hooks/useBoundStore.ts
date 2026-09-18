@@ -8,6 +8,8 @@ import type { LessonSlice } from "~/stores/createLessonStore";
 import { createLessonSlice } from "~/stores/createLessonStore";
 import type { LingotSlice } from "~/stores/createLingotStore";
 import { createLingotSlice } from "~/stores/createLingotStore";
+import type { SessionSlice } from "~/stores/createSessionStore";
+import { createSessionSlice } from "~/stores/createSessionStore";
 import type { SoundSettingsSlice } from "~/stores/createSoundSettingsStore";
 import type { ThemeSlice } from "~/stores/createThemeStore";
 import { createSoundSettingsSlice } from "~/stores/createSoundSettingsStore";
@@ -23,6 +25,7 @@ type BoundState = GoalXpSlice &
   LanguageSlice &
   LessonSlice &
   LingotSlice &
+  SessionSlice &
   SoundSettingsSlice &
   StreakSlice &
   ThemeSlice &
@@ -41,6 +44,7 @@ export const useBoundStore = create<BoundState>((...args) => ({
   ...createLanguageSlice(...args),
   ...createLessonSlice(...args),
   ...createLingotSlice(...args),
+  ...createSessionSlice(...args),
   ...createSoundSettingsSlice(...args),
   ...createThemeSlice(...args),
   ...createStreakSlice(...args),

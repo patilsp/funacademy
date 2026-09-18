@@ -3,30 +3,48 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useBoundStore } from "~/hooks/useBoundStore";
-import { GoogleSignInButton } from "~/components/GoogleSignInButton";
+import { GoogleLogoSvg } from "~/components/LoginScreen";
+import { googleAuthUrl } from "~/lib/google";
 
 const Login: NextPage = () => {
   const router = useRouter();
-  const logIn = useBoundStore((x) => x.logIn);
-  const setName = useBoundStore((x) => x.setName);
-  const setUsername = useBoundStore((x) => x.setUsername);
-  const setEmail = useBoundStore((x) => x.setEmail);
-  const theme = useBoundStore((x) => x.theme);
+  const setSessionUser = useBoundStore((x) => x.setSessionUser);
 
   const [email, setEmailState] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLegacyLogin = () => {
-    const displayEmail = email.trim() || "guest.learner@example.com";
-    const name = displayEmail.split("@")[0] ?? "guest";
+  const returnTo =
+    typeof router.query.returnTo === "string" && router.query.returnTo.startsWith("/")
+      ? router.query.returnTo
+      : "/learn";
+
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
     setLoading(true);
-    setEmail(displayEmail);
-    setName(name.replace(/[._-]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()));
-    setUsername(name.toLowerCase());
-    logIn();
-    setTimeout(() => void router.push("/learn"), 400);
+    setError(null);
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json().catch(() => null);
+      if (!response.ok) {
+        setError(data?.error ?? "Login failed. Please try again.");
+        return;
+      }
+      setSessionUser(data.user);
+      void router.push(returnTo);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const googleHref = googleAuthUrl(returnTo);
 
   return (
     <main className="fa-bg-aurora fa-bg-dots flex min-h-screen flex-col items-center justify-center bg-canvas px-4 py-10 text-ink">
@@ -45,15 +63,20 @@ const Login: NextPage = () => {
           Log in to continue your learning streak.
         </p>
 
-        <div className="mt-8 flex flex-col gap-3">
-          <GoogleSignInButton mode="signin" />
-          <div className="my-1 flex items-center gap-3">
-            <div className="h-px grow bg-line" />
-            <span className="text-xs font-bold uppercase tracking-wide text-ink-faint">
-              or
-            </span>
-            <div className="h-px grow bg-line" />
-          </div>
+        <form className="mt-8 flex flex-col gap-3" onSubmit={handleLogin}>
+          {error && (
+            <div
+              role="alert"
+              className="rounded-xl bg-coral-soft px-4 py-3 text-sm font-semibold text-coral-strong"
+            >
+              {error}
+              {typeof router.query.error === "string" && router.query.error === "google" && (
+                <div className="mt-1 text-xs font-normal text-coral-strong/80">
+                  Google sign-in failed. Please try again.
+                </div>
+            )}
+            </div>
+          )}
           <label className="flex flex-col gap-1.5">
             <span className="text-sm font-bold text-ink-muted">Email</span>
             <input
@@ -63,6 +86,7 @@ const Login: NextPage = () => {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmailState(e.target.value)}
+              required
             />
             <span className="sr-only">Email address</span>
           </label>
@@ -75,6 +99,7 @@ const Login: NextPage = () => {
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <span className="sr-only">Password</span>
           </label>
@@ -86,14 +111,36 @@ const Login: NextPage = () => {
               Forgot password?
             </Link>
           </div>
-          <button
-            className="fa-btn-primary"
-            onClick={handleLegacyLogin}
-            disabled={loading}
-          >
+          <button className="fa-btn-primary" type="submit" disabled={loading}>
             {loading ? "Logging in…" : "Log in"}
           </button>
+        </form>
+
+        <div className="my-4 flex items-center gap-3">
+          <div className="h-px grow bg-line" />
+          <span className="text-xs font-bold uppercase tracking-wide text-ink-faint">or</span>
+          <div className="h-px grow bg-line" />
         </div>
+
+        {googleHref ? (
+          <a
+            className="fa-btn-secondary w-full"
+            href={googleHref}
+            rel="noopener"
+          >
+            <GoogleLogoSvg className="h-5 w-5" />
+            Continue with Google
+          </a>
+        ) : (
+          <button
+            className="fa-btn-secondary w-full"
+            type="button"
+            onClick={() => setError("Google sign-in is not configured yet.")}
+          >
+            <GoogleLogoSvg className="h-5 w-5" />
+            Continue with Google
+          </button>
+        )}
 
         <p className="fa-caption mt-8 text-center">
           New to FunAcademy?{" "}
@@ -111,9 +158,6 @@ const Login: NextPage = () => {
           ← Back to home
         </Link>
       </p>
-      <span className="sr-only" data-theme={theme}>
-        Theme: {theme}
-      </span>
     </main>
   );
 };
