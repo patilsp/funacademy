@@ -1,0 +1,103 @@
+/* ============================================================
+   CurioQuest kids motion kit — imported by globals.css
+   Playful, soft, sensory-friendly animations (no flashing).
+   ============================================================ */
+
+/* mascot wing flap */
+@keyframes curious-flap {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-14deg); }
+}
+.animate-curious-flap {
+  animation: curious-flap 0.5s ease-in-out infinite;
+}
+
+/* mascot wave (left wing up) */
+@keyframes curious-wave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(18deg); }
+}
+.animate-curious-wave {
+  animation: curious-wave 0.9s ease-in-out infinite;
+}
+
+/* mascot blink */
+@keyframes curious-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+.animate-curious-blink {
+  animation: curious-blink 4.5s ease-in-out infinite;
+}
+
+/* storybook scene entrance */
+@keyframes scene-pop {
+  0% { opacity: 0; transform: scale(0.6) translateY(14px); }
+  60% { transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-scene-pop {
+  animation: scene-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* floating emoji sparkles */
+@keyframes float-emoji {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.7; }
+  100% { transform: translateY(-140px) rotate(24deg); opacity: 0; }
+}
+.animate-float-emoji {
+  animation: float-emoji 6s ease-in infinite;
+}
+
+/* soft pulse for primary CTAs */
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgb(var(--rgb-brand) / 0.35); }
+  50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgb(var(--rgb-brand) / 0); }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2.2s ease-in-out infinite;
+}
+
+/* celebration confetti pieces */
+@keyframes confetti-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0.8; }
+}
+.animate-confetti {
+  animation: confetti-fall linear both;
+}
+
+/* gentle bounce for path nodes */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+}
+.animate-wiggle {
+  animation: wiggle 1.6s ease-in-out infinite;
+}
+
+/* star pop for XP counters */
+@keyframes star-pop {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.25); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-star-pop {
+  animation: star-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-curious-flap,
+  .animate-curious-wave,
+  .animate-curious-blink,
+  .animate-scene-pop,
+  .animate-float-emoji,
+  .animate-pulse-soft,
+  .animate-confetti,
+  .animate-wiggle,
+  .animate-star-pop {
+    animation: none;
+  }
+}

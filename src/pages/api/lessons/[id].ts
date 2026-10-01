@@ -1,17 +1,25 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { ApiHttpError, handleApi } from "@/lib/api";
+import { ApiHttpError, handleApi, requireUser } from "@/lib/api";
 import { prisma } from "@/lib/db";
 import { SESSION_COOKIE, getSessionUser } from "@/lib/session";
 
+/**
+ * Remove answer hints before sending questions to non-admin clients:
+ *   isCorrect — which option is the right one (grading happens server-side)
+ *   answerPos — for WORD_TILES, the tile's position in the correct answer
+ * Keeping either would let a curious kid read the answers from the network tab.
+ */
 const stripAnswers = (
   questions: {
-    options: { isCorrect: boolean }[];
+    options: { isCorrect: boolean; answerPos: number | null }[];
   }[],
 ) =>
   questions.map((q) => ({
     ...q,
-    options: q.options.map(({ isCorrect: _isCorrect, ...option }) => option),
+    options: q.options.map(
+      ({ isCorrect: _isCorrect, answerPos: _answerPos, ...option }) => option,
+    ),
   }));
 
 const handler = handleApi(async (req, res) => {
@@ -33,7 +41,16 @@ const handler = handleApi(async (req, res) => {
         select: {
           id: true,
           title: true,
-          subject: { select: { id: true, name: true, class: { select: { grade: true } } } },
+          subject: {
+            select: {
+              id: true,
+              name: true,
+              emoji: true,
+              color: true,
+              track: true,
+              class: { select: { grade: true } },
+            },
+          },
         },
       },
       questions: {
@@ -46,8 +63,8 @@ const handler = handleApi(async (req, res) => {
     throw new ApiHttpError(404, "Lesson not found");
   }
 
-  const viewer = await getSessionUser(req.cookies[SESSION_COOKIE]);
-  const isAdmin = viewer?.role === "ADMIN";
+  const viewer = await requireUser(req);
+  const isAdmin = viewer.role === "ADMIN";
 
   res.status(200).json({
     lesson: {

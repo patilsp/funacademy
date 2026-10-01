@@ -11,7 +11,7 @@ const SESSION_COOKIE = "fa_session";
 // Pages that require a signed-in user.
 const PROTECTED_PAGES = ["/learn", "/lesson", "/leaderboard", "/profile", "/shop", "/settings"];
 // APIs that require a signed-in user (role checks remain in the handlers).
-const PROTECTED_APIS = ["/api/progress", "/api/attempts"];
+const PROTECTED_APIS = ["/api/progress", "/api/attempts", "/api/learn-map", "/api/mission", "/api/lessons", "/api/check"];
 
 const ADMIN_PAGES = ["/admin"];
 
@@ -74,5 +74,9 @@ export const config = {
     "/admin/:path*",
     "/api/progress/:path*",
     "/api/attempts/:path*",
+    "/api/learn-map/:path*",
+    "/api/mission/:path*",
+    "/api/lessons/:path*",
+    "/api/check/:path*",
   ],
 };

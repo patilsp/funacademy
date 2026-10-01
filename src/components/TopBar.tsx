@@ -3,15 +3,13 @@ import Link from "next/link";
 import type { ComponentProps, JSX } from "react";
 import React, { useState } from "react";
 import { useBoundStore } from "~/hooks/useBoundStore";
+import { Curio } from "./Curio";
 import { Calendar } from "./Calendar";
-import { Flag } from "./Flag";
 import {
   FireSvg,
   GemSvg,
-  GlobeIconSvg,
   LingotsTreasureChestSvg,
   MoreOptionsSvg,
-  PodcastIconSvg,
 } from "./Svgs";
 
 const EmptyFireTopBarSvg = (props: ComponentProps<"svg">) => {
@@ -84,28 +82,28 @@ const MoonSvg = (props: ComponentProps<"svg">) => {
   );
 };
 
-type MenuState = "HIDDEN" | "LANGUAGES" | "STREAK" | "GEMS" | "MORE";
+type MenuState = "HIDDEN" | "STREAK" | "GEMS" | "MORE";
 
 export const TopBar = () => {
   const [menu, setMenu] = useState<MenuState>("HIDDEN");
   const [now, setNow] = useState(dayjs());
   const streak = useBoundStore((x) => x.streak);
   const lingots = useBoundStore((x) => x.lingots);
-  const language = useBoundStore((x) => x.language);
   const theme = useBoundStore((x) => x.theme);
   const toggleTheme = useBoundStore((x) => x.toggleTheme);
   return (
     <header className="fixed z-20 h-[60px] w-full">
       <div className="fa-glass relative flex h-full w-full items-center justify-between border-b border-line px-3 sm:px-4">
-        <button
-          className="fa-press rounded-xl p-1.5 hover:bg-canvas"
-          onClick={() =>
-            setMenu((x) => (x === "LANGUAGES" ? "HIDDEN" : "LANGUAGES"))
-          }
+        <Link
+          href="/learn"
+          className="fa-press flex items-center gap-2 rounded-xl p-1.5 hover:bg-canvas"
         >
-          <Flag language={language} width={42} />
-          <span className="sr-only">See languages</span>
-        </button>
+          <Curio mood="happy" className="h-9 w-9" />
+          <span className="hidden text-lg font-extrabold tracking-tight sm:block">
+            <span className="text-brand">Curio</span>
+            <span className="text-ink">Quest</span>
+          </span>
+        </Link>
 
         <button
           className="fa-press flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 font-bold tabular-nums text-amber hover:bg-amber-soft"
@@ -149,31 +147,6 @@ export const TopBar = () => {
         >
           {((): null | JSX.Element => {
             switch (menu) {
-              case "LANGUAGES":
-                return (
-                  <div className="p-4">
-                    <div className="fa-card animate-rise mx-auto flex max-w-md gap-5 p-5">
-                      <div className="flex flex-col items-center justify-between gap-2">
-                        <div className="rounded-2xl border-2 border-brand/60 p-1 shadow-glow">
-                          <Flag language={language} width={72} />
-                        </div>
-                        <span className="text-sm font-bold">{language.name}</span>
-                      </div>
-                      <Link
-                        className="fa-press flex flex-col items-center justify-between gap-2 rounded-2xl border-2 border-dashed border-line-strong p-2 hover:border-brand/50"
-                        href="/register"
-                      >
-                        <div className="flex h-[76px] items-center px-4">
-                          <AddLanguageSvg className="h-14 w-16" />
-                        </div>
-                        <span className="pb-1 text-sm font-bold text-ink-muted">
-                          Courses
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-                );
-
               case "STREAK":
                 return (
                   <div className="p-4">
@@ -217,21 +190,15 @@ export const TopBar = () => {
                     <div className="fa-card animate-rise mx-auto flex max-w-md flex-col overflow-hidden py-2">
                       <Link
                         className="flex items-center gap-3 px-5 py-3 text-sm font-bold text-ink transition hover:bg-canvas"
-                        href="https://podcast.funacademy.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="/leaderboard"
                       >
-                        <PodcastIconSvg className="h-9 w-9" />
-                        Podcast
+                        🏆 Leaderboard
                       </Link>
                       <Link
                         className="flex items-center gap-3 border-t border-line px-5 py-3 text-sm font-bold text-ink transition hover:bg-canvas"
-                        href="https://schools.funacademy.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="/shop"
                       >
-                        <GlobeIconSvg className="h-9 w-9" />
-                        Schools
+                        🛍️ Shop
                       </Link>
                     </div>
                   </div>

@@ -5,6 +5,26 @@ import React, { useState } from "react";
 import { useBoundStore } from "~/hooks/useBoundStore";
 import { GoogleLogoSvg } from "~/components/LoginScreen";
 import { googleAuthUrl } from "~/lib/google";
+import { Curio } from "~/components/Curio";
+
+/**
+ * Signup screen — where a new explorer joins CurioQuest.
+ *
+ * Collects name/username/email/password plus an optional class (1–7) which
+ * the API turns into a classId. Field-level validation errors from the server
+ * (zod details.fieldErrors) are shown under the matching inputs.
+ */
+
+// Classroom animals matching the /learn class picker (🐣 Class 1 … 🐉 Class 7).
+const CLASS_ANIMALS = ["🐣", "🐥", "🦊", "🐼", "🦄", "🦁", "🐉"];
+
+// Floating emoji decorations — same sparkle kit as the login page.
+const FLOATERS: { emoji: string; className: string; delay: string }[] = [
+  { emoji: "🌟", className: "left-[9%] top-[16%]", delay: "0s" },
+  { emoji: "🎈", className: "right-[11%] top-[22%]", delay: "1.6s" },
+  { emoji: "🎨", className: "left-[13%] bottom-[18%]", delay: "3s" },
+  { emoji: "🧩", className: "right-[13%] bottom-[28%]", delay: "4.4s" },
+];
 
 const Signup: NextPage = () => {
   const router = useRouter();
@@ -17,8 +37,10 @@ const Signup: NextPage = () => {
   const [grade, setGrade] = useState<number | "">("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Server-side zod errors keyed by field name, e.g. { username: ["taken"] }
   const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
 
+  // Same guarded returnTo as /login — never redirect off-site.
   const returnTo =
     typeof router.query.returnTo === "string" && router.query.returnTo.startsWith("/")
       ? router.query.returnTo
@@ -38,6 +60,7 @@ const Signup: NextPage = () => {
           username,
           email,
           password,
+          // Grade is optional — the /learn ClassPicker can set it later.
           ...(grade !== "" ? { grade: Number(grade) } : {}),
         }),
       });
@@ -58,26 +81,43 @@ const Signup: NextPage = () => {
     }
   };
 
+  // Empty string when Google OAuth is not configured server-side.
   const googleHref = googleAuthUrl(returnTo);
 
+  // First validation message for a field, or null.
   const fieldError = (field: string): string | null =>
     fieldErrors[field]?.[0] ?? null;
 
   return (
-    <main className="fa-bg-aurora fa-bg-dots flex min-h-screen flex-col items-center justify-center bg-canvas px-4 py-10 text-ink">
+    <main className="fa-bg-aurora fa-bg-dots relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-canvas px-4 py-10 text-ink">
+      {/* Ambient floating sparkles */}
+      {FLOATERS.map((f) => (
+        <span
+          key={f.emoji}
+          aria-hidden
+          className={`animate-float-emoji pointer-events-none absolute text-3xl ${f.className}`}
+          style={{ animationDelay: f.delay }}
+        >
+          {f.emoji}
+        </span>
+      ))}
+
+      {/* Curio is excited to meet a new explorer */}
+      <Curio mood="excited" className="h-20 w-20 drop-shadow-card" />
+
       <Link
         href="/"
-        className="mb-8 text-[26px] font-bold tracking-tight"
-        aria-label="FunAcademy home"
+        className="mb-6 mt-1 text-[26px] font-extrabold tracking-tight"
+        aria-label="CurioQuest home"
       >
-        <span className="text-brand">Fun</span>
-        <span className="text-ink">Academy</span>
+        <span className="text-brand">Curio</span>
+        <span className="text-ink">Quest</span>
       </Link>
 
       <div className="fa-card w-full max-w-md p-8 sm:p-10">
-        <h1 className="fa-h2 text-center">Create your account</h1>
+        <h1 className="fa-h2 text-center">Join the quest!</h1>
         <p className="fa-sub mt-2 text-center">
-          Start learning in less than a minute.
+          Create your explorer pass in less than a minute. 🎟️
         </p>
 
         <form className="mt-8 flex flex-col gap-3" onSubmit={handleSignup}>
@@ -89,8 +129,9 @@ const Signup: NextPage = () => {
               {error}
             </div>
           )}
+
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm font-bold text-ink-muted">Name</span>
+            <span className="text-sm font-bold text-ink-muted">🧑‍🚀 Your name</span>
             <input
               className="fa-input"
               type="text"
@@ -104,8 +145,9 @@ const Signup: NextPage = () => {
               <span className="text-xs font-semibold text-coral-strong">{fieldError("name")}</span>
             )}
           </label>
+
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm font-bold text-ink-muted">Username</span>
+            <span className="text-sm font-bold text-ink-muted">🏷️ Username</span>
             <input
               className="fa-input"
               type="text"
@@ -122,8 +164,9 @@ const Signup: NextPage = () => {
               <span className="text-xs font-semibold text-coral-strong">{fieldError("username")}</span>
             )}
           </label>
+
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm font-bold text-ink-muted">Email</span>
+            <span className="text-sm font-bold text-ink-muted">📧 Email</span>
             <input
               className="fa-input"
               type="email"
@@ -137,8 +180,9 @@ const Signup: NextPage = () => {
               <span className="text-xs font-semibold text-coral-strong">{fieldError("email")}</span>
             )}
           </label>
+
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm font-bold text-ink-muted">Password</span>
+            <span className="text-sm font-bold text-ink-muted">🔒 Secret password</span>
             <input
               className="fa-input"
               type="password"
@@ -153,24 +197,45 @@ const Signup: NextPage = () => {
               <span className="text-xs font-semibold text-coral-strong">{fieldError("password")}</span>
             )}
           </label>
-          <label className="flex flex-col gap-1.5">
-            <span className="text-sm font-bold text-ink-muted">Class (optional)</span>
-            <select
-              className="fa-input"
-              value={grade}
-              onChange={(e) => setGrade(e.target.value === "" ? "" : Number(e.target.value))}
-            >
-              <option value="">Choose your class…</option>
-              {[1, 2, 3, 4, 5, 6, 7].map((g) => (
-                <option key={g} value={g}>{`Class ${g}`}</option>
-              ))}
-            </select>
+
+          {/* Class picker as a friendly grid — pre-fills the learner's class */}
+          <div className="flex flex-col gap-1.5">
+            <span className="text-sm font-bold text-ink-muted">🎒 Your class (optional)</span>
+            <div className="grid grid-cols-4 gap-2">
+              {[1, 2, 3, 4, 5, 6, 7].map((g) => {
+                const selected = grade === g;
+                return (
+                  <button
+                    key={g}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => setGrade(selected ? "" : g)}
+                    className={[
+                      "fa-press flex flex-col items-center gap-0.5 rounded-xl border-2 px-1 py-2 text-sm font-bold transition",
+                      selected
+                        ? "border-brand bg-brand-soft text-brand-strong"
+                        : "border-line bg-canvas text-ink-muted hover:border-brand/40 hover:text-ink",
+                    ].join(" ")}
+                  >
+                    <span className="text-xl" aria-hidden>
+                      {CLASS_ANIMALS[g - 1]}
+                    </span>
+                    <span>{g}</span>
+                  </button>
+                );
+              })}
+            </div>
             {fieldError("grade") && (
               <span className="text-xs font-semibold text-coral-strong">{fieldError("grade")}</span>
             )}
-          </label>
-          <button className="fa-btn-primary" type="submit" disabled={loading}>
-            {loading ? "Creating account…" : "Create account"}
+          </div>
+
+          <button
+            className="fa-btn-primary animate-pulse-soft mt-1"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Making your pass…" : "Start my quest! ✨"}
           </button>
         </form>
 
@@ -197,7 +262,7 @@ const Signup: NextPage = () => {
         )}
 
         <p className="fa-caption mt-8 text-center">
-          Already have an account?{" "}
+          Already an explorer?{" "}
           <Link
             href="/login"
             className="font-bold text-brand transition hover:text-brand-strong"

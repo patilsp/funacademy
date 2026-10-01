@@ -1,623 +1,456 @@
-import { type NextPage } from "next";
+import type { NextPage } from "next";
 import Link from "next/link";
-import {
-  Fragment,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type JSX,
-} from "react";
-import {
-  ActiveBookSvg,
-  LockedBookSvg,
-  CheckmarkSvg,
-  LockedDumbbellSvg,
-  FastForwardSvg,
-  GoldenBookSvg,
-  GoldenDumbbellSvg,
-  GoldenTreasureSvg,
-  GoldenTrophySvg,
-  GuidebookSvg,
-  LessonCompletionSvg0,
-  LessonCompletionSvg1,
-  LessonCompletionSvg2,
-  LessonCompletionSvg3,
-  LockSvg,
-  StarSvg,
-  LockedTreasureSvg,
-  LockedTrophySvg,
-  UpArrowSvg,
-  ActiveTreasureSvg,
-  ActiveTrophySvg,
-  ActiveDumbbellSvg,
-  PracticeExerciseSvg,
-} from "~/components/Svgs";
-import { TopBar } from "~/components/TopBar";
-import { BottomBar } from "~/components/BottomBar";
-import { RightBar } from "~/components/RightBar";
-import { LeftBar } from "~/components/LeftBar";
-import { useRouter } from "next/router";
-import { LoginScreen, useLoginScreen } from "~/components/LoginScreen";
-import { useBoundStore } from "~/hooks/useBoundStore";
-import type { Tile, TileType, Unit } from "~/utils/units";
-import { units } from "~/utils/units";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
-type TileStatus = "LOCKED" | "ACTIVE" | "COMPLETE";
+import { Curio } from "@/components/Curio";
+import { TopBar } from "@/components/TopBar";
+import { LeftBar } from "@/components/LeftBar";
+import { BottomBar, type Tab } from "@/components/BottomBar";
+import { ClassPicker } from "@/components/ClassPicker";
+import { useBoundStore } from "@/hooks/useBoundStore";
+import type { SessionUser } from "@/stores/createSessionStore";
 
-const tileStatus = (tile: Tile, lessonsCompleted: number): TileStatus => {
-  const lessonsPerTile = 4;
-  const tilesCompleted = Math.floor(lessonsCompleted / lessonsPerTile);
-  const tiles = units.flatMap((unit) => unit.tiles);
-  const tileIndex = tiles.findIndex((t) => t === tile);
+// ─── Types mirroring /api/learn-map ──────────────────────────────────────────
 
-  if (tileIndex < tilesCompleted) {
-    return "COMPLETE";
-  }
-  if (tileIndex > tilesCompleted) {
-    return "LOCKED";
-  }
-  return "ACTIVE";
+type MapLesson = {
+  id: number;
+  order: number;
+  title: string;
+  type: string;
+  xpReward: number;
+  completed: boolean;
+  hasMission: boolean;
+};
+type MapUnit = {
+  id: number;
+  order: number;
+  title: string;
+  description: string | null;
+  lessons: MapLesson[];
+};
+type MapSubject = {
+  id: number;
+  code: string;
+  name: string;
+  emoji: string;
+  color: string;
+  unitCount: number;
+  lessonCount: number;
+  doneCount: number;
+  units: MapUnit[];
+};
+type TrackKey = "MIND" | "TOOLS" | "CREATE";
+type LearnMap = {
+  class: { id: number; grade: number; name: string };
+  tracks: Record<TrackKey, MapSubject[]>;
+  completedCount: number;
 };
 
-const TileIcon = ({
-  tileType,
-  status,
-}: {
-  tileType: TileType;
-  status: TileStatus;
-}): JSX.Element => {
-  switch (tileType) {
-    case "star":
-      return status === "COMPLETE" ? (
-        <CheckmarkSvg />
-      ) : status === "ACTIVE" ? (
-        <StarSvg />
-      ) : (
-        <LockSvg />
-      );
-    case "book":
-      return status === "COMPLETE" ? (
-        <GoldenBookSvg />
-      ) : status === "ACTIVE" ? (
-        <ActiveBookSvg />
-      ) : (
-        <LockedBookSvg />
-      );
-    case "dumbbell":
-      return status === "COMPLETE" ? (
-        <GoldenDumbbellSvg />
-      ) : status === "ACTIVE" ? (
-        <ActiveDumbbellSvg />
-      ) : (
-        <LockedDumbbellSvg />
-      );
-    case "fast-forward":
-      return status === "COMPLETE" ? (
-        <CheckmarkSvg />
-      ) : status === "ACTIVE" ? (
-        <StarSvg />
-      ) : (
-        <FastForwardSvg />
-      );
-    case "treasure":
-      return status === "COMPLETE" ? (
-        <GoldenTreasureSvg />
-      ) : status === "ACTIVE" ? (
-        <ActiveTreasureSvg />
-      ) : (
-        <LockedTreasureSvg />
-      );
-    case "trophy":
-      return status === "COMPLETE" ? (
-        <GoldenTrophySvg />
-      ) : status === "ACTIVE" ? (
-        <ActiveTrophySvg />
-      ) : (
-        <LockedTrophySvg />
-      );
-  }
+// ─── Track identity ──────────────────────────────────────────────────────────
+
+const TRACKS: {
+  key: TrackKey;
+  title: string;
+  tagline: string;
+  emoji: string;
+  gradient: string;
+  chip: string;
+  ring: string;
+}[] = [
+  {
+    key: "MIND",
+    title: "Mind Quests",
+    tagline: "Numbers, words and wonderful science",
+    emoji: "🧠",
+    gradient: "from-brand to-sky",
+    chip: "bg-brand-soft text-brand",
+    ring: "border-brand",
+  },
+  {
+    key: "TOOLS",
+    title: "Toolbox Quests",
+    tagline: "How computers and technology work",
+    emoji: "🧰",
+    gradient: "from-coral to-amber",
+    chip: "bg-coral-soft text-coral-strong",
+    ring: "border-coral",
+  },
+  {
+    key: "CREATE",
+    title: "Create Quests",
+    tagline: "Art, music, making and doing",
+    emoji: "🎨",
+    gradient: "from-emerald to-sky",
+    chip: "bg-emerald-soft text-emerald-strong",
+    ring: "border-emerald",
+  },
+];
+
+const subjectBarColor: Record<string, string> = {
+  brand: "bg-brand",
+  sky: "bg-sky",
+  emerald: "bg-emerald",
+  amber: "bg-amber",
+  violet: "bg-violet",
+  coral: "bg-coral",
 };
 
-const tileLeftClassNames = [
-  "left-0",
-  "left-[-45px]",
-  "left-[-70px]",
-  "left-[-45px]",
-  "left-0",
-  "left-[45px]",
-  "left-[70px]",
-  "left-[45px]",
-] as const;
-
-type TileLeftClassName = (typeof tileLeftClassNames)[number];
-
-const getTileLeftClassName = ({
-  index,
-  unitNumber,
-  tilesLength,
-}: {
-  index: number;
-  unitNumber: number;
-  tilesLength: number;
-}): TileLeftClassName => {
-  if (index >= tilesLength - 1) {
-    return "left-0";
-  }
-
-  const classNames =
-    unitNumber % 2 === 1
-      ? tileLeftClassNames
-      : [...tileLeftClassNames.slice(4), ...tileLeftClassNames.slice(0, 4)];
-
-  return classNames[index % classNames.length] ?? "left-0";
-};
-
-const tileTooltipLeftOffsets = [140, 95, 70, 95, 140, 185, 210, 185] as const;
-
-type TileTooltipLeftOffset = (typeof tileTooltipLeftOffsets)[number];
-
-const getTileTooltipLeftOffset = ({
-  index,
-  unitNumber,
-  tilesLength,
-}: {
-  index: number;
-  unitNumber: number;
-  tilesLength: number;
-}): TileTooltipLeftOffset => {
-  if (index >= tilesLength - 1) {
-    return tileTooltipLeftOffsets[0];
-  }
-
-  const offsets =
-    unitNumber % 2 === 1
-      ? tileTooltipLeftOffsets
-      : [
-          ...tileTooltipLeftOffsets.slice(4),
-          ...tileTooltipLeftOffsets.slice(0, 4),
-        ];
-
-  return offsets[index % offsets.length] ?? tileTooltipLeftOffsets[0];
-};
-
-const getTileColors = ({
-  tileType,
-  status,
-  defaultColors,
-}: {
-  tileType: TileType;
-  status: TileStatus;
-  defaultColors: `border-${string} bg-${string}`;
-}): `border-${string} bg-${string}` => {
-  switch (status) {
-    case "LOCKED":
-      if (tileType === "fast-forward") return defaultColors;
-      return "border-line-strong bg-panel";
-    case "COMPLETE":
-      return "border-amber-strong bg-amber";
-    case "ACTIVE":
-      return defaultColors;
-  }
-};
-
-const TileTooltip = ({
-  selectedTile,
-  index,
-  unitNumber,
-  tilesLength,
-  description,
-  status,
-  closeTooltip,
-}: {
-  selectedTile: number | null;
-  index: number;
-  unitNumber: number;
-  tilesLength: number;
-  description: string;
-  status: TileStatus;
-  closeTooltip: () => void;
-}) => {
-  const tileTooltipRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const containsTileTooltip = (event: MouseEvent) => {
-      if (selectedTile !== index) return;
-      const clickIsInsideTooltip = tileTooltipRef.current?.contains(
-        event.target as Node,
-      );
-      if (clickIsInsideTooltip) return;
-      closeTooltip();
-    };
-
-    window.addEventListener("click", containsTileTooltip, true);
-    return () => window.removeEventListener("click", containsTileTooltip, true);
-  }, [selectedTile, tileTooltipRef, closeTooltip, index]);
-
-
-  return (
-    <div
-      className={[
-        "relative h-0 w-full",
-        index === selectedTile ? "" : "invisible",
-      ].join(" ")}
-      ref={tileTooltipRef}
-    >
-      <div
-        className={[
-          "fa-card animate-scale-in absolute z-30 flex w-[300px] flex-col gap-4 p-4 font-bold transition-all duration-200",
-          status === "ACTIVE"
-            ? `!bg-brand shadow-lift border-brand-strong`
-            : status === "LOCKED"
-              ? "opacity-95"
-              : "!bg-amber-soft border-amber/40",
-          index === selectedTile ? "top-4 scale-100" : "-top-14 scale-0",
-        ].join(" ")}
-        style={{ left: "calc(50% - 150px)" }}
-      >
-        <div
-          className={[
-            "absolute top-[-8px] h-4 w-4 rotate-45 border-l border-t",
-            status === "ACTIVE"
-              ? `!bg-brand border-brand-strong`
-              : status === "LOCKED"
-                ? "bg-surface border-line"
-                : "!bg-amber-soft border-amber/40",
-          ].join(" ")}
-          style={{
-            left: getTileTooltipLeftOffset({ index, unitNumber, tilesLength }),
-          }}
-        ></div>
-        <div
-          className={[
-            "text-lg",
-            status === "ACTIVE"
-              ? "text-white"
-              : status === "LOCKED"
-                ? "text-ink-muted"
-                : "text-amber-strong",
-          ].join(" ")}
-        >
-          {description}
-        </div>
-        {status === "ACTIVE" ? (
-          <Link
-            href="/lesson"
-            className="flex w-full items-center justify-center rounded-xl bg-surface p-3 text-sm font-bold uppercase tracking-wide text-brand shadow-card transition hover:bg-canvas hover:text-brand-strong"
-          >
-            Start +10 XP
-          </Link>
-        ) : status === "LOCKED" ? (
-          <button
-            className="w-full rounded-xl bg-panel p-3 text-sm font-bold uppercase tracking-wide text-ink-faint"
-            disabled
-          >
-            Locked
-          </button>
-        ) : (
-          <Link
-            href="/lesson"
-            className="flex w-full items-center justify-center rounded-xl bg-surface p-3 text-sm font-bold uppercase tracking-wide text-amber-strong shadow-card transition hover:bg-canvas"
-          >
-            Practice +5 XP
-          </Link>
-        )}
-      </div>
-    </div>
-  );
-};
-
-const UnitSection = ({ unit }: { unit: Unit }): JSX.Element => {
-  const router = useRouter();
-
-  const [selectedTile, setSelectedTile] = useState<null | number>(null);
-
-  useEffect(() => {
-    const unselectTile = () => setSelectedTile(null);
-    window.addEventListener("scroll", unselectTile);
-    return () => window.removeEventListener("scroll", unselectTile);
-  }, []);
-
-  const closeTooltip = useCallback(() => setSelectedTile(null), []);
-
-  const lessonsCompleted = useBoundStore((x) => x.lessonsCompleted);
-  const increaseLessonsCompleted = useBoundStore(
-    (x) => x.increaseLessonsCompleted,
-  );
-  const increaseLingots = useBoundStore((x) => x.increaseLingots);
-
-  return (
-    <>
-      <UnitHeader
-        unitNumber={unit.unitNumber}
-        description={unit.description}
-        backgroundColor={unit.backgroundColor}
-        borderColor={unit.borderColor}
-      />
-      <div className="relative mb-8 mt-[67px] flex max-w-2xl flex-col items-center gap-4">
-        {unit.tiles.map((tile, i): JSX.Element => {
-          const status = tileStatus(tile, lessonsCompleted);
-          return (
-            <Fragment key={i}>
-              {(() => {
-                switch (tile.type) {
-                  case "star":
-                  case "book":
-                  case "dumbbell":
-                  case "trophy":
-                  case "fast-forward":
-                    if (tile.type === "trophy" && status === "COMPLETE") {
-                      return (
-                        <div className="relative">
-                          <TileIcon tileType={tile.type} status={status} />
-                          <div className="absolute left-0 right-0 top-6 flex justify-center text-lg font-bold text-yellow-700">
-                            {unit.unitNumber}
-                          </div>
-                        </div>
-                      );
-                    }
-                    return (
-                      <div
-                        className={[
-                          "relative -mb-4 h-[93px] w-[98px]",
-                          getTileLeftClassName({
-                            index: i,
-                            unitNumber: unit.unitNumber,
-                            tilesLength: unit.tiles.length,
-                          }),
-                        ].join(" ")}
-                      >
-                        {tile.type === "fast-forward" && status === "LOCKED" ? (
-                          <HoverLabel
-                            text="Jump here?"
-                            textColor={unit.textColor}
-                          />
-                        ) : selectedTile !== i && status === "ACTIVE" ? (
-                          <HoverLabel text="Start" textColor={unit.textColor} />
-                        ) : null}
-                        <LessonCompletionSvg
-                          lessonsCompleted={lessonsCompleted}
-                          status={status}
-                        />
-                        <button
-                          className={[
-                            "absolute m-3 rounded-full border-b-8 p-4",
-                            getTileColors({
-                              tileType: tile.type,
-                              status,
-                              defaultColors: `${unit.borderColor} ${unit.backgroundColor}`,
-                            }),
-                          ].join(" ")}
-                          onClick={() => {
-                            if (
-                              tile.type === "fast-forward" &&
-                              status === "LOCKED"
-                            ) {
-                              void router.push(
-                                `/lesson?fast-forward=${unit.unitNumber}`,
-                              );
-                              return;
-                            }
-                            setSelectedTile(i);
-                          }}
-                        >
-                          <TileIcon tileType={tile.type} status={status} />
-                          <span className="sr-only">Show lesson</span>
-                        </button>
-                      </div>
-                    );
-                  case "treasure":
-                    return (
-                      <div
-                        className={[
-                          "relative -mb-4",
-                          getTileLeftClassName({
-                            index: i,
-                            unitNumber: unit.unitNumber,
-                            tilesLength: unit.tiles.length,
-                          }),
-                        ].join(" ")}
-                        onClick={() => {
-                          if (status === "ACTIVE") {
-                            increaseLessonsCompleted(4);
-                            increaseLingots(1);
-                          }
-                        }}
-                        role="button"
-                        tabIndex={status === "ACTIVE" ? 0 : undefined}
-                        aria-hidden={status !== "ACTIVE"}
-                        aria-label={status === "ACTIVE" ? "Collect reward" : ""}
-                      >
-                        {status === "ACTIVE" && (
-                          <HoverLabel text="Open" textColor="text-amber-strong" />
-                        )}
-                        <TileIcon tileType={tile.type} status={status} />
-                      </div>
-                    );
-                }
-              })()}
-              <TileTooltip
-                selectedTile={selectedTile}
-                index={i}
-                unitNumber={unit.unitNumber}
-                tilesLength={unit.tiles.length}
-                description={(() => {
-                  switch (tile.type) {
-                    case "book":
-                    case "dumbbell":
-                    case "star":
-                      return tile.description;
-                    case "fast-forward":
-                      return status === "LOCKED"
-                        ? "Jump here?"
-                        : tile.description;
-                    case "trophy":
-                      return `Unit ${unit.unitNumber} review`;
-                    case "treasure":
-                      return "";
-                  }
-                })()}
-                status={status}
-                closeTooltip={closeTooltip}
-              />
-            </Fragment>
-          );
-        })}
-      </div>
-    </>
-  );
-};
+// ─── Page ────────────────────────────────────────────────────────────────────
 
 const Learn: NextPage = () => {
-  const { loginScreenState, setLoginScreenState } = useLoginScreen();
+  const sessionUser = useBoundStore((x) => x.sessionUser);
+  const sessionStatus = useBoundStore((x) => x.sessionStatus);
+  const setSessionUser = useBoundStore((x) => x.setSessionUser);
 
-  const [scrollY, setScrollY] = useState(0);
+  const [map, setMap] = useState<LearnMap | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [activeTrack, setActiveTrack] = useState<TrackKey>("MIND");
+  const [openSubject, setOpenSubject] = useState<number | null>(null);
+
+  const loadMap = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/learn-map", { cache: "no-store" });
+      if (res.status === 409) {
+        setMap(null);
+        return;
+      }
+      const data = (await res.json()) as LearnMap;
+      setMap(data);
+    } catch {
+      setMap(null);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
-    const updateScrollY = () => setScrollY(globalThis.scrollY ?? scrollY);
-    updateScrollY();
-    document.addEventListener("scroll", updateScrollY);
-    return () => document.removeEventListener("scroll", updateScrollY);
-  }, [scrollY]);
+    if (sessionStatus === "authenticated") void loadMap();
+  }, [sessionStatus, sessionUser?.classId, loadMap]);
+
+  const needsClass = sessionStatus === "authenticated" && map === null && !loading;
+
+  const handleClassChosen = (user: SessionUser) => {
+    setSessionUser(user);
+    void loadMap();
+  };
+
+  if (sessionStatus === "loading" || sessionStatus === "idle") {
+    return (
+      <main className="fa-bg-aurora flex min-h-screen items-center justify-center bg-canvas text-ink">
+        <div className="flex flex-col items-center gap-4">
+          <Curio mood="thinking" className="h-24 w-24 animate-float-slow" />
+          <p className="fa-caption font-bold">Curio is getting your quests ready…</p>
+        </div>
+      </main>
+    );
+  }
+
+  if (sessionStatus === "guest") {
+    return (
+      <main className="fa-bg-aurora flex min-h-screen items-center justify-center bg-canvas px-4 text-ink">
+        <div className="fa-card w-full max-w-md p-8 text-center">
+          <Curio mood="wave" className="mx-auto h-28 w-28" />
+          <h1 className="fa-h2 mb-2 mt-4">Join the quest!</h1>
+          <p className="fa-sub mb-6">Sign in to start learning with Curio.</p>
+          <Link href="/login?returnTo=/learn" className="fa-btn-primary w-full">
+            Sign in
+          </Link>
+          <Link href="/register" className="mt-3 block text-sm font-bold text-brand hover:text-brand-strong">
+            New here? Create a free account
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
+  if (needsClass) {
+    return (
+      <main className="fa-bg-aurora flex min-h-screen items-center justify-center bg-canvas px-4 text-ink">
+        <ClassPicker onDone={handleClassChosen} />
+      </main>
+    );
+  }
 
   return (
     <>
       <TopBar />
-      <LeftBar selectedTab="Learn" />
+      <LeftBar selectedTab={"Learn" as Tab} />
+      <div className="fa-bg-aurora min-h-screen bg-canvas pt-16 text-ink md:ml-24 lg:ml-64">
+        <div className="mx-auto max-w-3xl px-4 pb-28 pt-6 sm:px-6">
+          {/* Greeting hero */}
+          <header className="mb-6 flex items-center gap-4">
+            <Curio mood="excited" className="h-16 w-16 shrink-0 animate-float-slow sm:h-20 sm:w-20" />
+            <div>
+              <h1 className="fa-h2 leading-tight">
+                Hi {sessionUser?.name?.split(" ")[0] ?? "friend"}! <span className="inline-block animate-wiggle">👋</span>
+              </h1>
+              <p className="fa-sub text-sm sm:text-base">
+                {map
+                  ? `Class ${map.class.grade} · ${map.completedCount} quests done — keep going!`
+                  : "Loading your quests…"}
+              </p>
+            </div>
+          </header>
 
-      <div className="fa-bg-aurora flex min-h-screen justify-center gap-3 pt-16 sm:p-6 sm:pt-10 md:ml-24 lg:ml-64 lg:gap-12">
-        <div className="flex max-w-2xl grow flex-col">
-          {units.map((unit) => (
-            <UnitSection unit={unit} key={unit.unitNumber} />
-          ))}
-          <div className="sticky bottom-28 left-0 right-0 flex items-end justify-between">
-            <Link
-              href="/lesson?practice"
-              className="fa-card fa-press absolute left-4 flex h-16 w-16 items-center justify-center rounded-full hover:shadow-lift md:left-0"
-            >
-              <span className="sr-only">Practice exercise</span>
-              <PracticeExerciseSvg className="h-8 w-8" />
-            </Link>
-            {scrollY > 100 && (
-              <button
-                className="fa-card fa-press absolute right-4 flex h-14 w-14 items-center justify-center self-end rounded-2xl hover:shadow-lift md:right-0"
-                onClick={() => scrollTo(0, 0)}
-              >
-                <span className="sr-only">Jump to top</span>
-                <UpArrowSvg />
-              </button>
-            )}
-          </div>
+          {loading && !map ? (
+            <div className="flex flex-col gap-3">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="fa-card h-24 animate-pulse rounded-3xl" />
+              ))}
+            </div>
+          ) : map ? (
+            <>
+              {/* Track switcher */}
+              <nav className="mb-6 grid grid-cols-3 gap-2 sm:gap-3" aria-label="Quest tracks">
+                {TRACKS.map((track) => {
+                  const subjects = map.tracks[track.key] ?? [];
+                  const total = subjects.reduce((s, sub) => s + sub.lessonCount, 0);
+                  const done = subjects.reduce((s, sub) => s + sub.doneCount, 0);
+                  const active = activeTrack === track.key;
+                  return (
+                    <button
+                      key={track.key}
+                      onClick={() => setActiveTrack(track.key)}
+                      aria-current={active ? "true" : undefined}
+                      className={[
+                        "fa-press flex flex-col items-center gap-1 rounded-2xl border-2 p-3 text-center transition-all sm:p-4",
+                        active
+                          ? `border-transparent bg-gradient-to-br ${track.gradient} text-white shadow-lift`
+                          : "border-line bg-surface hover:border-line-strong hover:shadow-card",
+                      ].join(" ")}
+                    >
+                      <span className="text-2xl sm:text-3xl">{track.emoji}</span>
+                      <span className={`text-xs font-bold sm:text-sm ${active ? "" : "text-ink"}`}>
+                        {track.title.split(" ")[0]}
+                      </span>
+                      <span className={`text-[10px] font-semibold tabular-nums sm:text-xs ${active ? "text-white/85" : "text-ink-faint"}`}>
+                        {done}/{total}
+                      </span>
+                    </button>
+                  );
+                })}
+              </nav>
+
+              {/* Track intro */}
+              <div className={`mb-4 rounded-2xl px-4 py-3 text-sm font-semibold ${TRACKS.find((t) => t.key === activeTrack)?.chip}`}>
+                {TRACKS.find((t) => t.key === activeTrack)?.emoji}{" "}
+                {TRACKS.find((t) => t.key === activeTrack)?.tagline}
+              </div>
+
+              {/* Subject accordions */}
+              <div className="flex flex-col gap-3">
+                {(map.tracks[activeTrack] ?? []).map((subject) => (
+                  <SubjectCard
+                    key={subject.id}
+                    subject={subject}
+                    open={openSubject === subject.id || (openSubject === null && subject.doneCount < subject.lessonCount)}
+                    onToggle={() =>
+                      setOpenSubject((cur) => (cur === subject.id ? null : subject.id))
+                    }
+                  />
+                ))}
+                {(map.tracks[activeTrack] ?? []).length === 0 && (
+                  <div className="fa-card flex flex-col items-center gap-3 rounded-3xl p-8 text-center">
+                    <Curio mood="thinking" className="h-16 w-16" />
+                    <p className="fa-sub">
+                      New quests are being written for this track. Try another one!
+                    </p>
+                  </div>
+                )}
+              </div>
+            </>
+          ) : null}
         </div>
-        <RightBar />
       </div>
-
-      <div className="pt-[90px]"></div>
-
-      <BottomBar selectedTab="Learn" />
-      <LoginScreen
-        loginScreenState={loginScreenState}
-        setLoginScreenState={setLoginScreenState}
-      />
+      <BottomBar selectedTab={"Learn" as Tab} />
     </>
   );
 };
 
 export default Learn;
 
-const LessonCompletionSvg = ({
-  lessonsCompleted,
-  status,
-  style = {},
-}: {
-  lessonsCompleted: number;
-  status: TileStatus;
-  style?: React.HTMLAttributes<SVGElement>["style"];
-}) => {
-  if (status !== "ACTIVE") {
-    return null;
-  }
-  switch (lessonsCompleted % 4) {
-    case 0:
-      return <LessonCompletionSvg0 style={style} />;
-    case 1:
-      return <LessonCompletionSvg1 style={style} />;
-    case 2:
-      return <LessonCompletionSvg2 style={style} />;
-    case 3:
-      return <LessonCompletionSvg3 style={style} />;
-    default:
-      return null;
-  }
-};
+// ─── Subject card (accordion) ────────────────────────────────────────────────
 
-const HoverLabel = ({
-  text,
-  textColor,
+const SubjectCard = ({
+  subject,
+  open,
+  onToggle,
 }: {
-  text: string;
-  textColor: `text-${string}`;
+  subject: MapSubject;
+  open: boolean;
+  onToggle: () => void;
 }) => {
-  const hoverElement = useRef<HTMLDivElement | null>(null);
-  const [width, setWidth] = useState(72);
-
-  useEffect(() => {
-    setWidth(hoverElement.current?.clientWidth ?? width);
-  }, [hoverElement.current?.clientWidth, width]);
+  const pct = subject.lessonCount === 0 ? 0 : Math.round((subject.doneCount / subject.lessonCount) * 100);
+  const isComplete = subject.doneCount >= subject.lessonCount && subject.lessonCount > 0;
 
   return (
-    <div
-      className={`absolute z-10 w-max animate-rise rounded-xl border border-line bg-surface px-3 py-2 text-xs font-bold uppercase tracking-wide shadow-card ${textColor}`}
-      style={{
-        top: "-25%",
-        left: `calc(50% - ${width / 2}px)`,
-      }}
-      ref={hoverElement}
-    >
-      {text}
-      <div
-        className="absolute h-3 w-3 rotate-45 border-b border-r border-line bg-surface"
-        style={{ left: "calc(50% - 8px)", bottom: "-7px" }}
-      ></div>
+    <section className="fa-card overflow-hidden rounded-3xl shadow-card">
+      <button
+        onClick={onToggle}
+        className="flex w-full items-center gap-4 p-4 text-left transition hover:bg-canvas/50 sm:p-5"
+        aria-expanded={open}
+      >
+        <div
+          className={[
+            "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-3xl shadow-card",
+            open ? "scale-110" : "",
+            "transition-transform",
+          ].join(" ")}
+        >
+          {subject.emoji}
+        </div>
+        <div className="min-w-0 grow">
+          <div className="flex items-center gap-2">
+            <h2 className="truncate text-base font-bold sm:text-lg">{subject.name}</h2>
+            {isComplete && <span className="animate-star-pop text-lg">🏆</span>}
+          </div>
+          <div className="mt-1.5 flex items-center gap-2">
+            <div className="h-2.5 grow overflow-hidden rounded-full bg-canvas">
+              <div
+                className={`h-full rounded-full transition-all duration-500 ${subjectBarColor[subject.color] ?? "bg-brand"}`}
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+            <span className="shrink-0 text-xs font-bold tabular-nums text-ink-faint">
+              {subject.doneCount}/{subject.lessonCount}
+            </span>
+          </div>
+        </div>
+        <span
+          className={`shrink-0 text-ink-faint transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          aria-hidden
+        >
+          ▾
+        </span>
+      </button>
+
+      {open && (
+        <div className="animate-fade-in border-t border-line px-4 pb-5 pt-4 sm:px-5">
+          {subject.units.map((unit) => (
+            <UnitPath key={unit.id} unit={unit} subjectName={subject.name} />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+};
+
+// ─── Winding lesson path inside a subject ────────────────────────────────────
+
+const UnitPath = ({ unit, subjectName }: { unit: MapUnit; subjectName: string }) => {
+  const firstIncomplete = useMemo(() => {
+    const idx = unit.lessons.findIndex((l) => !l.completed);
+    return idx === -1 ? unit.lessons.length : idx;
+  }, [unit.lessons]);
+
+  // zig-zag offsets like a board-game path
+  const offsets = [0, 48, 64, 48, 0, -48, -64, -48];
+
+  return (
+    <div className="mb-4 last:mb-0">
+      <div className="mb-3 flex items-center gap-2">
+        <span className="rounded-lg bg-brand-soft px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-brand">
+          Unit {unit.order}
+        </span>
+        <h3 className="truncate text-sm font-bold text-ink">{unit.title}</h3>
+      </div>
+
+      <div className="relative flex flex-col items-center gap-1">
+        {/* dotted trail */}
+        <div className="absolute bottom-8 left-1/2 top-8 w-1 -translate-x-1/2 border-l-3 border-dashed border-line-strong" aria-hidden style={{ borderLeftWidth: 3 }} />
+
+        {unit.lessons.map((lesson, i) => {
+          const locked = i > firstIncomplete;
+          const isNext = i === firstIncomplete;
+          const offset = offsets[i % offsets.length] ?? 0;
+          return (
+            <div
+              key={lesson.id}
+              className="relative z-10"
+              style={{ transform: `translateX(${offset}px)` }}
+            >
+              <LessonNode
+                lesson={lesson}
+                state={lesson.completed ? "DONE" : isNext ? "ACTIVE" : locked ? "LOCKED" : "ACTIVE"}
+                subjectName={subjectName}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
-const UnitHeader = ({
-  unitNumber,
-  description,
-  backgroundColor,
-  borderColor,
+const LessonNode = ({
+  lesson,
+  state,
+  subjectName,
 }: {
-  unitNumber: number;
-  description: string;
-  backgroundColor: `bg-${string}`;
-  borderColor: `border-${string}`;
+  lesson: MapLesson;
+  state: "DONE" | "ACTIVE" | "LOCKED";
+  subjectName: string;
 }) => {
-  const language = useBoundStore((x) => x.language);
+  const [popped, setPopped] = useState(false);
+
+  const node =
+    state === "DONE" ? (
+      <div className="flex h-16 w-16 items-center justify-center rounded-full border-b-4 border-emerald-strong bg-emerald text-2xl text-white shadow-card">
+        ✓
+      </div>
+    ) : state === "LOCKED" ? (
+      <div className="flex h-16 w-16 items-center justify-center rounded-full border-b-4 border-line-strong bg-panel text-2xl opacity-70">
+        🔒
+      </div>
+    ) : (
+      <button
+        onClick={() => {
+          setPopped(true);
+          setTimeout(() => setPopped(false), 1200);
+        }}
+        className="fa-press flex h-16 w-16 animate-pulse-soft items-center justify-center rounded-full border-b-4 border-brand-strong bg-brand text-2xl text-white shadow-lift"
+        aria-label={`Start ${lesson.title}`}
+      >
+        ▶
+      </button>
+    );
+
   return (
-    <article
-      className={["max-w-2xl text-white shadow-card sm:rounded-2xl", backgroundColor].join(
-        " ",
-      )}
-    >
-      <header className="flex items-center justify-between gap-4 p-4 sm:p-5">
-        <div className="flex flex-col gap-1">
-          <h2 className="text-2xl font-bold">Unit {unitNumber}</h2>
-          <p className="text-[15px] text-white/90">{description}</p>
+    <div className="relative flex flex-col items-center">
+      {popped && (
+        <div className="fa-card animate-scale-in absolute -top-12 z-30 w-max max-w-[220px] rounded-2xl border-2 border-brand/30 p-3 text-center shadow-lift">
+          <div className="text-sm font-bold">{lesson.title}</div>
+          <div className="fa-caption mt-0.5">
+            {lesson.type === "TEST" ? "Unit review · " : ""}
+            {lesson.hasMission ? "Has a real-world mission · " : ""}
+            {lesson.xpReward} XP
+          </div>
         </div>
-        <Link
-          href={`https://funacademy.com/guidebook/${language.code}/${unitNumber}`}
+      )}
+      {state === "ACTIVE" && !popped && (
+        <span className="pointer-events-none absolute -top-9 z-20 whitespace-nowrap rounded-xl border border-line bg-surface px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-brand shadow-card">
+          Start
+          <span className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b border-r border-line bg-surface" />
+        </span>
+      )}
+      <Link
+        href={state === "LOCKED" ? "#" : `/lesson?id=${lesson.id}`}
+        onClick={(e) => state === "LOCKED" && e.preventDefault()}
+        className="flex flex-col items-center gap-1"
+        aria-disabled={state === "LOCKED"}
+      >
+        {node}
+        <span
           className={[
-            "flex items-center gap-3 rounded-xl border p-2.5 text-sm font-bold transition hover:bg-white/10 sm:p-3",
-            borderColor,
+            "mt-1 max-w-[140px] text-center text-xs font-bold leading-tight",
+            state === "LOCKED" ? "text-ink-faint" : "text-ink",
           ].join(" ")}
         >
-          <GuidebookSvg />
-          <span className="sr-only font-bold uppercase lg:not-sr-only">
-            Guidebook
-          </span>
-        </Link>
-      </header>
-    </article>
+          {lesson.title}
+        </span>
+        <span className="sr-only">{subjectName}</span>
+      </Link>
+    </div>
   );
 };

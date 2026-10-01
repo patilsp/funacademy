@@ -31,6 +31,7 @@ model User {
   progress       StudentProgress[]
   attempts       QuizAttempt[]
   activity       ActivityLog[]
+  missions       MissionLog[]
 
   @@index([classId])
 }
@@ -83,10 +84,13 @@ model Subject {
   id          Int     @id @default(autoincrement())
   classId     Int
   class       Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
-  code        String // e.g. "math", "sci", "en"
+  code        String // e.g. "math", "sci", "en", "tools", "create"
   name        String
   description String?
   order       Int     @default(0)
+  track       Track   @default(MIND)
+  emoji       String  @default("📘")
+  color       String  @default("brand")
 
   units Unit[]
 
@@ -116,10 +120,16 @@ model Lesson {
   title    String
   type     LessonType @default(LESSON)
   xpReward Int        @default(10)
+  // Animated storybook shown before the quiz: { title, scenes: [{ emoji, text }] }
+  story    Json?
+  // Offline real-world mission ("Build a paper boat", ...) shown after the quiz
+  mission  String?
+  missionXp Int       @default(5)
 
   questions Question[]
   progress  StudentProgress[]
   attempts  QuizAttempt[]
+  missions  MissionLog[]
 
   @@unique([unitId, order])
   @@index([unitId, order])
@@ -134,6 +144,9 @@ model Question {
   prompt   String
   // optional image key for icon-based questions
   imageKey String?
+  // kid-friendly big emoji hint + read-aloud flag
+  emoji    String?
+  speak    Boolean      @default(false)
 
   options QuestionOption[]
 
@@ -148,6 +161,9 @@ model QuestionOption {
   order      Int      @default(0)
   text       String
   imageKey   String?
+  emoji      String?
+  // for WORD_TILES: the position of this tile in the correct answer sequence
+  answerPos  Int?
   isCorrect  Boolean  @default(false)
 
   @@unique([questionId, order])
@@ -164,6 +180,12 @@ enum LessonType {
   LESSON
   PRACTICE
   TEST
+}
+
+enum Track {
+  MIND
+  TOOLS
+  CREATE
 }
 
 enum QuestionType {
@@ -225,4 +247,19 @@ model ActivityLog {
   createdAt DateTime @default(now())
 
   @@unique([userId, date])
+}
+
+// Real-world mission confirmations ("Built a paper boat with parents")
+model MissionLog {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId  Int
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  mission   String
+  xpEarned  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, lessonId])
+  @@index([userId, createdAt])
 }

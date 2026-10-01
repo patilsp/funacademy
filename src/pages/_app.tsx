@@ -23,10 +23,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>Fun Academy</title>
+        <title>CurioQuest — Learn, play, create!</title>
         <meta
           name="description"
-          content="Fun Academy — a joyful, premium learning experience for curious young minds."
+          content="CurioQuest — animated storybooks, quests and real-world missions that teach Class 1-7 kids subjects, technology and creativity."
         />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#4F46E5" />
