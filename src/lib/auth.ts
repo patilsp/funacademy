@@ -40,6 +40,7 @@ export const registerUser = async (input: {
   username: string;
   password: string;
   grade?: number;
+  role?: "STUDENT" | "PARENT";
 }): Promise<User> => {
   const existingByEmail = await prisma.user.findUnique({
     where: { email: input.email },
@@ -55,8 +56,11 @@ export const registerUser = async (input: {
   }
 
   const passwordHash = await hashPassword(input.password);
+
+  // Parents don't belong to a class — only learners pick Class 1-7.
+  const role = input.role ?? "STUDENT";
   let classId: number | undefined = undefined;
-  if (input.grade) {
+  if (role === "STUDENT" && input.grade) {
     const klass = await prisma.class.findUnique({ where: { grade: input.grade } });
     if (!klass) throw new ApiHttpError(400, "Class not found");
     classId = klass.id;
@@ -67,6 +71,7 @@ export const registerUser = async (input: {
       email: input.email,
       name: input.name,
       username: input.username,
+      role,
       classId,
       credential: {
         create: { passwordHash },

@@ -346,7 +346,7 @@ const C1_TOOLS_UNITS = [
         mission: "Turn a device on and off by yourself. Ask permission first!",
         questions: [
           tap("Tap the tablet", "📱", ["💻", "⌚", "🔌"], { emoji: "📲" }),
-          mcq("A robot is a machine that can...", "Follow instructions", "Grow leaves", "Bark", "Fly north", { emoji: "🤖" }),
+          mcq("A robot is a machine that can...", "Follow instructions", ["Grow leaves", "Bark", "Fly north"], { emoji: "🤖" }),
           tap("Tap the keyboard", "⌨️", ["🖱️", "📺", "📷"], { emoji: "🔍" }),
         ],
       }),
@@ -392,7 +392,7 @@ const C1_CREATE_UNITS = [
         mission: "Clap along to your favourite song. Try fast, then slow!",
         questions: [
           tap("Which one do you hit to make music?", "🥁", ["🍞", "🧦", "🪑"], { emoji: "🎵" }),
-          mcq("A slow beat sounds like a...", "Turtle", "Cheetah", "Rocket", "Alarm", { emoji: "🐢" }),
+          mcq("A slow beat sounds like a...", "Turtle", ["Cheetah", "Rocket", "Alarm"], { emoji: "🐢" }),
         ],
       }),
       LESSON({
@@ -416,9 +416,200 @@ const C1_CREATE_UNITS = [
   },
 ];
 
+// ─── Class 1 History ─────────────────────────────────────────────────────────
+
+const C1_HIST_UNITS = [
+  {
+    title: "Long Ago and Today",
+    description: "How life was different when grandparents were kids.",
+    lessons: [
+      LESSON({
+        title: "Life Long Ago",
+        story: {
+          title: "Grandma's Story Time",
+          scenes: [
+            { emoji: "👵", text: "Grandma tells stories about when she was small." },
+            { emoji: "📻", text: "There were no tablets — families listened to the radio!" },
+            { emoji: "✉️", text: "Letters took days to arrive. Today messages fly in seconds." },
+            { emoji: "🕰️", text: "Things change as time moves forward. That's history!" },
+          ],
+        },
+        mission: "Ask a grandparent or elder about their favourite toy. Draw it!",
+        questions: [
+          tap("How did families hear news long ago?", "📻", ["📱", "💻", "📺"], { emoji: "🕰️" }),
+          mcq("Long ago, people sent messages by...", "Letter", ["Video call", "Text message", "Email"], { emoji: "✉️" }),
+          tap("Tap something NEW", "📱", ["📻", "✉️", "🕯️"], { emoji: "✨" }),
+        ],
+      }),
+      LESSON({
+        title: "Community Heroes",
+        story: {
+          title: "Heroes in Our Town",
+          scenes: [
+            { emoji: "🚒", text: "When there's a fire, brave firefighters hurry to help." },
+            { emoji: "🩺", text: "When we feel sick, doctors and nurses care for us." },
+            { emoji: "👮", text: "Police officers keep our streets safe." },
+            { emoji: "🌟", text: "Heroes have always been there — long ago and today!" },
+          ],
+        },
+        mission: "Thank a helper you meet this week (a teacher, doctor or police officer).",
+        questions: [
+          tap("Who puts out fires?", "🚒", ["🚑", "🚓", "🚜"], { emoji: "🔥" }),
+          mcq("Who helps you when you feel sick?", "Doctor", ["Pilot", "Chef", "Farmer"], { emoji: "🩺" }),
+          tap("Tap the police car", "🚓", ["🚒", "🚌", "🚲"], { emoji: "👮" }),
+        ],
+      }),
+      LESSON({
+        title: "Long Ago Review",
+        type: "TEST",
+        story: {
+          title: "Time Machine Badge",
+          scenes: [
+            { emoji: "⏳", text: "Your time machine is ready for a check-up!" },
+            { emoji: "🏅", text: "Answer the questions to earn your badge." },
+          ],
+        },
+        mission: "Look at an old family photo. Ask who is in it and when it was taken.",
+        questions: [
+          mcq("History is the story of...", "The past", ["Tomorrow", "Cartoons", "Numbers"], { emoji: "📜" }),
+          tap("Tap the OLD phone", "☎️", ["📱", "⌚", "💻"], { emoji: "📞" }),
+        ],
+      }),
+    ],
+  },
+];
+
+// ─── Class 1 Geography ───────────────────────────────────────────────────────
+
+const C1_GEO_UNITS = [
+  {
+    title: "My Big World",
+    description: "From your home to the whole wide world.",
+    lessons: [
+      LESSON({
+        title: "Where I Live",
+        story: {
+          title: "Zoom, Zoom, Zoom!",
+          scenes: [
+            { emoji: "🏠", text: "This is your home, warm and cosy." },
+            { emoji: "🛣️", text: "Your home is on a street, in a town or city." },
+            { emoji: "🗺️", text: "Cities together make a country." },
+            { emoji: "🌍", text: "And all the countries together make... the whole world!" },
+          ],
+        },
+        mission: "Draw your home, your street and one place you love in your town.",
+        questions: [
+          tap("Tap your home", "🏠", ["🏫", "🏭", "🏰"], { emoji: "🏡" }),
+          mcq("Which one is the BIGGEST?", "The world", ["Your street", "Your city", "Your house"], { emoji: "🌍" }),
+          mcq("Your home is on a...", "Street", ["Cloud", "Star", "Boat"], { emoji: "🛣️" }),
+        ],
+      }),
+      LESSON({
+        title: "Land, Water and Sky",
+        story: {
+          title: "The Great Outdoors",
+          scenes: [
+            { emoji: "⛰️", text: "Mountains stand tall and touch the clouds." },
+            { emoji: "🏞️", text: "Rivers run through the land, splash splash!" },
+            { emoji: "🌊", text: "The sea is so big you cannot see across it." },
+            { emoji: "☀️", text: "And above it all, the sky with the sun!" },
+          ],
+        },
+        mission: "Look outside: can you see land, water and sky? Say each one out loud!",
+        questions: [
+          tap("Tap the mountain", "⛰️", ["🌊", "🏕️", "🌞"], { emoji: "🗻" }),
+          mcq("Where do fish live?", "In water", ["In trees", "In clouds", "In sand"], { emoji: "🐟" }),
+          tap("Tap something in the SKY", "☀️", ["⛰️", "🐟", "🌳"], { emoji: "☁️" }),
+        ],
+      }),
+      LESSON({
+        title: "My World Review",
+        type: "TEST",
+        story: {
+          title: "Little Explorer Badge",
+          scenes: [
+            { emoji: "🧭", text: "Explorers know their world!" },
+            { emoji: "🎖️", text: "Show what you know and win your badge." },
+          ],
+        },
+        mission: "Point north, south, east and west with a grown-up. Can you find the sunset?",
+        questions: [
+          tap("Tap the whole world", "🌍", ["🏠", "🚗", "🎒"], { emoji: "🗺️" }),
+          mcq("A map helps us find...", "Places", ["Snacks", "Songs", "Colours"], { emoji: "🧭" }),
+          tap("Tap the river", "🏞️", ["⛰️", "🏠", "⭐"], { emoji: "💦" }),
+        ],
+      }),
+    ],
+  },
+];
+
+// ─── Class 1 Environmental Studies ──────────────────────────────────────────
+
+const C1_EVS_UNITS = [
+  {
+    title: "Green Friends",
+    description: "Plants, trees and keeping our world clean.",
+    lessons: [
+      LESSON({
+        title: "Plants Around Us",
+        story: {
+          title: "The Wise Old Tree",
+          scenes: [
+            { emoji: "🌳", text: "The wise old tree gives shade on hot days." },
+            { emoji: "🍎", text: "It grows apples for hungry kids." },
+            { emoji: "🐦", text: "Birds build nests in its branches." },
+            { emoji: "💧", text: "Give a plant water and it will thank you with leaves!" },
+          ],
+        },
+        mission: "Water one plant today. Say thank you to a tree for its shade!",
+        questions: [
+          tap("What do trees give us?", "🍎", ["🪨", "🧦", "🚗"], { emoji: "🌳" }),
+          mcq("What does a plant need to grow?", "Water and sunlight", ["Candy and toys", "Pillows", "Music only"], { emoji: "💧" }),
+          tap("Tap the leaf", "🍃", ["🪙", "🔑", "🧊"], { emoji: "🌿" }),
+        ],
+      }),
+      LESSON({
+        title: "Keep It Clean",
+        story: {
+          title: "The Clean Park Squad",
+          scenes: [
+            { emoji: "🧹", text: "The Clean Park Squad keeps the park tidy." },
+            { emoji: "🍌", text: "Banana peel on the path? Into the bin it goes!" },
+            { emoji: "🗑️", text: "Rubbish belongs in the bin, never on the grass." },
+            { emoji: "🌈", text: "A clean park is happy for everyone — even the ducks!" },
+          ],
+        },
+        mission: "Pick up 3 pieces of litter near your home (wear gloves or ask a grown-up).",
+        questions: [
+          tap("Where does rubbish go?", "🗑️", ["🌊", "🌳", "🛏️"], { emoji: "🧹" }),
+          mcq("We keep parks clean by...", "Putting rubbish in bins", ["Throwing wrappers", "Feeding lions", "Digging holes"], { emoji: "✨" }),
+          tap("Tap the broom", "🧹", ["🎸", "⚽", "🍕"], { emoji: "🧼" }),
+        ],
+      }),
+      LESSON({
+        title: "Green Friends Review",
+        type: "TEST",
+        story: {
+          title: "Earth Hero Badge",
+          scenes: [
+            { emoji: "🦸", text: "Earth heroes care for plants and keep places clean." },
+            { emoji: "🌟", text: "Show your Earth hero powers!" },
+          ],
+        },
+        mission: "Teach someone in your family one way to keep the Earth happy.",
+        questions: [
+          mcq("Trees give us...", "Fruit and shade", ["Pancakes", "WiFi", "Shoes"], { emoji: "🌳" }),
+          tap("Tap the recycling bin", "♻️", ["🏀", "🎹", "🪁"], { emoji: "🌍" }),
+          mcq("A plant grows when we give it...", "Water", ["Chocolates", "Stickers", "Balloons"], { emoji: "🌱" }),
+        ],
+      }),
+    ],
+  },
+];
+
 // ─── Class 2+ generation: progressively harder versions ──────────────────────
 // We keep the seed script focused: classes 2-7 get real, levelled questions for
-// Math, Science, English, TOOLS and CREATE tracks.
+// Math, Science, English, History, Geography, EVS, TOOLS and CREATE tracks.
 
 const gradeLesson = (grade, topic, opts) => {
   const n = grade + 2; // numbers scale with grade: class 2 -> 4, class 7 -> 9
@@ -622,7 +813,379 @@ const gradeLesson = (grade, topic, opts) => {
     },
   ];
 
-  return { mathUnits, sciUnits, enUnits, toolsUnits, createUnits };
+  // History — from "then and now" (young grades) to ancient worlds and freedom
+  // movements (older grades), always ending with a review test.
+  const histUnits = [
+    {
+      title: grade <= 3 ? "Stories from Long Ago" : "Journeys Through Time",
+      description: grade <= 3 ? "How people lived before us." : "Ancient worlds, kingdoms and great changes.",
+      lessons: [
+        LESSON({
+          title:
+            grade <= 3
+              ? "Then and Now"
+              : grade <= 5
+                ? "Ancient Egypt"
+                : "Ancient Civilizations",
+          story: {
+            title: grade <= 3 ? "The Magic Photo Album" : "A Trip Back in Time",
+            scenes:
+              grade <= 3
+                ? [
+                    { emoji: "📸", text: `A Class ${grade} explorer found a magic photo album!` },
+                    { emoji: "🐎", text: "Flip! Here are people riding horses instead of cars." },
+                    { emoji: "🕯️", text: "Flip! Here are families reading by candlelight." },
+                    { emoji: "🕰️", text: "Life was different long ago — and it kept changing!" },
+                  ]
+                : [
+                    { emoji: "△", text: `In Class ${grade}, we travel to the ancient world.` },
+                    { emoji: "🐍", text: "Along a great river, people built farms and cities." },
+                    { emoji: "📜", text: "They wrote, built and invented things we still use!" },
+                  ],
+          },
+          mission:
+            grade <= 3
+              ? "Sort 5 things at home into 'old' and 'new'. Which pile is bigger?"
+              : "Draw one thing ancient people invented that we still use today.",
+          questions:
+            grade <= 3
+              ? [
+                  tap("Long ago, people travelled by...", "🐎", ["✈️", "🚗", "🚀"], { emoji: "🕰️" }),
+                  mcq("Long ago, kids played with...", "Wooden toys", ["Tablets", "Video games", "Drones"], { emoji: "🪀" }),
+                  tap("Tap the OLD light", "🕯️", ["💡", "🔦", "📺"], { emoji: "🌙" }),
+                ]
+              : grade <= 5
+                ? [
+                    mcq("The pyramids were built in...", "Egypt", ["Japan", "Brazil", "Iceland"], { emoji: "△" }),
+                    mcq("The ruler of ancient Egypt was called...", "Pharaoh", ["President", "Captain", "Wizard"], { emoji: "👑" }),
+                    mcq("The Nile is a long...", "River", ["Desert", "Mountain", "Wall"], { emoji: "🏞️" }),
+                  ]
+                : [
+                    mcq("The first writing began in...", "Mesopotamia", ["Antarctica", "Hawaii", "Space"], { emoji: "✍️" }),
+                    mcq("Ancient Romans were famous for building...", "Roads and aqueducts", ["Skyscrapers", "Subways", "Airports"], { emoji: "🏛️" }),
+                    mcq("Indus Valley cities were known for...", "Planned streets and drains", ["Roller coasters", "Movie theatres", "Cars"], { emoji: "🧱" }),
+                  ],
+        }),
+        LESSON({
+          title:
+            grade <= 3
+              ? "Brave Helpers of the Past"
+              : grade <= 5
+                ? "Kings and Kingdoms"
+                : "Fighters for Freedom",
+          story: {
+            title: grade <= 3 ? "The Brave Helpers" : "Stories of Courage",
+            scenes:
+              grade <= 3
+                ? [
+                    { emoji: "🧑‍🚒", text: "Long ago and today, brave helpers protect us." },
+                    { emoji: "🩺", text: "Some helpers heal. Some helpers teach. Some rescue." },
+                    { emoji: "🌟", text: "Their stories are part of history too!" },
+                  ]
+                : [
+                    { emoji: "🏰", text: "Kings ruled lands from mighty castles." },
+                    { emoji: "⚔️", text: "Some rulers were kind. Some were not." },
+                    { emoji: "🕊️", text: "The bravest heroes fought for freedom, not thrones." },
+                  ],
+          },
+          mission:
+            grade <= 3
+              ? "Ask a grown-up about a hero from their childhood. Share the story!"
+              : "Learn one fact about a freedom fighter and tell your family at dinner.",
+          questions:
+            grade <= 3
+              ? [
+                  tap("Who helps when you are sick?", "🩺", ["👨‍🚀", "🧑‍🎨", "👨‍🍳"], { emoji: "🌟" }),
+                  mcq("A firefighter's job is to...", "Put out fires", ["Bake bread", "Drive trains", "Paint houses"], { emoji: "🚒" }),
+                  mcq("Helpers are...", "Brave and kind", ["Scary", "Sleepy", "Silly"], { emoji: "🏅" }),
+                ]
+              : grade <= 5
+                ? [
+                    mcq("Knights protected themselves with...", "Armour", ["Swimsuits", "Pyjamas", "Raincoats"], { emoji: "🛡️" }),
+                    mcq("Kings and queens lived in...", "Castles", ["Tents", "Igloos", "Treehouses"], { emoji: "🏰" }),
+                    tap("Tap the crown", "👑", ["🎩", "🧢", "⛑️"], { emoji: "⚔️" }),
+                  ]
+                : [
+                    mcq("Freedom fighters wanted...", "Independence for their people", ["More homework", "Bigger castles", "Faster horses"], { emoji: "🕊️" }),
+                    mcq("Mahatma Gandhi taught the power of...", "Non-violence", ["Swords", "Shouting", "Running away"], { emoji: "🕊️" }),
+                    mcq("History teaches us to...", "Learn from the past", ["Forget everything", "Copy mistakes", "Avoid people"], { emoji: "📜" }),
+                  ],
+        }),
+        LESSON({
+          title: "History Review",
+          type: "TEST",
+          story: {
+            title: "Time Traveller Badge",
+            scenes: [
+              { emoji: "⏳", text: "Your time machine needs a final check!" },
+              { emoji: "🏅", text: `Class ${grade} historians, ready? Go!` },
+            ],
+          },
+          mission: "Tell your family one thing you learned about the past this week.",
+          questions:
+            grade <= 3
+              ? [
+                  mcq("History is the story of...", "The past", ["Tomorrow", "Cartoons", "Numbers"], { emoji: "📜" }),
+                  tap("Tap the OLD phone", "☎️", ["📱", "⌚", "💻"], { emoji: "📞" }),
+                  mcq("We learn about the past from...", "Stories and things left behind", ["The future", "Rainbows", "Clouds"], { emoji: "🔍" }),
+                ]
+              : [
+                  mcq("People who dig up ancient cities are...", "Archaeologists", ["Astronauts", "Chefs", "Pilots"], { emoji: "⛏️" }),
+                  mcq("Pharaohs ruled in...", "Egypt", ["Greece", "China", "Peru"], { emoji: "△" }),
+                  mcq("The safest way to change the world is...", "Peacefully", ["Loudly", "Rudely", "Not at all"], { emoji: "🕊️" }),
+                ],
+        }),
+      ],
+    },
+  ];
+
+  // Geography — maps and places for young grades; continents, climate and
+  // coordinates for older ones.
+  const geoUnits = [
+    {
+      title: grade <= 3 ? "Maps and Places" : "Our Planet",
+      description: grade <= 3 ? "Find your way around the world." : "Continents, oceans, weather and climate.",
+      lessons: [
+        LESSON({
+          title:
+            grade <= 3
+              ? "Maps and Directions"
+              : grade <= 5
+                ? "Continents and Oceans"
+                : "Reading the World",
+          story: {
+            title: "The Treasure Map",
+            scenes: [
+              { emoji: "🧭", text: "Explorers use maps to know where they are." },
+              { emoji: "🧭", text: "A compass needle always points north!" },
+              { emoji: "🗺️", text: "Up on a map is north, down is south, right is east, left is west." },
+            ],
+          },
+          mission:
+            grade <= 3
+              ? "Hide a toy and draw a treasure map to it. Can someone find it?"
+              : "Find your city on a world map or globe. Which continent is it on?",
+          questions:
+            grade <= 3
+              ? [
+                  tap("What shows us the way north?", "🧭", ["⚽", "🍕", "🧸"], { emoji: "🗺️" }),
+                  mcq("The sun rises in the...", "East", ["West", "North", "Under the bed"], { emoji: "🌅" }),
+                  mcq("A map shows us...", "Places", ["Songs", "Recipes", "Dreams"], { emoji: "📍" }),
+                ]
+              : grade <= 5
+                ? [
+                    mcq("How many continents are there?", "7", ["3", "5", "12"], { emoji: "🌍" }),
+                    mcq("The biggest ocean is the...", "Pacific", ["Arctic", "Indian", "Atlantic"], { emoji: "🌊" }),
+                    mcq("The Sahara is the world's largest hot...", "Desert", ["Forest", "Lake", "Island"], { emoji: "🐪" }),
+                  ]
+                : [
+                    mcq("The equator is...", "A line around Earth's middle", ["A kind of cloud", "A mountain range", "A season"], { emoji: "🌍" }),
+                    mcq("A globe is a model of...", "The Earth", ["The Moon", "The Sun", "A city"], { emoji: "🪐" }),
+                    mcq("The map key (legend) explains...", "What map symbols mean", ["The map's price", "The weather", "The paper size"], { emoji: "🗝️" }),
+                  ],
+        }),
+        LESSON({
+          title:
+            grade <= 3
+              ? "Water and Land"
+              : grade <= 5
+                ? "Weather and Climate"
+                : "Climate Zones",
+          story: {
+            title: grade <= 3 ? "Land Meets Sea" : "The Weather Machine",
+            scenes:
+              grade <= 3
+                ? [
+                    { emoji: "🏝️", text: "Land is where we walk and build." },
+                    { emoji: "🌊", text: "Water fills the oceans, rivers and lakes." },
+                    { emoji: "🌧️", text: "Water floats up to the sky and falls back as rain!" },
+                  ]
+                : [
+                    { emoji: "☀️", text: "The sun heats the Earth unevenly." },
+                    { emoji: "💨", text: "Warm air rises, cool air rushes in — that's wind!" },
+                    { emoji: "🌦️", text: "Wind and water make all our weather." },
+                  ],
+          },
+          mission:
+            grade <= 3
+              ? "Next rainy day, watch the puddles. Where does the water go after?"
+              : "Track today's weather: temperature, clouds and wind. Do it again tomorrow!",
+          questions:
+            grade <= 3
+              ? [
+                  tap("Tap the ocean", "🌊", ["🏜️", "🏔️", "🌳"], { emoji: "⚓" }),
+                  mcq("Rain comes from...", "Clouds", ["Cups", "Caves", "Cars"], { emoji: "🌧️" }),
+                  tap("Tap the island", "🏝️", ["🐟", "🚲", "🏠"], { emoji: "🗺️" }),
+                ]
+              : grade <= 5
+                ? [
+                    mcq("Weather is what the air is like...", "Today", ["Always, forever", "Only in summer", "Underground"], { emoji: "⛅" }),
+                    mcq("A thermometer measures...", "Temperature", ["Speed", "Height", "Weight"], { emoji: "🌡️" }),
+                    mcq("Climate is the weather a place usually has...", "Over many years", ["For one hour", "Only at night", "Only underground"], { emoji: "📊" }),
+                  ]
+                : [
+                    mcq("The coldest climate zone is at the...", "Poles", ["Equator", "Beach", "Valley"], { emoji: "🐧" }),
+                    mcq("Rainforests are...", "Hot and wet", ["Cold and dry", "Always snowy", "Full of sand"], { emoji: "🌴" }),
+                    mcq("Deserts get...", "Very little rain", ["Rain every hour", "Only snow", "Floods daily"], { emoji: "🌵" }),
+                  ],
+        }),
+        LESSON({
+          title: "Geography Review",
+          type: "TEST",
+          story: {
+            title: "World Explorer Badge",
+            scenes: [
+              { emoji: "🌍", text: "World explorers know maps, land and weather!" },
+              { emoji: "🎖️", text: `Final challenge for Class ${grade}!` },
+            ],
+          },
+          mission: "Teach someone at home one new thing you learned about our planet.",
+          questions:
+            grade <= 3
+              ? [
+                  tap("Tap the compass", "🧭", ["⏰", "📞", "🔔"], { emoji: "🗺️" }),
+                  mcq("Mountains are...", "Very tall land", ["Big clouds", "Deep holes", "Kind of wet"], { emoji: "⛰️" }),
+                  tap("Tap the rain cloud", "🌧️", ["☀️", "🌙", "⭐"], { emoji: "🌦️" }),
+                ]
+              : [
+                  mcq("The largest ocean on Earth is the...", "Pacific", ["Arctic", "Indian", "Southern"], { emoji: "🌊" }),
+                  mcq("The sun rises in the east and sets in the...", "West", ["North", "South", "Same place"], { emoji: "🌇" }),
+                  mcq("Weather near the equator is usually...", "Hot", ["Freezing", "Windy only", "Always foggy"], { emoji: "🏖️" }),
+                ],
+        }),
+      ],
+    },
+  ];
+
+  // Environmental Studies — caring for nature: recycling and water for young
+  // grades; food chains, pollution and climate for older ones.
+  const evsUnits = [
+    {
+      title: grade <= 3 ? "Caring for Nature" : "Environment and Us",
+      description: grade <= 3 ? "Keep our world clean and green." : "How living things and the environment connect.",
+      lessons: [
+        LESSON({
+          title:
+            grade <= 3
+              ? "Reduce, Reuse, Recycle"
+              : grade <= 5
+                ? "Food Chains"
+                : "Ecosystems in Balance",
+          story: {
+            title: grade <= 3 ? "The Three R Squad" : "The Circle of Life",
+            scenes:
+              grade <= 3
+                ? [
+                    { emoji: "♻️", text: "Meet the Three R Squad: Reduce, Reuse, Recycle!" },
+                    { emoji: "🛍️", text: "Reduce means use less stuff." },
+                    { emoji: "🎁", text: "Reuse means use things again." },
+                    { emoji: "🗑️", text: "Recycle means turn old things into new things!" },
+                  ]
+                : [
+                    { emoji: "☀️", text: "Every food chain starts with the sun." },
+                    { emoji: "🌿", text: "Plants use sunlight to make food. They are producers." },
+                    { emoji: "🐇", text: "Animals eat plants. Bigger animals eat them too!" },
+                    { emoji: "🔁", text: "It's a circle that keeps nature in balance." },
+                  ],
+          },
+          mission:
+            grade <= 3
+              ? "Find one thing at home to reuse (a jar or box) and make it into something new."
+              : "Draw a food chain from your area with at least 3 living things.",
+          questions:
+            grade <= 3
+              ? [
+                  tap("Tap the recycling symbol", "♻️", ["🎁", "🚫", "💤"], { emoji: "🌍" }),
+                  mcq("'Reuse' means...", "Use something again", ["Throw it away", "Hide it", "Break it"], { emoji: "🔁" }),
+                  mcq("'Reduce' means...", "Use less", ["Use more", "Buy double", "Lose things"], { emoji: "📉" }),
+                ]
+              : grade <= 5
+                ? [
+                    mcq("Every food chain starts with...", "The sun", ["A lion", "A mushroom", "A river"], { emoji: "☀️" }),
+                    mcq("Animals that only eat plants are...", "Herbivores", ["Carnivores", "Cyclists", "Robots"], { emoji: "🐇" }),
+                    mcq("Lions and tigers are...", "Carnivores", ["Producers", "Plants", "Minerals"], { emoji: "🦁" }),
+                  ]
+                : [
+                    mcq("An ecosystem is...", "Living and non-living things together", ["Only animals", "Only water", "A sports team"], { emoji: "🌿" }),
+                    mcq("If one species disappears, other species...", "Are affected too", ["Are never affected", "Move to space", "Turn into plants"], { emoji: "⚠️" }),
+                    mcq("Cutting down forests destroys...", "Homes for wildlife", ["The Moon", "Mountains", "The weather station"], { emoji: "🪓" }),
+                  ],
+        }),
+        LESSON({
+          title:
+            grade <= 3
+              ? "Water Is Precious"
+              : grade <= 5
+                ? "Pollution and Solutions"
+                : "Our Carbon Footprint",
+          story: {
+            title: grade <= 3 ? "The Last Drop" : "Cleaning Up Our Act",
+            scenes:
+              grade <= 3
+                ? [
+                    { emoji: "💧", text: "Every drop of water is precious." },
+                    { emoji: "🦷", text: "Turn the tap off while you brush your teeth!" },
+                    { emoji: "🌍", text: "Saving water helps every animal and plant on Earth." },
+                  ]
+                : [
+                    { emoji: "🏭", text: "Smoke, trash and chemicals can pollute air, land and water." },
+                    { emoji: "😔", text: "Pollution makes animals, plants and people sick." },
+                    { emoji: "🌳", text: "Trees clean our air. Recycling keeps trash out of rivers." },
+                    { emoji: "💪", text: "Small actions by many people make a big difference!" },
+                  ],
+          },
+          mission:
+            grade <= 3
+              ? "Count how many seconds it takes to wet your hands and turn the tap off. Save water!"
+              : "Walk or cycle somewhere you'd usually go by car. How did it feel?",
+          questions:
+            grade <= 3
+              ? [
+                  mcq("While brushing your teeth, the tap should be...", "Off", ["Wide open", "Sprinkling", "Singing"], { emoji: "🦷" }),
+                  tap("Tap what we should save", "💧", ["🎈", "🧦", "🍭"], { emoji: "🚰" }),
+                  mcq("Water for drinking should be...", "Clean", ["Colourful", "Sticky", "Fizzy with mud"], { emoji: "🥛" }),
+                ]
+              : grade <= 5
+                ? [
+                    mcq("Smoke from cars and factories causes...", "Air pollution", ["Rainbows", "Snowfall", "Tides"], { emoji: "🌫️" }),
+                    mcq("Planting trees helps because they...", "Clean the air", ["Eat trash", "Make noise", "Block the sun forever"], { emoji: "🌳" }),
+                    tap("Tap a clean way to travel", "🚲", ["🚗", "✈️", "🚛"], { emoji: "🌤️" }),
+                  ]
+                : [
+                    mcq("A carbon footprint is...", "Greenhouse gases from our activities", ["A shoe size", "A kind of map", "A footprint in sand"], { emoji: "👣" }),
+                    mcq("Which travel choice pollutes least?", "Bicycle", ["Plane", "Big truck", "Rocket"], { emoji: "🚲" }),
+                    mcq("Switching off unused lights...", "Reduces pollution", ["Wastes energy", "Is against the rules", "Breaks the lights"], { emoji: "💡" }),
+                  ],
+        }),
+        LESSON({
+          title: "Green World Review",
+          type: "TEST",
+          story: {
+            title: "Earth Guardian Badge",
+            scenes: [
+              { emoji: "🦸", text: "Earth guardians protect nature every day!" },
+              { emoji: "🌟", text: `Class ${grade}, final green challenge!` },
+            ],
+          },
+          mission: "Start one Earth-friendly habit this week and tell your Family HQ about it.",
+          questions:
+            grade <= 3
+              ? [
+                  mcq("Plants make food using...", "Sunlight", ["Moonlight", "Fridge light", "Torch light"], { emoji: "🌻" }),
+                  tap("Tap where rubbish belongs", "🗑️", ["🌊", "🏞️", "🛋️"], { emoji: "♻️" }),
+                  mcq("Saving water helps...", "Everyone on Earth", ["Nobody", "Only fish", "Only teachers"], { emoji: "💧" }),
+                ]
+              : [
+                  mcq("Producers make food using...", "Sunlight", ["Batteries", "Moonlight", "Sugar packets"], { emoji: "🌱" }),
+                  mcq("The 3 Rs are Reduce, Reuse and...", "Recycle", ["Rewind", "Return", "Repair shops"], { emoji: "♻️" }),
+                  mcq("The best way to help the planet is...", "Small actions every day", ["Waiting for magic", "Complaining only", "Doing nothing"], { emoji: "🌍" }),
+                ],
+        }),
+      ],
+    },
+  ];
+
+  return { mathUnits, sciUnits, enUnits, histUnits, geoUnits, evsUnits, toolsUnits, createUnits };
 };
 
 // ─── Seeding ─────────────────────────────────────────────────────────────────
@@ -692,6 +1255,12 @@ const lessonDataFor = (grade, code) => {
         return C1_SCI_UNITS;
       case "en":
         return C1_EN_UNITS;
+      case "hist":
+        return C1_HIST_UNITS;
+      case "geo":
+        return C1_GEO_UNITS;
+      case "evs":
+        return C1_EVS_UNITS;
       case "tools":
         return C1_TOOLS_UNITS;
       case "create":
@@ -709,6 +1278,12 @@ const lessonDataFor = (grade, code) => {
         return g.sciUnits;
       case "en":
         return g.enUnits;
+      case "hist":
+        return g.histUnits;
+      case "geo":
+        return g.geoUnits;
+      case "evs":
+        return g.evsUnits;
       case "tools":
         return g.toolsUnits;
       case "create":
@@ -725,7 +1300,7 @@ async function seedCurriculum() {
     const klass = await prisma.class.findUnique({ where: { grade } });
     if (!klass) continue;
 
-    for (const code of ["math", "sci", "en", "tools", "create"]) {
+    for (const code of ["math", "sci", "en", "hist", "geo", "evs", "tools", "create"]) {
       const subject = await prisma.subject.findUnique({
         where: { classId_code: { classId: klass.id, code } },
       });

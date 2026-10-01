@@ -91,6 +91,9 @@ export const TopBar = () => {
   const lingots = useBoundStore((x) => x.lingots);
   const theme = useBoundStore((x) => x.theme);
   const toggleTheme = useBoundStore((x) => x.toggleTheme);
+  const sessionUser = useBoundStore((x) => x.sessionUser);
+  // Grown-ups get a shortcut to the Family HQ dashboard.
+  const isGrownUp = sessionUser?.role === "PARENT" || sessionUser?.role === "ADMIN";
   return (
     <header className="fixed z-20 h-[60px] w-full">
       <div className="fa-glass relative flex h-full w-full items-center justify-between border-b border-line px-3 sm:px-4">
@@ -200,6 +203,14 @@ export const TopBar = () => {
                       >
                         🛍️ Shop
                       </Link>
+                      {isGrownUp && (
+                        <Link
+                          className="flex items-center gap-3 border-t border-line px-5 py-3 text-sm font-bold text-ink transition hover:bg-canvas"
+                          href="/parent"
+                        >
+                          🏡 Family HQ
+                        </Link>
+                      )}
                     </div>
                   </div>
                 );

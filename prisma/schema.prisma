@@ -32,8 +32,25 @@ model User {
   attempts       QuizAttempt[]
   activity       ActivityLog[]
   missions       MissionLog[]
+  // parent ↔ child links (PARENT accounts follow linked students)
+  children       ParentLink[]   @relation("ParentOf")
+  parents        ParentLink[]   @relation("ChildOf")
 
   @@index([classId])
+}
+
+// A parent account follows one or more student accounts so the Family HQ
+// dashboard can show their quests, XP and real-world missions.
+model ParentLink {
+  id            String   @id @default(cuid())
+  parentUserId  String
+  parent        User     @relation("ParentOf", fields: [parentUserId], references: [id], onDelete: Cascade)
+  studentUserId String
+  student       User     @relation("ChildOf", fields: [studentUserId], references: [id], onDelete: Cascade)
+  createdAt     DateTime @default(now())
+
+  @@unique([parentUserId, studentUserId])
+  @@index([studentUserId])
 }
 
 model UserCredential {

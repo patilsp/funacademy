@@ -499,7 +499,95 @@ const QuestionsSection = () => {
 
 // ─── Page shell ──────────────────────────────────────────────────────────────
 
-const TABS = ["Classes", "Subjects", "Units", "Lessons", "Questions"] as const;
+// ─── AI question generator (Gemini) ─────────────────────────────────────────
+
+type GeneratedOptionRow = { order: number; text: string; emoji: string | null; isCorrect: boolean };
+type GeneratedQuestionRow = {
+  id: number;
+  prompt: string;
+  emoji: string | null;
+  options: GeneratedOptionRow[];
+};
+
+const AiGeneratorSection = () => {
+  const [formError, setFormError] = useState<string | null>(null);
+  const [lessonId, setLessonId] = useState("");
+  const [count, setCount] = useState("4");
+  const [generating, setGenerating] = useState(false);
+  const [created, setCreated] = useState<GeneratedQuestionRow[]>([]);
+
+  const generate = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setFormError(null);
+    setGenerating(true);
+    setCreated([]);
+    try {
+      const response = await fetch("/api/admin/generate-questions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lessonId: Number(lessonId), count: Number(count) }),
+      });
+      const data = await response.json().catch(() => null);
+      if (!response.ok) {
+        setFormError(data?.error ?? `Generation failed (${response.status})`);
+        return;
+      }
+      setCreated((data?.created ?? []) as GeneratedQuestionRow[]);
+    } catch {
+      setFormError("Network error while generating");
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  return (
+    <section className="flex flex-col gap-5">
+      <form className="fa-card flex flex-col gap-3 p-5 sm:flex-row sm:items-end" onSubmit={generate}>
+        <Field label="Lesson ID">
+          <Input type="number" min={1} value={lessonId} onChange={(e) => setLessonId(e.target.value)} required />
+        </Field>
+        <Field label="How many questions">
+          <select className="fa-input" value={count} onChange={(e) => setCount(e.target.value)}>
+            {[3, 4, 5, 6].map((n) => (
+              <option key={n} value={n}>{`${n} questions`}</option>
+            ))}
+          </select>
+        </Field>
+        <button className="fa-btn-primary-sm" type="submit" disabled={generating || !lessonId}>
+          {generating ? "Thinking…" : "✨ Generate with AI"}
+        </button>
+      </form>
+
+      <p className="fa-caption px-1">
+        Powered by Google Gemini. Questions are appended to the lesson as
+        read-aloud multiple choice — review them in the Questions tab.
+      </p>
+
+      {formError && <ErrorBanner message={formError} />}
+
+      {created.length > 0 && (
+        <div className="fa-card divide-y divide-line overflow-hidden">
+          {created.map((question) => (
+            <div key={question.id} className="p-4">
+              <div className="font-bold text-ink">
+                {question.emoji ? `${question.emoji} ` : ""}{question.prompt}
+              </div>
+              <div className="fa-caption mt-1">
+                {question.options.map((o, i) => (
+                  <span key={o.order} className={o.isCorrect ? "font-bold text-emerald-strong" : ""}>
+                    {o.text}{i < question.options.length - 1 ? " · " : ""}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+};
+
+const TABS = ["Classes", "Subjects", "Units", "Lessons", "Questions", "AI Generator"] as const;
 type Tab = (typeof TABS)[number];
 
 const Admin: NextPage = () => {
@@ -571,6 +659,7 @@ const Admin: NextPage = () => {
         {tab === "Units" && <UnitsSection />}
         {tab === "Lessons" && <LessonsSection />}
         {tab === "Questions" && <QuestionsSection />}
+        {tab === "AI Generator" && <AiGeneratorSection />}
       </div>
     </main>
   );

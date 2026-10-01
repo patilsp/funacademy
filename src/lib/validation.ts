@@ -17,6 +17,9 @@ export const registerSchema = z.object({
     .min(1, "Class must be between 1 and 7")
     .max(7, "Class must be between 1 and 7")
     .optional(),
+  // Learners play; parents get the Family HQ dashboard. Only these two roles
+  // are self-serviceable — TEACHER/ADMIN are granted by an admin.
+  role: z.enum(["STUDENT", "PARENT"]).default("STUDENT"),
 });
 
 export type RegisterInput = z.infer<typeof registerSchema>;

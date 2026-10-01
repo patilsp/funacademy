@@ -34,6 +34,8 @@ const Signup: NextPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmailState] = useState("");
   const [password, setPassword] = useState("");
+  // Learners play quests; parents get the Family HQ dashboard (/parent).
+  const [role, setRole] = useState<"STUDENT" | "PARENT">("STUDENT");
   const [grade, setGrade] = useState<number | "">("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -60,8 +62,9 @@ const Signup: NextPage = () => {
           username,
           email,
           password,
+          role,
           // Grade is optional — the /learn ClassPicker can set it later.
-          ...(grade !== "" ? { grade: Number(grade) } : {}),
+          ...(role === "STUDENT" && grade !== "" ? { grade: Number(grade) } : {}),
         }),
       });
       const data = await response.json().catch(() => null);
@@ -73,7 +76,8 @@ const Signup: NextPage = () => {
         return;
       }
       setSessionUser(data.user);
-      void router.push(returnTo);
+      // Parents land straight in the Family HQ dashboard.
+      void router.push(role === "PARENT" ? "/parent" : returnTo);
     } catch {
       setError("Network error. Please try again.");
     } finally {
@@ -120,7 +124,37 @@ const Signup: NextPage = () => {
           Create your explorer pass in less than a minute. 🎟️
         </p>
 
-        <form className="mt-8 flex flex-col gap-3" onSubmit={handleSignup}>
+        {/* Learner / parent chooser — two big friendly cards */}
+        <div className="mt-6 grid grid-cols-2 gap-2">
+          {(
+            [
+              { key: "STUDENT", emoji: "🎒", title: "I'm a learner", hint: "Play quests" },
+              { key: "PARENT", emoji: "👨‍👩‍👧", title: "I'm a parent", hint: "Follow progress" },
+            ] as const
+          ).map((opt) => {
+            const selected = role === opt.key;
+            return (
+              <button
+                key={opt.key}
+                type="button"
+                aria-pressed={selected}
+                onClick={() => setRole(opt.key)}
+                className={[
+                  "fa-press flex flex-col items-center gap-0.5 rounded-xl border-2 px-2 py-3 transition",
+                  selected
+                    ? "border-brand bg-brand-soft text-brand-strong"
+                    : "border-line bg-canvas text-ink-muted hover:border-brand/40 hover:text-ink",
+                ].join(" ")}
+              >
+                <span className="text-2xl" aria-hidden>{opt.emoji}</span>
+                <span className="text-sm font-bold">{opt.title}</span>
+                <span className="text-xs font-semibold opacity-70">{opt.hint}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <form className="mt-6 flex flex-col gap-3" onSubmit={handleSignup}>
           {error && (
             <div
               role="alert"
@@ -198,37 +232,46 @@ const Signup: NextPage = () => {
             )}
           </label>
 
-          {/* Class picker as a friendly grid — pre-fills the learner's class */}
-          <div className="flex flex-col gap-1.5">
-            <span className="text-sm font-bold text-ink-muted">🎒 Your class (optional)</span>
-            <div className="grid grid-cols-4 gap-2">
-              {[1, 2, 3, 4, 5, 6, 7].map((g) => {
-                const selected = grade === g;
-                return (
-                  <button
-                    key={g}
-                    type="button"
-                    aria-pressed={selected}
-                    onClick={() => setGrade(selected ? "" : g)}
-                    className={[
-                      "fa-press flex flex-col items-center gap-0.5 rounded-xl border-2 px-1 py-2 text-sm font-bold transition",
-                      selected
-                        ? "border-brand bg-brand-soft text-brand-strong"
-                        : "border-line bg-canvas text-ink-muted hover:border-brand/40 hover:text-ink",
-                    ].join(" ")}
-                  >
-                    <span className="text-xl" aria-hidden>
-                      {CLASS_ANIMALS[g - 1]}
-                    </span>
-                    <span>{g}</span>
-                  </button>
-                );
-              })}
+          {/* Class picker as a friendly grid — only for learners */}
+          {role === "STUDENT" && (
+            <div className="flex flex-col gap-1.5">
+              <span className="text-sm font-bold text-ink-muted">🎒 Your class (optional)</span>
+              <div className="grid grid-cols-4 gap-2">
+                {[1, 2, 3, 4, 5, 6, 7].map((g) => {
+                  const selected = grade === g;
+                  return (
+                    <button
+                      key={g}
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() => setGrade(selected ? "" : g)}
+                      className={[
+                        "fa-press flex flex-col items-center gap-0.5 rounded-xl border-2 px-1 py-2 text-sm font-bold transition",
+                        selected
+                          ? "border-brand bg-brand-soft text-brand-strong"
+                          : "border-line bg-canvas text-ink-muted hover:border-brand/40 hover:text-ink",
+                      ].join(" ")}
+                    >
+                      <span className="text-xl" aria-hidden>
+                        {CLASS_ANIMALS[g - 1]}
+                      </span>
+                      <span>{g}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              {fieldError("grade") && (
+                <span className="text-xs font-semibold text-coral-strong">{fieldError("grade")}</span>
+              )}
             </div>
-            {fieldError("grade") && (
-              <span className="text-xs font-semibold text-coral-strong">{fieldError("grade")}</span>
-            )}
-          </div>
+          )}
+
+          {role === "PARENT" && (
+            <p className="rounded-xl bg-sky-soft px-4 py-3 text-xs font-semibold text-sky-strong">
+              After signing up you can link your child by their username and
+              follow their quests in the Family HQ. 🏡
+            </p>
+          )}
 
           <button
             className="fa-btn-primary animate-pulse-soft mt-1"

@@ -9,9 +9,9 @@ import { NextResponse, type NextRequest } from "next/server";
 const SESSION_COOKIE = "fa_session";
 
 // Pages that require a signed-in user.
-const PROTECTED_PAGES = ["/learn", "/lesson", "/leaderboard", "/profile", "/shop", "/settings"];
+const PROTECTED_PAGES = ["/learn", "/lesson", "/leaderboard", "/profile", "/shop", "/settings", "/parent"];
 // APIs that require a signed-in user (role checks remain in the handlers).
-const PROTECTED_APIS = ["/api/progress", "/api/attempts", "/api/learn-map", "/api/mission", "/api/lessons", "/api/check"];
+const PROTECTED_APIS = ["/api/progress", "/api/attempts", "/api/learn-map", "/api/mission", "/api/lessons", "/api/check", "/api/parent"];
 
 const ADMIN_PAGES = ["/admin"];
 
@@ -71,6 +71,7 @@ export const config = {
     "/profile/:path*",
     "/shop/:path*",
     "/settings/:path*",
+    "/parent/:path*",
     "/admin/:path*",
     "/api/progress/:path*",
     "/api/attempts/:path*",
@@ -78,5 +79,6 @@ export const config = {
     "/api/mission/:path*",
     "/api/lessons/:path*",
     "/api/check/:path*",
+    "/api/parent/:path*",
   ],
 };
